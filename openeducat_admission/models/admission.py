@@ -45,9 +45,8 @@ class OpAdmission(models.Model):
         'res.partner.title', 'Title')
     application_number = fields.Char(
         'Application Number', size=16, copy=False,
-        required=True, readonly=True, store=True,
-        default=lambda self:
-        self.env['ir.sequence'].next_by_code('op.admission'))
+        readonly=True, store=True,
+        )
     admission_date = fields.Date(
         'Admission Date', copy=False)
     application_date = fields.Datetime(
@@ -191,8 +190,7 @@ class OpAdmission(models.Model):
             application_date = fields.Date.from_string(rec.application_date)
             if application_date < start_date or application_date > end_date:
                 raise ValidationError(_(
-                    "Application Date should be between Start Date & \
-                    End Date of Admission Register."))
+                    "Application Date should be between Start Date & End Date of Admission Register."))
 
     @api.constrains('birth_date')
     def _check_birthdate(self):
@@ -209,6 +207,10 @@ class OpAdmission(models.Model):
                         "Not Eligible for Admission minimum "
                         "required age is :"
                         " %s " % self.register_id.minimum_age_criteria))
+                else:
+                    if not self.application_number:
+                        self.application_number = self.env['ir.sequence'].next_by_code(
+                            'op.admission') or '/'
 
     def submit_form(self):
         self.state = 'submit'
