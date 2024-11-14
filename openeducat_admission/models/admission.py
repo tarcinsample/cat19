@@ -45,8 +45,7 @@ class OpAdmission(models.Model):
         'res.partner.title', 'Title')
     application_number = fields.Char(
         'Application Number', size=16, copy=False,
-        readonly=True, store=True,
-        )
+        readonly=True, store=True)
     admission_date = fields.Date(
         'Admission Date', copy=False)
     application_date = fields.Datetime(
@@ -207,10 +206,12 @@ class OpAdmission(models.Model):
                         "Not Eligible for Admission minimum "
                         "required age is :"
                         " %s " % self.register_id.minimum_age_criteria))
-                else:
-                    if not self.application_number:
-                        self.application_number = self.env['ir.sequence'].next_by_code(
-                            'op.admission') or '/'
+
+    @api.constrains('name')
+    def create_sequence(self):
+        if not self.application_number:
+            self.application_number = self.env['ir.sequence'].next_by_code(
+                        'op.admission') or '/'
 
     def submit_form(self):
         self.state = 'submit'
@@ -226,7 +227,7 @@ class OpAdmission(models.Model):
         for student in self:
             student_user = self.env['res.users'].create({
                 'name': student.name,
-                'login': student.email,
+                'login': student.email if student.email else student.application_number,
                 'image_1920': self.image or False,
                 'is_student': True,
                 'company_id': self.company_id.id,
@@ -254,7 +255,7 @@ class OpAdmission(models.Model):
                 'middle_name': student.middle_name,
                 'last_name': student.last_name,
                 'birth_date': student.birth_date,
-                'gender': student.gender,
+                'gender': student.gender if student.gender else False,
                 'image_1920': student.image or False,
                 'course_detail_ids': [[0, False, {
                     'course_id':
