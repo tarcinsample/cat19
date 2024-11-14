@@ -32,7 +32,7 @@ class OpStudentCourse(models.Model):
     student_id = fields.Many2one('op.student', 'Student',
                                  ondelete="cascade", tracking=True)
     course_id = fields.Many2one('op.course', 'Course', required=True, tracking=True)
-    batch_id = fields.Many2one('op.batch', 'Batch', required=True, tracking=True)
+    batch_id = fields.Many2one('op.batch', 'Batch', tracking=True)
     roll_number = fields.Char('Roll Number', tracking=True)
     subject_ids = fields.Many2many('op.subject', string='Subjects')
     academic_years_id = fields.Many2one('op.academic.year', 'Academic Year')
@@ -119,7 +119,7 @@ class OpStudent(models.Model):
     @api.constrains('birth_date')
     def _check_birthdate(self):
         for record in self:
-            if record.birth_date > fields.Date.today():
+            if record.birth_date and record.birth_date > fields.Date.today():
                 raise ValidationError(_(
                     "Birth Date can't be greater than current date!"))
 
