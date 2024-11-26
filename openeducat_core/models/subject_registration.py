@@ -29,7 +29,7 @@ class OpSubjectRegistration(models.Model):
     _inherit = ["mail.thread"]
 
     name = fields.Char('Name', readonly=True, default='New')
-    student_id = fields.Many2one('op.student', 'Student', required=True,
+    student_id = fields.Many2one('op.student', 'Student',
                                  tracking=True)
     course_id = fields.Many2one('op.course', 'Course', required=True,
                                 tracking=True)

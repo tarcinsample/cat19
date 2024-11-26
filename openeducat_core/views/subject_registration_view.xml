@@ -49,7 +49,7 @@
                         </h1>
                         <group>
                             <group>
-                                <field name="student_id"/>
+                                <field name="student_id" required="1"/>
                                 <field name="batch_id" domain="[('course_id', '=', course_id)]" required='1'/>
                                 <field name="max_unit_load"/>
                             </group>
