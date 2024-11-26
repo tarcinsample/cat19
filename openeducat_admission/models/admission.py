@@ -224,10 +224,10 @@ class OpAdmission(models.Model):
             record.state = 'confirm'
 
     def get_student_vals(self):
-        is_global_student_user=self.env['ir.config_parameter'].get_param('openeducat_admission.global_student_user')
+        enable_create_student_user=self.env['ir.config_parameter'].get_param('openeducat_admission.enable_create_student_user')
         for student in self:
             student_user=False
-            if is_global_student_user:
+            if enable_create_student_user:
                 student_user = self.env['res.users'].create({
                     'name': student.name,
                     'login': student.email if student.email else student.application_number,
@@ -252,7 +252,7 @@ class OpAdmission(models.Model):
                 'image_1920': student.image,
                 'zip': student.zip,
             }
-            if is_global_student_user:
+            if enable_create_student_user:
                 student_user.partner_id.write(details)
             details.update({
                 'title': student.title and student.title.id or False,
@@ -481,5 +481,5 @@ class OpStudentCourseInherit(models.Model):
 class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
 
-    is_global_student_user = fields.Boolean(config_parameter='openeducat_admission.global_student_user',
-    string='Create Student User')
+    enable_create_student_user = fields.Boolean(config_parameter='openeducat_admission.enable_create_student_user',
+    string='Enable Create Student User')
