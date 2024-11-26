@@ -103,7 +103,7 @@
                                         <field name="application_number"/>
                                         <field name="admission_date" readonly="state == 'done'"/>
                                         <field name="batch_id" context="{'course_id': course_id,'get_parent_batch':1}"
-                                               readonly="state == 'done'" required="state in ('submit','fees_paid')"/>
+                                               readonly="state == 'done'" required="1"/>
                                         <field name="fees" readonly="state == 'done'"
                                                required="state not in ('draft', 'submit')"/>
                                         <field name="fees_term_id" required="1"
@@ -276,4 +276,26 @@
             </field>
         </record>
     </data>
+
+    <record id="res_config_settings_view_student_user" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.admission</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="40"/>
+        <field name="inherit_id" ref="openeducat_core.res_config_settings_view_form_core"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[contains(@invisible, 'module_openeducat_admission')]/div[1]" position="inside">
+                <div class="col-12 col-md-1 col-lg-6 mb16">
+                    <div class="o_setting_left_pane">
+                        <field
+                            name="is_global_student_user"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label
+                            for="is_global_student_user"/>
+                        <div class="text-muted"> Enable this option to create a student user</div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
 </odoo>
