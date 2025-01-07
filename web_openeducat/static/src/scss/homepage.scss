@@ -22,6 +22,15 @@ p {
 // header .navbar .nav-link{
 //     font-size: 0.875rem;
 // }
+header{
+  .navbar{
+    li a.nav-link, button, a.btn{
+
+        font-size: 14px !important;
+    }
+
+  }
+  }
 .text-black {
     color: #333333 !important;
 }
