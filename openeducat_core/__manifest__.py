@@ -72,6 +72,7 @@
         'demo/course_demo2.xml',
         'demo/batch_demo.xml',
         'demo/batch_demo2.xml',
+        'demo/category_demo.xml',
         'demo/student_demo.xml',
         'demo/student_course_demo.xml',
         'demo/faculty_demo.xml',
