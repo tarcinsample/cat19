@@ -28,7 +28,7 @@ class OpCourse(models.Model):
     _inherit = "mail.thread"
     _description = "OpenEduCat Course"
 
-    name = fields.Char('Name', required=True)
+    name = fields.Char('Name', required=True, translate=True)
     code = fields.Char('Code', size=16, required=True)
     parent_id = fields.Many2one('op.course', 'Parent Course')
     evaluation_type = fields.Selection(
