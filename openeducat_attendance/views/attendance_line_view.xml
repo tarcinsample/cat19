@@ -6,7 +6,7 @@
             <field name="model">op.attendance.line</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <list string="Attendance Line">
+                <list string="Attendance Line" editable="top">
                     <field name="attendance_id" optional="show"/>
                     <field name="student_id"/>
                     <field name="attendance_type_id" optional="show"/>

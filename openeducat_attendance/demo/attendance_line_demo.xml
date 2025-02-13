@@ -24,19 +24,19 @@
 
         <record id="op_attendance_line_5" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_2"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
         <record id="op_attendance_line_6" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_2"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
         <record id="op_attendance_line_7" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_2"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
@@ -48,7 +48,7 @@
 
         <record id="op_attendance_line_9" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_3"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
@@ -60,13 +60,13 @@
 
         <record id="op_attendance_line_11" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_3"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
         <record id="op_attendance_line_12" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_3"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_4"/>
         </record>
 
@@ -78,13 +78,13 @@
 
         <record id="op_attendance_line_14" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_4"/>
-            <field name="present" eval="False"/>
+            <field name="absent" eval="False"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
         <record id="op_attendance_line_15" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_4"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
@@ -96,7 +96,7 @@
 
         <record id="op_attendance_line_17" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_5"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
@@ -108,19 +108,19 @@
 
         <record id="op_attendance_line_19" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_5"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
         <record id="op_attendance_line_20" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_5"/>
-            <field name="present" eval="False"/>
+            <field name="absent" eval="False"/>
             <field name="student_id" ref="openeducat_core.op_student_4"/>
         </record>
 
         <record id="op_attendance_line_21" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_6"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
@@ -132,13 +132,13 @@
 
         <record id="op_attendance_line_23" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_6"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
         <record id="op_attendance_line_24" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_6"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_4"/>
         </record>
 
@@ -150,13 +150,13 @@
 
         <record id="op_attendance_line_26" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_7"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
         <record id="op_attendance_line_27" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_7"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
@@ -168,7 +168,7 @@
 
         <record id="op_attendance_line_29" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_8"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
@@ -180,13 +180,13 @@
 
         <record id="op_attendance_line_31" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_8"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
         <record id="op_attendance_line_32" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_8"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_4"/>
         </record>
 
@@ -198,7 +198,7 @@
 
         <record id="op_attendance_line_34" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_9"/>
-            <field name="present" eval="False"/>
+            <field name="excused" eval="False"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
@@ -210,7 +210,7 @@
 
         <record id="op_attendance_line_36" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_9"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_4"/>
         </record>
 
@@ -222,7 +222,7 @@
 
         <record id="op_attendance_line_38" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_10"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
@@ -234,7 +234,7 @@
 
         <record id="op_attendance_line_40" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_10"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_4"/>
         </record>
 
@@ -246,13 +246,13 @@
 
         <record id="op_attendance_line_42" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_11"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
         <record id="op_attendance_line_43" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_11"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
@@ -270,13 +270,13 @@
 
         <record id="op_attendance_line_46" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_12"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
         <record id="op_attendance_line_47" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_12"/>
-            <field name="present" eval="False"/>
+            <field name="absent" eval="False"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
@@ -288,7 +288,7 @@
 
         <record id="op_attendance_line_49" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_13"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
@@ -306,13 +306,13 @@
 
         <record id="op_attendance_line_52" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_13"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_4"/>
         </record>
 
         <record id="op_attendance_line_53" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_14"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
@@ -330,13 +330,13 @@
 
         <record id="op_attendance_line_56" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_14"/>
-            <field name="present" eval="False"/>
+            <field name="late" eval="False"/>
             <field name="student_id" ref="openeducat_core.op_student_4"/>
         </record>
 
         <record id="op_attendance_line_57" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_15"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
@@ -348,13 +348,13 @@
 
         <record id="op_attendance_line_59" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_15"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
         <record id="op_attendance_line_60" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_15"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_4"/>
         </record>
 
@@ -372,13 +372,13 @@
 
         <record id="op_attendance_line_63" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_16"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
         <record id="op_attendance_line_64" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_16"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_4"/>
         </record>
 
@@ -390,13 +390,13 @@
 
         <record id="op_attendance_line_66" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_17"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
         <record id="op_attendance_line_67" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_17"/>
-            <field name="present" eval="False"/>
+            <field name="excused" eval="False"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
@@ -414,7 +414,7 @@
 
         <record id="op_attendance_line_70" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_18"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
@@ -426,7 +426,7 @@
 
         <record id="op_attendance_line_72" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_18"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_4"/>
         </record>
 
@@ -438,13 +438,13 @@
 
         <record id="op_attendance_line_74" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_19"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
         <record id="op_attendance_line_75" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_19"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
@@ -456,19 +456,19 @@
 
         <record id="op_attendance_line_77" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_20"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
         <record id="op_attendance_line_78" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_20"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
         <record id="op_attendance_line_79" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_20"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
@@ -486,7 +486,7 @@
 
         <record id="op_attendance_line_82" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_21"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
@@ -498,7 +498,7 @@
 
         <record id="op_attendance_line_84" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_21"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_4"/>
         </record>
 
@@ -510,13 +510,13 @@
 
         <record id="op_attendance_line_86" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_22"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
         <record id="op_attendance_line_87" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_22"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
@@ -528,19 +528,19 @@
 
         <record id="op_attendance_line_89" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_23"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
         <record id="op_attendance_line_90" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_23"/>
-            <field name="present" eval="False"/>
+            <field name="late" eval="False"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
         <record id="op_attendance_line_91" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_23"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
@@ -552,31 +552,31 @@
 
         <record id="op_attendance_line_93" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_24"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
         <record id="op_attendance_line_94" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_24"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
         <record id="op_attendance_line_95" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_24"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
         <record id="op_attendance_line_96" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_24"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_4"/>
         </record>
 
         <record id="op_attendance_line_97" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_25"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
@@ -588,7 +588,7 @@
 
         <record id="op_attendance_line_99" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_25"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
@@ -600,13 +600,13 @@
 
         <record id="op_attendance_line_101" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_26"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
         <record id="op_attendance_line_102" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_26"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
@@ -618,7 +618,7 @@
 
         <record id="op_attendance_line_104" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_26"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_4"/>
         </record>
 
@@ -636,7 +636,7 @@
 
         <record id="op_attendance_line_107" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_27"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
@@ -648,7 +648,7 @@
 
         <record id="op_attendance_line_109" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_28"/>
-            <field name="present" eval="False"/>
+            <field name="absent" eval="False"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
@@ -660,13 +660,13 @@
 
         <record id="op_attendance_line_111" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_28"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
         <record id="op_attendance_line_112" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_28"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_4"/>
         </record>
 
@@ -684,13 +684,13 @@
 
         <record id="op_attendance_line_115" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_29"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
         <record id="op_attendance_line_116" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_29"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_4"/>
         </record>
 
@@ -702,7 +702,7 @@
 
         <record id="op_attendance_line_118" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_30"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
@@ -720,19 +720,19 @@
 
         <record id="op_attendance_line_121" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_31"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
         <record id="op_attendance_line_122" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_31"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
         <record id="op_attendance_line_123" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_31"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
@@ -750,13 +750,13 @@
 
         <record id="op_attendance_line_126" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_32"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
         <record id="op_attendance_line_127" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_32"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
@@ -774,19 +774,19 @@
 
         <record id="op_attendance_line_130" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_33"/>
-            <field name="present" eval="False"/>
+            <field name="excused" eval="False"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
         <record id="op_attendance_line_131" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_34"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
         <record id="op_attendance_line_132" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_34"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
@@ -804,13 +804,13 @@
 
         <record id="op_attendance_line_135" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_35"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
         <record id="op_attendance_line_136" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_35"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
@@ -828,7 +828,7 @@
 
         <record id="op_attendance_line_139" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_36"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
@@ -840,13 +840,13 @@
 
         <record id="op_attendance_line_141" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_37"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
         <record id="op_attendance_line_142" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_37"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
@@ -864,7 +864,7 @@
 
         <record id="op_attendance_line_145" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_38"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
@@ -882,13 +882,13 @@
 
         <record id="op_attendance_line_148" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_39"/>
-            <field name="present" eval="False"/>
+            <field name="absent" eval="False"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
         <record id="op_attendance_line_149" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_40"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
@@ -906,25 +906,25 @@
 
         <record id="op_attendance_line_152" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_41"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
         <record id="op_attendance_line_153" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_41"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
         <record id="op_attendance_line_154" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_41"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
         <record id="op_attendance_line_155" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_42"/>
-            <field name="present" eval="False"/>
+            <field name="late" eval="False"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
@@ -936,7 +936,7 @@
 
         <record id="op_attendance_line_157" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_42"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
@@ -948,7 +948,7 @@
 
         <record id="op_attendance_line_159" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_43"/>
-            <field name="present" eval="False"/>
+            <field name="excused" eval="False"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
@@ -960,13 +960,13 @@
 
         <record id="op_attendance_line_161" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_44"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
         <record id="op_attendance_line_162" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_44"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
@@ -978,7 +978,7 @@
 
         <record id="op_attendance_line_164" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_45"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
@@ -990,13 +990,13 @@
 
         <record id="op_attendance_line_166" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_45"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
         <record id="op_attendance_line_167" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_46"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
@@ -1008,13 +1008,13 @@
 
         <record id="op_attendance_line_169" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_46"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
         <record id="op_attendance_line_170" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_47"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
@@ -1026,19 +1026,19 @@
 
         <record id="op_attendance_line_172" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_47"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
         <record id="op_attendance_line_173" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_48"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
         <record id="op_attendance_line_174" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_48"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
@@ -1050,7 +1050,7 @@
 
         <record id="op_attendance_line_176" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_49"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
@@ -1068,7 +1068,7 @@
 
         <record id="op_attendance_line_179" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_50"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
@@ -1080,13 +1080,13 @@
 
         <record id="op_attendance_line_181" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_50"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
         <record id="op_attendance_line_182" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_51"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
@@ -1104,19 +1104,19 @@
 
         <record id="op_attendance_line_185" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_52"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
         <record id="op_attendance_line_186" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_52"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
         <record id="op_attendance_line_187" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_52"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
@@ -1128,7 +1128,7 @@
 
         <record id="op_attendance_line_189" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_53"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
@@ -1152,7 +1152,7 @@
 
         <record id="op_attendance_line_193" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_54"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
@@ -1170,7 +1170,7 @@
 
         <record id="op_attendance_line_196" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_55"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
@@ -1182,7 +1182,7 @@
 
         <record id="op_attendance_line_198" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_56"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
@@ -1206,7 +1206,7 @@
 
         <record id="op_attendance_line_202" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_57"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
@@ -1218,13 +1218,13 @@
 
         <record id="op_attendance_line_204" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_58"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
         <record id="op_attendance_line_205" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_58"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
@@ -1236,7 +1236,7 @@
 
         <record id="op_attendance_line_207" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_59"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
@@ -1248,7 +1248,7 @@
 
         <record id="op_attendance_line_209" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_60"/>
-            <field name="present" eval="True"/>
+            <field name="excused" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
@@ -1260,13 +1260,13 @@
 
         <record id="op_attendance_line_211" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_60"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
         <record id="op_attendance_line_212" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_61"/>
-            <field name="present" eval="True"/>
+            <field name="late" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
@@ -1278,19 +1278,19 @@
 
         <record id="op_attendance_line_214" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_61"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
 
         <record id="op_attendance_line_215" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_62"/>
-            <field name="present" eval="False"/>
+            <field name="excused" eval="False"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
         </record>
 
         <record id="op_attendance_line_216" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_62"/>
-            <field name="present" eval="True"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
         </record>
 
