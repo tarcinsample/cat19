@@ -10,6 +10,7 @@
                 <list string="Fees Reminder Terms">
                     <field name="name"/>
                     <field name="active"/>
+                    <field name="code"/>
                 </list>
             </field>
         </record>
@@ -29,6 +30,7 @@
                         <group>
                             <group>
                                 <field name="name"/>
+                                <field name="code"/>
                                 <field name="active"/>
                                 <field name="fees_terms" required="1"/>
                             </group>
@@ -54,7 +56,8 @@
                                     <field name="due_date" invisible="parent.fees_terms != 'fixed_date'" required="parent.fees_terms == 'fixed_date'"
                                            />
                                     <field name="value" required="1"/>
-                                    <field name="fees_element_line">
+                                   <separator string="Fees Elements" colspan="4"/>
+                                    <field name="fees_element_line" nolabel="1">
                                         <list string="Information" editable="top">
                                             <field name="product_id"/>
                                             <field name="value"/>
