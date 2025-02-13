@@ -40,11 +40,12 @@ class OpFeesTerms(models.Model):
     _inherit = "mail.thread"
     _description = "Fees Terms For Course"
 
-    name = fields.Char('Fees Terms', required=True)
+    name = fields.Char('Name', required=True)
     active = fields.Boolean('Active', default=True)
     fees_terms = fields.Selection([('fixed_days', 'Fixed Fees of Days'),
                                    ('fixed_date', 'Fixed Fees of Dates')],
                                   string='Term Type', default='fixed_days')
+    code = fields.Char('Code', required=True)
     note = fields.Text('Description')
     company_id = fields.Many2one('res.company', 'Company', required=True,
                                  default=lambda s: s.env.user.company_id)
