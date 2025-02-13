@@ -97,8 +97,8 @@
                                     </h2>
                                 </div>
                             </div>
-                            <div class="col-4 col-lg-2" style="text-align-last: center;">
-                                <field name="image_1920" widget="image" class="oe_left oe_avatar" style="margin-right: 30px !important;"/>
+                            <div class="col-4 col-lg-2">
+                                <field name="image_1920" widget="image" class="oe_left oe_avatar" />
                             </div>
                         </div>
                         <notebook colspan="4">
