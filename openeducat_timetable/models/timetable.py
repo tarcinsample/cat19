@@ -38,7 +38,7 @@ class OpSession(models.Model):
     _inherit = ["mail.thread"]
     _description = "Sessions"
 
-    name = fields.Char(compute='_compute_name', string='Name', store=True)
+    name = fields.Char(compute='_compute_name', string='Name')
     timing_id = fields.Many2one(
         'op.timing', 'Timing', tracking=True)
     start_datetime = fields.Datetime(
