@@ -510,5 +510,145 @@
             <field name="subject_type">compulsory</field>
             <field name="department_id" ref="openeducat_core.op_department_1"/>
         </record>
+        <record id="openeducat_core.op_subject_75" model="op.subject">
+            <field name="code">CLFT-75</field>
+            <field name="name">Contract Law in Financial Transactions</field>
+            <field name="type">theory</field>
+            <field name="subject_type">compulsory</field>
+            <field name="department_id" ref="openeducat_core.op_department_1"/>
+        </record>
+        <record id="openeducat_core.op_subject_76" model="op.subject">
+            <field name="code">IFSL-76</field>
+            <field name="name">Introduction to Financial Services Law</field>
+            <field name="type">theory</field>
+            <field name="subject_type">compulsory</field>
+            <field name="department_id" ref="openeducat_core.op_department_1"/>
+        </record>
+        <record id="openeducat_core.op_subject_77" model="op.subject">
+            <field name="code">ILC-77</field>
+            <field name="name">Insurance Law and Compliance</field>
+            <field name="type">theory</field>
+            <field name="subject_type">compulsory</field>
+            <field name="department_id" ref="openeducat_core.op_department_1"/>
+        </record>
+        <record id="openeducat_core.op_subject_78" model="op.subject">
+            <field name="code">HPL-78</field>
+            <field name="name">Health Policy and Law</field>
+            <field name="type">theory</field>
+            <field name="subject_type">compulsory</field>
+            <field name="department_id" ref="openeducat_core.op_department_1"/>
+        </record>
+        <record id="openeducat_core.op_subject_79" model="op.subject">
+            <field name="code">IHL-80</field>
+            <field name="name">Introduction to Healthcare Law</field>
+            <field name="type">theory</field>
+            <field name="subject_type">compulsory</field>
+            <field name="department_id" ref="openeducat_core.op_department_1"/>
+        </record>
+        <record id="openeducat_core.op_subject_80" model="op.subject">
+            <field name="code">SHR-81</field>
+            <field name="name">Sports and Human Rights</field>
+            <field name="type">theory</field>
+            <field name="subject_type">compulsory</field>
+            <field name="department_id" ref="openeducat_core.op_department_1"/>
+        </record>
+        <record id="openeducat_core.op_subject_81" model="op.subject">
+            <field name="code">SILL-81</field>
+            <field name="name">Sports Injury Law and Liability</field>
+            <field name="type">theory</field>
+            <field name="subject_type">compulsory</field>
+            <field name="department_id" ref="openeducat_core.op_department_1"/>
+        </record>
+        <record id="openeducat_core.op_subject_82" model="op.subject">
+            <field name="code">PHL-81</field>
+            <field name="name">Public Health Law</field>
+            <field name="type">theory</field>
+            <field name="subject_type">compulsory</field>
+            <field name="department_id" ref="openeducat_core.op_department_1"/>
+        </record>
+        <record id="openeducat_core.op_subject_83" model="op.subject">
+            <field name="code">PHL-82</field>
+            <field name="name">Medical Ethics and Legal Frameworks</field>
+            <field name="type">theory</field>
+            <field name="subject_type">compulsory</field>
+            <field name="department_id" ref="openeducat_core.op_department_1"/>
+        </record>
+        <record id="openeducat_core.op_subject_84" model="op.subject">
+            <field name="code">ECL-82</field>
+            <field name="name">Introduction to Corporate Law and Ethics</field>
+            <field name="type">theory</field>
+            <field name="subject_type">compulsory</field>
+            <field name="department_id" ref="openeducat_core.op_department_1"/>
+        </record>
+        <record id="openeducat_core.op_subject_85" model="op.subject">
+            <field name="code">BECP-83</field>
+            <field name="name">Business Ethics in Corporate Practice</field>
+            <field name="type">theory</field>
+            <field name="subject_type">compulsory</field>
+            <field name="department_id" ref="openeducat_core.op_department_1"/>
+        </record>
+        <record id="openeducat_core.op_subject_86" model="op.subject">
+            <field name="code">LEL-84</field>
+            <field name="name">Labor and Employment Law</field>
+            <field name="type">theory</field>
+            <field name="subject_type">compulsory</field>
+            <field name="department_id" ref="openeducat_core.op_department_1"/>
+        </record>
+        <record id="openeducat_core.op_subject_87" model="op.subject">
+            <field name="code">ILB-85</field>
+            <field name="name">Insurance Law for Businesses</field>
+            <field name="type">theory</field>
+            <field name="subject_type">compulsory</field>
+            <field name="department_id" ref="openeducat_core.op_department_1"/>
+        </record>
+        <record id="openeducat_core.op_subject_88" model="op.subject">
+            <field name="code">FRA-86</field>
+            <field name="name">Financial Reporting and Analysis</field>
+            <field name="type">theory</field>
+            <field name="subject_type">compulsory</field>
+            <field name="department_id" ref="openeducat_core.op_department_3"/>
+        </record>
+        <record id="openeducat_core.op_subject_89" model="op.subject">
+            <field name="code">FRA-87</field>
+            <field name="name">Financial Risk Analysis</field>
+            <field name="type">theory</field>
+            <field name="subject_type">compulsory</field>
+            <field name="department_id" ref="openeducat_core.op_department_3"/>
+        </record>
+        <record id="openeducat_core.op_subject_90" model="op.subject">
+            <field name="code">ADA-88</field>
+            <field name="name">Advanced Management Accounting</field>
+            <field name="type">theory</field>
+            <field name="subject_type">compulsory</field>
+            <field name="department_id" ref="openeducat_core.op_department_3"/>
+        </record>
+        <record id="openeducat_core.op_subject_91" model="op.subject">
+            <field name="code">MCS-89</field>
+            <field name="name">Management Control Systems</field>
+            <field name="type">theory</field>
+            <field name="subject_type">compulsory</field>
+            <field name="department_id" ref="openeducat_core.op_department_3"/>
+        </record>
+        <record id="openeducat_core.op_subject_92" model="op.subject">
+            <field name="code">ECA-90</field>
+            <field name="name">E-Commerce and Accounting </field>
+            <field name="type">theory</field>
+            <field name="subject_type">compulsory</field>
+            <field name="department_id" ref="openeducat_core.op_department_3"/>
+        </record>
+        <record id="openeducat_core.op_subject_93" model="op.subject">
+            <field name="code">ELC-91</field>
+            <field name="name">Ethical Leadership in Corporations</field>
+            <field name="type">theory</field>
+            <field name="subject_type">compulsory</field>
+            <field name="department_id" ref="openeducat_core.op_department_1"/>
+        </record>
+        <record id="openeducat_core.op_subject_94" model="op.subject">
+            <field name="code">SEL-92</field>
+            <field name="name">Securities and Exchange Law</field>
+            <field name="type">theory</field>
+            <field name="subject_type">compulsory</field>
+            <field name="department_id" ref="openeducat_core.op_department_1"/>
+        </record>
     </data>
 </odoo>

@@ -80,7 +80,7 @@
             <field name="evaluation_type">normal</field>
                         <field name="subject_ids"
                                eval="[(6,0, [ref('op_subject_29'), ref('op_subject_30'), ref('op_subject_31'), ref('op_subject_32')])]"/>
-            <field name="department_id" ref="openeducat_core.op_department_3"/>
+            <field name="department_id" ref="openeducat_core.op_department_4"/>
         </record>
         <record id="op_course_11" model="op.course">
             <field name="code">C-9</field>

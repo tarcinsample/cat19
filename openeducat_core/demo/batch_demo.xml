@@ -100,5 +100,113 @@
                    eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-04 %H:%M')"/>
             <field name="course_id" ref="op_course_12"/>
         </record>
+        <record id="op_batch_17" model="op.batch">
+            <field name="code">Diploma-b01</field>
+            <field name="name">Diploma-batch-01</field>
+            <field name="start_date"
+                   eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-06-04 %H:%M')"/>
+            <field name="end_date"
+                   eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-04 %H:%M')"/>
+            <field name="course_id" ref="op_course_46"/>
+        </record>
+        <record id="op_batch_18" model="op.batch">
+            <field name="code">Diploma-b02</field>
+            <field name="name">Diploma-batch-02</field>
+            <field name="start_date"
+                   eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-06-04 %H:%M')"/>
+            <field name="end_date"
+                   eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-04 %H:%M')"/>
+            <field name="course_id" ref="op_course_47"/>
+        </record>
+        <record id="op_batch_19" model="op.batch">
+            <field name="code">Sport-Low-001</field>
+            <field name="name">Sport-batch-01</field>
+            <field name="start_date"
+                   eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-06-04 %H:%M')"/>
+            <field name="end_date"
+                   eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-04 %H:%M')"/>
+            <field name="course_id" ref="op_course_36"/>
+        </record>
+        <record id="op_batch_19" model="op.batch">
+            <field name="code">BSL-001</field>
+            <field name="name">FSL-batch-01</field>
+            <field name="start_date"
+                   eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-06-04 %H:%M')"/>
+            <field name="end_date"
+                   eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-04 %H:%M')"/>
+            <field name="course_id" ref="op_course_34"/>
+        </record>
+        <record id="op_batch_22" model="op.batch">
+            <field name="code">BSL-002</field>
+            <field name="name">FSL-batch-02</field>
+            <field name="start_date"
+                   eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-06-04 %H:%M')"/>
+            <field name="end_date"
+                   eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-04 %H:%M')"/>
+            <field name="course_id" ref="op_course_35"/>
+        </record>
+        <record id="op_batch_20" model="op.batch">
+            <field name="code">COM-001</field>
+            <field name="name">COM-batch-01</field>
+            <field name="start_date"
+                   eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-06-04 %H:%M')"/>
+            <field name="end_date"
+                   eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-04 %H:%M')"/>
+            <field name="course_id" ref="op_course_40"/>
+        </record>
+        <record id="op_batch_21" model="op.batch">
+            <field name="code">COM-002</field>
+            <field name="name">COM-batch-02</field>
+            <field name="start_date"
+                   eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-06-04 %H:%M')"/>
+            <field name="end_date"
+                   eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-04 %H:%M')"/>
+            <field name="course_id" ref="op_course_41"/>
+        </record>
+        <record id="op_batch_22" model="op.batch">
+            <field name="code">FSA-002</field>
+            <field name="name">FSA-batch-01</field>
+            <field name="start_date"
+                   eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-06-04 %H:%M')"/>
+            <field name="end_date"
+                   eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-04 %H:%M')"/>
+            <field name="course_id" ref="op_course_56"/>
+        </record>
+        <record id="op_batch_23" model="op.batch">
+            <field name="code">ADE-002</field>
+            <field name="name">ADE-batch-01</field>
+            <field name="start_date"
+                   eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-06-04 %H:%M')"/>
+            <field name="end_date"
+                   eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-04 %H:%M')"/>
+            <field name="course_id" ref="op_course_58"/>
+        </record>
+        <record id="op_batch_24" model="op.batch">
+            <field name="code">MA-002</field>
+            <field name="name">MA-batch-01</field>
+            <field name="start_date"
+                   eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-06-04 %H:%M')"/>
+            <field name="end_date"
+                   eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-04 %H:%M')"/>
+            <field name="course_id" ref="op_course_59"/>
+        </record>
+        <record id="op_batch_25" model="op.batch">
+            <field name="code">ECL-001</field>
+            <field name="name">ECL-batch-01</field>
+            <field name="start_date"
+                   eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-06-04 %H:%M')"/>
+            <field name="end_date"
+                   eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-04 %H:%M')"/>
+            <field name="course_id" ref="op_course_61"/>
+        </record>
+        <record id="op_batch_26" model="op.batch">
+            <field name="code">RFM-001</field>
+            <field name="name">RFM-batch-01</field>
+            <field name="start_date"
+                   eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-06-04 %H:%M')"/>
+            <field name="end_date"
+                   eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-04 %H:%M')"/>
+            <field name="course_id" ref="op_course_62"/>
+        </record>
     </data>
 </odoo>
