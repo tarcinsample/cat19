@@ -38,7 +38,7 @@ class OpSession(models.Model):
     _inherit = ["mail.thread"]
     _description = "Sessions"
 
-    name = fields.Char(compute='_compute_name', string='Name')
+    name = fields.Char(compute='_compute_name', string='Name',store=False)
     timing_id = fields.Many2one(
         'op.timing', 'Timing', tracking=True)
     start_datetime = fields.Datetime(
@@ -112,6 +112,8 @@ class OpSession(models.Model):
                     session.subject_id.name + ':' + str(
                         session.start_datetime.astimezone(tz).strftime('%I:%M%p')) + '-' + str(
                         session.end_datetime.astimezone(tz).strftime('%I:%M%p'))
+            else:
+                session.name = None
 
     # For record rule on student and faculty dashboard
     @api.depends('batch_id', 'faculty_id', 'user_ids.child_ids')
