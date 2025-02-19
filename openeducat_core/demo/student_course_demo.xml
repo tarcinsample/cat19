@@ -220,13 +220,13 @@
         <record id="op_student_course_32" model="op.student.course">
             <field name="student_id" ref="op_student_5"/>
             <field name="course_id" ref="op_course_34"/>
-            <field name="batch_id" ref="op_batch_19"/>
+            <field name="batch_id" ref="op_batch_019"/>
             <field name="roll_number">749975</field>
         </record>
         <record id="op_student_course_33" model="op.student.course">
             <field name="student_id" ref="op_student_6"/>
             <field name="course_id" ref="op_course_34"/>
-            <field name="batch_id" ref="op_batch_19"/>
+            <field name="batch_id" ref="op_batch_019"/>
             <field name="roll_number">749976</field>
         </record>
         <record id="op_student_course_46" model="op.student.course">

@@ -38,7 +38,7 @@
             <field name="gender">m</field>
             <field name="email">jamesgarcia@example.com</field>
             <field name="fees">100000.0</field>
-            <field name="state">done</field>
+            <field name="state">draft</field>
             <field name="birth_date">1989-11-05</field>
             <field name="city">Berlin</field>
             <field name="street">Alexanderplatz 7</field>
@@ -66,7 +66,7 @@
             <field name="gender">f</field>
             <field name="email">priyareddy@example.com</field>
             <field name="fees">100000.0</field>
-            <field name="state">done</field>
+            <field name="state">confirm</field>
             <field name="birth_date">1991-03-12</field>
             <field name="city">Mumbai</field>
             <field name="street">25 Marine Drive</field>
@@ -94,7 +94,7 @@
             <field name="gender">m</field>
             <field name="email">alexparker@example.com</field>
             <field name="fees">100000.0</field>
-            <field name="state">done</field>
+            <field name="state">draft</field>
             <field name="birth_date">1991-05-16</field>
             <field name="city">New York</field>
             <field name="street">350 5th Avenue</field>
@@ -234,7 +234,7 @@
             <field name="gender">f</field>
             <field name="email">michaelyoung@example.com</field>
             <field name="fees">80000.0</field>
-            <field name="state">done</field>
+            <field name="state">confirm</field>
             <field name="birth_date">1992-05-12</field>
             <field name="city">Moscow</field>
             <field name="street">10 Tverskaya Street</field>
@@ -263,7 +263,7 @@
             <field name="email">joonkim
             @example.com</field>
             <field name="fees">80000.0</field>
-            <field name="state">done</field>
+            <field name="state">confirm</field>
             <field name="birth_date">1989-09-30</field>
             <field name="city">Seoul</field>
             <field name="street">25 Gangnam-daero</field>
@@ -347,7 +347,7 @@
             <field name="gender">f</field>
             <field name="email">imanijengo@example.com</field>
             <field name="fees">30000.0</field>
-            <field name="state">done</field>
+            <field name="state">confirm</field>
             <field name="birth_date">1990-07-02</field>
             <field name="city">Mexico City</field>
             <field name="street">Av. Paseo de la Reforma 250</field>
@@ -375,7 +375,7 @@
             <field name="gender">m</field>
             <field name="email">danielking@example.com</field>
             <field name="fees">30000.0</field>
-            <field name="state">done</field>
+            <field name="state">confirm</field>
             <field name="birth_date">1991-03-18</field>
             <field name="city">Jakarta</field>
             <field name="street">Jl. Sudirman No. 45</field>
@@ -459,7 +459,7 @@
             <field name="gender">f</field>
             <field name="email">rubyjohnson@example.com</field>
             <field name="fees">20000.0</field>
-            <field name="state">done</field>
+            <field name="state">confirm</field>
             <field name="birth_date">2003-12-03</field>
             <field name="city">Sydney</field>
             <field name="street">100 George Street</field>
