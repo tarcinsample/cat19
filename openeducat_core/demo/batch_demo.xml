@@ -127,7 +127,7 @@
                    eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-04 %H:%M')"/>
             <field name="course_id" ref="op_course_36"/>
         </record>
-        <record id="op_batch_19" model="op.batch">
+        <record id="op_batch_019" model="op.batch">
             <field name="code">BSL-001</field>
             <field name="name">FSL-batch-01</field>
             <field name="start_date"
