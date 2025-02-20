@@ -7,7 +7,7 @@
             <field name="type">list</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <list string="Fees Reminder Terms">
+                <list string="Fees Reminder Terms" js_class="fees_wizard_list">
                     <field name="name"/>
                     <field name="active"/>
                     <field name="code"/>
