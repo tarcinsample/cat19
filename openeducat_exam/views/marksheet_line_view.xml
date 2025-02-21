@@ -12,7 +12,7 @@
                     <field name="percentage"/>
                     <field name="grade" invisible="evaluation_type != 'grade'"/>
                     <field name="status"/>
-                    <field name="evaluation_type" invisible="1"/>
+                    <field name="evaluation_type"/>
                 </list>
             </field>
         </record>
@@ -37,7 +37,7 @@
                             <group>
                                 <field name="status"/>
                                 <field name="percentage"/>
-                                <field name="evaluation_type" invisible="1"/>
+                                <field name="evaluation_type"/>
                             </group>
                         </group>
                         <group string="Results">

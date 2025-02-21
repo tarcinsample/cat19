@@ -12,7 +12,7 @@
                     <field name="marks"/>
                     <field name="grade" invisible="evaluation_type != 'grade'"/>
                     <field name="status"/>
-                    <field name="evaluation_type" invisible="1"/>
+                    <field name="evaluation_type" />
                 </list>
             </field>
         </record>
@@ -35,7 +35,7 @@
                             <group>
                                 <field name="exam_id"/>
                                 <field name="status"/>
-                                <field name="evaluation_type" invisible="1"/>
+                                <field name="evaluation_type" />
                             </group>
                         </group>
                     </sheet>
