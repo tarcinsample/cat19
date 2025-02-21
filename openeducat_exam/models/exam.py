@@ -56,6 +56,8 @@ class OpExam(models.Model):
     total_marks = fields.Integer('Total Marks', required=True)
     min_marks = fields.Integer('Passing Marks', required=True)
     active = fields.Boolean(default=True)
+    attendees_count = fields.Integer(string='Attendees Count',
+                                        compute='_compute_attendees_count')
 
     _sql_constraints = [
         ('unique_exam_code',
@@ -85,6 +87,19 @@ class OpExam(models.Model):
                 end_time < session_start or end_time > session_end:
             raise ValidationError(
                 _('Exam Time should in between Exam Session Dates.'))
+
+    def open_exam_attendees(self):
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": "op.exam.attendees",
+            "domain": [("exam_id", "=", self.id)],
+            "name": "Students",
+            "view_mode": "list,form",
+        }
+
+    def _compute_attendees_count(self):
+        for record in self:
+            record.attendees_count = self.env["op.exam.attendees"].search_count([("exam_id", "=", record.id)])
 
     @api.constrains('subject_id','start_time','end_time')
     def _check_overlapping_times(self):

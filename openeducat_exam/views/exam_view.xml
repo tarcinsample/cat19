@@ -42,25 +42,29 @@
                                statusbar_visible="draft,held,scheduled,result_updated,done"/>
                     </header>
                     <sheet>
+                        <div class="oe_button_box" name="button_box">
+                                <button class="oe_stat_button"
+                                        name="open_exam_attendees" type="object"
+                                        icon="fa-user-circle" string="Attendees">
+                                    <field string="Attendees" name="attendees_count" widget="statinfo"/>
+                            </button>
+                        </div>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 invisible = "active == True"/>
+                            <h1><field name="name" readonly="state in ['held', 'done', 'cancel']" placeholder="Exam Name "/></h1>
                         <group>
                             <group>
                                 <field name="session_id" required="1" readonly="state in ['held', 'done', 'cancel']"/>
-                                <field name="subject_id" readonly="state in ['held', 'done', 'cancel']"/>
-                                <field name="start_time" readonly="state in ['held', 'done', 'cancel']"/>
+                                <field name="exam_code" readonly="state in ['held', 'done', 'cancel']"/>
                                 <field name="total_marks" readonly="state in ['held', 'done', 'cancel']"/>
+                                <field name="subject_id" readonly="state in ['held', 'done', 'cancel']"/>
                             </group>
                             <group>
-                                <field name="name" readonly="state in ['held', 'done', 'cancel']"/>
-                                <field name="exam_code" readonly="state in ['held', 'done', 'cancel']"/>
+                                <field name="start_time" readonly="state in ['held', 'done', 'cancel']"/>
                                 <field name="end_time" readonly="state in ['held', 'done', 'cancel']"/>
                                 <field name="min_marks" readonly="state in ['held', 'done', 'cancel']"/>
                             </group>
-                        </group>
-                        <group string="Attendees">
-                            <field name="attendees_line" colspan="2" nolabel="1"/>
                         </group>
                         <separator colspan="2" string="Description"/>
                         <field name="note" colspan="2"/>
