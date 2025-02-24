@@ -197,7 +197,7 @@ class OpAdmission(models.Model):
             if record.birth_date and  record.birth_date > fields.Date.today():
                 raise ValidationError(_(
                     "Birth Date can't be greater than current date!"))
-            elif record:
+            elif record and record.birth_date:
                 today_date = fields.Date.today()
                 day = (today_date - record.birth_date).days
                 years = day // 365
