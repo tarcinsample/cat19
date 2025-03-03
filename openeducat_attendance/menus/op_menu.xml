@@ -2,7 +2,7 @@
 <odoo>
     <data>
         <menuitem id="menu_op_attendance_root"
-                  name=" Attendances"
+                  name=" Class Attendances"
                   sequence="290"
                   web_icon="openeducat_attendance,static/description/icon.png"
                   groups="openeducat_attendance.group_op_attendance_user,openeducat_attendance.group_op_attendance_manager"/>
