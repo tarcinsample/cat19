@@ -50,6 +50,7 @@ class OpSubjectRegistration(models.Model):
                                  tracking=True)
     min_unit_load = fields.Float('Minimum Unit Load',
                                  tracking=True)
+    is_read = fields.Boolean(string="Read?", default=False)
 
     def action_reset_draft(self):
         self.state = 'draft'
