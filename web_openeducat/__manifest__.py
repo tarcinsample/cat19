@@ -47,7 +47,7 @@
         'data/footer_template.xml',
     ],
     'images': [
-        'static/description/web_openeducat_banner.jpg',
+        'static/description/web-openeducat_banner.jpg',
     ],
     'depends': [
         'website',
