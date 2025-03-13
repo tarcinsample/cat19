@@ -44,7 +44,7 @@
         'demo/activity_demo.xml',
     ],
     'images': [
-        'static/description/openeducat_activity_banner.jpg',
+        'static/description/openeducat-activity_banner.jpg',
     ],
     'installable': True,
     'auto_install': False,

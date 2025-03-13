@@ -51,7 +51,7 @@
     ],
     'test': [],
     'images': [
-        'static/description/openeducat_admission_banner.jpg',
+        'static/description/openeducat-admission_banner.jpg',
     ],
     'installable': True,
     'auto_install': False,

@@ -40,7 +40,7 @@
         'demo/facility_line_demo.xml'
     ],
     'images': [
-        'static/description/openeducat_classroom_banner.jpg',
+        'static/description/openeducat-classroom_banner.jpg',
     ],
     'installable': True,
     'auto_install': False,

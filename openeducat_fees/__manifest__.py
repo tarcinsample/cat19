@@ -43,7 +43,7 @@
         'views/fees_element_view.xml',
     ],
     'images': [
-        'static/description/openeducat_fees_banner.jpg',
+        'static/description/openeducat-fees_banner.jpg',
     ],
     'assets': {
         'web.assets_backend': [

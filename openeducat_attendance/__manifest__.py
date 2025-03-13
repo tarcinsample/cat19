@@ -52,7 +52,7 @@
         'demo/attendance_type_demo.xml',
     ],
     'images': [
-        'static/description/openeducat_attendance_banner.jpg',
+        'static/description/openeducat-attendance_banner.jpg',
     ],
     'installable': True,
     'auto_install': False,

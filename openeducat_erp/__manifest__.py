@@ -38,7 +38,7 @@
         'openeducat_exam',
     ],
     'images': [
-        'static/description/openeducat_erp_banner.jpg',
+        'static/description/openeducat-erp_banner.jpg',
     ],
     'installable': True,
     'auto_install': False,
