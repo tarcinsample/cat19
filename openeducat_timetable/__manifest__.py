@@ -50,7 +50,7 @@
         'demo/op_timetable_demo.xml'
     ],
     'images': [
-        'static/description/openeducat_timetable_banner.jpg',
+        'static/description/openeducat-timetable_banner.jpg',
     ],
     'installable': True,
     'auto_install': False,

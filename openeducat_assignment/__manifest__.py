@@ -49,7 +49,7 @@
         'demo/assignment_sub_line_demo.xml'
     ],
     'images': [
-        'static/description/openeducat_assignment_banner.jpg',
+        'static/description/openeducat-assignment_banner.jpg',
     ],
     'installable': True,
     'auto_install': False,

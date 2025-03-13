@@ -78,7 +78,7 @@
         'demo/media_purchase_demo.xml'
     ],
     'images': [
-        'static/description/openeducat_library_banner.jpg',
+        'static/description/openeducat-library_banner.jpg',
     ],
     'installable': True,
     'auto_install': False,

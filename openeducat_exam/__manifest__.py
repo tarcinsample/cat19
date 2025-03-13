@@ -64,7 +64,7 @@
         'demo/result_line_demo.xml',
     ],
     'images': [
-        'static/description/openeducat_exam_banner.jpg',
+        'static/description/openeducat-exam_banner.jpg',
     ],
     'installable': True,
     'auto_install': False,

@@ -45,7 +45,7 @@
         'demo/parent_demo.xml',
     ],
     'images': [
-        'static/description/openeducat_parent_banner.jpg',
+        'static/description/openeducat-parent_banner.jpg',
     ],
     'installable': True,
     'auto_install': False,

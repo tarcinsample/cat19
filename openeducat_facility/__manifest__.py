@@ -40,7 +40,7 @@
         'demo/facility_demo.xml'
     ],
     'images': [
-        'static/description/openeducat_facility_banner.jpg',
+        'static/description/openeducat-facility_banner.jpg',
     ],
     'installable': True,
     'auto_install': False,
