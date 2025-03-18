@@ -31,7 +31,7 @@ class OpStudent(models.Model):
 
     def get_activity(self):
         action = self.env.ref('openeducat_activity.'
-                              'act_open_op_activity_view').read()[0]
+                              'act_open_op_activity_view').sudo().read()[0]
         action['domain'] = [('student_id', 'in', self.ids)]
         return action
 

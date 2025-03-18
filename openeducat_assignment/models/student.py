@@ -30,7 +30,7 @@ class OpStudent(models.Model):
 
     def get_assignment(self):
         action = self.env.ref('openeducat_assignment.'
-                              'act_open_op_assignment_view').read()[0]
+                              'act_open_op_assignment_view').sudo().read()[0]
         action['domain'] = [('allocation_ids', 'in', self.ids)]
         return action
 

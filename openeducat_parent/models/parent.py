@@ -150,7 +150,7 @@ class OpStudent(models.Model):
 
     def get_parent(self):
         action = self.env.ref('openeducat_parent.'
-                              'act_open_op_parent_view').read()[0]
+                              'act_open_op_parent_view').sudo().read()[0]
         action['domain'] = [('student_ids', 'in', self.ids)]
         return action
 

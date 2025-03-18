@@ -12,7 +12,8 @@
                             type="object"
                             name="get_assignment"
                             style="border-right: 1px solid;"
-                            icon="fa-newspaper-o">
+                            icon="fa-newspaper-o"
+                            groups="openeducat_assignment.group_op_assignment_user,openeducat_assignment.group_op_assignment_manager">
                         <field string="Assignment" name="assignment_count" widget="statinfo"/>
                     </button>
                 </xpath>
