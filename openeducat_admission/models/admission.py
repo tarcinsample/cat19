@@ -234,6 +234,7 @@ class OpAdmission(models.Model):
                     'image_1920': self.image or False,
                     'is_student': True,
                     'company_id': self.company_id.id,
+                    'company_ids': [(4, self.company_id.id)],
                     'groups_id': [
                         (6, 0,
                         [self.env.ref('base.group_portal').id])]
