@@ -11,13 +11,16 @@
                     <templates>
                         <t t-name="card" class="flex-row">
                             <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
-                            <aside class="o_kanban_aside_full">
+                           <aside class="o_kanban_aside_full">
                                 <t t-if="record.image_1920.value">
-                                    <field name="image_1920" class="object-fit-cover" widget="image" options="{'img_class': 'object-fit-cover'}"/>
-                                <!-- <field name="image_1920" class="w-100" widget="image" options="{'img_class': 'object-fit-contain w-100 h-100'}"/> -->
+                                    <div class="o_kanban_image_fill position-relative w-100">
+                                        <field name="image_1920" alt="Contact image" class="h-100" widget="image" options="{'img_class': 'object-fit-cover'}"/>
+                                    </div>
                                 </t>
                                 <t t-else="">
-                                    <field name="avatar_128" class="w-100" widget="image" options="{'img_class': 'object-fit-cover'}"/>
+                                    <div class="o_kanban_image_fill position-relative w-100">
+                                        <field name="avatar_128" class="h-100" widget="image" options="{'img_class': 'object-fit-cover'}"/>
+                                    </div>
                                 </t>
                             </aside>
                             <main class="ml16 ps-2 ps-md-0">
