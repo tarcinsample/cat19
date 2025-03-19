@@ -45,6 +45,7 @@
                             </group>
                             <group>
                                 <field name="parent_id"/>
+                                <field name="program_id"/>
                                 <field name="max_unit_load"/>
                             </group>
                         </group>
