@@ -38,11 +38,11 @@
                         <group class="pt-3">
                             <group name="main">
                                 <field name="code"/>
-                                <field name="max_unit_load"/>
+                                <field name="min_unit_load"/>
                             </group>
                             <group>
                                 <field name="department_id" groups="openeducat_core.group_multi_department"/>
-                                <field name="min_unit_load"/>
+                                <field name="max_unit_load"/>
                             </group>
                         </group>
                     </sheet>
@@ -75,8 +75,8 @@
             <field name="arch" type="xml">
                 <pivot string="Programs">
                     <field name="name" type="row"/>
-                    <field name="max_unit_load"/>
                     <field name="min_unit_load"/>
+                    <field name="max_unit_load"/>
                 </pivot>
             </field>
         </record>
