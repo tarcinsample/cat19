@@ -6,7 +6,7 @@
                   parent="openeducat_core.menu_op_general_student"
                   sequence="10"
                   action="act_open_op_activity_view"
-                  groups="openeducat_activity.group_activity_manager"/>
+                  groups="openeducat_activity.group_activity_manager,openeducat_activity.group_activity_user"/>
 
         <menuitem id="menu_op_activity_type_sub"
                   name="Activity Types"
@@ -20,7 +20,6 @@
                   parent="openeducat_core.menu_op_general_main"
                   sequence="30"
                   action="act_open_student_migrate_view"
-                  groups="openeducat_activity.group_activity_manager"/>
+                  groups="openeducat_activity.group_activity_manager,openeducat_activity.group_activity_user"/>
     </data>
 </odoo>
-
