@@ -36,3 +36,4 @@ class OpAttendanceType(models.Model):
         'Excused ?', tracking=True)
     absent = fields.Boolean('Absent', tracking=True)
     late = fields.Boolean('Late', tracking=True)
+    company_id = fields.Many2one('res.company', string='Company',default=lambda self: self.env.user.company_id)

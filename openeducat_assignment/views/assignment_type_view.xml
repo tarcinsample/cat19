@@ -10,6 +10,7 @@
                     <field name="name" />
                     <field name="code" />
                     <field name="assign_type" />
+                    <field name="company_id" groups="base.group_multi_company" optional="show"/>
                 </list>
             </field>
         </record>
@@ -29,6 +30,7 @@
                             </group>
                             <group>
                                 <field name="code"/>
+                                <field name="company_id" groups="base.group_multi_company" optional="show"/>
                             </group>
                         </group>
                     </sheet>

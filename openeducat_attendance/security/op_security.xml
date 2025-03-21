@@ -45,5 +45,12 @@
             <field name="groups" eval="[(4, ref('openeducat_attendance.group_op_attendance_user'))]"/>
             <field name="domain_force">[(1, '=', 1)]</field>
         </record>
+
+        <record model="ir.rule" id="attendance_type_multi_comp_rule">
+            <field name="name">attendance type multi comp rule</field>
+            <field name="model_id" ref="openeducat_attendance.model_op_attendance_type"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|','|',('company_id','=',False),('company_id','child_of',[user.company_id.id]),('company_id','in',user.company_ids.ids),('company_id','in', company_ids)]</field>
+        </record>
     </data>
 </odoo>
