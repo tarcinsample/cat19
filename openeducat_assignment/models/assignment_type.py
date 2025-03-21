@@ -20,3 +20,4 @@ class GradingAssigmentType(models.Model):
     assign_type = fields.Selection([('sub', 'Subjective'),
                                     ('attendance', 'Attendance')],
                                    string='Type', default='sub')
+    company_id = fields.Many2one('res.company', string='Company',default=lambda self: self.env.user.company_id)

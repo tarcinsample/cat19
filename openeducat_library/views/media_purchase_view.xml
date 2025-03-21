@@ -30,13 +30,13 @@
                     <header groups="base.group_user">
                         <button name="act_requested" invisible="state != 'draft'" type="object"
                                 string="Request media" class="oe_highlight"
-                                groups="openeducat_core.group_op_back_office_admin,openeducat_core.group_op_faculty,openeducat_library.group_op_library"/>
+                                groups="openeducat_library.group_op_library_user,openeducat_library.group_op_library"/>
                         <button name="act_accept" invisible="state != 'request'" type="object"
                                 string="Accept" class="oe_highlight"
-                                groups="openeducat_core.group_op_back_office_admin,openeducat_library.group_op_library"/>
+                                groups="openeducat_library.group_op_library"/>
                         <button name="act_reject" invisible="state != 'request'" type="object"
                                 string="Reject"
-                                groups="openeducat_core.group_op_back_office_admin,openeducat_library.group_op_library"/>
+                                groups="openeducat_library.group_op_library"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,request,accept"/>
                     </header>
                     <sheet>

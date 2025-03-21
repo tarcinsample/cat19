@@ -11,7 +11,8 @@
                     <button name="get_parent"
                         class="btn oe_stat_button"
                         icon="fa-user-o"
-                        type="object">
+                        type="object"
+                        groups="openeducat_parent.group_op_parent_manager">
                         <div class="o_field_widget o_stat_info">
                             <span class="o_stat_text">Parents</span>
                         </div>
@@ -42,7 +43,7 @@
                     <header>
                         <button type="object" name="create_parent_user"
                                 string="Create Parent User"
-                                groups="openeducat_core.group_op_back_office_admin"
+                                groups="openeducat_parent.group_op_parent_manager"
                                 class="oe_highlight"
                                 invisible="user_id != False"/>
                     </header>

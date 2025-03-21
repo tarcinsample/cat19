@@ -19,7 +19,8 @@
                             type="object"
                             name="count_media_movement_lines"
                             style="border-right: 1px solid;"
-                            icon="fa-file">
+                            icon="fa-file"
+                            groups="openeducat_library.group_op_library,openeducat_library.group_op_library_user">
                         <field string="Media" name="media_movement_lines_count" widget="statinfo"/>
                     </button>
                 </xpath>
