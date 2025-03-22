@@ -58,7 +58,7 @@ class OpAssignment(models.Model):
                                       tracking=True)
     allocation_ids = fields.Many2many('op.student', string='Allocated To')
     assignment_sub_line = fields.One2many('op.assignment.sub.line',
-                                          'assignment_id', 'Submissions')
+                                          'assignment_id', 'Submission')
     reviewer = fields.Many2one('op.faculty', 'Reviewer')
     active = fields.Boolean(default=True)
     grading_assignment_id = fields.Many2one('grading.assignment', 'Grading Assignment',

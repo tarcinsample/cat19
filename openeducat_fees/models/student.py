@@ -164,18 +164,6 @@ class OpStudent(models.Model):
             fees.fees_details_count = self.env['op.student.fees.details'].search_count(
                 [('student_id', '=', self.id)])
 
-    def count_fees_details(self):
-        return {
-            'type': 'ir.actions.act_window',
-            'name': 'Fees Details',
-            'view_mode': 'list,form',
-            'res_model': 'op.student.fees.details',
-            'path':"student-fees-details",
-            'context': {'create': False},
-            'domain': [('student_id', '=', self.id)],
-            'target': 'current',
-        }
-
     def action_view_invoice(self):
         '''
         This function returns an action that

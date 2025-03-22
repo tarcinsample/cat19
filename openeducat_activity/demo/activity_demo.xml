@@ -18,5 +18,10 @@
             <field name="student_id" ref="openeducat_core.op_student_2" />
             <field name="type_id" ref="op_activity_type_2" />
         </record>
+
+        <record id="openeducat_core.op_user_faculty" model="res.users">
+            <field name="groups_id"
+            eval="[(4,ref('openeducat_activity.group_activity_user'))]"/>
+        </record>
     </data>
 </odoo>
