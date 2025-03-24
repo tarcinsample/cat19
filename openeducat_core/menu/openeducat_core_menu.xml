@@ -122,4 +122,16 @@
               action="act_op_academic_term_view"
               groups="openeducat_core.group_op_back_office_admin"/>
 
+    <menuitem id="menu_op_school_config_program"
+              name="Program Management"
+              parent="openeducat_core.menu_op_school_config"
+              sequence="9"/>
+
+    <menuitem id="menu_op_program_sub"
+              name="Programs"
+              parent="menu_op_school_config_program"
+              sequence="10"
+              action="act_open_op_program_view"
+              groups="group_op_back_office_admin"/>
+
 </odoo>
