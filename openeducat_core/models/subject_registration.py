@@ -51,6 +51,9 @@ class OpSubjectRegistration(models.Model):
     min_unit_load = fields.Float('Minimum Unit Load',
                                  tracking=True)
     is_read = fields.Boolean(string="Read?", default=False)
+    company_id = fields.Many2one(
+        "res.company", string="Company", default=lambda self: self.env.company
+    )
 
     def action_reset_draft(self):
         self.state = 'draft'
