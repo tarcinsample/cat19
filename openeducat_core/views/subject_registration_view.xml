@@ -14,6 +14,7 @@
                     <field name="min_unit_load" optional="hide"/>
                     <field name="max_unit_load" optional="hide"/>
                     <field name="compulsory_subject_ids" widget="many2many_tags" optional="hide"/>
+                    <field name="company_id" groups="base.group_multi_company" optional="show"/>
                     <field name="state"/>
                 </list>
             </field>
@@ -52,6 +53,7 @@
                                 <field name="student_id" required="1"/>
                                 <field name="batch_id" domain="[('course_id', '=', course_id)]" required='1'/>
                                 <field name="max_unit_load"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
                             </group>
                             <group>
                                 <field name="course_id" options="{'no_open': True, 'no_create': True}"/>

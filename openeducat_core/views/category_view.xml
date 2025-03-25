@@ -9,6 +9,7 @@
                 <list string="Category">
                     <field name="name"/>
                     <field name="code"/>
+                     <field name="company_id" groups="base.group_multi_company" optional="show"/>
                 </list>
             </field>
         </record>
@@ -24,6 +25,7 @@
                         <group>
                                 <field name="name"/>
                                 <field name="code"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
                         </group>
                     </sheet>
                 </form>
