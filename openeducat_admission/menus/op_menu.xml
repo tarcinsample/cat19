@@ -17,6 +17,12 @@
                   parent="menu_op_admission_submenu"
                   action="act_open_op_admission_view"/>
 
+        <menuitem id="menu_admission_register" name="Admission"
+                  groups="openeducat_admission.group_op_admission_admin,openeducat_admission.group_op_admission_user"
+                  sequence="19"
+                  parent="menu_op_admission_submenu"
+                  action="act_open_op_admission_register_view"/>
+
         <menuitem id="menu_admission_report_root" name="Reporting"
                   sequence="50"
                   parent="menu_op_admission_root"/>

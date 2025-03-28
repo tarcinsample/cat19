@@ -71,6 +71,8 @@ class OpAdmissionRegister(models.Model):
     confirm_count = fields.Integer(compute="_compute_counts")
     done_count = fields.Integer(compute="_compute_counts")
     online_count = fields.Integer(compute='_compute_application_counts')
+    admission_base = fields.Selection([('program', 'Program'), ('course', 'Course')])
+    program_id = fields.Many2one('op.program', string="Program", tracking=True)
 
     def _compute_counts(self):
         for record in self:
