@@ -71,7 +71,18 @@ class OpAdmissionRegister(models.Model):
     confirm_count = fields.Integer(compute="_compute_counts")
     done_count = fields.Integer(compute="_compute_counts")
     online_count = fields.Integer(compute='_compute_application_counts')
-    admission_base = fields.Selection([('program', 'Program'), ('course', 'Course')])
+    admission_base = fields.Selection([('program', 'Program'), ('course', 'Course')], default='course')
+    course_ids = fields.Many2many('op.course', string='Course')
+
+    @api.onchange('admission_base')
+    def onchange_admission_base(self):
+        if self.admission_base:
+            if self.admission_base == 'program':
+                self.course_id = None
+            else:
+                self.program_id = None
+                self.course_ids = None
+
     program_id = fields.Many2one('op.program', string="Program", tracking=True)
 
     def _compute_counts(self):

@@ -110,6 +110,8 @@ class OpAdmission(models.Model):
     company_id = fields.Many2one(
         'res.company', string='Company',
         default=lambda self: self.env.user.company_id)
+    admission_base = fields.Selection([('program', 'Program'), ('course', 'Course')], default='course')
+    program_id = fields.Many2one('op.program', string="Program", tracking=True)
 
     _sql_constraints = [
         ('unique_application_number',
