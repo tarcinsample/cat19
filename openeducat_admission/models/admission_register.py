@@ -39,7 +39,7 @@ class OpAdmissionRegister(models.Model):
         'End Date', required=False, readonly=True,
         default=(fields.Date.today() + relativedelta(days=30)))
     course_id = fields.Many2one(
-        'op.course', 'Course', required=True, readonly=True, tracking=True)
+        'op.course', 'Course', readonly=True, tracking=True)
     min_count = fields.Integer(
         'Minimum No. of Admission', readonly=True)
     max_count = fields.Integer(
