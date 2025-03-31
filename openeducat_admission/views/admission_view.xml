@@ -122,8 +122,11 @@
                                                widget="selection"/>
                                         <field name="application_date"
                                                readonly="state == 'done'"/>
+                                        <field name="course_ids" invisible="1"/>
                                         <field name="course_id"
-                                               readonly="state == 'done'"/>
+                                               readonly="state == 'done'"
+                                               domain="[('id', 'in', course_ids)]"
+                                               options="{'no_open': True, 'no_create': True}"/>
                                         <field name="discount"/>
                                         <field name="due_date"
                                                readonly="state == 'done'"/>

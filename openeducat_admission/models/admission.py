@@ -110,14 +110,27 @@ class OpAdmission(models.Model):
     company_id = fields.Many2one(
         'res.company', string='Company',
         default=lambda self: self.env.user.company_id)
-    admission_base = fields.Selection([('program', 'Program'), ('course', 'Course')], default='course')
     program_id = fields.Many2one('op.program', string="Program", tracking=True)
+    course_ids = fields.Many2many('op.course', string='Courses', compute='compute_course_ids')
 
     _sql_constraints = [
         ('unique_application_number',
          'unique(application_number)',
          'Application Number must be unique per Application!'),
     ]
+
+    @api.depends('register_id')
+    def compute_course_ids(self):
+        for data in self:
+            if data.register_id:
+                if data.register_id.admission_base == 'program':
+                    data.course_ids = [(6, 0, data.register_id.course_ids.ids)]
+                else:
+                    data.course_id = data.register_id.courgitse_id.id
+                    data.course_ids = [(6, 0, [data.register_id.course_id.id])]
+            else:
+                data.course_ids = [(6, 0, [])]
+
 
     @api.onchange('first_name', 'middle_name', 'last_name')
     def _onchange_name(self):
@@ -166,16 +179,23 @@ class OpAdmission(models.Model):
 
     @api.onchange('register_id')
     def onchange_register(self):
-        self.course_id = self.register_id.course_id
-        self.fees = self.register_id.product_id.lst_price
-        self.company_id = self.register_id.company_id
+        if self.register_id:
+            if self.register_id.admission_base == 'course':
+                self.program_id = self.course_id.program_id.id
+                self.fees = self.register_id.product_id.lst_price
+                self.company_id = self.register_id.company_id.id
+            else:
+                self.program_id = self.register_id.program_id.id
+
 
     @api.onchange('course_id')
     def onchange_course(self):
         self.batch_id = False
         term_id = False
-        if self.course_id and self.course_id.fees_term_id:
-            term_id = self.course_id.fees_term_id.id
+        if self.course_id:
+            self.program_id = self.course_id.program_id.id
+            if self.course_id.fees_term_id:
+                term_id = self.course_id.fees_term_id.id
         self.fees_term_id = term_id
 
     @api.constrains('register_id', 'application_date')

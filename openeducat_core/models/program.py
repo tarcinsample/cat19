@@ -37,3 +37,4 @@ class OpProgram(models.Model):
         default=lambda self:
         self.env.user.dept_id and self.env.user.dept_id.id or False)
     active = fields.Boolean(default=True)
+    image_1920 = fields.Image('Image', attachment=True)
