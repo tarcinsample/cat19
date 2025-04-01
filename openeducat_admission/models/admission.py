@@ -126,7 +126,7 @@ class OpAdmission(models.Model):
                 if data.register_id.admission_base == 'program':
                     data.course_ids = [(6, 0, data.register_id.course_ids.ids)]
                 else:
-                    data.course_id = data.register_id.courgitse_id.id
+                    data.course_id = data.register_id.course_id.id
                     data.course_ids = [(6, 0, [data.register_id.course_id.id])]
             else:
                 data.course_ids = [(6, 0, [])]
