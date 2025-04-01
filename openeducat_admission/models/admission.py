@@ -124,13 +124,15 @@ class OpAdmission(models.Model):
         for data in self:
             if data.register_id:
                 if data.register_id.admission_base == 'program':
-                    data.course_ids = [(6, 0, data.register_id.course_ids.ids)]
+                    course_list = []
+                    for rec in data.register_id.admission_fees_line_ids:
+                        course_list.append(rec.course_id.id) if rec.course_id.id not in course_list else None
+                    data.course_ids = [(6, 0, course_list)]
                 else:
                     data.course_id = data.register_id.course_id.id
                     data.course_ids = [(6, 0, [data.register_id.course_id.id])]
             else:
                 data.course_ids = [(6, 0, [])]
-
 
     @api.onchange('first_name', 'middle_name', 'last_name')
     def _onchange_name(self):
@@ -187,12 +189,18 @@ class OpAdmission(models.Model):
             else:
                 self.program_id = self.register_id.program_id.id
 
-
     @api.onchange('course_id')
     def onchange_course(self):
         self.batch_id = False
         term_id = False
         if self.course_id:
+            if self.register_id.admission_base == 'program':
+                # fees_line_id = self.env['op.admission.fees.line'].search([('register_id', '=', self.register_id.id),
+                #                                                           ('course_id', '=', self.course_id.id)])
+
+                for rec in self.register_id.admission_fees_line_ids:
+                    if rec.course_id.id == self.course_id.id:
+                        self.fees = rec.course_fees_product_id.lst_price
             self.program_id = self.course_id.program_id.id
             if self.course_id.fees_term_id:
                 term_id = self.course_id.fees_term_id.id
@@ -211,7 +219,7 @@ class OpAdmission(models.Model):
     @api.constrains('birth_date')
     def _check_birthdate(self):
         for record in self:
-            if record.birth_date and  record.birth_date > fields.Date.today():
+            if record.birth_date and record.birth_date > fields.Date.today():
                 raise ValidationError(_(
                     "Birth Date can't be greater than current date!"))
             elif record and record.birth_date:
@@ -228,7 +236,7 @@ class OpAdmission(models.Model):
     def create_sequence(self):
         if not self.application_number:
             self.application_number = self.env['ir.sequence'].next_by_code(
-                        'op.admission') or '/'
+                'op.admission') or '/'
 
     def submit_form(self):
         self.state = 'submit'
@@ -241,9 +249,10 @@ class OpAdmission(models.Model):
             record.state = 'confirm'
 
     def get_student_vals(self):
-        enable_create_student_user=self.env['ir.config_parameter'].get_param('openeducat_admission.enable_create_student_user')
+        enable_create_student_user = self.env['ir.config_parameter'].get_param(
+            'openeducat_admission.enable_create_student_user')
         for student in self:
-            student_user=False
+            student_user = False
             if enable_create_student_user:
                 student_user = self.env['res.users'].create({
                     'name': student.name,
@@ -253,7 +262,7 @@ class OpAdmission(models.Model):
                     'company_id': self.company_id.id,
                     'groups_id': [
                         (6, 0,
-                        [self.env.ref('base.group_portal').id])]
+                         [self.env.ref('base.group_portal').id])]
                 })
             details = {
                 'name': student.name,
@@ -496,4 +505,4 @@ class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
 
     enable_create_student_user = fields.Boolean(config_parameter='openeducat_admission.enable_create_student_user',
-    string='Create Student User')
+                                                string='Create Student User')

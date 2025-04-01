@@ -72,7 +72,8 @@ class OpAdmissionRegister(models.Model):
     done_count = fields.Integer(compute="_compute_counts")
     online_count = fields.Integer(compute='_compute_application_counts')
     admission_base = fields.Selection([('program', 'Program'), ('course', 'Course')], default='course')
-    course_ids = fields.Many2many('op.course', string='Course')
+    # course_ids = fields.Many2many('op.course', string='Course')
+    admission_fees_line_ids = fields.One2many('op.admission.fees.line', 'register_id', string='Admission Fees Configuration')
 
     @api.onchange('admission_base')
     def onchange_admission_base(self):
@@ -81,7 +82,7 @@ class OpAdmissionRegister(models.Model):
                 self.course_id = None
             else:
                 self.program_id = None
-                self.course_ids = None
+                self.admission_fees_line_ids = None
 
     program_id = fields.Many2one('op.program', string="Program", tracking=True)
 
@@ -193,3 +194,10 @@ class OpAdmissionRegister(models.Model):
             'domain': [('id', 'in', self.admission_ids.ids),('state', '=', 'online')],
             'target': 'current',
         }
+
+class AdmissionRegisterFeesLine(models.Model):
+    _name = 'op.admission.fees.line'
+
+    course_id = fields.Many2one('op.course', string="Course", required=True)
+    course_fees_product_id = fields.Many2one('product.product', string="Course Fees")
+    register_id = fields.Many2one('op.admission.register', string="Admission Register")
