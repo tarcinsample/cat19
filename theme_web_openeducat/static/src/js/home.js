@@ -14,7 +14,7 @@ $('.counter-number').each(function () {
 // ---------------------------
 
 $('#hamburger').click(function() {
-    console.log("click..............");
+   
     $('#hamburger').toggleClass('show');
     $('#overlay').toggleClass('show');
     $('.nav1').toggleClass('show');
