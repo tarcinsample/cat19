@@ -63,7 +63,7 @@ Experience OpenEduCat firsthand:
 ## Documentation 📖
 
 Learn more about OpenEduCat:
-- **Documentation Portal**: [OpenEduCat Documentation](https://doc,openeducat.org/)
+- **Documentation Portal**: [OpenEduCat Documentation](https://doc.openeducat.org/)
 - **User Guides**: Comprehensive guides to help you master the system quickly.
 
 ---
