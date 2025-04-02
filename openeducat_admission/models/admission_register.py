@@ -45,8 +45,8 @@ class OpAdmissionRegister(models.Model):
     max_count = fields.Integer(
         'Maximum No. of Admission', readonly=True, default=30)
     product_id = fields.Many2one(
-        'product.product', 'Course Fees', required=True,
-        domain=[('type', '=', 'service')], readonly=True, tracking=True)
+        'product.product', 'Course Fees',
+        domain=[('type', '=', 'service')], tracking=True)
     admission_ids = fields.One2many(
         'op.admission', 'register_id', 'Admissions')
     state = fields.Selection(
@@ -80,6 +80,7 @@ class OpAdmissionRegister(models.Model):
         if self.admission_base:
             if self.admission_base == 'program':
                 self.course_id = None
+                self.product_id = None
             else:
                 self.program_id = None
                 self.admission_fees_line_ids = None

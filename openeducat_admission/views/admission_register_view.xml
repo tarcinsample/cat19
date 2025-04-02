@@ -62,7 +62,8 @@
                                 <field name="start_date" readonly="state != 'draft'"/>
                                 <field name="max_count" readonly="state != 'draft'"/>
                                 <field name="product_id" context="{'default_type': 'service'}"
-                                       readonly="state != 'draft'"/>
+                                       readonly="state != 'draft'" required="admission_base != 'program'"
+                                       invisible="admission_base == 'program'"/>
                                 <field name="minimum_age_criteria" readonly="state != 'draft'"/>
                                 <field name="academic_term_id" readonly="state != 'draft'"/>
                             </group>
@@ -75,22 +76,24 @@
                                 <field name="program_id" readonly="state != 'draft'"
                                        invisible="admission_base != 'program'"
                                        required="admission_base == 'program'"/>
-<!--                                <field name="course_ids" readonly="state != 'draft'" widget="many2many_tags"-->
-<!--                                       invisible="admission_base != 'program'"-->
-<!--                                       required="admission_base == 'program'"-->
-<!--                                       domain="[('program_id', '=', program_id)]"-->
-<!--                                       options="{'no_open': True, 'no_create': True}"/>-->
+                                <!--                                <field name="course_ids" readonly="state != 'draft'" widget="many2many_tags"-->
+                                <!--                                       invisible="admission_base != 'program'"-->
+                                <!--                                       required="admission_base == 'program'"-->
+                                <!--                                       domain="[('program_id', '=', program_id)]"-->
+                                <!--                                       options="{'no_open': True, 'no_create': True}"/>-->
                                 <field name="end_date" readonly="state != 'draft'"/>
                                 <field name="min_count" readonly="state != 'draft'"/>
                                 <field name="company_id" groups="base.group_multi_company" optional="show"/>
                             </group>
                         </group>
                         <notebook>
-                            <page name="course_fees_detail" string="Configure Course Fees" invisible="admission_base != 'program'">
-                                <field name="admission_fees_line_ids" required="admission_base == 'program'">
+                            <page name="course_fees_detail" string="Configure Course Fees"
+                                  invisible="admission_base != 'program'">
+                                <field name="admission_fees_line_ids" required="admission_base == 'program'"
+                                       readonly="state != 'draft'">
                                     <list editable="top">
                                         <field name="course_id" options="{'no_open': True, 'no_create': True}"
-                                        domain="[('program_id', '=', parent.program_id)]"/>
+                                               domain="[('program_id', '=', parent.program_id)]"/>
                                         <field name="course_fees_product_id"
                                                options="{'no_open': True, 'no_create': True}"/>
                                         <field name="register_id" invisible="1"/>
