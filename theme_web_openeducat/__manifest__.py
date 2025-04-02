@@ -1,6 +1,6 @@
 {
-    'name': 'OpenEduCat Demo Theme',
-    'description': 'OpenEduCat Demo Theme',
+    'name': 'OpenEduCat Theme',
+    'description': 'OpenEduCat Theme',
     'category': 'Theme',
     'version': '18.0.1.0',
     'author': 'OpenEduCat',
