@@ -199,9 +199,9 @@
                                                     </h5>
                                                     <div class="px-1 text-900">
                                                         
-                                                            28 Courses
-                                                            <i class="fa fa-arrow-right"/>
-                                                        
+                                                        28 Courses
+                                                        <i class="fa fa-arrow-right"/>
+                                                    
                                                     </div>
                                                 </div>
                                             </div>
@@ -419,7 +419,7 @@
                     </section>
                    
 
-                    <section style="                     margin-bottom: -150px;                     z-index: 2;                     " class="o_colored_level">
+                    <section style="margin-bottom: -150px;z-index: 2;" class="o_colored_level">
                         <div class="call_to_action">
                             <div class="container py-5">
                                 <div class="row g-4">
@@ -448,15 +448,15 @@
                                                 <h3 class="fw-bolder text-lg-start">AI and Machine Learning Fundamentals</h3>
                                                 <p class="py-1 text-lg-start text-600" style="font-size: 18px;"> Understand core concepts of AI and how to implement machine learning models. </p>
                                                  <div class=" h-100mt-5">
-                                                <div class="d-contents mt-5 text-start">
-                                                    <button class="hover-button">
-                                                       
-                                                        Join Now
-                                                       
-                                                    </button>
-                                                </div>
+                                                    <div class="d-contents mt-5 text-start">
+                                                        <button class="hover-button">
+                                                        
+                                                            Join Now
+                                                        
+                                                        </button>
+                                                    </div>
 
-                                        </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -662,10 +662,7 @@
                                         </div>
                                     </div>
                                 </div>
-
                                
-
-
                             </div>
 
                         </div>
@@ -862,12 +859,7 @@
                                                             </div>        
                                                         </a>
                                                     </i>
-                                                    
-                                                    
-
-                                                    
-                                                        
-
+                                                   
                                             </ul>
                                           
                                             <ul class="d-flex gap-3 list-unstyled">        
@@ -895,11 +887,6 @@
                                                         </a>
                                                     </i>
                                                     
-                                                    
-
-                                                    
-                                                        
-
                                             </ul>
                                           
                                             

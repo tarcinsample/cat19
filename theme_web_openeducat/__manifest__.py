@@ -1,6 +1,7 @@
 {
     'name': 'OpenEduCat Theme',
     'description': 'OpenEduCat Theme',
+    'website' : 'https://openeducat.org/',
     'category': 'Theme',
     'version': '18.0.1.0',
     'author': 'OpenEduCat',
@@ -10,7 +11,7 @@
     ],
     'data': [
         'views/homepage.xml',
-        'views/web.xml',
+      
     ],
     'assets': {
         'web._assets_primary_variables': [
