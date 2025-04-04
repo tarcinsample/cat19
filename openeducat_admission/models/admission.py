@@ -195,9 +195,6 @@ class OpAdmission(models.Model):
         term_id = False
         if self.course_id:
             if self.register_id.admission_base == 'program':
-                # fees_line_id = self.env['op.admission.fees.line'].search([('register_id', '=', self.register_id.id),
-                #                                                           ('course_id', '=', self.course_id.id)])
-
                 for rec in self.register_id.admission_fees_line_ids:
                     if rec.course_id.id == self.course_id.id:
                         self.fees = rec.course_fees_product_id.lst_price
