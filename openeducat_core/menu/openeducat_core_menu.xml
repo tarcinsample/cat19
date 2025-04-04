@@ -134,4 +134,11 @@
               action="act_open_op_program_view"
               groups="group_op_back_office_admin"/>
 
+    <menuitem id="menu_op_program_level_sub"
+              name="Program Level"
+              parent="menu_op_school_config_program"
+              sequence="10"
+              action="act_open_op_program_level_view"
+              groups="group_op_back_office_admin"/>
+
 </odoo>

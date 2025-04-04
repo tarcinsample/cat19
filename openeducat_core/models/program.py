@@ -38,3 +38,12 @@ class OpProgram(models.Model):
         self.env.user.dept_id and self.env.user.dept_id.id or False)
     active = fields.Boolean(default=True)
     image_1920 = fields.Image('Image', attachment=True)
+    program_level_id = fields.Many2one(
+        'op.program.level', 'Program Level',required=True)
+
+class OpProgramLevel(models.Model):
+    _name = "op.program.level"
+    _inherit = "mail.thread"
+    _description = "OpenEduCat Program level"
+
+    name = fields.Char('Name', required=True, translate=True, tracking=True)

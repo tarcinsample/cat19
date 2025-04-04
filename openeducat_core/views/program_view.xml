@@ -47,6 +47,7 @@
                             <group name="main">
                                 <field name="code"/>
                                 <field name="min_unit_load"/>
+                                <field name="program_level_id"/>
                             </group>
                             <group>
                                 <field name="department_id" groups="openeducat_core.group_multi_department"/>
