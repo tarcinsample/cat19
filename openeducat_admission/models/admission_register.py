@@ -39,14 +39,14 @@ class OpAdmissionRegister(models.Model):
         'End Date', required=False, readonly=True,
         default=(fields.Date.today() + relativedelta(days=30)))
     course_id = fields.Many2one(
-        'op.course', 'Course', required=True, readonly=True, tracking=True)
+        'op.course', 'Course', readonly=True, tracking=True)
     min_count = fields.Integer(
         'Minimum No. of Admission', readonly=True)
     max_count = fields.Integer(
         'Maximum No. of Admission', readonly=True, default=30)
     product_id = fields.Many2one(
-        'product.product', 'Course Fees', required=True,
-        domain=[('type', '=', 'service')], readonly=True, tracking=True)
+        'product.product', 'Course Fees',
+        domain=[('type', '=', 'service')], tracking=True)
     admission_ids = fields.One2many(
         'op.admission', 'register_id', 'Admissions')
     state = fields.Selection(
@@ -71,6 +71,21 @@ class OpAdmissionRegister(models.Model):
     confirm_count = fields.Integer(compute="_compute_counts")
     done_count = fields.Integer(compute="_compute_counts")
     online_count = fields.Integer(compute='_compute_application_counts')
+    admission_base = fields.Selection([('program', 'Program'), ('course', 'Course')], default='course')
+    # course_ids = fields.Many2many('op.course', string='Course')
+    admission_fees_line_ids = fields.One2many('op.admission.fees.line', 'register_id', string='Admission Fees Configuration')
+
+    @api.onchange('admission_base')
+    def onchange_admission_base(self):
+        if self.admission_base:
+            if self.admission_base == 'program':
+                self.course_id = None
+                self.product_id = None
+            else:
+                self.program_id = None
+                self.admission_fees_line_ids = None
+
+    program_id = fields.Many2one('op.program', string="Program", tracking=True)
 
     def _compute_counts(self):
         for record in self:
@@ -180,3 +195,10 @@ class OpAdmissionRegister(models.Model):
             'domain': [('id', 'in', self.admission_ids.ids),('state', '=', 'online')],
             'target': 'current',
         }
+
+class AdmissionRegisterFeesLine(models.Model):
+    _name = 'op.admission.fees.line'
+
+    course_id = fields.Many2one('op.course', string="Course", required=True)
+    course_fees_product_id = fields.Many2one('product.product', string="Course Fees")
+    register_id = fields.Many2one('op.admission.register', string="Admission Register")
