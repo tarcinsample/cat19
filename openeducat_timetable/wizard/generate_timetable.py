@@ -87,6 +87,7 @@ class GenerateSession(models.TransientModel):
 
     def act_gen_time_table(self):
         session_obj = self.env['op.session']
+        data = []
         for session in self:
             start_date = session.start_date
             end_date = session.end_date
@@ -106,7 +107,7 @@ class GenerateSession(models.TransientModel):
                             session_end_time, '%Y-%m-%d %H:%M:%S')
                         curr_start_date = self.change_tz(final_start_date)
                         curr_end_date = self.change_tz(final_end_date)
-                        session_obj.create({
+                        data.append({
                             'faculty_id': line.faculty_id.id,
                             'subject_id': line.subject_id.id,
                             'course_id': session.course_id.id,
@@ -118,6 +119,8 @@ class GenerateSession(models.TransientModel):
                             curr_end_date.strftime("%Y-%m-%d %H:%M:%S"),
                             'type': calendar.day_name[int(line.day)],
                         })
+            if data:
+                session_obj.create(data)
             return {'type': 'ir.actions.act_window_close'}
 
 
