@@ -22,6 +22,14 @@
             '/theme_web_openeducat/static/src/js/home.js',
         ],
     },
+    'images': [
+
+        'static/description/theme_web_openeducat_cover.jpg',
+
+        'static/description/theme_web_openeducat_screenshot.jpg',
+ 
+    ],
+ 
     'license': 'LGPL-3',
     'application': True,
     'installable': True,
