@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <menuitem name="TimeTables"
+    <menuitem name="Time Table"
         id="menu_op_timetable_root"
         groups="openeducat_timetable.group_op_timetable_user,openeducat_timetable.group_op_timetable_manager"
         web_icon="openeducat_timetable,static/description/icon.png"
