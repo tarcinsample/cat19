@@ -23,9 +23,9 @@
             <field name="partner_id" ref="op_res_partner_21"/>
             <field name="image_1920" type="base64"
                    file="openeducat_core/static/img/faculty_1.jpg"/>
-            <field name="main_department_id" ref="openeducat_core.op_department_3"/>
+            <field name="main_department_id" ref="openeducat_core.op_department_1"/>
             <field name="faculty_subject_ids"
-               eval="[(4,ref('openeducat_core.op_subject_2')),(4,ref('openeducat_core.op_subject_21'))]"/>
+               eval="[(4,ref('openeducat_core.op_subject_1')),(4,ref('openeducat_core.op_subject_2')),(4,ref('openeducat_core.op_subject_5')),(4,ref('openeducat_core.op_subject_26')),(4,ref('openeducat_core.op_subject_27')),(4,ref('openeducat_core.op_subject_28')),(4,ref('openeducat_core.op_subject_29')),(4,ref('openeducat_core.op_subject_28')),(4,ref('openeducat_core.op_subject_29')),(4,ref('openeducat_core.op_subject_30')),(4,ref('openeducat_core.op_subject_31'))]"/>
         </record>
 
         <record id="op_faculty_2" model="op.faculty">
@@ -51,7 +51,7 @@
             <field name="image_1920" type="base64"
                    file="openeducat_core/static/img/faculty_2.jpg"/>
             <field name="main_department_id" ref="openeducat_core.op_department_3"/>
-            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_4')),(4,ref('openeducat_core.op_subject_3'))]"/>
+            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_10')),(4,ref('openeducat_core.op_subject_12'))]"/>
         </record>
 
         <record id="op_faculty_3" model="op.faculty">
@@ -77,7 +77,7 @@
             <field name="image_1920" type="base64"
                    file="openeducat_core/static/img/faculty_3.jpg"/>
             <field name="main_department_id" ref="openeducat_core.op_department_3"/>
-            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_5')),(4,ref('openeducat_core.op_subject_6'))]"/>
+            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_20')),(4,ref('openeducat_core.op_subject_63'))]"/>
         </record>
 
         <record id="op_faculty_4" model="op.faculty">
@@ -102,8 +102,8 @@
             <field name="partner_id" ref="op_res_partner_24"/>
             <field name="image_1920" type="base64"
                    file="openeducat_core/static/img/faculty_4.jpg"/>
-            <field name="main_department_id" ref="openeducat_core.op_department_3"/>
-            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_8')),(4,ref('openeducat_core.op_subject_7'))]"/>
+            <field name="main_department_id" ref="openeducat_core.op_department_2"/>
+            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_18')),(4,ref('openeducat_core.op_subject_23')),(4,ref('openeducat_core.op_subject_24')),(4,ref('openeducat_core.op_subject_25'))]"/>
         </record>
 
         <record id="op_faculty_5" model="op.faculty">
@@ -128,8 +128,8 @@
             <field name="partner_id" ref="op_res_partner_25"/>
             <field name="image_1920" type="base64"
                    file="openeducat_core/static/img/faculty_5.jpg"/>
-            <field name="main_department_id" ref="openeducat_core.op_department_3"/>
-            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_10')),(4,ref('openeducat_core.op_subject_9')),(4,ref('openeducat_core.op_subject_69')),(4,ref('openeducat_core.op_subject_70'))]"/>
+            <field name="main_department_id" ref="openeducat_core.op_department_2"/>
+            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_19')),(4,ref('openeducat_core.op_subject_21')),(4,ref('openeducat_core.op_subject_22')),(4,ref('openeducat_core.op_subject_23'))]"/>
         </record>
 
         <record id="op_faculty_6" model="op.faculty">
@@ -154,8 +154,8 @@
             <field name="partner_id" ref="op_res_partner_26"/>
             <field name="image_1920" type="base64"
                    file="openeducat_core/static/img/faculty_6.jpg"/>
-            <field name="main_department_id" ref="openeducat_core.op_department_3"/>
-            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_11')),(4,ref('openeducat_core.op_subject_12'))]"/>
+            <field name="main_department_id" ref="openeducat_core.op_department_4"/>
+            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_6')),(4,ref('openeducat_core.op_subject_8'))]"/>
         </record>
 
         <record id="op_faculty_7" model="op.faculty">
@@ -180,8 +180,8 @@
             <field name="partner_id" ref="op_res_partner_27"/>
             <field name="image_1920" type="base64"
                    file="openeducat_core/static/img/faculty_7.jpg"/>
-            <field name="main_department_id" ref="openeducat_core.op_department_3"/>
-            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_13')),(4,ref('openeducat_core.op_subject_14'))]"/>
+            <field name="main_department_id" ref="openeducat_core.op_department_4"/>
+            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_9')),(4,ref('openeducat_core.op_subject_11'))]"/>
         </record>
 
         <record id="op_faculty_8" model="op.faculty">
@@ -206,8 +206,8 @@
             <field name="partner_id" ref="op_res_partner_28"/>
             <field name="image_1920" type="base64"
                    file="openeducat_core/static/img/faculty_8.jpg"/>
-            <field name="main_department_id" ref="openeducat_core.op_department_3"/>
-            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_15')),(4,ref('openeducat_core.op_subject_16')),(4,ref('openeducat_core.op_subject_71')),(4,ref('openeducat_core.op_subject_72'))]"/>
+            <field name="main_department_id" ref="openeducat_core.op_department_4"/>
+            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_13')),(4,ref('openeducat_core.op_subject_14')),(4,ref('openeducat_core.op_subject_16')),(4,ref('openeducat_core.op_subject_149'))]"/>
         </record>
 
         <record id="op_faculty_9" model="op.faculty">
@@ -233,7 +233,7 @@
             <field name="image_1920" type="base64"
                    file="openeducat_core/static/img/faculty_9.jpg"/>
             <field name="main_department_id" ref="openeducat_core.op_department_3"/>
-            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_17')),(4,ref('openeducat_core.op_subject_18')),(4,ref('openeducat_core.op_subject_73')),(4,ref('openeducat_core.op_subject_74'))]"/>
+            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_34')),(4,ref('openeducat_core.op_subject_77')),(4,ref('openeducat_core.op_subject_61')),(4,ref('openeducat_core.op_subject_67'))]"/>
         </record>
 
         <record id="op_faculty_10" model="op.faculty">
@@ -259,8 +259,8 @@
             <field name="partner_id" ref="op_res_partner_30"/>
             <field name="image_1920" type="base64"
                    file="openeducat_core/static/img/faculty_10.jpg"/>
-            <field name="main_department_id" ref="openeducat_core.op_department_3"/>
-            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_19')),(4,ref('openeducat_core.op_subject_20'))]"/>
+            <field name="main_department_id" ref="openeducat_core.op_department_1"/>
+            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_4')),(4,ref('openeducat_core.op_subject_5'))]"/>
         </record>
 
         <record id="op_faculty_11" model="op.faculty">
@@ -285,8 +285,8 @@
             <field name="partner_id" ref="op_res_partner_38"/>
             <field name="image_1920" type="base64"
                    file="openeducat_core/static/img/faculty_11.jpg"/>
-            <field name="main_department_id" ref="openeducat_core.op_department_3"/>
-            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_21')),(4,ref('openeducat_core.op_subject_22'))]"/>
+            <field name="main_department_id" ref="openeducat_core.op_department_1"/>
+            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_26')),(4,ref('openeducat_core.op_subject_27'))]"/>
         </record>
 
         <record id="op_faculty_12" model="op.faculty">
@@ -312,7 +312,7 @@
             <field name="image_1920" type="base64"
                    file="openeducat_core/static/img/faculty_12.jpg"/>
             <field name="main_department_id" ref="openeducat_core.op_department_3"/>
-            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_23')),(4,ref('openeducat_core.op_subject_24'))]"/>
+            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_17')),(4,ref('openeducat_core.op_subject_20'))]"/>
         </record>
 
         <record id="op_faculty_13" model="op.faculty">
@@ -338,7 +338,7 @@
             <field name="image_1920" type="base64"
                    file="openeducat_core/static/img/faculty_13.jpg"/>
             <field name="main_department_id" ref="openeducat_core.op_department_3"/>
-            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_25')),(4,ref('openeducat_core.op_subject_26'))]"/>
+            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_78')),(4,ref('openeducat_core.op_subject_79')),(4,ref('openeducat_core.op_subject_92'))]"/>
         </record>
 
         <record id="op_faculty_14" model="op.faculty">
@@ -363,8 +363,8 @@
             <field name="partner_id" ref="op_res_partner_41"/>
             <field name="image_1920" type="base64"
                    file="openeducat_core/static/img/faculty_14.jpg"/>
-            <field name="main_department_id" ref="openeducat_core.op_department_3"/>
-            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_28')),(4,ref('openeducat_core.op_subject_27'))]"/>
+            <field name="main_department_id" ref="openeducat_core.op_department_1"/>
+            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_135')),(4,ref('openeducat_core.op_subject_136'))]"/>
         </record>
 
         <record id="op_faculty_15" model="op.faculty">
@@ -389,8 +389,8 @@
             <field name="partner_id" ref="op_res_partner_42"/>
             <field name="image_1920" type="base64"
                    file="openeducat_core/static/img/faculty_15.jpg"/>
-            <field name="main_department_id" ref="openeducat_core.op_department_3"/>
-            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_29')),(4,ref('openeducat_core.op_subject_30'))]"/>
+            <field name="main_department_id" ref="openeducat_core.op_department_1"/>
+            <field name="faculty_subject_ids" eval="[(4,ref('openeducat_core.op_subject_31')),(4,ref('openeducat_core.op_subject_32'))]"/>
         </record>
     </data>
 </odoo>

@@ -19,8 +19,8 @@
             <field name="state_id" ref="base.state_us_25"/>
             <field name="country_id" ref="base.us"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
-            <field name="course_id" ref="openeducat_core.op_course_2"/>
-            <field name="batch_id" ref="openeducat_core.op_batch_1"/>
+            <field name="course_id" ref="openeducat_core.op_course_4"/>
+            <field name="batch_id" ref="openeducat_core.op_batch_11"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_1"/>
             <field name="register_id" ref="op_admission_register_1"/>
             <field name="application_date" eval="DateTime.now()"/>
@@ -47,8 +47,8 @@
             <field name="state_id" ref="base.state_de_be"/>
             <field name="country_id" ref="base.de"/>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
-            <field name="course_id" ref="openeducat_core.op_course_2"/>
-            <field name="batch_id" ref="openeducat_core.op_batch_1"/>
+            <field name="course_id" ref="openeducat_core.op_course_4"/>
+            <field name="batch_id" ref="openeducat_core.op_batch_11"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_1"/>
             <field name="register_id" ref="op_admission_register_1"/>
             <field name="application_date" eval="DateTime.now()"/>
@@ -75,8 +75,8 @@
             <field name="state_id" ref="base.state_in_mh"/>
             <field name="country_id" ref="base.in"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
-            <field name="course_id" ref="openeducat_core.op_course_2"/>
-            <field name="batch_id" ref="openeducat_core.op_batch_1"/>
+            <field name="course_id" ref="openeducat_core.op_course_4"/>
+            <field name="batch_id" ref="openeducat_core.op_batch_11"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_1"/>
             <field name="register_id" ref="op_admission_register_1"/>
             <field name="application_date" eval="DateTime.now()"/>
@@ -103,8 +103,8 @@
             <field name="state_id" ref="base.state_us_25"/>
             <field name="country_id" ref="base.us"/>
             <field name="student_id" ref="openeducat_core.op_student_4"/>
-            <field name="course_id" ref="openeducat_core.op_course_2"/>
-            <field name="batch_id" ref="openeducat_core.op_batch_1"/>
+            <field name="course_id" ref="openeducat_core.op_course_4"/>
+            <field name="batch_id" ref="openeducat_core.op_batch_11"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_1"/>
             <field name="register_id" ref="op_admission_register_1"/>
             <field name="application_date" eval="DateTime.now()"/>
@@ -131,8 +131,8 @@
             <field name="state_id" ref="base.state_br_sp"/>
             <field name="country_id" ref="base.br"/>
             <field name="student_id" ref="openeducat_core.op_student_5"/>
-            <field name="course_id" ref="openeducat_core.op_course_3"/>
-            <field name="batch_id" ref="openeducat_core.op_batch_2"/>
+            <field name="course_id" ref="openeducat_core.op_course_4"/>
+            <field name="batch_id" ref="openeducat_core.op_batch_11"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_1"/>
             <field name="register_id" ref="op_admission_register_1"/>
             <field name="application_date" eval="DateTime.now()"/>
@@ -159,8 +159,8 @@
             <field name="state_id"/>
             <field name="country_id" ref="base.fr"/>
             <field name="student_id" ref="openeducat_core.op_student_6"/>
-            <field name="course_id" ref="openeducat_core.op_course_3"/>
-            <field name="batch_id" ref="openeducat_core.op_batch_2"/>
+            <field name="course_id" ref="openeducat_core.op_course_4"/>
+            <field name="batch_id" ref="openeducat_core.op_batch_11"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_1"/>
             <field name="register_id" ref="op_admission_register_1"/>
             <field name="application_date" eval="DateTime.now()"/>
@@ -187,8 +187,8 @@
             <field name="state_id" ref="base.state_it_ag"/>
             <field name="country_id" ref="base.it"/>
             <field name="student_id" ref="openeducat_core.op_student_7"/>
-            <field name="course_id" ref="openeducat_core.op_course_3"/>
-            <field name="batch_id" ref="openeducat_core.op_batch_2"/>
+            <field name="course_id" ref="openeducat_core.op_course_4"/>
+            <field name="batch_id" ref="openeducat_core.op_batch_11"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_1"/>
             <field name="register_id" ref="op_admission_register_1"/>
             <field name="application_date" eval="DateTime.now()"/>
@@ -215,8 +215,8 @@
             <field name="state_id" ref="base.state_ca_on"/>
             <field name="country_id" ref="base.ca"/>
             <field name="student_id" ref="openeducat_core.op_student_8"/>
-            <field name="course_id" ref="openeducat_core.op_course_3"/>
-            <field name="batch_id" ref="openeducat_core.op_batch_2"/>
+            <field name="course_id" ref="openeducat_core.op_course_4"/>
+            <field name="batch_id" ref="openeducat_core.op_batch_11"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_1"/>
             <field name="register_id" ref="op_admission_register_1"/>
             <field name="application_date" eval="DateTime.now()"/>
@@ -243,8 +243,8 @@
             <field name="state_id" ref="base.state_ru_mow"/>
             <field name="country_id" ref="base.ru"/>
             <field name="student_id" ref="openeducat_core.op_student_9"/>
-            <field name="course_id" ref="openeducat_core.op_course_4"/>
-            <field name="batch_id" ref="openeducat_core.op_batch_3"/>
+            <field name="course_id" ref="openeducat_core.op_course_7"/>
+            <field name="batch_id" ref="openeducat_core.op_batch_8"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_2"/>
             <field name="register_id" ref="op_admission_register_2"/>
             <field name="application_date" eval="DateTime.now()"/>
@@ -272,8 +272,8 @@
             <field name="state_id"/>
             <field name="country_id" ref="base.ca"/>
             <field name="student_id" ref="openeducat_core.op_student_10"/>
-            <field name="course_id" ref="openeducat_core.op_course_4"/>
-            <field name="batch_id" ref="openeducat_core.op_batch_3"/>
+            <field name="course_id" ref="openeducat_core.op_course_7"/>
+            <field name="batch_id" ref="openeducat_core.op_batch_8"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_2"/>
             <field name="register_id" ref="op_admission_register_2"/>
             <field name="application_date" eval="DateTime.now()"/>
@@ -300,8 +300,8 @@
             <field name="state_id" ref="base.state_in_dl"/>
             <field name="country_id" ref="base.in"/>
             <field name="student_id" ref="openeducat_core.op_student_11"/>
-            <field name="course_id" ref="openeducat_core.op_course_4"/>
-            <field name="batch_id" ref="openeducat_core.op_batch_3"/>
+            <field name="course_id" ref="openeducat_core.op_course_7"/>
+            <field name="batch_id" ref="openeducat_core.op_batch_8"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_2"/>
             <field name="register_id" ref="op_admission_register_2"/>
             <field name="application_date" eval="DateTime.now()"/>
@@ -328,8 +328,8 @@
             <field name="state_id" ref="base.state_es_m"/>
             <field name="country_id" ref="base.es"/>
             <field name="student_id" ref="openeducat_core.op_student_12"/>
-            <field name="course_id" ref="openeducat_core.op_course_4"/>
-            <field name="batch_id" ref="openeducat_core.op_batch_3"/>
+            <field name="course_id" ref="openeducat_core.op_course_7"/>
+            <field name="batch_id" ref="openeducat_core.op_batch_8"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_2"/>
             <field name="register_id" ref="op_admission_register_2"/>
             <field name="application_date" eval="DateTime.now()"/>
@@ -413,7 +413,7 @@
             <field name="country_id" ref="base.nl"/>
             <field name="student_id" ref="openeducat_core.op_student_15"/>
             <field name="course_id" ref="openeducat_core.op_course_5"/>
-            <field name="batch_id" ref="openeducat_core.op_batch_5"/>
+            <field name="batch_id" ref="openeducat_core.op_batch_7"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_3"/>
             <field name="register_id" ref="op_admission_register_3"/>
             <field name="application_date" eval="DateTime.now()"/>
@@ -441,7 +441,7 @@
             <field name="country_id" ref="base.uk"/>
             <field name="student_id" ref="openeducat_core.op_student_16"/>
             <field name="course_id" ref="openeducat_core.op_course_5"/>
-            <field name="batch_id" ref="openeducat_core.op_batch_5"/>
+            <field name="batch_id" ref="openeducat_core.op_batch_7"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_3"/>
             <field name="register_id" ref="op_admission_register_3"/>
             <field name="application_date" eval="DateTime.now()"/>
@@ -468,8 +468,8 @@
             <field name="state_id" ref="base.state_au_2"/>
             <field name="country_id" ref="base.au"/>
             <field name="student_id" ref="openeducat_core.op_student_17"/>
-            <field name="course_id" ref="openeducat_core.op_course_6"/>
-            <field name="batch_id" ref="openeducat_core.op_batch_6"/>
+            <field name="course_id" ref="openeducat_core.op_course_8"/>
+            <field name="batch_id" ref="openeducat_core.op_batch_5"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_3"/>
             <field name="register_id" ref="op_admission_register_4"/>
             <field name="application_date" eval="DateTime.now()"/>
@@ -496,8 +496,8 @@
             <field name="state_id" ref="base.state_ch_be"/>
             <field name="country_id" ref="base.ch"/>
             <field name="student_id" ref="openeducat_core.op_student_18"/>
-            <field name="course_id" ref="openeducat_core.op_course_6"/>
-            <field name="batch_id" ref="openeducat_core.op_batch_6"/>
+            <field name="course_id" ref="openeducat_core.op_course_8"/>
+            <field name="batch_id" ref="openeducat_core.op_batch_5"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_3"/>
             <field name="register_id" ref="op_admission_register_4"/>
             <field name="application_date" eval="DateTime.now()"/>
@@ -524,8 +524,8 @@
             <field name="state_id"/>
             <field name="country_id" ref="base.pl"/>
             <field name="student_id" ref="openeducat_core.op_student_19"/>
-            <field name="course_id" ref="openeducat_core.op_course_6"/>
-            <field name="batch_id" ref="openeducat_core.op_batch_6"/>
+            <field name="course_id" ref="openeducat_core.op_course_8"/>
+            <field name="batch_id" ref="openeducat_core.op_batch_5"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_3"/>
             <field name="register_id" ref="op_admission_register_4"/>
             <field name="application_date" eval="DateTime.now()"/>
@@ -552,8 +552,8 @@
             <field name="state_id" ref="base.state_se_ab"/>
             <field name="country_id" ref="base.se"/>
             <field name="student_id" ref="openeducat_core.op_student_20"/>
-            <field name="course_id" ref="openeducat_core.op_course_6"/>
-            <field name="batch_id" ref="openeducat_core.op_batch_6"/>
+            <field name="course_id" ref="openeducat_core.op_course_8"/>
+            <field name="batch_id" ref="openeducat_core.op_batch_5"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_3"/>
             <field name="register_id" ref="op_admission_register_4"/>
             <field name="application_date" eval="DateTime.now()"/>
@@ -580,8 +580,8 @@
             <field name="state_id" ref="base.state_ar_b"/>
             <field name="country_id" ref="base.ar"/>
             <field name="student_id" ref="openeducat_core.op_student_21"/>
-            <field name="course_id" ref="openeducat_core.op_course_6"/>
-            <field name="batch_id" ref="openeducat_core.op_batch_6"/>
+            <field name="course_id" ref="openeducat_core.op_course_8"/>
+            <field name="batch_id" ref="openeducat_core.op_batch_5"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_3"/>
             <field name="register_id" ref="op_admission_register_4"/>
             <field name="application_date" eval="DateTime.now()"/>
@@ -608,8 +608,8 @@
             <field name="state_id"/>
             <field name="country_id" ref="base.il"/>
             <field name="student_id" ref="openeducat_core.op_student_22"/>
-            <field name="course_id" ref="openeducat_core.op_course_6"/>
-            <field name="batch_id" ref="openeducat_core.op_batch_6"/>
+            <field name="course_id" ref="openeducat_core.op_course_8"/>
+            <field name="batch_id" ref="openeducat_core.op_batch_5"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_3"/>
             <field name="register_id" ref="op_admission_register_4"/>
             <field name="application_date" eval="DateTime.now()"/>
@@ -636,8 +636,8 @@
             <field name="state_id" ref="base.state_za_wc"/>
             <field name="country_id" ref="base.za"/>
             <field name="student_id" ref="openeducat_core.op_student_23"/>
-            <field name="course_id" ref="openeducat_core.op_course_6"/>
-            <field name="batch_id" ref="openeducat_core.op_batch_6"/>
+            <field name="course_id" ref="openeducat_core.op_course_8"/>
+            <field name="batch_id" ref="openeducat_core.op_batch_5"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_3"/>
             <field name="register_id" ref="op_admission_register_4"/>
             <field name="application_date" eval="DateTime.now()"/>
@@ -663,8 +663,8 @@
             <field name="state_id" ref="base.state_cn_BJ"/>
             <field name="country_id" ref="base.cn"/>
             <field name="student_id" ref="openeducat_core.op_student_24"/>
-            <field name="course_id" ref="openeducat_core.op_course_4"/>
-            <field name="batch_id" ref="openeducat_core.op_batch_3"/>
+            <field name="course_id" ref="openeducat_core.op_course_7"/>
+            <field name="batch_id" ref="openeducat_core.op_batch_8"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_2"/>
             <field name="register_id" ref="op_admission_register_2"/>
             <field name="application_date" eval="DateTime.now()"/>
