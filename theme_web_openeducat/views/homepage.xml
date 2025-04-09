@@ -7,24 +7,24 @@
 
 
 
-                  <section class="banner o_colored_level oe_img_bg o_bg_img_center pt-5">
+                    <section class="banner o_colored_level oe_img_bg o_bg_img_center pt-5">
                         <div class="container">
                             <div class="row align-items-center">
 
                                 <div class="col-lg-6 col-md-12 pb88 text-center text-lg-start mb-4 mb-lg-0 o_colored_level o_animate o_anim_flip_in_x o_visible" style="">
                                     <div class="banner-content text-md-start">
                                         <div class="bg-white d-inline-block mb-3 px-3 py-2 rounded-2 shadow-lg" id="reb">
-                                            🏆The Leader in Shaping Future Scholars
+                                          <b class="me-2">🏆</b>The Leader in Shaping Future Scholars
                                         </div>
-                                        <h1 class=" main-title"><span class="o_animated_text o_animate o_anim_zoom_in o_visible text-white">Build essential skills to accelerate your career.</span>
+                                        <h1 class=" main-title"><span class="o_animated_text o_animate o_anim_zoom_in o_visible text-white">Build Essential Skills To Accelerate Your Career.</span>
                                         </h1>
                                         <p class="fs-5 text-muted"><span class="o_animated_text o_animate o_anim_zoom_in o_visible text-300" style="">Develop the skills you need to succeed and advance your career at our university.</span> 
                                         </p>
                                         <div class="d-contents mt-5 text-center">
                                             <button class="head-button">
-                                                <span class="arrow-left">→</span>
+                                              
                                                          View Course
-                                                <span class="arrow-right">→</span>
+                                                
                                             </button>
                                         </div>
                                     </div>
@@ -46,9 +46,9 @@
                     </section>
 
 
-                    <section class="o_colored_level">
+                    <section class="o_colored_level py-5">
                         <div class="categories">
-                            <div class="container py-5">
+                            <div class="container ">
                                 <div class=" mb-3 title row">
                                     <div class="col-12 o_colored_level o_animate o_anim_bounce_in o_visible" style="">
                                         <div class="py-3 section-title text-center">
@@ -70,13 +70,13 @@
                                                     <img src="/theme_web_openeducat/static/src/img/banner/books.svg" class="card-img-top" alt="..." style="width: 80px;" loading="lazy"/>
                                                 </div>
                                                 <div class="content_card text-center">
-                                                    <h5 class="fw-bolder pb-3">
+                                                    <h5 class="fw-bolder">
                                                      Web Design
                                                     </h5>
-                                                    <div class="px-1 text-900">
+                                                    <div class="px-1 text-900 categories-link-hover">
                                                         
                                                             22 Courses
-                                                            <i class="fa fa-arrow-right"/>
+                                                           
                                                         
                                                     </div>
                                                 </div>
@@ -90,13 +90,13 @@
                                                     <img src="/theme_web_openeducat/static/src/img/banner/teacher.svg" class="card-img-top" alt="..." style="width: 80px;" loading="lazy"/>
                                                 </div>
                                                 <div class="content_card text-center">
-                                                    <h5 class="fw-bolder pb-3">
+                                                    <h5 class="fw-bolder">
                                                       Graphic Design
                                                     </h5>
-                                                    <div class="px-1 text-900">
+                                                    <div class="px-1 text-900 categories-link-hover">
                                                         
                                                             15 Courses
-                                                            <i class="fa fa-arrow-right"/>
+                                                        
                                                         
                                                     </div>
                                                 </div>
@@ -110,13 +110,13 @@
                                                     <img src="/theme_web_openeducat/static/src/img/banner/dictionary.svg" class="card-img-top" alt="..." style="width: 80px;" loading="lazy"/>
                                                 </div>
                                                 <div class="content_card text-center">
-                                                    <h5 class=" pb-3 fw-bolder">
+                                                    <h5 class=" fw-bolder">
                                                        Personal Development
                                                     </h5>
-                                                    <div class="px-1 text-900">
+                                                    <div class="px-1 text-900 categories-link-hover">
                                                         
                                                             20 Courses
-                                                            <i class="fa fa-arrow-right"/>
+                                                          
                                                         
                                                     </div>
                                                 </div>
@@ -130,13 +130,13 @@
                                                     <img src="/theme_web_openeducat/static/src/img/banner/financial-analysis.svg" class="card-img-top" alt="..." style="width: 80px;" loading="lazy"/>
                                                 </div>
                                                 <div class="content_card text-center">
-                                                    <h5 class=" pb-3 fw-bolder">
+                                                    <h5 class=" fw-bolder">
                                                         IT and Software
                                                     </h5>
-                                                    <div class="px-1 text-900">
+                                                    <div class="px-1 text-900 categories-link-hover">
                                                         
                                                             15 Courses
-                                                            <i class="fa fa-arrow-right"/>
+                                                          
                                                         
                                                     </div>
                                                 </div>
@@ -154,13 +154,13 @@
                                                     <img src="/theme_web_openeducat/static/src/img/banner/passed.svg" class="card-img-top" alt="..." style="width: 80px;" loading="lazy"/>
                                                 </div>
                                                 <div class="content_card text-center">
-                                                    <h5 class=" pb-3 fw-bolder">
+                                                    <h5 class=" fw-bolder">
                                                        Examination Management
                                                     </h5>
-                                                    <div class="px-1 text-900">
+                                                    <div class="px-1 text-900 categories-link-hover">
                                                         
                                                             28 Courses
-                                                            <i class="fa fa-arrow-right"/>
+                                                          
                                                         
                                                     </div>
                                                 </div>
@@ -174,14 +174,13 @@
                                                     <img src="/theme_web_openeducat/static/src/img/banner/registration.svg" class="card-img-top" alt="..." style="width: 80px;" loading="lazy"/>
                                                 </div>
                                                 <div class="content_card  text-center">
-                                                    <h5 class=" pb-3 fw-bolder">
+                                                    <h5 class=" fw-bolder">
                                                       Art &amp;amp; Humanities
                                                     </h5>
-                                                    <div class="px-1 text-900">
+                                                    <div class="px-1 text-900 categories-link-hover">
                                                         
                                                             12 Courses
-                                                            <i class="fa fa-arrow-right"/>
-                                                        
+                                                          
                                                     </div>
                                                 </div>
                                             </div>
@@ -194,13 +193,13 @@
                                                     <img src="/theme_web_openeducat/static/src/img/banner/speak.svg" class="card-img-top" alt="..." style="width: 80px;" loading="lazy"/>
                                                 </div>
                                                 <div class="content_card text-center">
-                                                    <h5 class=" pb-3 fw-bolder">
+                                                    <h5 class=" fw-bolder">
                                                       Mobile Application
                                                     </h5>
-                                                    <div class="px-1 text-900">
+                                                    <div class="px-1 text-900 categories-link-hover">
                                                         
                                                         28 Courses
-                                                        <i class="fa fa-arrow-right"/>
+                                                     
                                                     
                                                     </div>
                                                 </div>
@@ -214,13 +213,13 @@
                                                     <img src="/theme_web_openeducat/static/src/img/banner/student.svg" class="card-img-top" alt="..." style="width: 80px;" loading="lazy"/>
                                                 </div>
                                                 <div class="content_card text-center">
-                                                    <h5 class="pb-3 fw-bolder">
+                                                    <h5 class="fw-bolder">
                                                       Finance &amp;amp; Accounting
                                                     </h5>
-                                                    <div class="px-1 text-900">
+                                                    <div class="px-1 text-900 categories-link-hover">
                                                         
-                                                            16 Courses
-                                                            <i class="fa fa-arrow-right"/>
+                                                        <a> 16 Courses</a>   
+                                                           
                                                         
                                                     </div>
                                                 </div>
@@ -233,9 +232,9 @@
                         </div>
                     </section>
 
-                    <section class="o_colored_level">
-                        <div class="popular-courses" style="background: #F9F9FF;">
-                            <div class="container py-5">
+                    <section class="o_colored_level py-5" style="background: #F9F9FF;">
+                        <div class="popular-courses" >
+                            <div class="container ">
                                 <div class="mb-3 title row">
                                     <div class="col-12">
                                         <div class="py-3 section-title text-center">
@@ -251,7 +250,7 @@
                                 <div class="row g-4 justify-content-center">
                                     <div class="col-md-6 col-lg-4 o_colored_level">
                                         <div class="card p-4 shadow-sm  h-100 hover">
-                                            <img src="/theme_web_openeducat/static/src/img/banner/course-thumb-6-min.jpg" class="card-img-top o_animate o_anim_bounce_in o_visible" alt="React Course" loading="eager" style=""/>
+                                            <img src="/theme_web_openeducat/static/src/img/banner/course-thumb-6-min.jpg" class="card-img-top o_animate o_anim_bounce_in o_visible rounded-2" alt="React Course" loading="eager" style=""/>
                                             <div>
                                                 <div class="d-flex gap-2 mt-3">
                                                     <div class="text-warning">
@@ -275,7 +274,7 @@
 
                                     <div class="col-md-6 col-lg-4 o_colored_level">
                                         <div class="card p-4 shadow-sm  h-100 hover">
-                                            <img src="/theme_web_openeducat/static/src/img/banner/course-thumb-2-min.jpg" class="card-img-top o_animate o_anim_bounce_in o_visible" alt="PHP Course" loading="eager" style=""/>
+                                            <img src="/theme_web_openeducat/static/src/img/banner/course-thumb-2-min.jpg" class="card-img-top o_animate o_anim_bounce_in o_visible rounded-2" alt="PHP Course" loading="eager" style=""/>
                                             <div>
                                                 <div class="d-flex gap-2 mt-3">
                                                     <div class="text-warning">
@@ -300,7 +299,7 @@
 
                                     <div class="col-md-6 col-lg-4 o_colored_level">
                                         <div class="card p-4 shadow-sm h-100 hover">
-                                            <img src="/theme_web_openeducat/static/src/img/banner/course-thumb-3-min.jpg" class="card-img-top o_animate o_anim_bounce_in o_visible" alt="Angular Course" loading="eager" style=""/>
+                                            <img src="/theme_web_openeducat/static/src/img/banner/course-thumb-3-min.jpg" class="card-img-top o_animate o_anim_bounce_in o_visible rounded-2" alt="Angular Course" loading="eager" style=""/>
                                             <div>
                                                 <div class="d-flex gap-2 mt-3">
                                                     <div class="text-warning">
@@ -327,9 +326,9 @@
 								<div class="align-items-center d-flex h-100 justify-content-center mt-5">
                                     <div class="d-contents mt-5 text-center">
                                         <button class="hover-button">
-                                            <span class="arrow-left">→</span>
+                                          
                                             Load More Course (40)
-                                            <span class="arrow-right">→</span>
+                                            
                                         </button>
                                     </div>
 
@@ -351,7 +350,7 @@
                                                 <img data-parallax="{&quot;x&quot;: 0, &quot;y&quot;: -20}" src="/theme_web_openeducat/static/src/img/banner/about-01.png" alt="Education Images" style="transform: translate3d(0px, 20.007px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scaleX(1) scaleY(1) scaleZ(1);" loading="eager"/>
                                             </div>
                                             <div class="oe-thumbnail image-2 d-none d-xl-block">
-                                                <img data-parallax="{&quot;x&quot;: 0, &quot;y&quot;: 60}" src="/theme_web_openeducat/static/src/img/banner/about-02.png" alt="Education Images" style="transform: translate3d(0px, 67.151px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scaleX(1) scaleY(1) scaleZ(1);" loading="eager"/>
+                                                <img data-parallax="{&quot;x&quot;: 0, &quot;y&quot;: 60}" class="rounded-2" src="/theme_web_openeducat/static/src/img/banner/about-02.png" alt="Education Images" style="transform: translate3d(0px, 67.151px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scaleX(1) scaleY(1) scaleZ(1);" loading="eager"/>
                                             </div>
                                             <div class="oe-thumbnail image-3 d-none d-md-block">
                                                 <img data-parallax="{&quot;x&quot;: 0, &quot;y&quot;: 80}" src="/theme_web_openeducat/static/src/img/banner/about-03.png" alt="Education Images" style="transform: translate3d(0px, 17.538px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scaleX(1) scaleY(1) scaleZ(1);" loading="eager"/>
@@ -362,7 +361,7 @@
                                         <div class="inner-about pl--50 pl_sm--0 pl_md--0">
                                             <div class="section-title py-3 text-start">
                                                 <span class="subtitle mb-4">Know About Us</span>
-                                                <h2 class="title pt-4">Know About <br/>
+                                                <h2 class="title pt-4 fw-bold">Know About <br/>
                                                      Learning Platform</h2>
                                             </div>
 
@@ -398,9 +397,9 @@
                                                 <a class="oe-btn btn-gradient hover-icon-reverse" href="#">
                                                     <span class="icon-reverse-wrapper">
                                                         <button class="hover-button mt-4">
-                                                            <span class="arrow-left">→</span>
+                                                           
                                                         More About Us
-                                                            <span class="arrow-right">→</span>
+                                                         
                                                         </button>
                                                         <span class="btn-icon">
                                                             <i class="feather-arrow-right"/>
@@ -419,18 +418,18 @@
                     </section>
                    
 
-                    <section style="margin-bottom: -150px;z-index: 2;" class="o_colored_level">
+                    <section class="call_to_aection_section py-5">
                         <div class="call_to_action">
-                            <div class="container py-5">
+                            <div class="container">
                                 <div class="row g-4">
                                     <div class="col-lg-6 col-md-12 o_colored_level o_animate o_anim_slide_in o_anim_from_left o_visible" style="">
                                         <div class="p-4 shadow rounded bg-white h-100">
                                             <div class="row align-items-center">
                                                 <div class="col-lg-5 col-md-12 text-lg-start">
                                                     <div class="my-3">
-                                                        <a href="#" class="border px-3 py-1 rounded-4 d-inline-block">New Course </a>
+                                                        <p href="#" class="border px-3 py-1 rounded-4 d-inline-block N_collection">New Course </p>
                                                     </div>
-                                                    <h3 class="fw-bolder"> Digital Marketing Basics</h3>
+                                                    <h4 class="fw-bolder"> Digital Marketing Basics</h4>
                                                     <p class="py-2 text-600" style="font-size: 18px;"> Learn online marketing strategies </p>
                                                 </div>
                                                 <div class="col-lg-7 col-md-12  text-lg-start">
@@ -442,10 +441,10 @@
                                     <div class="col-lg-6 col-md-12 o_colored_level o_animate o_anim_slide_in o_anim_from_right o_visible" style="">
                                         <div class="d-flex align-items-center h-100 p-4 shadow rounded bg-white">
                                             <div>
-                                                <div class="my-3 text-lg-start">
-                                                    <a href="#" class="border px-3 py-1 rounded-4 d-inline-block">New Collection</a>
+                                                <div class="my-3 text-lg-start ">
+                                                    <p href="#" class="border px-3 py-1 rounded-4 d-inline-block N_collection">New Collection</p>
                                                 </div>
-                                                <h3 class="fw-bolder text-lg-start">AI and Machine Learning Fundamentals</h3>
+                                                <h4 class="fw-bolder text-lg-start">AI and Machine Learning Fundamentals</h4>
                                                 <p class="py-1 text-lg-start text-600" style="font-size: 18px;"> Understand core concepts of AI and how to implement machine learning models. </p>
                                                  <div class=" h-100mt-5">
                                                     <div class="d-contents mt-5 text-start">
@@ -476,7 +475,8 @@
                                                 <span class="bg-primary-opacity subtitle">
                                                 Why Choose Us
                                                 </span>
-                                                <h2 class="fw-bold py-3"><span class="o_animated_text o_animate o_anim_fade_in o_visible" style="">Creating A Community Of <br/> Life Long Learners</span>  
+                                                <h2 class="fw-bold py-3"><span class="o_animated_text o_animate o_anim_fade_in o_visible" style="">Creating A Community Of 
+                                                 Life Long Learners</span>  
                                                 
                                                 </h2>
                                             </div>
@@ -485,7 +485,7 @@
                                 <div class="row g-5 head-line">
                                   
                                     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                        <div class="oec-counterup oec-hover-03 border-bottom-gradient">
+                                        <div class="oec-counterup oec-hover-03 border-bottom-gradient hover">
                                             <div class="top-circle-shape"/>
                                             <div class="inner">
                                                 <div class="oec-round-icon">
@@ -500,7 +500,7 @@
                                     </div>
                                    
                                     <div class="col-lg-3 col-md-6 col-sm-6 col-12 mt--60 mt_md--30 mt_sm--30 mt_mobile--60 mt_md--60">
-                                        <div class="oec-counterup oec-hover-03 border-bottom-gradient">
+                                        <div class="oec-counterup oec-hover-03 border-bottom-gradient hover">
                                             <div class="top-circle-shape"/>
                                             <div class="inner">
                                                 <div class="oec-round-icon">
@@ -515,7 +515,7 @@
                                     </div>
                                    
                                     <div class="col-lg-3 col-md-6 col-sm-6 col-12  mt--60 mt_md--30 mt_sm--30 mt_mobile--60">
-                                        <div class="oec-counterup oec-hover-03 border-bottom-gradient">
+                                        <div class="oec-counterup oec-hover-03 border-bottom-gradient hover">
                                             <div class="top-circle-shape"/>
                                             <div class="inner">
                                                 <div class="oec-round-icon">
@@ -530,7 +530,7 @@
                                     </div>
                                   
                                     <div class="col-lg-3 col-md-6 col-sm-6 col-12 mt--60 mt_md--30 mt_sm--30 mt_mobile--60">
-                                        <div class="oec-counterup oec-hover-03 border-bottom-gradient">
+                                        <div class="oec-counterup oec-hover-03 border-bottom-gradient hover">
                                             <div class="top-circle-shape"/>
                                             <div class="inner">
                                                 <div class="oec-round-icon">
@@ -549,13 +549,13 @@
                         </div>
                     </section>
 
-                    <section class="o_colored_level">
-                        <div class="events" style="background: linear-gradient(to left, #0575e6, #021b79);">
-                            <div class="container py-5">
+                    <section class="o_colored_level py-5"  style="background: linear-gradient(to left, #0575e6, #021b79);">
+                        <div class="events">
+                            <div class="container">
                                 <div class="mb-3 title row">
                                     <div class="col-12 o_colored_level">
                                         <div class="py-3 section-title text-center">
-                                            <span class=" subtitle">
+                                            <span class=" subtitle" style="background: #ffffff21;color: #ffffff;" >
                                                STIMULATED TO TAKE PART IN?
                                             </span>
                                             <h2 class="text-white fw-bold py-3">
@@ -568,7 +568,7 @@
                                     <div class="col-md-6 col-lg-4 o_colored_level o_animate o_anim_bounce_in o_visible" style="">
                                         <div class="card p-4 shadow-sm  h-100 hover">
                                             <div>   
-                                                <img src="/theme_web_openeducat/static/src/img/banner/course-01-min.jpg" class="card-img-top" alt="React Course" loading="eager"/>
+                                                <img src="/theme_web_openeducat/static/src/img/banner/course-01-min.jpg" class="card-img-top rounded-2" alt="React Course" loading="eager"/>
                                                
                                             </div> 
 
@@ -585,13 +585,13 @@
                                                         8:00 am - 5:00 pm
                                                     </li>
                                                 </ul>
-                                                <h4 class="fw-bolder">Education Summit 2025 </h4>
+                                                <h4 class="fw-bolder"><a>Education Summit 2025</a></h4>
                                                 
                                                <div class="my-4 text-center">
                                                     <button class="hover-button">
-                                                        <span class="arrow-left">→</span>
+                                                     
                                                         Get Ticket
-                                                        <span class="arrow-right">→</span>
+                                                        
                                                     </button>
                                                 </div>
                                                 
@@ -602,7 +602,7 @@
 
                                     <div class="col-md-6 col-lg-4 o_colored_level o_animate o_anim_bounce_in o_visible" style="">
                                         <div class="card p-4 shadow-sm  h-100 hover">
-                                            <img src="/theme_web_openeducat/static/src/img/banner/course-02-min.jpg" class="card-img-top" alt="React Course" loading="eager"/>
+                                            <img src="/theme_web_openeducat/static/src/img/banner/course-02-min.jpg" class="card-img-top rounded-2" alt="React Course" loading="eager"/>
                                             <div>
                                                
                                                <ul class="d-flex gap-3 list-unstyled pt-3">
@@ -615,13 +615,13 @@
                                                         11:00 am - 3:00 pm
                                                     </li>
                                                 </ul>
-                                                <h4 class="fw-bolder">Innovative Teaching Methods Workshop </h4>
+                                                <h4 class="fw-bolder"><a>Innovative Teaching Methods Workshop</a></h4>
                                                 
                                                  <div class="my-4 text-center">
                                                     <button class="hover-button">
-                                                        <span class="arrow-left">→</span>
+                                                        
                                                         Get Ticket
-                                                        <span class="arrow-right">→</span>
+                                                      
                                                     </button>
                                                 </div>
                                                 
@@ -633,7 +633,7 @@
 
                                      <div class="col-md-6 col-lg-4 o_colored_level o_animate o_anim_bounce_in o_visible" style="">
                                         <div class="card p-4 shadow-sm  h-100 hover">
-                                            <img src="/theme_web_openeducat/static/src/img/banner/course-03-min.jpg" class="card-img-top" alt="React Course" loading="eager"/>
+                                            <img src="/theme_web_openeducat/static/src/img/banner/course-03-min.jpg" class="card-img-top rounded-2" alt="React Course" loading="eager"/>
                                             <div>
                                                
                                                <ul class="d-flex gap-3 list-unstyled pt-3">
@@ -646,13 +646,13 @@
                                                         6:00 am - 1:00 pm
                                                     </li>
                                                 </ul>
-                                                <h4 class="fw-bolder">Digital Learning Conference </h4>
+                                                <h4 class="fw-bolder"><a>Digital Learning Conference</a></h4>
                                                  
                                                 <div class="my-4 text-center">
                                                     <button class="hover-button">
-                                                        <span class="arrow-left">→</span>
+                                                        
                                                         Get Ticket
-                                                        <span class="arrow-right">→</span>
+                                                        
                                                     </button>
                                                 </div>
                                                 
@@ -668,10 +668,10 @@
                         </div>
                     </section>
 
-                    <section class="o_colored_level">
+                    <section class="o_colored_level py-5">
                     
                         <div class="Teacher">
-                            <div class="container py-5">
+                            <div class="container">
                              
                                 <div class="mb-3 title row">
                                     <div class="col-12">
@@ -687,10 +687,10 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-12 col-sm-12 col-xl-7 o_colored_level o_animate o_anim_slide_in o_anim_from_left o_visible" style="">
-                                        <div class="p-4 shadow-sm h-100 row">
+                                    <div class="col-lg-7 col-md-12 col-sm-12 col-xl-7 o_colored_level o_animate o_anim_slide_in o_anim_from_left o_visible" style="">
+                                        <div class="p-4 shadow h-100 row">
                                             <div class="align-items-center col-md-6 d-flex justify-content-center o_colored_level o_animate o_anim_zoom_in o_visible" style="">
-                                                 <img src="/theme_web_openeducat/static/src/img/banner/team-06.jpg" class="card-img-top set-img" alt="React Course" loading="eager"/>
+                                                 <img src="/theme_web_openeducat/static/src/img/banner/team-06.jpg" class="card-img-top set-img rounded " alt="React Course" loading="eager"/>
                                             </div>        
                                             <div class="col-md-6 align-content-center atd" name="janesmith">
                                                 <div class="autors">
@@ -704,10 +704,10 @@
                                                 <p class="card-text">Dedicated and experienced mathematics teacher who plays a vital role in
                                                  guiding students through various mathematical concepts
                                                 </p>
-                                                <ul class="d-flex gap-2 list-unstyled social-default">
-                                                    <li><a><i class="fa fa-facebook"/></a></li>
-                                                    <li><a><i class="fa fa-twitter"/></a></li>
-                                                    <li><a><i class="fa fa-instagram"/></a></li>
+                                                <ul class="d-flex gap-3 list-unstyled social-default">
+                                                    <li><div class="align-items-center bg-200 d-flex justify-content-center p-3 rounded-circle social-hover"><i class="fa fa-facebook"/></div></li>
+                                                    <li><div class="align-items-center bg-200 d-flex justify-content-center p-3 rounded-circle social-hover"><i class="fa fa-twitter"/></div></li>
+                                                    <li><div class="align-items-center bg-200 d-flex justify-content-center p-3 rounded-circle social-hover"><i class="fa fa-instagram"/></div></li>
                                                 </ul>
                                                 <ul class="list-unstyled pt-3">
                                                     <li class=" d-flex gap-3"><i class="fa fa-phone"/>+1-202-555-0174</li>
@@ -727,10 +727,10 @@
                                                 <p class="card-text">Dedicated and experienced mathematics teacher who plays a vital role in
                                                  guiding students through various mathematical concepts
                                                 </p>
-                                                <ul class="d-flex gap-2 list-unstyled social-default">
-                                                    <li><a><i class="fa fa-facebook"/></a></li>
-                                                    <li><a><i class="fa fa-twitter"/></a></li>
-                                                    <li><a><i class="fa fa-instagram"/></a></li>
+                                                 <ul class="d-flex gap-3 list-unstyled social-default">
+                                                    <li><div class="align-items-center bg-200 d-flex justify-content-center p-3 rounded-circle social-hover"><i class="fa fa-facebook"/></div></li>
+                                                    <li><div class="align-items-center bg-200 d-flex justify-content-center p-3 rounded-circle social-hover"><i class="fa fa-twitter"/></div></li>
+                                                    <li><div class="align-items-center bg-200 d-flex justify-content-center p-3 rounded-circle social-hover"><i class="fa fa-instagram"/></div></li>
                                                 </ul>
                                                 <ul class="list-unstyled pt-3">
                                                     <li class=" d-flex gap-3"><i class="fa fa-phone"/>+1-202-555-0174</li>
@@ -750,10 +750,10 @@
                                                 <p class="card-text">Dedicated and experienced mathematics teacher who plays a vital role in
                                                  guiding students through various mathematical concepts
                                                 </p>
-                                                <ul class="d-flex gap-2 list-unstyled social-default">
-                                                    <li><a><i class="fa fa-facebook"/></a></li>
-                                                    <li><a><i class="fa fa-twitter"/></a></li>
-                                                    <li><a><i class="fa fa-instagram"/></a></li>
+                                                 <ul class="d-flex gap-3 list-unstyled social-default">
+                                                    <li><div class="align-items-center bg-200 d-flex justify-content-center p-3 rounded-circle social-hover"><i class="fa fa-facebook"/></div></li>
+                                                    <li><div class="align-items-center bg-200 d-flex justify-content-center p-3 rounded-circle social-hover"><i class="fa fa-twitter"/></div></li>
+                                                    <li><div class="align-items-center bg-200 d-flex justify-content-center p-3 rounded-circle social-hover"><i class="fa fa-instagram"/></div></li>
                                                 </ul>
                                                 <ul class="list-unstyled pt-3">
                                                     <li class=" d-flex gap-3"><i class="fa fa-phone"/>+1-202-555-0174</li>
@@ -773,10 +773,10 @@
                                                 <p class="card-text">Dedicated and experienced mathematics teacher who plays a vital role in
                                                  guiding students through various mathematical concepts
                                                 </p>
-                                                <ul class="d-flex gap-2 list-unstyled social-default">
-                                                    <li><a><i class="fa fa-facebook"/></a></li>
-                                                    <li><a><i class="fa fa-twitter"/></a></li>
-                                                    <li><a><i class="fa fa-instagram"/></a></li>
+                                                 <ul class="d-flex gap-3 list-unstyled social-default">
+                                                    <li><div class="align-items-center bg-200 d-flex justify-content-center p-3 rounded-circle social-hover"><i class="fa fa-facebook"/></div></li>
+                                                    <li><div class="align-items-center bg-200 d-flex justify-content-center p-3 rounded-circle social-hover"><i class="fa fa-twitter"/></div></li>
+                                                    <li><div class="align-items-center bg-200 d-flex justify-content-center p-3 rounded-circle social-hover"><i class="fa fa-instagram"/></div></li>
                                                 </ul>
                                                 <ul class="list-unstyled pt-3">
                                                     <li class=" d-flex gap-3"><i class="fa fa-phone"/>+1-202-555-0174</li>
@@ -796,10 +796,10 @@
                                                 <p class="card-text">Dedicated and experienced mathematics teacher who plays a vital role in
                                                  guiding students through various mathematical concepts
                                                 </p>
-                                                <ul class="d-flex gap-2 list-unstyled social-default">
-                                                    <li><a><i class="fa fa-facebook"/></a></li>
-                                                    <li><a><i class="fa fa-twitter"/></a></li>
-                                                    <li><a><i class="fa fa-instagram"/></a></li>
+                                                 <ul class="d-flex gap-3 list-unstyled social-default">
+                                                    <li><div class="align-items-center bg-200 d-flex justify-content-center p-3 rounded-circle social-hover"><i class="fa fa-facebook"/></div></li>
+                                                    <li><div class="align-items-center bg-200 d-flex justify-content-center p-3 rounded-circle social-hover"><i class="fa fa-twitter"/></div></li>
+                                                    <li><div class="align-items-center bg-200 d-flex justify-content-center p-3 rounded-circle social-hover"><i class="fa fa-instagram"/></div></li>
                                                 </ul>
                                                 <ul class="list-unstyled pt-3">
                                                     <li class=" d-flex gap-3"><i class="fa fa-phone"/>+1-202-555-0174</li>
@@ -819,10 +819,10 @@
                                                 <p class="card-text">Dedicated and experienced mathematics teacher who plays a vital role in
                                                  guiding students through various mathematical concepts
                                                 </p>
-                                                <ul class="d-flex gap-2 list-unstyled social-default">
-                                                    <li><a><i class="fa fa-facebook"/></a></li>
-                                                    <li><a><i class="fa fa-twitter"/></a></li>
-                                                    <li><a><i class="fa fa-instagram"/></a></li>
+                                                 <ul class="d-flex gap-3 list-unstyled social-default">
+                                                    <li><div class="align-items-center bg-200 d-flex justify-content-center p-3 rounded-circle social-hover"><i class="fa fa-facebook"/></div></li>
+                                                    <li><div class="align-items-center bg-200 d-flex justify-content-center p-3 rounded-circle social-hover"><i class="fa fa-twitter"/></div></li>
+                                                    <li><div class="align-items-center bg-200 d-flex justify-content-center p-3 rounded-circle social-hover"><i class="fa fa-instagram"/></div></li>
                                                 </ul>
                                                 <ul class="list-unstyled pt-3">
                                                     <li class=" d-flex gap-3"><i class="fa fa-phone"/>+1-202-555-0174</li>
@@ -833,29 +833,29 @@
                                         </div> 
                                     </div>
 
-                                    <div class="align-content-center col-lg-12 col-sm-12 col-xl-5 o_colored_level o_animate o_anim_slide_in o_anim_from_right o_visible" style="">
+                                    <div class="align-content-center col-lg-5 col-md-12 col-sm-12 col-xl-5 o_colored_level o_animate o_anim_slide_in o_anim_from_right o_visible" style="">
                                         
                                             <ul class="d-flex gap-3 list-unstyled">        
                                                     <i>
                                                         <a class="object-fit-cover">
-                                                            <div class="d-flex h-100 p-2 shadow-sm change-img  img-overlay">
-                                                                <img src="/theme_web_openeducat/static/src/img/banner/team-06.jpg" class="card-img-top" alt="React Course" name="janesmith" loading="eager"/>
+                                                            <div class="d-flex h-100 p-2 shadow-lg change-img  img-overlay">
+                                                                <img src="/theme_web_openeducat/static/src/img/banner/team-06.jpg" class="card-img-top rounded-2" alt="React Course" name="janesmith" loading="eager"/>
                                                             </div>        
                                                         </a>
                                                     </i>
                                                     
                                                     <i>
                                                         <a class="object-fit-cover">
-                                                            <div class="d-flex h-100 p-2 shadow-sm change-img">
-                                                                <img src="/theme_web_openeducat/static/src/img/banner/team-03.jpg" class="card-img-top" alt="React Course" name="mamesmary" loading="eager"/>
+                                                            <div class="d-flex h-100 p-2 shadow-lg change-img">
+                                                                <img src="/theme_web_openeducat/static/src/img/banner/team-03.jpg" class="card-img-top rounded-2" alt="React Course" name="mamesmary" loading="eager"/>
                                                             </div>        
                                                         </a>
                                                     </i>
 
                                                     <i>
                                                         <a class="object-fit-cover">
-                                                            <div class="d-flex h-100 p-2 shadow-sm change-img">
-                                                                <img src="/theme_web_openeducat/static/src/img/banner/team-04.jpg" class="card-img-top" alt="React Course" name="Olivia" loading="eager"/>
+                                                            <div class="d-flex h-100 p-2 shadow-lg change-img">
+                                                                <img src="/theme_web_openeducat/static/src/img/banner/team-04.jpg" class="card-img-top rounded-2" alt="React Course" name="Olivia" loading="eager"/>
                                                             </div>        
                                                         </a>
                                                     </i>
@@ -865,24 +865,24 @@
                                             <ul class="d-flex gap-3 list-unstyled">        
                                                     <i>
                                                         <a class="object-fit-cover">
-                                                            <div class="d-flex h-100 p-2 shadow-sm change-img">
-                                                                <img src="/theme_web_openeducat/static/src/img/banner/team-05.jpg" class="card-img-top" alt="React Course" name="thomasdal" loading="eager"/>
+                                                            <div class="d-flex h-100 p-2 shadow-lg change-img">
+                                                                <img src="/theme_web_openeducat/static/src/img/banner/team-05.jpg" class="card-img-top rounded-2" alt="React Course" name="thomasdal" loading="eager"/>
                                                             </div>        
                                                         </a>
                                                     </i>
                                                     
                                                     <i>
                                                         <a class="object-fit-cover">
-                                                            <div class="d-flex h-100 p-2 shadow-sm change-img">
-                                                                <img src="/theme_web_openeducat/static/src/img/banner/team-02.jpg" class="card-img-top" alt="React Course" name="christopherlisa" loading="eager"/>
+                                                            <div class="d-flex h-100 p-2 shadow-lg change-img">
+                                                                <img src="/theme_web_openeducat/static/src/img/banner/team-02.jpg" class="card-img-top rounded-2" alt="React Course" name="christopherlisa" loading="eager"/>
                                                             </div>        
                                                         </a>
                                                     </i>
 
                                                     <i>
                                                         <a class="object-fit-cover">
-                                                            <div class="d-flex h-100 p-2 shadow-sm change-img">
-                                                                <img src="/theme_web_openeducat/static/src/img/banner/team-01.jpg" class="card-img-top" alt="React Course" name="sosephsara" loading="eager"/>
+                                                            <div class="d-flex h-100 p-2 shadow-lg change-img">
+                                                                <img src="/theme_web_openeducat/static/src/img/banner/team-01.jpg" class="card-img-top rounded-2" alt="React Course" name="sosephsara" loading="eager"/>
                                                             </div>        
                                                         </a>
                                                     </i>
@@ -900,10 +900,10 @@
                     </section>
 
 
-                    <section style="background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: rgb(249, 249, 255);" class="o_colored_level">
+                    <section style="background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: rgb(249, 249, 255);" class="o_colored_level py-5">
 
                         <div class="bolg">
-                            <div class="container py-5">
+                            <div class="container ">
 
                                 <div class="mb-3 title row">
                                     <div class="col-lg-6 col-md-12">
@@ -911,7 +911,7 @@
                                             <span class="bg-primary-opacity subtitle">
                                               Blog Post
                                             </span>
-                                            <h2 class="fw-bold py-3 py-lg-5">
+                                            <h2 class="fw-bold py-3">
                                              Blog Post Topics 
                                             </h2>
                                         </div>
@@ -920,9 +920,9 @@
                                     <div class="align-items-center col-lg-6 col-md-12 d-flex justify-content-start justify-content-lg-end o_colored_level">   
                                         <div>
                                             <button class="hover-button">
-                                                <span class="arrow-left">→</span>
+                                                
                                                 See All Articles
-                                                <span class="arrow-right">→</span>
+                                         
                                             </button>
                                         </div>
                                     </div>
@@ -940,7 +940,7 @@
                                                
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     
-                                                    <a href="#" class="blog-btn">Read Article →
+                                                    <a href="#" class="blog-btn">Read Article 
                                                     </a>
                                                 </div>
                                             </div>
@@ -949,38 +949,38 @@
 
                                     <div class="col-lg-6 col-md-12 o_colored_level o_animate o_anim_zoom_in o_visible mt-0" style="">
 
-                                        <div class="row mx-2 blog-hover bg-white">
+                                        <div class="row mx-2 blog-hover bg-white rounded-3">
                                             <div class="col-lg-6 col-sm-12 ps-0">
-                                                <img src="/theme_web_openeducat/static/src/img/banner/blog-card-02.jpg" class="card-img-top h-100" alt="Course Image" loading="eager"/>
+                                                <img src="/theme_web_openeducat/static/src/img/banner/blog-card-02.jpg" class="card-img-top h-100 rounded-start-3" alt="Course Image" loading="eager"/>
                                             </div>
                                             <div class="col-lg-6 col-sm-12">
                                                 <h4 class="fw-bolder py-3"><a>Why Is Education So Famous?</a> </h4>
                                                 
-                                                <a href="#" class=" my-3 blog-btn">Read Article →
+                                                <a href="#" class=" my-3 blog-btn">Read Article 
                                                 </a>
                                             </div>
                                         </div>
 
-                                       <div class="my-4 mx-2 row blog-hover bg-white">
+                                       <div class="my-4 mx-2 row blog-hover bg-white rounded-3">
                                             <div class="col-lg-6 col-sm-12 ps-0">
-                                                <img src="/theme_web_openeducat/static/src/img/banner/blog-card-03.jpg" class="card-img-top h-100" alt="Course Image" loading="eager"/>
+                                                <img src="/theme_web_openeducat/static/src/img/banner/blog-card-03.jpg" class="card-img-top h-100 rounded-start-3" alt="Course Image" loading="eager"/>
                                             </div>
                                             <div class="col-lg-6 col-sm-12">
                                                 <h4 class="fw-bolder py-3"><a>Difficult Things About Education.</a></h4>
                                                 
-                                                <a href="#" class="my-3  blog-btn">Read Article →
+                                                <a href="#" class="my-3  blog-btn">Read Article 
                                                 </a>
                                             </div>
                                         </div>
 
-                                       <div class="row mx-2 blog-hover bg-white">
+                                       <div class="row mx-2 blog-hover bg-white rounded-3">
                                             <div class="col-lg-6 col-sm-12 ps-0">
-                                                <img src="/theme_web_openeducat/static/src/img/banner/blog-card-04.jpg" class="card-img-top h-100" alt="Course Image" loading="eager"/>
+                                                <img src="/theme_web_openeducat/static/src/img/banner/blog-card-04.jpg" class="card-img-top h-100 rounded-start-3" alt="Course Image" loading="eager"/>
                                             </div>
                                             <div class="col-lg-6 col-sm-12">
                                                 <h4 class="fw-bolder py-3"><a>Education Is So Famous, But Why?</a></h4>
                                                 
-                                                <a href="#" class="my-3  blog-btn">Read Article →
+                                                <a href="#" class="my-3  blog-btn">Read Article 
                                                 </a>
                                             </div>
                                         </div>
@@ -1001,7 +1001,7 @@
                             <div class="row text-center mb-4">
                                 <div class="col-12">
                                     <div class="section-title pt-5">
-                                        <span class="subtitle"> Subscribe to Our Newsletter </span>
+                                        <span class="subtitle" style="background: #ffffff21;color: #ffffff;"> Subscribe to Our Newsletter </span>
                                         <h2 class="text-white fw-bold py-4">Stay Updated with the Latest Insights and Updates  </h2>
                                         <p class="mt-3 text-white">
                                             Join our community to receive exclusive content, updates on new courses,<br/>
@@ -1025,7 +1025,7 @@
                                             <div class="d-flex js_subscribe_wrap justify-content-center">
                                                 <div class="input-group ">
                                                     <input type="email" name="email" class="js_subscribe_value form-control" placeholder="johnsmith@example.com"/>
-                                                    <a role="button" href="#" class="align-items-center justify-content-center btn btn-fill-light d-flex js_subscribe_btn o_submit small-btn text-white">Subscribe</a>
+                                                    <a role="button" href="#" class="align-items-center justify-content-center btn btn-fill-success d-flex js_subscribe_btn o_submit small-btn text-white">Subscribe</a>
                                                 </div> 
                                             </div>
                                         </div>
