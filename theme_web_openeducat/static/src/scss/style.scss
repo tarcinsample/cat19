@@ -57,6 +57,7 @@
         .head-button .arrow-left {
             display: inline;
             opacity: 0;
+            width: 0;
             transition: opacity 0.5s ease-in-out;
         }
         
@@ -68,14 +69,20 @@
         
         .head-button:hover .arrow-right {
             opacity: 0;
+            width: 0;
         }
         
         .head-button:hover .arrow-left {
             opacity: 1;
+            width: auto;
         }
 
 
-
+        .categories-link-hover:hover{
+            color: map-get(map-get($o-color-palettes, 'base-1'), 'o-cc1-link') !important;
+            cursor: pointer;
+            // text-decoration: underline;
+        }
 
         .hover-button
          {
@@ -100,6 +107,7 @@
         .hover-button .arrow-left {
             display: inline;
             opacity: 0;
+            width: 0;
             transition: opacity 0.5s ease-in-out;
         }
         
@@ -111,10 +119,12 @@
         
         .hover-button:hover .arrow-right {
             opacity: 0;
+            width: 0;
         }
         
         .hover-button:hover .arrow-left {
             opacity: 1;
+            width: auto;
         }
         
         
@@ -181,6 +191,7 @@
         @media (max-width: 768px) {
             .banner-content {
                 text-align: start !important;
+                font-size: 14px;
             }
         
             .hover-button {
@@ -221,6 +232,11 @@
         }
 
 
+        .social-hover:hover{
+            background-color: #026dde !important;
+            color:white;
+            cursor: pointer;
+        }
 
         
         .blog-hover:hover{
@@ -232,13 +248,20 @@
             cursor:pointer;
         }
 
-        .blog-btn, .btn-primary:hover
+        .blog-btn:hover
         {
             color: $primary;
             cursor: pointer;
             
         }
-
+        .N_collection{
+            color:#6b7385;
+        }
+        .N_collection:hover{
+            cursor: pointer;
+            background-color: #cfcfcf3d;
+        }
+        
 
 
         .stats-section {
@@ -279,8 +302,8 @@
         }
 
         .subtitle {
-            font-size: 18px;
-            font-weight: 600;
+            font-size: 16px;
+            font-weight: 500;
             color: #6c757d;
         }
 
@@ -411,7 +434,7 @@
                
         
             .input-group {
-                border-radius: 50px;
+                border-radius: 6px;
                 overflow: hidden;
                 box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
                 max-width: 600px;
@@ -426,7 +449,9 @@
                 padding-left: 20px;
                 width: 100%;
             }
-    
+            .input-group a:hover{
+                color: white !important;
+            }
             .subscribe-btn {
                 border-radius: 0 50px 50px 0;
                 border: none;
@@ -743,6 +768,16 @@
             } 
         }
 
+        .call_to_aection_section{
+            margin-bottom: -190px;
+            z-index: 2;
+        }
+        @media (max-width:968px) {
+            .call_to_aection_section{
+                margin-bottom:0px;
+                z-index: 0;
+            }
+        }
 
         .oec-counterup {
             background: white;
@@ -921,23 +956,23 @@
         }
 
         .default-callto-action-overlap {
-            padding-top: 276px;
+            padding-top: 166px;
             @media #{$md-layout}, #{$sm-layout} {
-                padding-top: 80px;
+                padding-top: 0px;
             }
         }
         
         .oec-section-gapBottom, .oec-section-gap2Bottom, .oec-section-gap3Bottom {
-            padding-bottom: 120px;
+            padding-bottom: 0px;
             @media #{$md-layout}, #{$sm-layout} {
-                padding-bottom: 80px;
+                padding-bottom: 0px;
             }
         }
         
         .oec-section-gapTop, .oec-section-gap2Top, .oec-section-gap3Top {
             padding-top: 120px;
             @media #{$md-layout}, #{$sm-layout} {
-                padding-top: 80px;
+                padding-top: 0px;
             }
         }
         
