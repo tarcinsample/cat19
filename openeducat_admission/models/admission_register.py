@@ -198,6 +198,7 @@ class OpAdmissionRegister(models.Model):
 
 class AdmissionRegisterFeesLine(models.Model):
     _name = 'op.admission.fees.line'
+    _description = "Admission Fees Line"
 
     course_id = fields.Many2one('op.course', string="Course", required=True)
     course_fees_product_id = fields.Many2one('product.product', string="Course Fees")
