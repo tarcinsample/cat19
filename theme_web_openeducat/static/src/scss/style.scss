@@ -37,7 +37,6 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            // padding: 17px 20px;
             font-size: 16px;
             font-weight: 500;
             color: #026dde;
@@ -81,7 +80,7 @@
         .categories-link-hover:hover{
             color: map-get(map-get($o-color-palettes, 'base-1'), 'o-cc1-link') !important;
             cursor: pointer;
-            // text-decoration: underline;
+          
         }
 
         .hover-button
@@ -89,7 +88,6 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            // padding: 16px 20px;
             font-size: 16px;
             font-weight: 500;
             color: white;
