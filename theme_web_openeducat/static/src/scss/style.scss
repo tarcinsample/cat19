@@ -1,14 +1,5 @@
 
-.btn-primary {
-  
-    background-color: $primary;
-    transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out;
 
-    &:hover {
-        background-color: $secondary;
-        cursor: pointer;
-    }
-}
 
 .theme_web_openeducat
 {
@@ -25,57 +16,30 @@
        
         .banner {
             background: linear-gradient(to left, #0575e6, #021b79);
-        }
+      
         
-        .img-main {
-            width: 100%;
-        }
-        
+                .img-main {
+                    width: 100%;
+                }
+                
 
-        .head-button,
-        .btn-primary {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 16px;
-            font-weight: 500;
-            color: #026dde;
-            border: none;
-            border-radius: 10px;
-            background-color:  #fff;;
-            transition: background-color 0.6s ease-in-out, transform 0.6s ease-in-out;
-        
-            &:hover {
-          
-               
-                cursor: pointer;
-                color: $secondary;
-            }
-        }
-        
-        .head-button .arrow-left {
-            display: inline;
-            opacity: 0;
-            width: 0;
-            transition: opacity 0.5s ease-in-out;
-        }
-        
-        .head-button .arrow-right {
-            display: inline;
-            opacity: 1;
-            transition: opacity 0.5s ease-in-out;
-        }
-        
-        .head-button:hover .arrow-right {
-            opacity: 0;
-            width: 0;
-        }
-        
-        .head-button:hover .arrow-left {
-            opacity: 1;
-            width: auto;
-        }
-
+                .head-button,
+                .btn-primary {
+                   
+                    color: #026dde;
+                    background-color:  #fff;;
+                    transition: background-color 0.6s ease-in-out, transform 0.6s ease-in-out;
+                
+                    &:hover {
+                
+                    
+                        cursor: pointer;
+                        color: $secondary;
+                    }
+                }
+                
+                
+            }   
 
         .categories-link-hover:hover{
             color: map-get(map-get($o-color-palettes, 'base-1'), 'o-cc1-link') !important;
@@ -83,47 +47,24 @@
           
         }
 
-        .hover-button
-         {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 16px;
-            font-weight: 500;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            background-color: $primary;
-            transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out;
-        
-            &:hover {
+        // .hover-button
+        //  {
+        //     display: flex;
+        //     align-items: center;
+        //     gap: 10px;
+        //     font-size: 16px;
+        //     font-weight: 500;
+        //     color: white;
+        //     border: none;
+        //     border-radius: 10px;
+        //     background-color: $primary;
+        //     transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out;
+        .hover-button:hover {
                 background-color: $secondary;
                 cursor: pointer;
             }
-        }
+       
         
-        .hover-button .arrow-left {
-            display: inline;
-            opacity: 0;
-            width: 0;
-            transition: opacity 0.5s ease-in-out;
-        }
-        
-        .hover-button .arrow-right {
-            display: inline;
-            opacity: 1;
-            transition: opacity 0.5s ease-in-out;
-        }
-        
-        .hover-button:hover .arrow-right {
-            opacity: 0;
-            width: 0;
-        }
-        
-        .hover-button:hover .arrow-left {
-            opacity: 1;
-            width: auto;
-        }
         
         
      
@@ -212,7 +153,7 @@
             text-decoration:underline;
             cursor: pointer;
         }
-        .pop-btn, .btn-primary:hover
+        .pop-btn:hover
         {
             color: $primary;
             cursor: pointer;

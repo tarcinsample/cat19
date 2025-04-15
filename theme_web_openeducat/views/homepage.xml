@@ -325,7 +325,7 @@
 
 								<div class="align-items-center d-flex h-100 justify-content-center mt-5">
                                     <div class="d-contents mt-5 text-center">
-                                        <button class="hover-button btn btn-lg">
+                                        <button class="hover-button btn btn-lg btn-primary">
                                           
                                             Load More Course (40)
                                             
@@ -396,7 +396,7 @@
                                             <div class="about-btn mt--40">
                                                 <a class="oe-btn btn-gradient hover-icon-reverse" href="#">
                                                     <span class="icon-reverse-wrapper">
-                                                        <button class="hover-button btn btn-lg mt-4">
+                                                        <button class="hover-button btn btn-lg mt-4 btn-primary">
                                                            
                                                         More About Us
                                                          
@@ -448,7 +448,7 @@
                                                 <p class="py-1 text-lg-start text-600" style="font-size: 18px;"> Understand core concepts of AI and how to implement machine learning models. </p>
                                                  <div class=" h-100mt-5">
                                                     <div class="d-contents mt-5 text-start">
-                                                        <button class="hover-button btn btn-lg">
+                                                        <button class="hover-button btn btn-md btn-primary">
                                                         
                                                             Join Now
                                                         
@@ -585,10 +585,10 @@
                                                         8:00 am - 5:00 pm
                                                     </li>
                                                 </ul>
-                                                <h4 class="fw-bolder"><a>Education Summit 2025</a></h4>
+                                                <h4 class="fw-bolder text-truncate"><a>Education Summit 2025</a></h4>
                                                 
-                                               <div class="my-4 text-center">
-                                                    <button class="hover-button btn btn-lg">
+                                               <div class="my-4">
+                                                    <button class="hover-button btn btn-md btn-primary">
                                                      
                                                         Get Ticket
                                                         
@@ -617,8 +617,8 @@
                                                 </ul>
                                                 <h4 class="fw-bolder text-truncate"><a>Innovative Teaching Methods Workshop</a></h4>
                                                 
-                                                 <div class="my-4 text-center">
-                                                    <button class="hover-button btn btn-lg">
+                                                 <div class="my-4">
+                                                    <button class="hover-button btn btn-md btn-primary">
                                                         
                                                         Get Ticket
                                                       
@@ -646,10 +646,10 @@
                                                         6:00 am - 1:00 pm
                                                     </li>
                                                 </ul>
-                                                <h4 class="fw-bolder"><a>Digital Learning Conference</a></h4>
+                                                <h4 class="fw-bolder text-truncate"><a>Digital Learning Conference</a></h4>
                                                  
-                                                <div class="my-4 text-center">
-                                                    <button class="hover-button btn btn-lg">
+                                                <div class="my-4">
+                                                    <button class="hover-button btn btn-md btn-primary">
                                                         
                                                         Get Ticket
                                                         
@@ -919,7 +919,7 @@
                                     </div>
                                     <div class="align-items-center col-lg-6 col-md-12 d-flex justify-content-start justify-content-lg-end o_colored_level">   
                                         <div>
-                                            <button class="hover-button btn btn-lg">
+                                            <button class="hover-button btn btn-lg btn-primary">
                                                 
                                                 See All Articles
                                          
