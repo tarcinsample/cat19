@@ -48,7 +48,7 @@ class OpExamSession(models.Model):
         required=True, tracking=True)
     evaluation_type = fields.Selection(
         [('normal', 'Normal'), ('grade', 'Grade')],
-        'Evolution type', default="normal",
+        'Evolution Type', default="normal",
         required=True, tracking=True)
     venue = fields.Many2one(
         'res.partner', 'Venue', tracking=True)
