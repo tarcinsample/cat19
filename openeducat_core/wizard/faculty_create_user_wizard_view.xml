@@ -5,7 +5,7 @@
             <field name="model">wizard.op.faculty</field>
             <field name="arch" type="xml">
                 <form string="Create Users">
-                    <p class="oe_grey">Create User For Selected Faculty(s)</p>
+                    <p class="oe_grey">Create User For Selected Faculty</p>
                     <separator string="Faculty" colspan="4"/>
                     <field name="faculty_ids" widget="many2many_tags" readonly="1"/>
                     <footer>
