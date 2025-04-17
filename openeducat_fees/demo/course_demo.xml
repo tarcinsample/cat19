@@ -24,5 +24,25 @@
         <record id="openeducat_core.op_course_6" model="op.course">
             <field name="fees_term_id" ref="op_fees_term_3"/>
         </record>
+
+        <record id="openeducat_core.op_course_7" model="op.course">
+            <field name="fees_term_id" ref="op_fees_term_2"/>
+        </record>
+
+        <record id="openeducat_core.op_course_8" model="op.course">
+            <field name="fees_term_id" ref="op_fees_term_6"/>
+        </record>
+
+        <record id="openeducat_core.op_course_9" model="op.course">
+            <field name="fees_term_id" ref="op_fees_term_2"/>
+        </record>
+
+        <record id="openeducat_core.op_course_12" model="op.course">
+            <field name="fees_term_id" ref="op_fees_term_3"/>
+        </record>
+
+        <record id="openeducat_core.op_course_13" model="op.course">
+            <field name="fees_term_id" ref="op_fees_term_4"/>
+        </record>
     </data>
 </odoo>

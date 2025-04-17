@@ -91,7 +91,7 @@ class OpAdmission(models.Model):
     family_income = fields.Float(
         'Family Income')
     gender = fields.Selection(
-        [('m', 'Male'), ('f', 'Female'), ('o', 'Other')],
+        [('m', 'Male'), ('f', 'Female')],
         string='Gender',
         required=True)
     student_id = fields.Many2one(

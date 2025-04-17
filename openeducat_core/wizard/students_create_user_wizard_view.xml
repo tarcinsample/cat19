@@ -5,7 +5,7 @@
             <field name="model">wizard.op.student</field>
             <field name="arch" type="xml">
                 <form string="Create Users">
-                    <p class="oe_grey">Create User for selected Student(s)</p>
+                    <p class="oe_grey">Create User For Selected Students</p>
                     <separator string="Students" colspan="4"/>
                     <field name="student_ids" widget="many2many_tags" readonly="1"/>
                     <footer>
