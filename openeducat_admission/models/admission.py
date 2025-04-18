@@ -231,6 +231,7 @@ class OpAdmission(models.Model):
                 student_user = self.env['res.users'].create({
                     'name': student.name,
                     'login': student.email if student.email else student.application_number,
+                    'email': student.email if student.email else student.application_number,
                     'image_1920': self.image or False,
                     'is_student': True,
                     'company_id': self.company_id.id,
