@@ -97,8 +97,8 @@ class ResConfigSettings(models.TransientModel):
         string="LMS Survey Enterprise")
     module_openeducat_meeting_enterprise = fields.Boolean(
         string="Meeting Enterprise")
-    module_openeducat_online_admission = fields.Boolean(
-        string="Online Admission Enterprise")
+    module_openeducat_dynamic_admission = fields.Boolean(
+        string="Dynamic Admission")
     module_openeducat_parent_enterprise = fields.Boolean(
         string="Parent Enterprise")
     module_openeducat_placement_enterprise = fields.Boolean(
