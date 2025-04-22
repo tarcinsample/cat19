@@ -119,10 +119,6 @@ class ResConfigSettings(models.TransientModel):
         string="Assignment Grading Enterprise")
     module_openeducat_assignment_grading_bridge = fields.Boolean(
         string="Assignment Grading Bridge")
-    module_openeducat_fees_on_session = fields.Boolean(
-        string="Fees On Session")
-    module_openeducat_fees_on_duration = fields.Boolean(
-        string="Fees On Duration")
     module_openeducat_lms_admission = fields.Boolean(
         string="LMS Admission")
     module_backend_theme = fields.Boolean(
