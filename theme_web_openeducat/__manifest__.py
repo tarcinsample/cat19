@@ -1,6 +1,6 @@
 {
     'name': 'OpenEduCat Theme',
-    'description': 'OpenEduCat Theme',
+    'summary': 'OpenEduCat Theme',
     'website' : 'https://openeducat.org/',
     'category': 'Theme',
     'version': '18.0.1.0',
@@ -11,7 +11,7 @@
     ],
     'data': [
         'views/homepage.xml',
-      
+
     ],
     'assets': {
         'web._assets_primary_variables': [
@@ -27,9 +27,9 @@
         'static/description/theme_web_openeducat_cover.jpg',
 
         'static/description/theme_web_openeducat_screenshot.jpg',
- 
+
     ],
- 
+
     'license': 'LGPL-3',
     'application': True,
     'installable': True,

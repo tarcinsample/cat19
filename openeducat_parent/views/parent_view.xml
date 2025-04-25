@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
+
         <record model="ir.ui.view" id="parent_student_form_view">
             <field name="name">op.student.form</field>
             <field name="model">op.student</field>
@@ -109,5 +109,5 @@
             <field name="view_mode">list</field>
             <field name="view_id" ref="view_op_parent_tree"/>
         </record>
-    </data>
+
 </odoo>

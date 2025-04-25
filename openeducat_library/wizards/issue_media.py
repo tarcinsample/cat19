@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ###############################################################################
 #
 #    OpenEduCat Inc
@@ -20,11 +19,10 @@
 ###############################################################################
 
 from datetime import datetime
-from dateutil.relativedelta import relativedelta
-from odoo import models, fields, api, _
-from odoo.exceptions import UserError, ValidationError
 
-from ..models import media_unit
+from dateutil.relativedelta import relativedelta
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError, ValidationError
 
 
 class IssueMedia(models.TransientModel):
@@ -93,9 +91,11 @@ class IssueMedia(models.TransientModel):
                         'state': 'issue',
                     }
                     if media.type == 'student':
-                        media_movement_create['partner_id'] = media.student_id.partner_id.id or False
+                        media_movement_create[
+                            'partner_id'] = media.student_id.partner_id.id or False
                     elif media.type == 'faculty':
-                        media_movement_create['partner_id'] = media.faculty_id.partner_id.id or False
+                        media_movement_create[
+                            'partner_id'] = media.faculty_id.partner_id.id or False
                     else:
                         media_movement_create['partner_id'] = False
 
@@ -104,7 +104,8 @@ class IssueMedia(models.TransientModel):
                     value = {'type': 'ir.actions.act_window_close'}
                 else:
                     raise UserError(_("Media unit can not be issued because it's already: %s") % (dict(  # noqa
-                        media.media_unit_id._fields['state'].selection).get(media.media_unit_id.state)))
+                        media.media_unit_id._fields[
+                            'state'].selection).get(media.media_unit_id.state)))
             else:
                 raise UserError(
                     _('Maximum Number of media allowed for %s is : %s') %

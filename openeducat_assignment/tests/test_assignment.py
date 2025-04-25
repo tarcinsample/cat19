@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ###############################################################################
 #
 #    OpenEduCat Inc
@@ -19,9 +18,10 @@
 #
 ###############################################################################
 
-from logging import info
-from .test_assignment_common import TestAssignmentCommon
 import time
+from logging import info
+
+from .test_assignment_common import TestAssignmentCommon
 
 
 class TestAssignment(TestAssignmentCommon):

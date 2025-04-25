@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ###############################################################################
 #
 #    OpenEduCat Inc
@@ -19,7 +18,7 @@
 #
 ###############################################################################
 
-from odoo import models, fields, api, _
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -77,7 +76,7 @@ class OpParent(models.Model):
         template = self.env.ref('openeducat_parent.parent_template_user')
         users_res = self.env['res.users']
         for record in self:
-            if not record.name.email:                
+            if not record.name.email:
                 raise ValidationError(_('Update parent email id first.'))
             if not record.name.user_id:
                 groups_id = template and template.groups_id or False

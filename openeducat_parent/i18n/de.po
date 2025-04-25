@@ -176,4 +176,3 @@ msgstr "Aktualisieren Sie zuerst die E-Mail-ID des Elternteils."
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__user_id
 msgid "User"
 msgstr "Benutzer"
-

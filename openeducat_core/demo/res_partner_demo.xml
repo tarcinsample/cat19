@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <data noupdate="1">
+<odoo noupdate="1">
         <record id="op_res_partner_1" model="res.partner">
             <field name="name">Emma</field>
             <field name="mobile">1234567001</field>
@@ -293,5 +292,4 @@
                    file="openeducat_core/static/img/faculty_15.jpg"/>
         </record>
 
-    </data>
 </odoo>

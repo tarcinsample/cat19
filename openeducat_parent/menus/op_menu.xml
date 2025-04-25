@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
+
         <menuitem id="menu_op_parent_root" name="Parents"
                   parent="openeducat_core.menu_op_school_root"
                   action="act_open_op_parent_view"
@@ -18,5 +18,5 @@
 
         <menuitem id="hr.menu_hr_root" name="Human Resources"
                   sequence="110"/>
-    </data>
+
 </odoo>

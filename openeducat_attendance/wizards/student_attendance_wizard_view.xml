@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 <odoo>
-    <data>
         <record model="ir.ui.view" id="student_attendance_form">
             <field name="name">student.attendance.form</field>
             <field name="model">student.attendance</field>
@@ -28,5 +27,4 @@
             <field name="binding_model_id" ref="openeducat_core.model_op_student"/>
         </record>
 
-    </data>
 </odoo>

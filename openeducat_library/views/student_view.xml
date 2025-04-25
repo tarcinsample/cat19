@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
+
         <record id="view_op_student_tree_library_inherit" model="ir.ui.view">
             <field name="name">op.student.list.library.inherit</field>
             <field name="model">op.student</field>
@@ -125,5 +125,5 @@
                 </form>
             </field>
         </record>
-    </data>
+
 </odoo>

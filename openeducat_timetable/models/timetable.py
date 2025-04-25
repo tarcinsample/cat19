@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ###############################################################################
 #
 #    OpenEduCat Inc
@@ -20,9 +19,10 @@
 ###############################################################################
 
 import calendar
-from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError
+
 import pytz
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 week_days = [(calendar.day_name[0], (calendar.day_name[0])),
              (calendar.day_name[1], (calendar.day_name[1])),
@@ -80,23 +80,27 @@ class OpSession(models.Model):
         'Days',
         group_expand='_expand_groups', store=True
     )
-    timing = fields.Char(compute='_compute_timing',string='Session timing')
+    timing = fields.Char(compute='_compute_timing', string='Session timing')
 
     @api.depends('start_datetime', 'end_datetime')
     def _compute_timing(self):
         tz = pytz.timezone(self.env.user.tz)
         for session in self:
-            session.timing = str(session.start_datetime.astimezone(tz).strftime('%I:%M%p')) + ' - ' + str(
-                session.end_datetime.astimezone(tz).strftime('%I:%M%p'))
+            session.timing = str(
+                session.start_datetime.astimezone(tz).strftime('%I:%M%p')
+                ) + ' - ' + str(session.end_datetime.astimezone(
+                    tz).strftime('%I:%M%p'))
 
     @api.model
     def _expand_groups(self, days, domain, order=None):
-        weekdays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+        weekdays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday',
+                    'sunday']
         return [day for day in weekdays if day in days]
 
     @api.depends('start_datetime')
     def _compute_day(self):
-        days = {0: 'monday', 1: 'tuesday', 2: 'wednesday', 3: 'thursday', 4: 'friday', 5: 'saturday', 6: 'sunday'}
+        days = {0: 'monday', 1: 'tuesday', 2: 'wednesday', 3: 'thursday', 4: 'friday',
+                5: 'saturday', 6: 'sunday'}
         for record in self:
             record.type = days.get(record.start_datetime.weekday()).capitalize()
             record.days = days.get(record.start_datetime.weekday())
@@ -110,7 +114,7 @@ class OpSession(models.Model):
                 session.name = \
                     session.faculty_id.name + ':' + \
                     session.subject_id.name + ':' + str(
-                        session.start_datetime.astimezone(tz).strftime('%I:%M%p')) + '-' + str(
+                        session.start_datetime.astimezone(tz).strftime('%I:%M%p')) + '-' + str( # noqa
                         session.end_datetime.astimezone(tz).strftime('%I:%M%p'))
 
     # For record rule on student and faculty dashboard
@@ -171,45 +175,44 @@ class OpSession(models.Model):
                 if rec.id != session.id:
                     if is_faculty_constraint:
                         if rec.faculty_id.id == session.faculty_id.id and \
-                                rec.start_datetime.date() == session.start_datetime.date() and (
-                                session.start_datetime.time() < rec.start_datetime.time() < session.end_datetime.time() or
-                                session.start_datetime.time() < rec.end_datetime.time() < session.end_datetime.time() or
-                                rec.start_datetime.time() <= session.start_datetime.time() < rec.end_datetime.time() or
-                                rec.start_datetime.time() < session.end_datetime.time() <= rec.end_datetime.time()):
+                                rec.start_datetime.date() == session.start_datetime.date() and ( # noqa
+                                session.start_datetime.time() < rec.start_datetime.time() < session.end_datetime.time() or # noqa
+                                session.start_datetime.time() < rec.end_datetime.time() < session.end_datetime.time() or # noqa
+                                rec.start_datetime.time() <= session.start_datetime.time() < rec.end_datetime.time() or # noqa
+                                rec.start_datetime.time() < session.end_datetime.time() <= rec.end_datetime.time()): # noqa
                             raise ValidationError(_(
                                 'You cannot create a session'
                                 ' with same faculty on same date '
                                 'and time'))
                     if is_classroom_constraint:
                         if rec.classroom_id.id == session.classroom_id.id and \
-                                rec.start_datetime.date() == session.start_datetime.date() and (
-                                session.start_datetime.time() < rec.start_datetime.time() < session.end_datetime.time() or
-                                session.start_datetime.time() < rec.end_datetime.time() < session.end_datetime.time() or
-                                rec.start_datetime.time() <= session.start_datetime.time() < rec.end_datetime.time() or
-                                rec.start_datetime.time() < session.end_datetime.time() <= rec.end_datetime.time()):
+                                rec.start_datetime.date() == session.start_datetime.date() and ( # noqa
+                                session.start_datetime.time() < rec.start_datetime.time() < session.end_datetime.time() or # noqa
+                                session.start_datetime.time() < rec.end_datetime.time() < session.end_datetime.time() or # noqa
+                                rec.start_datetime.time() <= session.start_datetime.time() < rec.end_datetime.time() or # noqa
+                                rec.start_datetime.time() < session.end_datetime.time() <= rec.end_datetime.time()): # noqa
                             raise ValidationError(_(
                                 'You cannot create a session '
                                 'with same classroom on same date'
                                 ' and time'))
                     if is_batch_and_subject_constraint:
                         if rec.batch_id.id == session.batch_id.id and \
-                                rec.start_datetime.date() == session.start_datetime.date() and (
-                                session.start_datetime.time() < rec.start_datetime.time() < session.end_datetime.time() or
-                                session.start_datetime.time() < rec.end_datetime.time() < session.end_datetime.time() or
-                                rec.start_datetime.time() <= session.start_datetime.time() < rec.end_datetime.time() or
-                                rec.start_datetime.time() < session.end_datetime.time() <= rec.end_datetime.time()) \
-                                and rec.subject_id.id == session.subject_id.id:
+                                rec.start_datetime.date() == session.start_datetime.date() and ( # noqa
+                                session.start_datetime.time() < rec.start_datetime.time() < session.end_datetime.time() or # noqa
+                                session.start_datetime.time() < rec.end_datetime.time() < session.end_datetime.time() or # noqa
+                                rec.start_datetime.time() <= session.start_datetime.time() < rec.end_datetime.time() or # noqa
+                                rec.start_datetime.time() < session.end_datetime.time() <= rec.end_datetime.time()) and rec.subject_id.id == session.subject_id.id: # noqa
                             raise ValidationError(_(
                                 'You cannot create a session '
                                 'for the same batch on same time '
                                 'and for same subject'))
                     if is_batch_constraint:
                         if rec.batch_id.id == session.batch_id.id and \
-                                rec.start_datetime.date() == session.start_datetime.date() and (
-                                session.start_datetime.time() < rec.start_datetime.time() < session.end_datetime.time() or
-                                session.start_datetime.time() < rec.end_datetime.time() < session.end_datetime.time() or
-                                rec.start_datetime.time() <= session.start_datetime.time() < rec.end_datetime.time() or
-                                rec.start_datetime.time() < session.end_datetime.time() <= rec.end_datetime.time()):
+                                rec.start_datetime.date() == session.start_datetime.date() and ( # noqa
+                                session.start_datetime.time() < rec.start_datetime.time() < session.end_datetime.time() or # noqa
+                                session.start_datetime.time() < rec.end_datetime.time() < session.end_datetime.time() or # noqa
+                                rec.start_datetime.time() <= session.start_datetime.time() < rec.end_datetime.time() or # noqa
+                                rec.start_datetime.time() < session.end_datetime.time() <= rec.end_datetime.time()): # noqa
                             raise ValidationError(_(
                                 'You cannot create a session for '
                                 'the same batch on same time '

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <data noupdate="1">
+<odoo noupdate="1">
         <record id="op_session_1" model="op.session">
             <field name="timing_id" ref="op_timing_1"/>
             <field name="faculty_id" ref="openeducat_core.op_faculty_1"/>
@@ -45,5 +44,5 @@
             <field name="groups_id"
             eval="[(4,ref('openeducat_timetable.group_op_timetable_user'))]"/>
         </record>
-    </data>
+
 </odoo>

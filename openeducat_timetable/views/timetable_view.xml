@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
+
         <record id="view_op_session_tree" model="ir.ui.view">
             <field name="name">op.session.list</field>
             <field name="model">op.session</field>
@@ -195,7 +195,7 @@
                                 </div>
                             </div>
                         </t>
-                    </templates>        
+                    </templates>
                 </kanban>
             </field>
         </record>
@@ -265,5 +265,5 @@
             <field name="view_mode">calendar</field>
             <field name="view_id" ref="view_op_session_calendar"/>
         </record>
-    </data>
+
 </odoo>

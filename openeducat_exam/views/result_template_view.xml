@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
+
         <record id="view_op_result_template_tree" model="ir.ui.view">
             <field name="name">op.result.template.list</field>
             <field name="model">op.result.template</field>
@@ -89,5 +89,5 @@
             <field name="view_mode">list</field>
             <field name="view_id" ref="view_op_result_template_tree"/>
         </record>
-    </data>
+
 </odoo>

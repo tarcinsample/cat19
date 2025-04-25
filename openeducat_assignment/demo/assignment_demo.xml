@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <data noupdate="1">
+<odoo noupdate="1">
         <record id="op_assignment_1" model="op.assignment">
             <field name="name">BCA-CC-01-Asg-001</field>
             <field name="state">publish</field>
@@ -56,5 +55,4 @@
               <field name="groups_id"
               eval="[(4,ref('openeducat_assignment.group_op_assignment_user'))]"/>
         </record>
-    </data>
 </odoo>

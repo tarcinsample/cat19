@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ###############################################################################
 #
 #    OpenEduCat Inc
@@ -19,8 +18,9 @@
 #
 ###############################################################################
 
-from logging import info
 import time
+from logging import info
+
 from .test_attendance_common import TestAttendanceCommon
 
 

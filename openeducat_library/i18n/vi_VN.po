@@ -1586,4 +1586,3 @@ msgstr "Không thể phát hành Đơn vị truyền thông vì trạng thái c�
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
 msgid "media Units"
 msgstr "đơn vị truyền thông"
-

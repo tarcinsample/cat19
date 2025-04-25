@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
         <menuitem id="menu_op_attendance_root"
                   name=" Class Attendances"
                   sequence="290"
@@ -52,6 +51,4 @@
                   action="act_open_op_attendance_type_view"
                   groups="openeducat_attendance.group_op_attendance_manager"/>
 
-
-    </data>
 </odoo>

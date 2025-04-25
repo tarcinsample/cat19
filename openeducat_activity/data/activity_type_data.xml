@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <data noupdate="1">
+<odoo noupdate="1">
         <record id="op_activity_type_1" model="op.activity.type">
             <field name="name">Presentation</field>
         </record>
@@ -10,5 +9,4 @@
         <record id="op_activity_type_3" model="op.activity.type">
             <field name="name">Migration</field>
         </record>
-    </data>
 </odoo>

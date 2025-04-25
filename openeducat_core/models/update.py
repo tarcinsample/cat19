@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ###############################################################################
 #
 #    OpenEduCat Inc
@@ -24,12 +23,11 @@ import logging
 from ast import literal_eval
 
 import requests
+from odoo import api, release
 from odoo.exceptions import UserError
+from odoo.models import AbstractModel
 from odoo.tools import misc, ustr
 from odoo.tools.translate import _
-from odoo.models import AbstractModel
-
-from odoo import api, release
 
 OEC_API_ENDPOINT = "https://srv.openeducat.org/publisher-warranty/"
 

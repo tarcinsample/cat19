@@ -1,5 +1,5 @@
 <odoo>
-    <data>
+
         <record id="op_faculty_user_create_view" model="ir.ui.view">
             <field name="name">wizard.op.faculty.form</field>
             <field name="model">wizard.op.faculty</field>
@@ -26,5 +26,5 @@
             <field name="target">new</field>
             <field name="binding_model_id" ref="model_op_faculty"/>
         </record>
-    </data>
+
 </odoo>

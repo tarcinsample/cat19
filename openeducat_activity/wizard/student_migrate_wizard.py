@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ###############################################################################
 #
 #    OpenEduCat Inc
@@ -19,7 +18,7 @@
 #
 ###############################################################################
 
-from odoo import models, fields, api, _
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -63,7 +62,7 @@ class StudentMigrate(models.TransientModel):
                     if record.course_from_id.parent_id != \
                             record.course_to_id.parent_id:
                         raise ValidationError(_(
-                            "Can't migrate, As selected courses don't share same parent course!"))
+                            "Can't migrate, As selected courses don't share same parent course!")) # noqa
             else:
                 raise ValidationError(
                     _("Can't migrate, Proceed for new admission"))

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <data noupdate="1">
+<odoo noupdate="1">
         <record id="op_admission_1" model="op.admission">
             <field name="title" ref="base.res_partner_title_miss"/>
             <field name="name">Emma J Parker</field>
@@ -704,5 +703,4 @@
             <field name="groups_id"
             eval="[(4,ref('openeducat_admission.group_op_admission_user'))]"/>
         </record>
-    </data>
 </odoo>

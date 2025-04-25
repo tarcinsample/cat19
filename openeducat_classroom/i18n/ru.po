@@ -162,4 +162,3 @@ msgstr "Продукт"
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__product_uom_qty
 msgid "Quantity"
 msgstr "Количество"
-

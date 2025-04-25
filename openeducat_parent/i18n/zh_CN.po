@@ -176,4 +176,3 @@ msgstr "首先更新父电子邮件 ID。"
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__user_id
 msgid "User"
 msgstr "用户"
-

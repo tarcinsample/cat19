@@ -83,4 +83,3 @@ msgstr "Tên"
 #: field:op.facility.line,quantity:0
 msgid "Quantity"
 msgstr "Số lượng"
-

@@ -160,7 +160,7 @@ msgid ""
 msgstr ""
 "\n"
 "            <p> เคอริโด <strong> $ {object.student_id.name} </strong>\n"
-"            <p> เป็นของคุณ $ {object.media_type_id.name}, <strong> $ {object.media_id.name} </strong> 
+"            <p> เป็นของคุณ $ {object.media_type_id.name}, <strong> $ {object.media_id.name} </strong>
 หมดอายุแล้ว กรุณาส่งคืนโดยเร็วที่สุด </p>\n"
 "            <p> ขอบคุณ. </p>\n"
 "            "
@@ -1587,4 +1587,3 @@ msgstr "ไม่สามารถออกหน่วยสื่อได้
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
 msgid "media Units"
 msgstr "หน่วยสื่อ"
-

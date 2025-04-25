@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
         <record id="view_op_activity_type_tree" model="ir.ui.view">
             <field name="name">op.activity.type.list</field>
             <field name="model">op.activity.type</field>
@@ -22,7 +21,7 @@
                     <sheet>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                                invisible="active == True"/>                                                                
+                                invisible="active == True"/>
                         <group>
                             <field name="name"/>
                         </group>
@@ -70,5 +69,4 @@
             <field name="view_mode">list</field>
             <field name="view_id" ref="view_op_activity_type_tree"/>
         </record>
-    </data>
 </odoo>

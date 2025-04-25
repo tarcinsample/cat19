@@ -14,7 +14,7 @@ $('.counter-number').each(function () {
 // ---------------------------
 
 $('#hamburger').click(function() {
-   
+
     $('#hamburger').toggleClass('show');
     $('#overlay').toggleClass('show');
     $('.nav1').toggleClass('show');
@@ -38,12 +38,12 @@ let atds=document.querySelectorAll('.atd');
 
               imgs.forEach(el => el.classList.remove('img-overlay'))
                 img.classList.add('img-overlay')
-            
+
                 document.querySelectorAll(`.atd`).forEach(el => el.classList.add('d-none'))
                 document.querySelector(`.atd[name="${imgname}"]`).classList.remove('d-none')
-                
+
                 imgsrc.setAttribute('src',img.querySelector('img').getAttribute('src'))
- 
+
         });
      })
     }
@@ -52,8 +52,3 @@ let atds=document.querySelectorAll('.atd');
     changeImg(imgs);
 
 // ---------------------------
-
-
-
-
-   

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ###############################################################################
 #
 #    OpenEduCat Inc
@@ -19,7 +18,7 @@
 #
 ###############################################################################
 
-from odoo import http, fields
+from odoo import fields, http
 from odoo.http import request
 
 

@@ -1291,4 +1291,3 @@ msgstr "壓縮"
 #: model:ir.model.fields,field_description:openeducat_admission.field_op_admission__image
 msgid "image"
 msgstr "影像"
-

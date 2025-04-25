@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <data noupdate="1">
+<odoo noupdate="1">
         <record id="op_activity_1" model="op.activity">
             <field name="description">Good presentation given</field>
             <field name="date"
@@ -23,5 +22,4 @@
             <field name="groups_id"
             eval="[(4,ref('openeducat_activity.group_activity_user'))]"/>
         </record>
-    </data>
 </odoo>

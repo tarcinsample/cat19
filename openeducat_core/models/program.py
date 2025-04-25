@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ###############################################################################
 #
 #    OpenEduCat Inc
@@ -19,8 +18,7 @@
 #
 ###############################################################################
 
-from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError
+from odoo import fields, models
 
 
 class OpProgram(models.Model):
@@ -39,7 +37,8 @@ class OpProgram(models.Model):
     active = fields.Boolean(default=True)
     image_1920 = fields.Image('Image', attachment=True)
     program_level_id = fields.Many2one(
-        'op.program.level', 'Program Level',required=True)
+        'op.program.level', 'Program Level', required=True)
+
 
 class OpProgramLevel(models.Model):
     _name = "op.program.level"

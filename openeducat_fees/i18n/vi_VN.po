@@ -602,4 +602,3 @@ msgstr "Lịch sử giao tiếp trang web"
 #: model:ir.model,name:openeducat_fees.model_fees_detail_report_wizard
 msgid "Wizard For Fees Details Report"
 msgstr "Thuật sĩ báo cáo chi tiết về phí"
-

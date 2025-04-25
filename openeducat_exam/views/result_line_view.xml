@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
+
         <record id="view_op_result_line_tree" model="ir.ui.view">
             <field name="name">op.result.line.list</field>
             <field name="model">op.result.line</field>
@@ -112,5 +112,5 @@
         <field name="view_mode">graph</field>
         <field name="view_id" ref="view_op_result_line_graph_view"/>
     </record>
-    </data>
+
 </odoo>

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ###############################################################################
 #
 #    OpenEduCat Inc
@@ -19,11 +18,10 @@
 #
 ###############################################################################
 
-from odoo import http
-from odoo.http import request
 import werkzeug.utils
-from odoo.addons.portal.controllers.web import \
-    Home as home
+from odoo import http
+from odoo.addons.portal.controllers.web import Home as home
+from odoo.http import request
 
 
 class OpeneducatHome(home):

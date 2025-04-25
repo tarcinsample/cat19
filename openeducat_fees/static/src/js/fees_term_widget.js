@@ -105,5 +105,3 @@ export const feesTermsDisplay = {
 };
 
 registry.category("fields").add("fees_terms_display", feesTermsDisplay);
-
-

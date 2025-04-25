@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
         <record id="view_op_assignment_tree" model="ir.ui.view">
             <field name="name">op.assignment.list</field>
             <field name="model">op.assignment</field>
@@ -30,20 +29,20 @@
             <field name="arch" type="xml">
                 <form string="Assignment">
                     <header>
-                        
-                        <button name="act_publish" 
+
+                        <button name="act_publish"
                                 invisible="state != 'draft'"
                                 type="object" string="Publish"
                                 class="oe_highlight" groups="openeducat_assignment.group_op_assignment_user"/>
-                        
+
                         <button name="act_set_to_draft" invisible="state != 'publish'"
                                 type="object" string="Set to Draft"
                                 class="oe_highlight" groups="openeducat_assignment.group_op_assignment_user"/>
-                        
+
                         <button name="act_finish" class="oe_highlight"
                                 invisible="state != 'publish'" type="object" string="Finish"
                                 groups="openeducat_assignment.group_op_assignment_user"/>
-                       
+
                         <button name="act_cancel" invisible="state != 'publish'"
                                 type="object" string="Cancel"
                                 groups="openeducat_assignment.group_op_assignment_user"/>
@@ -56,12 +55,12 @@
                             </button>
                         </div>
                         <field name="active" invisible="1"/>
-                        
+
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 invisible="active == True"/>
                         <div>
                             <h1>
-                            
+
                                 <field name="name" placeholder="Assignment Name"
                                        readonly="state !='draft'" style="width: 100%; font-size: 20px;"/>
                             </h1>
@@ -215,5 +214,4 @@
             <field name="view_mode">list</field>
             <field name="view_id" ref="view_op_assignment_tree"/>
         </record>
-    </data>
 </odoo>

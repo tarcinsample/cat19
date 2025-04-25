@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenEduCat Inc
@@ -20,7 +19,7 @@
 ##############################################################################
 
 from dateutil.relativedelta import relativedelta
-from odoo import models, fields, api, _
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -64,16 +63,19 @@ class OpAdmissionRegister(models.Model):
                                        'Terms', readonly=True,
                                        tracking=True)
     minimum_age_criteria = fields.Integer('Minimum Required Age(Years)', default=3)
-    application_count = fields.Integer(string="Total_record", compute="calculate_record_application")
+    application_count = fields.Integer(string="Total_record",
+                                       compute="_compute_calculate_record_application")
     is_favorite = fields.Boolean(string="Is Favorite", default=False)
-    company_id = fields.Many2one('res.company', string='Company',default=lambda self: self.env.user.company_id)
+    company_id = fields.Many2one('res.company', string='Company',
+                                 default=lambda self: self.env.user.company_id)
     draft_count = fields.Integer(compute="_compute_counts")
     confirm_count = fields.Integer(compute="_compute_counts")
     done_count = fields.Integer(compute="_compute_counts")
     online_count = fields.Integer(compute='_compute_application_counts')
-    admission_base = fields.Selection([('program', 'Program'), ('course', 'Course')], default='course')
-    # course_ids = fields.Many2many('op.course', string='Course')
-    admission_fees_line_ids = fields.One2many('op.admission.fees.line', 'register_id', string='Admission Fees Configuration')
+    admission_base = fields.Selection([('program', 'Program'), ('course', 'Course')],
+                                      default='course')
+    admission_fees_line_ids = fields.One2many('op.admission.fees.line', 'register_id',
+                                              string='Admission Fees Configuration')
 
     @api.onchange('admission_base')
     def onchange_admission_base(self):
@@ -89,9 +91,12 @@ class OpAdmissionRegister(models.Model):
 
     def _compute_counts(self):
         for record in self:
-            draft_admissions = record.admission_ids.filtered(lambda a: a.state == 'draft')
-            confirmed_admissions = record.admission_ids.filtered(lambda a: a.state == 'confirm')
-            done_admissions = record.admission_ids.filtered(lambda a: a.state == 'done')
+            draft_admissions = record.admission_ids.filtered(
+                lambda a: a.state == 'draft')
+            confirmed_admissions = record.admission_ids.filtered(
+                lambda a: a.state == 'confirm')
+            done_admissions = record.admission_ids.filtered(
+                lambda a: a.state == 'done')
 
             record.draft_count = len(draft_admissions)
             record.confirm_count = len(confirmed_admissions)
@@ -131,8 +136,10 @@ class OpAdmissionRegister(models.Model):
             "name": "Applications",
             "view_mode": "list,form",
         }
-    def calculate_record_application(self):
-        record = self.env["op.admission"].search_count([("register_id", "=", self.id)])
+
+    def _compute_calculate_record_application(self):
+        record = self.env["op.admission"].search_count([
+            ("register_id", "=", self.id)])
         self.application_count = record
 
     def confirm_register(self):
@@ -172,7 +179,7 @@ class OpAdmissionRegister(models.Model):
             'type': 'ir.actions.act_window',
             'view_mode': 'list,form',
             'res_model': 'op.admission',
-            'domain': [('id', 'in', self.admission_ids.ids),('state', '=', 'confirm')],
+            'domain': [('id', 'in', self.admission_ids.ids), ('state', '=', 'confirm')],
             'target': 'current',
         }
 
@@ -182,7 +189,7 @@ class OpAdmissionRegister(models.Model):
             'type': 'ir.actions.act_window',
             'view_mode': 'list,form',
             'res_model': 'op.admission',
-            'domain': [('id', 'in', self.admission_ids.ids),('state', '=', 'done')],
+            'domain': [('id', 'in', self.admission_ids.ids), ('state', '=', 'done')],
             'target': 'current',
         }
 
@@ -192,9 +199,10 @@ class OpAdmissionRegister(models.Model):
             'type': 'ir.actions.act_window',
             'view_mode': 'list,form',
             'res_model': 'op.admission',
-            'domain': [('id', 'in', self.admission_ids.ids),('state', '=', 'online')],
+            'domain': [('id', 'in', self.admission_ids.ids), ('state', '=', 'online')],
             'target': 'current',
         }
+
 
 class AdmissionRegisterFeesLine(models.Model):
     _name = 'op.admission.fees.line'

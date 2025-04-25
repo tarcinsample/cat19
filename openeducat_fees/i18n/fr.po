@@ -605,4 +605,3 @@ msgstr "Historique des communications du site Web"
 #: model:ir.model,name:openeducat_fees.model_fees_detail_report_wizard
 msgid "Wizard For Fees Details Report"
 msgstr "Assistant pour le rapport détaillé des frais"
-
