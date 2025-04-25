@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
+
         <record id="view_op_faculty_form_library_inherit" model="ir.ui.view">
             <field name="name">op.faculty.form.library.inherit</field>
             <field name="model">op.faculty</field>
@@ -26,5 +26,5 @@
                 </xpath>
             </field>
         </record>
-    </data>
+
 </odoo>

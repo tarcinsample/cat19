@@ -1735,4 +1735,3 @@ msgstr "op.subject"
 #: model:ir.ui.view,arch_db:openeducat_core.op_student_user_create_view
 msgid "or"
 msgstr "hoặc"
-

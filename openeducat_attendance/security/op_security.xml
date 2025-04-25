@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
         <record model="ir.module.category" id="module_category_all_op_attendance">
             <field name="name">Attendance</field>
             <field name="description">Helps you manage your institutes different-different users.</field>
@@ -52,5 +51,4 @@
             <field name="global" eval="True"/>
             <field name="domain_force">['|','|',('company_id','=',False),('company_id','child_of',[user.company_id.id]),('company_id','in',user.company_ids.ids),('company_id','in', company_ids)]</field>
         </record>
-    </data>
 </odoo>

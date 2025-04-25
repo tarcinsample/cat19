@@ -479,4 +479,3 @@ msgstr "THỨ TƯ"
 #: selection:op.timetable,type:0
 msgid "Wednesday"
 msgstr "Thứ tư"
-

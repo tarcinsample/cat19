@@ -1236,4 +1236,3 @@ msgstr "Hjemmeside beskeder"
 #: model:ir.model.fields,help:openeducat_exam.field_op_result_template__website_message_ids
 msgid "Website communication history"
 msgstr "Hjemmeside kommunikation historie"
-

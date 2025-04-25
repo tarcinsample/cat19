@@ -128,4 +128,3 @@ msgstr "Sản phẩm"
 #: field:op.asset,product_uom_qty:0
 msgid "Quantity"
 msgstr "Số lượng"
-

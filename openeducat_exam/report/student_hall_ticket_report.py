@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ###############################################################################
 #
 #    OpenEduCat Inc
@@ -21,7 +20,7 @@
 
 import time
 
-from odoo import models, fields, api,_
+from odoo import api, fields, models
 
 
 class ReportTicket(models.AbstractModel):
@@ -63,15 +62,16 @@ class ReportTicket(models.AbstractModel):
 
     def get_data(self, data):
         final_lst = []
-        active_id=data['context'].get('active_id')
-        exam_session = self.env['op.exam.session'].search([('id', '=', active_id),('state', '=','schedule')])
+        active_id = data['context'].get('active_id')
+        exam_session = self.env['op.exam.session'].search([
+            ('id', '=' , active_id), ('state', '=' , 'schedule')])
         if exam_session:
             student_search = self.env['op.student'].search(
-                [('course_detail_ids.course_id', '=', exam_session.course_id.id)])
+                [('course_detail_ids.course_id', '=' , exam_session.course_id.id)])
             for student in student_search:
                 student_course = self.env['op.student.course'].search(
-                    [('student_id', '=', student.id),
-                    ('course_id', '=', exam_session.course_id.id)])
+                    [('student_id', '=' , student.id),
+                     ('course_id', '=' , exam_session.course_id.id)])
                 res = {
                     'exam': exam_session.name,
                     'exam_code': exam_session.exam_code,
@@ -83,6 +83,7 @@ class ReportTicket(models.AbstractModel):
                 }
                 final_lst.append(res)
             return final_lst
+
     @api.model
     def _get_report_values(self, docids, data=None):
         model = self.env.context.get('active_model')

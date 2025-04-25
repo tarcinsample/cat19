@@ -273,4 +273,3 @@ msgstr "Đến ngày:"
 #: view:website:openeducat_attendance.student_attendance_report
 msgid "Total Absence"
 msgstr "Tổng số vắng mặt"
-

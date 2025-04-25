@@ -603,4 +603,3 @@ msgstr "История общения на сайте"
 #: model:ir.model,name:openeducat_fees.model_fees_detail_report_wizard
 msgid "Wizard For Fees Details Report"
 msgstr "Мастер создания подробного отчета о комиссиях"
-

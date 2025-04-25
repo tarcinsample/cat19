@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
         <record id="view_op_academic_year_tree" model="ir.ui.view">
             <field name="name">op.academic.year.list</field>
             <field name="model">op.academic.year</field>
@@ -24,7 +23,7 @@
                 <form string="Academic Year">
                     <header>
                         <field name="create_boolean" invisible="1"/>
-                       
+
                         <button name="term_create" type="object" string="Create Terms" class="oe_highlight"
                                 invisible = "create_boolean != False or term_structure == 'others'"/>
                     </header>
@@ -86,5 +85,4 @@
             <field name="view_mode">list</field>
             <field name="view_id" ref="view_op_academic_year_tree"/>
         </record>
-    </data>
 </odoo>

@@ -1584,4 +1584,3 @@ msgstr "无法发布媒体单元，因为它的状态是：%s"
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
 msgid "media Units"
 msgstr "媒体单位"
-

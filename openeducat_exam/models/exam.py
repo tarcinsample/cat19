@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ###############################################################################
 #
 #    OpenEduCat Inc
@@ -21,7 +20,7 @@
 
 import datetime
 
-from odoo import models, fields, api, _
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -57,7 +56,7 @@ class OpExam(models.Model):
     min_marks = fields.Integer('Passing Marks', required=True)
     active = fields.Boolean(default=True)
     attendees_count = fields.Integer(string='Attendees Count',
-                                        compute='_compute_attendees_count')
+                                     compute='_compute_attendees_count')
 
     _sql_constraints = [
         ('unique_exam_code',
@@ -99,9 +98,10 @@ class OpExam(models.Model):
 
     def _compute_attendees_count(self):
         for record in self:
-            record.attendees_count = self.env["op.exam.attendees"].search_count([("exam_id", "=", record.id)])
+            record.attendees_count = self.env["op.exam.attendees"].search_count(
+                [("exam_id", "=", record.id)])
 
-    @api.constrains('subject_id','start_time','end_time')
+    @api.constrains('subject_id', 'start_time', 'end_time')
     def _check_overlapping_times(self):
         for record in self:
             existing_exams = self.env['op.exam'].search([
@@ -111,7 +111,7 @@ class OpExam(models.Model):
                 ('end_time', '>', record.start_time),
             ])
             if existing_exams:
-                raise ValidationError(_('The exam time overlaps with an existing exam for the same subject.'))
+                raise ValidationError(_('The exam time overlaps with an existing exam for the same subject.')) # noqa
 
     def act_result_updated(self):
         self.state = 'result_updated'

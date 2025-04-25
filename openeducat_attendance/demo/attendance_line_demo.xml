@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <data noupdate="1">
+<odoo noupdate="1">
         <record id="op_attendance_line_1" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_1"/>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
@@ -1304,5 +1303,4 @@
             <field name="groups_id"
             eval="[(4,ref('openeducat_attendance.group_op_attendance_user'))]"/>
         </record>
-    </data>
 </odoo>

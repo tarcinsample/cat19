@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ###############################################################################
 #
 #    OpenEduCat Inc
@@ -20,7 +19,8 @@
 ###############################################################################
 
 import time
-from odoo import models, api
+
+from odoo import api, models
 
 
 class ReportMediaBarcode(models.AbstractModel):

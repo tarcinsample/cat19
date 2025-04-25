@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
+
         <record id="op_fees_element_tree_1" model="ir.ui.view">
             <field name="name">op.fees.element.list</field>
             <field name="model">op.fees.element</field>
@@ -41,5 +41,5 @@
             <field name="binding_view_types">form</field>
             <field name="view_mode">list,form</field>
         </record>
-    </data>
+
 </odoo>

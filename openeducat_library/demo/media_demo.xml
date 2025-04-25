@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <data noupdate="1">
+<odoo noupdate="1">
+
         <record id="op_media_1" model="op.media">
             <field name="name">Python Programming</field>
             <field name="edition">3rd Edition</field>
@@ -62,5 +62,5 @@
                    eval="[(6,0, [ref('openeducat_core.op_subject_23'), ref('openeducat_core.op_subject_147')])]"/>
             <field name="media_type_id" ref="media_type_5"/>
         </record>
-    </data>
+
 </odoo>

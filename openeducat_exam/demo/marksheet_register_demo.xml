@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
+
         <record id="op_marksheet_register_1" model="op.marksheet.register">
             <field name="name">Mark Sheet for BCA-Exam</field>
             <field name="exam_session_id" ref="op_exam_session_1"/>
@@ -18,5 +18,5 @@
             <field name="result_template_id" ref="op_result_template_2"/>
             <field name="state">validated</field>
         </record>
-    </data>
+
 </odoo>

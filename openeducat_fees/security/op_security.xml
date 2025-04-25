@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
+
         <record model="ir.module.category" id="module_category_all_op_fees">
             <field name="name">Fees</field>
             <field name="description">Helps you manage your institutes different-different users.</field>
@@ -30,5 +30,5 @@
                    eval="[(4, ref('group_openeducat_fees_user'))]"/>
         </record>
 
-    </data>
+
 </odoo>

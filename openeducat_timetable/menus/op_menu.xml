@@ -32,7 +32,7 @@
             id="menu_op_timetable_reporting"
             sequence="40"
             groups="openeducat_timetable.group_op_timetable_user,openeducat_timetable.group_op_timetable_manager">
-        
+
             <menuitem id="menu_generate_time_table_report"
                 name="Generate Timetable Report"
                 groups="openeducat_timetable.group_op_timetable_manager"

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <data noupdate="1">
+<odoo noupdate="1">
         <record id="op_facility_1" model="op.facility">
             <field name="code">ac</field>
             <field name="name">AC</field>
@@ -25,5 +24,5 @@
             <field name="groups_id"
             eval="[(4,ref('openeducat_facility.group_op_facility_user'))]"/>
         </record>
-    </data>
+
 </odoo>

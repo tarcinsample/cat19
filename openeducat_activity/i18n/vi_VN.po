@@ -115,7 +115,7 @@ msgstr "Số lượng đính kèm"
 msgid ""
 "Can't migrate, As selected courses don't                             share "
 "same parent course!"
-msgstr "" 
+msgstr ""
 "Không thể di chuyển, vì các khóa học đã chọn không                             chia sẻ "
 "cùng một khóa học dành cho phụ huynh!"
 

@@ -615,4 +615,3 @@ msgstr "Kommunikationsverlauf der Website"
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_sheet_search
 msgid "Week"
 msgstr "Woche"
-

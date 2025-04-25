@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <data noupdate="1">
+<odoo noupdate="1">
         <record id="op_student_course_1" model="op.student.course">
             <field name="student_id" ref="op_student_1"/>
             <field name="course_id" ref="openeducat_core.op_course_1"/>
@@ -259,26 +258,25 @@
             <field name="batch_id" ref="openeducat_core.op_batch_5"/>
             <field name="roll_number">124974</field>
         </record>
- 
+
         <record id="op_student_course_39" model="op.student.course">
             <field name="student_id" ref="op_student_10"/>
             <field name="course_id" ref="openeducat_core.op_course_8"/>
             <field name="batch_id" ref="openeducat_core.op_batch_5"/>
             <field name="roll_number">524274</field>
         </record>
- 
+
         <record id="op_student_course_40" model="op.student.course">
             <field name="student_id" ref="op_student_11"/>
             <field name="course_id" ref="openeducat_core.op_course_8"/>
             <field name="batch_id" ref="openeducat_core.op_batch_5"/>
             <field name="roll_number">669974</field>
         </record>
- 
+
         <record id="op_student_course_41" model="op.student.course">
             <field name="student_id" ref="op_student_12"/>
             <field name="course_id" ref="openeducat_core.op_course_8"/>
             <field name="batch_id" ref="openeducat_core.op_batch_5"/>
             <field name="roll_number">589974</field>
         </record>
-    </data>
 </odoo>

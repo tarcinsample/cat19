@@ -115,7 +115,7 @@ msgstr "Priedų skaičius"
 msgid ""
 "Can't migrate, As selected courses don't                             share "
 "same parent course!"
-msgstr "" 
+msgstr ""
 "Negalima perkelti, nes pasirinkti kursai to nedaro                             Dalintis "
 "tas pats tėvų kursas!"
 

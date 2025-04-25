@@ -118,4 +118,3 @@ msgstr "Nom"
 #: model:ir.model.fields,field_description:openeducat_facility.field_op_facility_line__quantity
 msgid "Quantity"
 msgstr "Quantité"
-

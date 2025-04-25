@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <data noupdate="1">
+<odoo noupdate="1">
         <record id="academic_term_1" model="op.academic.term">
             <field name="name">1st Semester</field>
             <field name="term_start_date">2021-11-20</field>
@@ -118,5 +117,4 @@
             <field name="academic_year_id" ref="openeducat_core.academic_year_6"/>
             <field name="parent_term" ref="openeducat_core.academic_term_14"/>
         </record>
-    </data>
 </odoo>

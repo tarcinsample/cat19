@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
+
         <menuitem id="menu_op_exam_root"
                   name="Exams"
                   sequence="310"
@@ -106,5 +106,5 @@
                   sequence="30"
                   action="act_open_op_result_line_view_graph"
                   groups="openeducat_exam.group_op_exam_admin,openeducat_exam.group_op_exam_user"/>
-    </data>
+
 </odoo>

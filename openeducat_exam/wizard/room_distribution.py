@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ###############################################################################
 #
 #    OpenEduCat Inc
@@ -19,7 +18,7 @@
 #
 ###############################################################################
 
-from odoo import models, api, fields, exceptions, _
+from odoo import _, api, exceptions, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -96,34 +95,34 @@ class OpRoomDistribution(models.TransientModel):
         attendance = self.env['op.exam.attendees']
         if not self.room_ids or not self.student_ids:
             raise ValidationError(
-                    _("Please Enter both Room And student"))
+                _("Please Enter both Room And student"))
 
         booked_rooms = self.env['op.exam.attendees'].search([
-        ('room_id', 'in', self.room_ids.ids),
-        ('exam_id.start_time', '<', self.end_time),
-        ('exam_id.end_time', '>', self.start_time),
-        ('exam_id.state', '!=', 'done')])
+            ('room_id', 'in', self.room_ids.ids),
+            ('exam_id.start_time', '<', self.end_time),
+            ('exam_id.end_time', '>', self.start_time),
+            ('exam_id.state', '!=', 'done')])
 
         if booked_rooms:
-            raise ValidationError(_("The selected rooms are already booked for the specified time."))
+            raise ValidationError(
+                _("The selected rooms are already booked for the specified time."))
 
         conflicting_students = self.env['op.exam.attendees'].search([
-        ('student_id', 'in', self.student_ids.ids),
-        ('exam_id.start_time', '<', self.end_time),
-        ('exam_id.end_time', '>', self.start_time),
-        ('exam_id.state', '!=', 'done')])
+            ('student_id', 'in', self.student_ids.ids),
+            ('exam_id.start_time', '<', self.end_time),
+            ('exam_id.end_time', '>', self.start_time),
+            ('exam_id.state', '!=', 'done')])
 
         if conflicting_students:
-            raise ValidationError(_("Students are already scheduled for another exam during the specified time."))
+            raise ValidationError(_("Students are already scheduled for another exam during the specified time.")) # noqa
 
         for exam in self:
             if exam.total_student > exam.room_capacity:
                 raise exceptions.AccessError(
-                    _("Room capacity must be greater than total number \
-                      of student"))
+                    _("Room capacity must be greater than total number of student"))
             student_ids = exam.student_ids.ids
             for room in exam.room_ids:
-                for i in range(room.capacity):
+                for _cap in range(room.capacity):
                     if not student_ids:
                         continue
                     attendance.create({

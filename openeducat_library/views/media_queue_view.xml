@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
+
         <record id="view_op_media_queue_tree" model="ir.ui.view">
             <field name="name">op.media.queue.list</field>
             <field name="model">op.media.queue</field>
@@ -28,7 +28,7 @@
                                 invisible="state != 'request'" class="oe_highlight"
                                 groups="openeducat_library.group_op_library"/>
                         <button name="do_reject" string="Reject" type="object"
-                                invisible="state not in ('request','accept')"                                
+                                invisible="state not in ('request','accept')"
                                 groups="openeducat_library.group_op_library"/>
                         <button name="do_request_again" string="Request Again"
                         invisible="state != 'reject'" type="object"
@@ -97,7 +97,7 @@
             </field>
         </record>
 
-        <record id="view_op_media_graph" model="ir.ui.view">
+        <record id="view_op_media_queue_graph" model="ir.ui.view">
             <field name="name">op.media.queue.graph</field>
             <field name="model">op.media.queue</field>
             <field name="arch" type="xml">
@@ -131,5 +131,5 @@
             <field name="view_mode">list</field>
             <field name="view_id" ref="view_op_media_queue_tree"/>
         </record>
-    </data>
+
 </odoo>

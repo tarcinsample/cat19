@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ###############################################################################
 #
 #    OpenEduCat Inc
@@ -20,16 +19,16 @@
 ###############################################################################
 
 
-from odoo import models, fields, api
+from odoo import fields, models
 
 
 class SelectFeesTermTypeWizard(models.TransientModel):
     _name = "select.fees.term.type.wizard"
     _description = "Wizard For Fees Term Type"
 
-    fees_terms = fields.Selection(selection=[('fixed_days', 'Fixed Fees of Days'),
-                                            ('fixed_date', 'Fixed Fees of Dates')],
-                                  string='Fees Terms')
+    fees_terms = fields.Selection(
+        selection=[('fixed_days', 'Fixed Fees of Days'),
+                   ('fixed_date', 'Fixed Fees of Dates')], string='Fees Terms')
 
     def action_open_wizard(self):
         return {

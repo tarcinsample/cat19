@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenEduCat Inc
@@ -19,7 +18,7 @@
 #
 ##############################################################################
 
-from odoo import models, fields
+from odoo import fields, models
 
 
 class OpCourse(models.Model):

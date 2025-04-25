@@ -115,7 +115,7 @@ msgstr "Anhaftungsanzahl"
 msgid ""
 "Can't migrate, As selected courses don't                             	share "
 "same parent course!"
-msgstr "" 
+msgstr ""
 "Die Migration ist nicht möglich, da dies bei ausgewählten Kursen nicht der Fall ist                             Aktie "
 "Gleicher Elternkurs!"
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ###############################################################################
 #
 #    OpenEduCat Inc
@@ -19,7 +18,7 @@
 #
 ###############################################################################
 
-from odoo import models, fields, api, _
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -66,6 +65,7 @@ class OpExamSession(models.Model):
     _sql_constraints = [
         ('unique_exam_session_code',
          'unique(exam_code)', 'Code should be unique per exam session!')]
+
     def _compute_exams_count(self):
         for rec in self:
             rec.exams_count = len(rec.exam_ids)

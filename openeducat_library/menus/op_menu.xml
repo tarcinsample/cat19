@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
+
         <menuitem id="menu_op_library_root"
                   name="Library"
                   sequence="390"
@@ -101,5 +101,5 @@
                   sequence="60"
                   action="act_open_op_library_card_type_view"
                   groups="group_op_library"/>
-    </data>
+
 </odoo>

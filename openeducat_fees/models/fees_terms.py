@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenEduCat Inc
@@ -19,7 +18,7 @@
 #
 ##############################################################################
 
-from odoo import models, api, fields, exceptions, _
+from odoo import _, api, exceptions, fields, models
 
 
 class OpFeesTermsLine(models.Model):
@@ -64,9 +63,9 @@ class OpFeesTerms(models.Model):
         for line in self.line_ids:
             if line.value:
                 total += line.value
-        if total !=100.0:
+        if total != 100.0:
             raise exceptions.AccessError(
-            _("Fees terms must be divided as such sum up in 100%"))
+                _("Fees terms must be divided as such sum up in 100%"))
 
 
 class OpStudentCourseInherit(models.Model):

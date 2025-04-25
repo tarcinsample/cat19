@@ -604,4 +604,3 @@ msgstr "Hjemmeside kommunikation historie"
 #: model:ir.model,name:openeducat_fees.model_fees_detail_report_wizard
 msgid "Wizard For Fees Details Report"
 msgstr "Rapport om guiden til gebyrdetaljer"
-

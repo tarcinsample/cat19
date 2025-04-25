@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
+
         <record id="view_op_marksheet_register_tree" model="ir.ui.view">
             <field name="name">op.marksheet.register.list</field>
             <field name="model">op.marksheet.register</field>
@@ -123,5 +123,5 @@
             <field name="view_mode">list</field>
             <field name="view_id" ref="view_op_marksheet_register_tree"/>
         </record>
-    </data>
+
 </odoo>

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ###############################################################################
 #
 #    OpenEduCat Inc
@@ -19,7 +18,7 @@
 #
 ###############################################################################
 
-from odoo import models, fields
+from odoo import fields, models
 
 
 class OpStudent(models.Model):
@@ -27,7 +26,7 @@ class OpStudent(models.Model):
 
     activity_log = fields.One2many('op.activity', 'student_id',
                                    string='Activity Log')
-    activity_count = fields.Integer(compute='compute_count')
+    activity_count = fields.Integer(compute='_compute_count')
 
     def get_activity(self):
         action = self.env.ref('openeducat_activity.'
@@ -35,7 +34,7 @@ class OpStudent(models.Model):
         action['domain'] = [('student_id', 'in', self.ids)]
         return action
 
-    def compute_count(self):
+    def _compute_count(self):
         for record in self:
             record.activity_count = self.env['op.activity'].search_count(
                 [('student_id', 'in', self.ids)])

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ###############################################################################
 #
 #    OpenEduCat Inc
@@ -19,7 +18,7 @@
 #
 ###############################################################################
 
-from odoo import models, fields, api, _
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -55,4 +54,5 @@ class OpExamAttendees(models.Model):
     @api.constrains('marks')
     def _check_marks(self):
         if self.marks < 0.0 or self.marks > self.exam_id.total_marks:
-            raise ValidationError(_("Please Enter Marks between 0 to %d" %self.exam_id.total_marks))
+            raise ValidationError(_(
+                "Please Enter Marks between 0 to %d" % self.exam_id.total_marks))

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
         <record id="view_op_admission_tree" model="ir.ui.view">
             <field name="name">op.admission.list</field>
             <field name="model">op.admission</field>
@@ -351,7 +350,6 @@
                 </field>
             </field>
         </record>
-    </data>
 
     <record id="res_config_settings_view_user" model="ir.ui.view">
         <field name="name">res.config.settings.view.form.admission</field>

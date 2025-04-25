@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
+
         <record id="view_op_media_tree" model="ir.ui.view">
             <field name="name">op.media.list</field>
             <field name="model">op.media</field>
@@ -172,5 +172,5 @@
             <field name="view_mode">list</field>
             <field name="view_id" ref="view_op_media_tree"/>
         </record>
-    </data>
+
 </odoo>

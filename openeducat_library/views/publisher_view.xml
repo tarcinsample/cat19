@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
+
         <record id="view_op_publisher_tree" model="ir.ui.view">
             <field name="name">op.publisher.list</field>
             <field name="model">op.publisher</field>
@@ -80,5 +80,5 @@
             <field name="view_mode">list</field>
             <field name="view_id" ref="view_op_publisher_tree"/>
         </record>
-    </data>
+
 </odoo>
