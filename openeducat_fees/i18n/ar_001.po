@@ -1,26 +1,29 @@
-
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* openeducat_fees
+#
 msgid ""
 msgstr ""
-"Project-Id-Version:Odoo Server 17.0"
-"Report-Msgid-Bugs-To:"
-"POT-Creation-Date:2024-02-16 05:23+0000"
-"PO-Revision-Date:2024-02-16 05:23+0000"
-"Last-Translator:"
-"Language-Team:"
-"MIME-Version:1.0"
-"Content-Type:text/plain; charset=UTF-8"
-"Content-Transfer-Encoding:"
-"Plural-Forms:"
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-29 07:01+0000\n"
+"PO-Revision-Date: 2025-04-29 07:01+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
-msgid "<strong>Fees Detail</strong>"
-msgstr "<strong>تفاصيل الرسوم</strong>"
+msgid "<span>Fees Detail</span>"
+msgstr "<span> تفاصيل الرسوم </span>"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_needaction
 msgid "Action Needed"
-msgstr "الإجراءات اللازمة"
+msgstr "العمل اللازم"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__active
@@ -35,12 +38,12 @@ msgstr "رسوم القبول للدورة الثانية"
 #. module: openeducat_fees
 #: model:product.template,name:openeducat_fees.op_product_6_product_template
 msgid "Admission Fees for Course-4"
-msgstr "رسوم القبول للدورة الرابعة"
+msgstr "رسوم القبول للدورة 4"
 
 #. module: openeducat_fees
 #: model:product.template,name:openeducat_fees.op_product_1_product_template
 msgid "Admission Fees for Course-Sem-1"
-msgstr "رسوم القبول للدورة-Sem-1"
+msgstr "رسوم القبول للدورة التدريبية -1"
 
 #. module: openeducat_fees
 #: model:product.template,name:openeducat_fees.op_product_2_product_template
@@ -60,13 +63,13 @@ msgstr "بعد"
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__after_discount_amount
 msgid "After Discount Amount"
-msgstr "بعد خصم المبلغ"
+msgstr "بعد مبلغ الخصم"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_form
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_search
 msgid "Archived"
-msgstr "مؤرشف"
+msgstr "أرشفة"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_attachment_count
@@ -86,8 +89,14 @@ msgstr "قبل"
 #. module: openeducat_fees
 #: model:ir.model.fields.selection,name:openeducat_fees.selection__op_student_fees_details__state__cancel
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.fees_detail_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.select_fees_term_type_form
 msgid "Cancel"
 msgstr "يلغي"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__code
+msgid "Code"
+msgstr "شفرة"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__company_id
@@ -108,8 +117,9 @@ msgstr "دورة"
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__create_uid
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__create_uid
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__create_uid
+#: model:ir.model.fields,field_description:openeducat_fees.field_select_fees_term_type_wizard__create_uid
 msgid "Created by"
-msgstr "انشأ من قبل"
+msgstr "تم إنشاؤها بواسطة"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__create_date
@@ -117,6 +127,7 @@ msgstr "انشأ من قبل"
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__create_date
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__create_date
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__create_date
+#: model:ir.model.fields,field_description:openeducat_fees.field_select_fees_term_type_wizard__create_date
 msgid "Created on"
 msgstr "تم إنشاؤها على"
 
@@ -147,6 +158,7 @@ msgstr "تخفيض (٪)"
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__display_name
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__display_name
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__display_name
+#: model:ir.model.fields,field_description:openeducat_fees.field_select_fees_term_type_wizard__display_name
 msgid "Display Name"
 msgstr "اسم العرض"
 
@@ -158,12 +170,14 @@ msgstr "مسودة"
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__due_date
 msgid "Due Date"
-msgstr "تاريخ الاستحقاق"
+msgstr ""
+"Error 500 (Server Error)!!1500.That’s an error.There was an error. Please "
+"try again later.That’s all we know."
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__due_days
 msgid "Due Days"
-msgstr "أيام الاستحقاق"
+msgstr "أيام استحقاق"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__fees_id
@@ -178,30 +192,19 @@ msgid "Fees Amount"
 msgstr "مبلغ الرسوم"
 
 #. module: openeducat_fees
-#: model:ir.ui.menu,name:openeducat_fees.menu_op_fees_analysis_report_main
-msgid "Fees Analysis"
-msgstr "تحليل الرسوم"
-
-#. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student__fees_detail_ids
 msgid "Fees Collection Details"
-msgstr "تفاصيل تحصيل الرسوم"
-
-#. module: openeducat_fees
-#: model:ir.actions.report,name:openeducat_fees.action_report_fees_detail_analysis
-msgid "Fees Detail Analysi"
-msgstr "تحليل تفاصيل الرسوم"
+msgstr "تفاصيل جمع الرسوم"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.fees_detail_report_wizard_form
-#: model_terms:ir.ui.view,arch_db:openeducat_fees.view_op_student_form_fees_inherit
 msgid "Fees Details"
 msgstr "تفاصيل الرسوم"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student__fees_details_count
 msgid "Fees Details Count"
-msgstr "عدد تفاصيل الرسوم"
+msgstr "تفاصيل الرسوم حساب"
 
 #. module: openeducat_fees
 #: model:ir.model,name:openeducat_fees.model_op_fees_terms_line
@@ -210,19 +213,21 @@ msgstr "خط تفاصيل الرسوم"
 
 #. module: openeducat_fees
 #: model:ir.actions.act_window,name:openeducat_fees.fees_detail_report_wizard_act
+#: model:ir.actions.report,name:openeducat_fees.action_report_fees_detail_analysis
 msgid "Fees Details Report"
 msgstr "تقرير تفاصيل الرسوم"
 
 #. module: openeducat_fees
 #: model:ir.model,name:openeducat_fees.model_op_fees_element
 msgid "Fees Element for course"
-msgstr "عنصر الرسوم للدورة"
+msgstr "عنصر الرسوم للمسار"
 
 #. module: openeducat_fees
 #: model:ir.actions.act_window,name:openeducat_fees.act_op_fees_element_view
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__fees_element_line
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.op_fees_element_form_1
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.op_fees_element_tree_1
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_form
 msgid "Fees Elements"
 msgstr "عناصر الرسوم"
 
@@ -234,7 +239,7 @@ msgstr "عامل الرسوم"
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__fees_filter
 msgid "Fees Filter"
-msgstr "تصفية الرسوم"
+msgstr "مرشح الرسوم"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__fees_line_id
@@ -246,7 +251,7 @@ msgstr "خط الرسوم"
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_search
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_tree
 msgid "Fees Reminder Terms"
-msgstr "شروط التذكير بالرسوم"
+msgstr "رسوم تذكير الرسوم"
 
 #. module: openeducat_fees
 #: model:ir.model,name:openeducat_fees.model_report_openeducat_fees_report_fees_analysis
@@ -262,17 +267,17 @@ msgstr "تاريخ بدء الرسوم"
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_course__fees_term_id
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_course__fees_term_id
 msgid "Fees Term"
-msgstr "مدة الرسوم"
+msgstr "مصطلح الرسوم"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_form
 msgid "Fees Term Line"
-msgstr "خط مدة الرسوم"
+msgstr "رسوم مصطلح الرسوم"
 
 #. module: openeducat_fees
 #: model:ir.actions.act_window,name:openeducat_fees.act_open_fees_terms_view
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_element__fees_terms_line_id
-#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__name
+#: model:ir.model.fields,field_description:openeducat_fees.field_select_fees_term_type_wizard__fees_terms
 #: model:ir.ui.menu,name:openeducat_fees.menu_fees_terms
 msgid "Fees Terms"
 msgstr "شروط الرسوم"
@@ -280,57 +285,61 @@ msgstr "شروط الرسوم"
 #. module: openeducat_fees
 #: model:ir.model,name:openeducat_fees.model_op_fees_terms
 msgid "Fees Terms For Course"
-msgstr "شروط الرسوم للدورة"
+msgstr "شروط الرسوم للدورة التدريبية"
 
 #. module: openeducat_fees
 #. odoo-python
 #: code:addons/openeducat_fees/models/fees_terms.py:0
-#, python-format
 msgid "Fees Terms must be Required!"
 msgstr "يجب أن تكون شروط الرسوم مطلوبة!"
 
 #. module: openeducat_fees
 #: model:product.template,name:openeducat_fees.op_product_5_product_template
 msgid "Fees for Course-3"
-msgstr "رسوم الدورة 3"
+msgstr "رسوم للدورة 3"
 
 #. module: openeducat_fees
 #. odoo-python
 #: code:addons/openeducat_fees/models/fees_terms.py:0
-#, python-format
 msgid "Fees terms must be divided as such sum up in 100%"
-msgstr "يجب تقسيم شروط الرسوم على هذا النحو إلى 100٪"
+msgstr "يجب تقسيم شروط الرسوم على هذا النحو بنسبة 100 ٪"
 
 #. module: openeducat_fees
 #: model:ir.model.fields.selection,name:openeducat_fees.selection__op_fees_terms__fees_terms__fixed_date
+#: model:ir.model.fields.selection,name:openeducat_fees.selection__select_fees_term_type_wizard__fees_terms__fixed_date
 msgid "Fixed Fees of Dates"
-msgstr "رسوم التمر الثابتة"
+msgstr "رسوم التواريخ الثابتة"
 
 #. module: openeducat_fees
 #: model:ir.model.fields.selection,name:openeducat_fees.selection__op_fees_terms__fees_terms__fixed_days
+#: model:ir.model.fields.selection,name:openeducat_fees.selection__select_fees_term_type_wizard__fees_terms__fixed_days
 msgid "Fixed Fees of Days"
 msgstr "رسوم الأيام الثابتة"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_follower_ids
 msgid "Followers"
-msgstr "متابعون"
+msgstr ""
+"Error 500 (Server Error)!!1500.That’s an error.There was an error. Please "
+"try again later.That’s all we know."
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "المتابعون (الشركاء)"
+msgstr "أتباع (شركاء)"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__has_message
 msgid "Has Message"
-msgstr "لديه رسالة"
+msgstr ""
+"Error 500 (Server Error)!!1500.That’s an error.There was an error. Please "
+"try again later.That’s all we know."
 
 #. module: openeducat_fees
 #: model:ir.module.category,description:openeducat_fees.module_category_all_op_fees
 #: model:ir.module.category,description:openeducat_fees.module_category_openeducat_fees
 msgid "Helps you manage your institutes different-different users."
-msgstr "يساعدك على إدارة معاهدك بمستخدمين مختلفين."
+msgstr "يساعدك على إدارة معاهدك المستخدمين المختلفين."
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__id
@@ -338,19 +347,20 @@ msgstr "يساعدك على إدارة معاهدك بمستخدمين مختل�
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__id
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__id
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__id
+#: model:ir.model.fields,field_description:openeducat_fees.field_select_fees_term_type_wizard__id
 msgid "ID"
 msgstr "بطاقة تعريف"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "إذا تم تحديدها، فإن الرسائل الجديدة تتطلب انتباهك."
+msgstr "إذا تم التحقق منها ، تتطلب رسائل جديدة انتباهك."
 
 #. module: openeducat_fees
 #: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_has_error
 #: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr "إذا تم تحديده، فإن بعض الرسائل تحتوي على خطأ في التسليم."
+msgstr "إذا تم التحقق منها ، فإن بعض الرسائل لديها خطأ في التسليم."
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_form
@@ -360,12 +370,12 @@ msgstr "معلومة"
 #. module: openeducat_fees
 #: model:ir.model.fields.selection,name:openeducat_fees.selection__op_student_fees_details__state__invoice
 msgid "Invoice Created"
-msgstr "تم إنشاء الفاتورة"
+msgstr "الفاتورة التي تم إنشاؤها"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__invoice_id
 msgid "Invoice ID"
-msgstr "هوية صوتية"
+msgstr "معرف الفاتورة"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__invoice_state
@@ -375,17 +385,14 @@ msgstr "حالة الفاتورة"
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_op_student_form_fees_inherit
 msgid "Invoiced"
-msgstr "مفوترة"
+msgstr ""
+"Error 500 (Server Error)!!1500.That’s an error.There was an error. Please "
+"try again later.That’s all we know."
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_is_follower
 msgid "Is Follower"
-msgstr "هو تابع"
-
-#. module: openeducat_fees
-#: model:ir.model,name:openeducat_fees.model_op_course
-msgid "LMS Course"
-msgstr "دورة LMS"
+msgstr "هو أتباع"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__write_uid
@@ -393,6 +400,7 @@ msgstr "دورة LMS"
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__write_uid
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__write_uid
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__write_uid
+#: model:ir.model.fields,field_description:openeducat_fees.field_select_fees_term_type_wizard__write_uid
 msgid "Last Updated by"
 msgstr "آخر تحديث بواسطة"
 
@@ -402,8 +410,11 @@ msgstr "آخر تحديث بواسطة"
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__write_date
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__write_date
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__write_date
+#: model:ir.model.fields,field_description:openeducat_fees.field_select_fees_term_type_wizard__write_date
 msgid "Last Updated on"
-msgstr "آخر تحديث بتاريخ"
+msgstr ""
+"Error 500 (Server Error)!!1500.That’s an error.There was an error. Please "
+"try again later.That’s all we know."
 
 #. module: openeducat_fees
 #: model:product.template,name:openeducat_fees.op_product_7_product_template
@@ -418,7 +429,7 @@ msgstr "مدير"
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_has_error
 msgid "Message Delivery error"
-msgstr "خطأ في تسليم الرسالة"
+msgstr "خطأ تسليم الرسائل"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_ids
@@ -426,9 +437,20 @@ msgid "Messages"
 msgstr "رسائل"
 
 #. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__name
+msgid "Name"
+msgstr "اسم"
+
+#. module: openeducat_fees
+#. odoo-javascript
+#: code:addons/openeducat_fees/static/src/xml/fees_term_widget_template.xml:0
+msgid "No Image"
+msgstr "لا توجد صورة"
+
+#. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__no_days
 msgid "No of Days"
-msgstr "لا أيام"
+msgstr "لا من الأيام"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_needaction_counter
@@ -443,12 +465,19 @@ msgstr "عدد الأخطاء"
 #. module: openeducat_fees
 #: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr "عدد الرسائل التي تتطلب اتخاذ إجراء"
+msgstr ""
+"Error 500 (Server Error)!!1500.That’s an error.There was an error. Please "
+"try again later.That’s all we know."
 
 #. module: openeducat_fees
 #: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr "عدد الرسائل التي بها خطأ في التسليم"
+msgstr "عدد الرسائل ذات خطأ التسليم"
+
+#. module: openeducat_fees
+#: model:ir.model,name:openeducat_fees.model_op_course
+msgid "OpenEduCat Course"
+msgstr "دورة OpenEducat"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.fees_detail_report_wizard_form
@@ -466,14 +495,20 @@ msgid "Product(s)"
 msgstr "منتجات)"
 
 #. module: openeducat_fees
-#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__rating_ids
-msgid "Ratings"
-msgstr "التقييمات"
-
-#. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr "خطأ في تسليم الرسائل القصيرة"
+msgstr "خطأ تسليم الرسائل القصيرة"
+
+#. module: openeducat_fees
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.select_fees_term_type_form
+msgid "Save"
+msgstr "يحفظ"
+
+#. module: openeducat_fees
+#: model:ir.actions.act_window,name:openeducat_fees.action_select_fees_term_type
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.select_fees_term_type_form
+msgid "Select Fees Term Type"
+msgstr "حدد نوع مصطلح الرسوم"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_element__sequence
@@ -501,22 +536,28 @@ msgstr "تفاصيل دورة الطالب"
 #. module: openeducat_fees
 #: model:ir.model,name:openeducat_fees.model_op_student_fees_details
 msgid "Student Fees Details"
-msgstr "تفاصيل رسوم الطالب"
+msgstr ""
+"Error 500 (Server Error)!!1500.That’s an error.There was an error. Please "
+"try again later.That’s all we know."
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
 msgid "Student Name"
-msgstr "أسم الطالب"
+msgstr "اسم الطالب"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__date
 msgid "Submit Date"
-msgstr "تاريخ النشر"
+msgstr ""
+"Error 500 (Server Error)!!1500.That’s an error.There was an error. Please "
+"try again later.That’s all we know."
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__fees_terms
 msgid "Term Type"
-msgstr "نوع المصطلح"
+msgstr ""
+"Error 500 (Server Error)!!1500.That’s an error.There was an error. Please "
+"try again later.That’s all we know."
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__line_ids
@@ -527,20 +568,20 @@ msgstr "شروط"
 #. module: openeducat_fees
 #. odoo-python
 #: code:addons/openeducat_fees/models/student.py:0
-#, python-format
 msgid "The value of the deposit amount must be positive."
-msgstr "يجب أن تكون قيمة مبلغ الوديعة موجبة."
+msgstr ""
+"Error 500 (Server Error)!!1500.That’s an error.There was an error. Please "
+"try again later.That’s all we know."
 
 #. module: openeducat_fees
 #. odoo-python
 #: code:addons/openeducat_fees/models/student.py:0
-#, python-format
 msgid ""
 "There is no income account defined for this product: \"%s\".You may have to "
 "install a chart of account from Accounting app, settings menu."
 msgstr ""
-"لا يوجد حساب دخل محدد لهذا المنتج: \"%s\". قد يتعين عليك تثبيت مخطط حساب من "
-"تطبيق المحاسبة، قائمة الإعدادات."
+"Error 500 (Server Error)!!1500.That’s an error.There was an error. Please "
+"try again later.That’s all we know."
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
@@ -550,17 +591,17 @@ msgstr "المبلغ الإجمالي"
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
 msgid "Total Invoiced"
-msgstr "إجمالي الفاتورة"
-
-#. module: openeducat_fees
-#: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
-msgid "Total Left"
-msgstr "إجمالي اليسار"
+msgstr "إجمالي فاتورة"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
 msgid "Total Paid"
-msgstr "مجموع المبالغ المدفوعة"
+msgstr "إجمالي المدفوع"
+
+#. module: openeducat_fees
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
+msgid "Total Unpaid"
+msgstr "إجمالي غير مدفوع الأجر"
 
 #. module: openeducat_fees
 #: model:product.template,name:openeducat_fees.op_product_9_product_template
@@ -570,7 +611,7 @@ msgstr "رسوم النقل"
 #. module: openeducat_fees
 #: model:product.template,name:openeducat_fees.op_product_8_product_template
 msgid "Tution Fees"
-msgstr "رسوم دراسية"
+msgstr "رسوم tution"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__day_type
@@ -596,9 +637,14 @@ msgstr "رسائل الموقع"
 #. module: openeducat_fees
 #: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__website_message_ids
 msgid "Website communication history"
-msgstr "تاريخ اتصالات الموقع"
+msgstr "تاريخ اتصال الموقع"
 
 #. module: openeducat_fees
 #: model:ir.model,name:openeducat_fees.model_fees_detail_report_wizard
 msgid "Wizard For Fees Details Report"
-msgstr "معالج تقرير تفاصيل الرسوم"
+msgstr "تقرير تفاصيل المعالج للحصول على الرسوم"
+
+#. module: openeducat_fees
+#: model:ir.model,name:openeducat_fees.model_select_fees_term_type_wizard
+msgid "Wizard For Fees Term Type"
+msgstr "المعالج لنوع مصطلح الرسوم"

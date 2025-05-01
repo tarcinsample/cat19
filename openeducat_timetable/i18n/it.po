@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-16 11:31+0000\n"
-"PO-Revision-Date: 2024-02-16 11:31+0000\n"
+"POT-Creation-Date: 2025-04-29 09:20+0000\n"
+"PO-Revision-Date: 2025-04-29 09:20+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,37 +18,42 @@ msgstr ""
 #. module: openeducat_timetable
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__minute__00
 msgid "00"
-msgstr ""
+msgstr "00"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__hour__10
 msgid "10"
-msgstr ""
+msgstr "10"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__hour__11
 msgid "11"
-msgstr ""
+msgstr "11"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__hour__12
 msgid "12"
-msgstr ""
+msgstr "12"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__minute__15
 msgid "15"
-msgstr ""
+msgstr "15"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__minute__30
 msgid "30"
-msgstr ""
+msgstr "30"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__minute__45
 msgid "45"
-msgstr ""
+msgstr "45"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_teacher_generate
+msgid "<b style=\"margin-left:10px;\">To Date:</b>"
+msgstr "<b style = \"margin-left: 10px;\"> fino ad oggi: </b>"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
@@ -57,22 +62,22 @@ msgstr "<b> batch: </b>"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
-msgid "<b>Batch:</b>"
+msgid "<b>Batch: </b>"
 msgstr "<b> batch: </b>"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
 msgid "<b>Class :</b>"
-msgstr "<b> classe: </b>"
+msgstr "<b> Classe: </b>"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
-msgid "<b>Course:</b>"
+msgid "<b>Course: </b>"
 msgstr "<b> Corso: </b>"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
-msgid "<b>End:</b>"
+msgid "<b>End: </b>"
 msgstr "<b> fine: </b>"
 
 #. module: openeducat_timetable
@@ -82,27 +87,27 @@ msgstr "<b> Nome della facoltà: </b>"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
-msgid "<b>Faculty:</b>"
+msgid "<b>Faculty: </b>"
 msgstr "<b> Facoltà: </b>"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
 msgid "<b>From Date :</b>"
-msgstr "<b> dalla data: </b>"
+msgstr "<b> Dalla data: </b>"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_teacher_generate
 msgid "<b>From Date:</b>"
-msgstr "<b> dalla data: </b>"
+msgstr "<b> Dalla data: </b>"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
-msgid "<b>Start:</b>"
-msgstr "<b> inizia: </b>"
+msgid "<b>Start: </b>"
+msgstr "<b> Inizia: </b>"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
-msgid "<b>Subject:</b>"
+msgid "<b>Subject: </b>"
 msgstr "<b> Oggetto: </b>"
 
 #. module: openeducat_timetable
@@ -111,26 +116,28 @@ msgid "<b>To Date :</b>"
 msgstr "<b> ad oggi: </b>"
 
 #. module: openeducat_timetable
-#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_teacher_generate
-msgid "<b>To Date:</b>"
-msgstr "<b> ad oggi: </b>"
-
-#. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
 msgid ""
 "<i class=\"fa fa-long-arrow-right mx-2\" aria-label=\"Arrow icon\" "
 "title=\"Arrow\"/>"
 msgstr ""
+"<i class = \"fa fa-long-arrow-destto mx-2\" aria-label = \"icona freccia\" "
+"title = \"freccia\"/>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
+msgid "<span class=\"fa fa-info-circle\" title=\"Openeducat Enterprise Module\"/>"
+msgstr "<span class = \"Fa Fa-Info-cirle\" title = \"Modulo Enterprise OpenEDucat\"/>"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_teacher_generate
 msgid "<span class=\"ml-2\">Faculty TimeTable</span>"
-msgstr "<span class=\"ml-2\"> orario della facoltà </span>"
+msgstr "<span class = \"ml-2\"> calendario della facoltà </span>"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
 msgid "<span class=\"ml-2\">TimeTable</span>"
-msgstr "<span class=\"ml-2\"> calendario </span>"
+msgstr "<span class = \"ml-2\"> calendario </span>"
 
 #. module: openeducat_timetable
 #: model:mail.template,body_html:openeducat_timetable.session_details_changes
@@ -146,15 +153,15 @@ msgid ""
 "                                                <tr>\n"
 "                                                    <td valign=\"middle\">\n"
 "                                                        <span style=\"font-size: 10px;\">Session Details</span>\n"
-"                                                        <br>\n"
+"                                                        <br/>\n"
 "                                                    </td>\n"
 "                                                    <td valign=\"middle\" align=\"right\">\n"
-"                                                        <img t-att-src=\"'/logo.png?company=%s' % object.company_id.id\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" t-att-alt=\"'%s' % object.company_id.name\">\n"
+"                                                        <img t-att-src=\"'/logo.png?company=%s' % object.company_id.id\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" t-att-alt=\"'%s' % object.company_id.name\"/>\n"
 "                                                    </td>\n"
 "                                                </tr>\n"
 "                                                <tr>\n"
 "                                                    <td colspan=\"2\" style=\"text-align:center;\">\n"
-"                                                        <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;\">\n"
+"                                                        <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;\"/>\n"
 "                                                    </td>\n"
 "                                                </tr>\n"
 "                                            </table>\n"
@@ -169,43 +176,43 @@ msgid ""
 "                                                            <li>\n"
 "                                                                Faculty:\n"
 "                                                                <span>\n"
-"                                                                    <t t-out=\"object.faculty_id.name\"></t>\n"
+"                                                                    <t t-out=\"object.faculty_id.name\"/>\n"
 "                                                                </span>\n"
 "                                                            </li>\n"
 "                                                            <li>\n"
 "                                                                Subject:\n"
 "                                                                <span>\n"
-"                                                                    <t t-out=\"object.subject_id.name\"></t>\n"
+"                                                                    <t t-out=\"object.subject_id.name\"/>\n"
 "                                                                </span>\n"
 "                                                            </li>\n"
 "                                                            <li>\n"
 "                                                                Course:\n"
 "                                                                <span>\n"
-"                                                                    <t t-out=\"object.course_id.name\"></t>\n"
+"                                                                    <t t-out=\"object.course_id.name\"/>\n"
 "                                                                </span>\n"
 "                                                            </li>\n"
 "                                                            <li>\n"
 "                                                                Batch:\n"
 "                                                                <span>\n"
-"                                                                    <t t-out=\"object.batch_id.name\"></t>\n"
+"                                                                    <t t-out=\"object.batch_id.name\"/>\n"
 "                                                                </span>\n"
 "                                                            </li>\n"
 "                                                            <li>\n"
 "                                                                Classroom:\n"
 "                                                                <span>\n"
-"                                                                    <t t-out=\"object.classroom_id.name\"></t>\n"
+"                                                                    <t t-out=\"object.classroom_id.name\"/>\n"
 "                                                                </span>\n"
 "                                                            </li>\n"
 "                                                            <li>\n"
 "                                                                Start Time:\n"
 "                                                                <span>\n"
-"                                                                    <t t-out=\"format_datetime(object.start_datetime, tz=user.tz)\"></t>\n"
+"                                                                    <t t-out=\"format_datetime(object.start_datetime, tz=user.tz)\"/>\n"
 "                                                                </span>\n"
 "                                                            </li>\n"
 "                                                            <li>\n"
 "                                                                End Time:\n"
 "                                                                <span>\n"
-"                                                                    <t t-out=\"format_datetime(object.end_datetime, tz=user.tz)\"></t>\n"
+"                                                                    <t t-out=\"format_datetime(object.end_datetime, tz=user.tz)\"/>\n"
 "                                                                </span>\n"
 "                                                            </li>\n"
 "\n"
@@ -223,7 +230,7 @@ msgid ""
 "                                                </tr>\n"
 "                                                <tr>\n"
 "                                                    <td style=\"text-align:center;\">\n"
-"                                                        <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\">\n"
+"                                                        <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
 "                                                    </td>\n"
 "                                                </tr>\n"
 "                                            </table>\n"
@@ -234,22 +241,22 @@ msgid ""
 "                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
 "                                                <tr>\n"
 "                                                    <td valign=\"middle\" align=\"left\">\n"
-"                                                        <t t-out=\"object.company_id.name or ''\"></t>\n"
+"                                                        <t t-out=\"object.company_id.name or ''\"/>\n"
 "                                                    </td>\n"
 "                                                </tr>\n"
 "                                                <tr>\n"
 "                                                    <td valign=\"middle\" align=\"left\" style=\"opacity: 0.7;\">\n"
-"                                                        <t t-out=\"object.company_id.phone or ''\"></t>\n"
+"                                                        <t t-out=\"object.company_id.phone or ''\"/>\n"
 "                                                        <t t-if=\"object.company_id.email\">\n"
 "                                                            |\n"
 "                                                            <a href=\"'mailto:%s'%20%20%7B%7B%20object.company_id.email%20%7D%7D\" style=\"text-decoration:none; color: #454748;\">\n"
-"                                                                <t t-out=\"object.company_id.email or ''\"></t>\n"
+"                                                                <t t-out=\"object.company_id.email or ''\"/>\n"
 "                                                            </a>\n"
 "                                                        </t>\n"
 "                                                        <t t-if=\"object.company_id.website\">\n"
 "                                                            |\n"
 "                                                            <a href=\"'%s'%20%20%7B%7B%20object.company_id.website%20%7D%7D\" style=\"text-decoration:none; color: #454748;\">\n"
-"                                                                <t t-out=\"object.company_id.website or ''\"></t>\n"
+"                                                                <t t-out=\"object.company_id.website or ''\"/>\n"
 "                                                            </a>\n"
 "                                                        </t>\n"
 "                                                    </td>\n"
@@ -264,47 +271,6 @@ msgid ""
 "                </table>\n"
 "            "
 msgstr ""
-"\n"
-"                <ul class=\"o_mail_thread_message_tracking\">\n"
-"                    <li>\n"
-"                        Facoltà:\n"
-"                            <span> ${object.faculty_id.name} </span>\n"
-"                    </li>\n"
-"                    <li>\n"
-"                        Materia:\n"
-"                            <span> ${object.subject_id.name} </span>\n"
-"                    </li>\n"
-"                    <li>\n"
-"                        Corso:\n"
-"                            <span> ${object.course_id.name} </span>\n"
-"                    </li>\n"
-"                    <li>\n"
-"                        Lotto:\n"
-"                            <span> ${object.batch_id.name} </span>\n"
-"                    </li>\n"
-"                    <li>\n"
-"                        Aula:\n"
-"                            <span> ${object.classroom_id.name} </span>\n"
-"                    </li>\n"
-"                    <li>\n"
-"                        Ora di inizio:\n"
-"                            <span> ${format_datetime(object.start_datetime, tz=user.tz)} </span>\n"
-"                    </li>\n"
-"                    <li>\n"
-"                        Tempo scaduto:\n"
-"                            <span> ${format_datetime(object.end_datetime, tz=user.tz)} </span>\n"
-"                    </li>\n"
-"\n"
-"                    <li>\n"
-"                        Status:\n"
-"                            % if object.state == 'confirm':\n"
-"                                <span> Confermato </span>\n"
-"                            % elif object.state == 'cancel'\n"
-"                                <span> Annullato </span>\n"
-"                            % endif\n"
-"                    </li>\n"
-"                </ul>\n"
-"            "
 
 #. module: openeducat_timetable
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__am_pm__am
@@ -314,7 +280,7 @@ msgstr "SONO"
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__am_pm
 msgid "AM/PM"
-msgstr "AM PM"
+msgstr "AM/PM"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_needaction
@@ -335,7 +301,7 @@ msgstr "Archiviato"
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form
 msgid "Are you sure you want to confirm selected sessions ?"
-msgstr "Sei sicuro di voler confermare le sessioni selezionate?"
+msgstr "Sei sicuro di voler confermare sessioni selezionate?"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_attachment_count
@@ -363,7 +329,7 @@ msgstr "Vincolo batch e soggetto"
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
 msgid "Cancel"
-msgstr "Annulla"
+msgstr "Cancellare"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_session__state__cancel
@@ -374,7 +340,7 @@ msgstr "Annullato"
 #: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__classroom_id
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__classroom_id
 msgid "Classroom"
-msgstr "Aula"
+msgstr "Classe"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_res_config_settings__is_classroom_constraint
@@ -385,7 +351,7 @@ msgstr "Vincolo di classe"
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_time_table_report_form
 msgid "Close"
-msgstr "Chiudere"
+msgstr "Vicino"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__color
@@ -403,7 +369,7 @@ msgid "Config Settings"
 msgstr "Impostazioni di configurazione"
 
 #. module: openeducat_timetable
-#: model:ir.ui.menu,name:openeducat_timetable.menu_op_timetable_config
+#: model:ir.ui.menu,name:openeducat_timetable.menu_op_timetable_configuration
 msgid "Configuration"
 msgstr "Configurazione"
 
@@ -448,7 +414,7 @@ msgstr "Creato da"
 #: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__create_date
 #: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__create_date
 msgid "Created on"
-msgstr "Creato"
+msgstr "Creato su"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__day
@@ -464,12 +430,7 @@ msgstr "Giorni"
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
 msgid "Delete"
-msgstr "Elimina"
-
-#. module: openeducat_timetable
-#: model:ir.module.category,name:openeducat_timetable.module_category_all_op_discuss
-msgid "Discuss"
-msgstr "Discutere"
+msgstr "Eliminare"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__display_name
@@ -490,7 +451,7 @@ msgstr "Fatto"
 #. module: openeducat_timetable
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_session__state__draft
 msgid "Draft"
-msgstr "Brutta copia"
+msgstr "Bozza"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__duration
@@ -511,14 +472,12 @@ msgstr "Data di fine"
 #. module: openeducat_timetable
 #. odoo-python
 #: code:addons/openeducat_timetable/wizard/time_table_report.py:0
-#, python-format
 msgid "End Date cannot be set before                 Start Date."
 msgstr "La data di fine non può essere impostata prima della data di inizio."
 
 #. module: openeducat_timetable
 #. odoo-python
 #: code:addons/openeducat_timetable/wizard/generate_timetable.py:0
-#, python-format
 msgid "End Date cannot be set before             Start Date."
 msgstr "La data di fine non può essere impostata prima della data di inizio."
 
@@ -526,14 +485,13 @@ msgstr "La data di fine non può essere impostata prima della data di inizio."
 #: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__session_end_time
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__end_datetime
 msgid "End Time"
-msgstr "Tempo scaduto"
+msgstr "Ora di fine"
 
 #. module: openeducat_timetable
 #. odoo-python
 #: code:addons/openeducat_timetable/models/timetable.py:0
-#, python-format
 msgid "End Time cannot be set before Start Time."
-msgstr "L'ora di fine non può essere impostata prima dell'ora di inizio."
+msgstr "L'ora di fine non può essere impostato prima dell'ora di inizio."
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__faculty_id
@@ -541,7 +499,6 @@ msgstr "L'ora di fine non può essere impostata prima dell'ora di inizio."
 #: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__faculty_id
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__time_table_report__state__faculty
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
-#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
 msgid "Faculty"
 msgstr "Facoltà"
 
@@ -558,7 +515,7 @@ msgstr "Seguaci"
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Follower (partner)"
+msgstr "Seguaci (partner)"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__gen_time_table_line__day__4
@@ -596,12 +553,12 @@ msgstr "Generare un calendario"
 #. module: openeducat_timetable
 #: model:ir.ui.menu,name:openeducat_timetable.menu_generate_time_table_report
 msgid "Generate Timetable Report"
-msgstr "Generare un rapporto orario"
+msgstr "Generare un rapporto calendario"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
 msgid "Group By..."
-msgstr "Raggruppa per..."
+msgstr "Gruppo di ..."
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__has_message
@@ -611,7 +568,7 @@ msgstr "Ha un messaggio"
 #. module: openeducat_timetable
 #: model:ir.module.category,description:openeducat_timetable.module_category_all_op_discuss
 msgid "Helps you manage your institutes different-different users."
-msgstr "Ti aiuta a gestire i diversi utenti dei tuoi istituti."
+msgstr "Ti aiuta a gestire i tuoi istituti utenti diversi diversi."
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__hour
@@ -629,42 +586,6 @@ msgid "ID"
 msgstr "ID"
 
 #. module: openeducat_timetable
-#: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
-msgid ""
-"If checked you will not allowed to create the session with same classroom on same date\n"
-"                                and time"
-msgstr ""
-"Se spuntato non potrai creare la sessione con la stessa aula nella stessa data\n"
-"                                E tempo"
-
-#. module: openeducat_timetable
-#: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
-msgid ""
-"If checked you will not allowed to create the session with same faculty on same date\n"
-"                                and time"
-msgstr ""
-"Se spuntato non potrai creare la sessione con la stessa facoltà nella stessa data\n"
-"                                E tempo"
-
-#. module: openeducat_timetable
-#: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
-msgid ""
-"If checked you will not allowed to create the session with the same batch and same\n"
-"                                subject on same date and time"
-msgstr ""
-"Se selezionato non ti sarà permesso di creare la sessione con lo stesso batch e lo stesso\n"
-"soggetto nella stessa data e ora"
-
-#. module: openeducat_timetable
-#: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
-msgid ""
-"If checked you will not be allowed to create the session with the same batch even if\n"
-"                                it is for a different subject."
-msgstr ""
-"Se selezionato non ti sarà permesso di creare la sessione con lo stesso batch anche se\n"
-"è per un argomento diverso."
-
-#. module: openeducat_timetable
 #: model:ir.model.fields,help:openeducat_timetable.field_op_session__message_needaction
 msgid "If checked, new messages require your attention."
 msgstr "Se controllati, i nuovi messaggi richiedono la tua attenzione."
@@ -678,9 +599,8 @@ msgstr "Se controllati, alcuni messaggi hanno un errore di consegna."
 #. module: openeducat_timetable
 #. odoo-python
 #: code:addons/openeducat_timetable/models/timetable.py:0
-#, python-format
 msgid "Import Template for Sessions"
-msgstr "Modello di importazione per le sessioni"
+msgstr "Modello di importazione per sessioni"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_is_follower
@@ -778,7 +698,7 @@ msgstr "Facoltà aperta"
 #. module: openeducat_timetable
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__am_pm__pm
 msgid "PM"
-msgstr "Pm"
+msgstr "PM"
 
 #. module: openeducat_timetable
 #: model:ir.model,name:openeducat_timetable.model_op_timing
@@ -801,9 +721,9 @@ msgid "Proceed"
 msgstr "Procedere"
 
 #. module: openeducat_timetable
-#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__rating_ids
-msgid "Ratings"
-msgstr "Giudizi"
+#: model:ir.ui.menu,name:openeducat_timetable.menu_op_timetable_reporting
+msgid "Reporting"
+msgstr "Reporting"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_has_sms_error
@@ -825,9 +745,44 @@ msgstr "Selezionare"
 #. module: openeducat_timetable
 #. odoo-python
 #: code:addons/openeducat_timetable/wizard/time_table_report.py:0
-#, python-format
 msgid "Select date range for a week!"
 msgstr "Seleziona l'intervallo di date per una settimana!"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
+msgid ""
+"Selecting this option will prevent session creation for the same batch and "
+"subject on the same date and time."
+msgstr ""
+"La selezione di questa opzione impedirà la creazione della sessione per lo "
+"stesso lotto e soggetto nella stessa data e ora."
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
+msgid ""
+"Selecting this option will prevent session creation for the same batch, even"
+" if it's for a different subject."
+msgstr ""
+"La selezione di questa opzione impedirà la creazione della sessione per lo "
+"stesso lotto, anche se è per un argomento diverso."
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
+msgid ""
+"Selecting this option will prevent session creation in the same classroom on"
+" the same date and time"
+msgstr ""
+"La selezione di questa opzione impedirà la creazione della sessione nella "
+"stessa classe nella stessa data e ora"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
+msgid ""
+"Selecting this option will prevent session creation with the same faculty on"
+" the same date and time."
+msgstr ""
+"La selezione di questa opzione impedirà la creazione della sessione con la "
+"stessa facoltà nella stessa data e ora."
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__sequence
@@ -862,17 +817,24 @@ msgstr "Riga di sessione"
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
 msgid "Session Time"
-msgstr "Orario della sessione"
+msgstr "Tempo di sessione"
 
 #. module: openeducat_timetable
 #: model:mail.template,name:openeducat_timetable.session_details_changes
 msgid "Session details - Send by Email"
-msgstr "Dettagli della sessione - Invia tramite e -mail"
+msgstr "Dettagli della sessione - Invia via e -mail"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__timing
+msgid "Session timing"
+msgstr "Tempo di sessione"
 
 #. module: openeducat_timetable
 #: model:ir.actions.act_window,name:openeducat_timetable.act_open_op_session_view
+#: model:ir.actions.act_window,name:openeducat_timetable.act_open_op_session_view_list
 #: model:ir.model,name:openeducat_timetable.model_op_session
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_faculty__session_ids
+#: model:ir.ui.menu,name:openeducat_timetable.menu_op_sessions
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_faculty_form_session_inherit
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_calendar
@@ -887,10 +849,15 @@ msgid "Set to Draft"
 msgstr "Impostato su Draft"
 
 #. module: openeducat_timetable
+#: model:ir.ui.menu,name:openeducat_timetable.menu_settings
+msgid "Settings"
+msgstr "Impostazioni"
+
+#. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__start_date
 #: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__start_date
 msgid "Start Date"
-msgstr "Data d'inizio"
+msgstr "Data di inizio"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__session_start_time
@@ -911,14 +878,14 @@ msgstr "Stato"
 #. module: openeducat_timetable
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__time_table_report__state__student
 msgid "Student"
-msgstr "Alunno"
+msgstr "Studente"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__subject_id
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__subject_id
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
 msgid "Subject"
-msgstr "Materia"
+msgstr "Soggetto"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__gen_time_table_line__day__6
@@ -941,6 +908,7 @@ msgstr "Giovedì"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__gen_time_table
+#: model:ir.ui.menu,name:openeducat_timetable.menu_op_timetable_root
 msgid "Time Table"
 msgstr "Orario"
 
@@ -1000,11 +968,7 @@ msgid "TimeTable for Students"
 msgstr "Orario per gli studenti"
 
 #. module: openeducat_timetable
-#: model:ir.ui.menu,name:openeducat_timetable.menu_op_timetable_root
-msgid "TimeTables"
-msgstr "Orari"
-
-#. module: openeducat_timetable
+#: model:ir.module.category,name:openeducat_timetable.module_category_all_op_discuss
 #: model:ir.module.category,name:openeducat_timetable.module_category_openeducat_timetable
 #: model:ir.ui.menu,name:openeducat_timetable.menu_op_timetable
 msgid "Timetable"
@@ -1022,7 +986,6 @@ msgstr "Rapporto per insegnanti orario"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__timing_id
-#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__timing
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__timing_id
 msgid "Timing"
 msgstr "Tempismo"
@@ -1035,7 +998,7 @@ msgstr "Tempi"
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
 msgid "Today"
-msgstr "In data odierna"
+msgstr "Oggi"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__gen_time_table_line__day__1
@@ -1084,50 +1047,50 @@ msgstr "Wizard per la conferma di sessioni multiple"
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form
 msgid "Yes"
-msgstr "sì"
+msgstr "SÌ"
 
 #. module: openeducat_timetable
 #. odoo-python
 #: code:addons/openeducat_timetable/models/timetable.py:0
-#, python-format
 msgid ""
 "You cannot create a session for the same batch on same time and for same "
 "subject"
 msgstr ""
-"Non è possibile creare una sessione per lo stesso batch alla stessa ora e per la stessa data"
-"soggetto"
+"Non è possibile creare una sessione per lo stesso batch allo stesso tempo e "
+"per lo stesso argomento"
 
 #. module: openeducat_timetable
 #. odoo-python
 #: code:addons/openeducat_timetable/models/timetable.py:0
-#, python-format
 msgid ""
 "You cannot create a session for the same batch on same time even if it is "
 "different subject"
 msgstr ""
-"Non è possibile creare una sessione per lo stesso batch alla stessa ora, anche se lo è"
-"soggetto diverso"
+"Non è possibile creare una sessione per lo stesso batch allo stesso tempo "
+"anche se è un soggetto diverso"
 
 #. module: openeducat_timetable
 #. odoo-python
 #: code:addons/openeducat_timetable/models/timetable.py:0
-#, python-format
 msgid "You cannot create a session with same classroom on same date and time"
-msgstr "Non è possibile creare una sessione con la stessa classe nella stessa data e ora"
+msgstr ""
+"Non è possibile creare una sessione con la stessa classe nella stessa data e"
+" ora"
 
 #. module: openeducat_timetable
 #. odoo-python
 #: code:addons/openeducat_timetable/models/timetable.py:0
-#, python-format
 msgid "You cannot create a session with same faculty on same date and time"
-msgstr "Non è possibile creare una sessione con la stessa facoltà nella stessa data e ora"
+msgstr ""
+"Non è possibile creare una sessione con la stessa facoltà nella stessa data "
+"e ora"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form
 msgid "or"
-msgstr "o"
+msgstr "O"
 
 #. module: openeducat_timetable
 #: model:mail.template,subject:openeducat_timetable.session_details_changes
 msgid "{{ object.get_subject() }}"
-msgstr "$ {object.get_subject ()}"
+msgstr "{{object.get_subject ()}}"

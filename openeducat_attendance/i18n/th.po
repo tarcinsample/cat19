@@ -1,51 +1,54 @@
-
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* openeducat_attendance
+#
 msgid ""
 msgstr ""
-"Project-Id-Version:Odoo Server 17.0"
-"Report-Msgid-Bugs-To:"
-"POT-Creation-Date:2024-02-15 05:51+0000"
-"PO-Revision-Date:2024-02-15 05:51+0000"
-"Last-Translator:"
-"Language-Team:"
-"MIME-Version:1.0"
-"Content-Type:text/plain; charset=UTF-8"
-"Content-Transfer-Encoding:"
-"Plural-Forms:"
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-29 05:50+0000\n"
+"PO-Revision-Date: 2025-04-29 05:50+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: openeducat_attendance
 #: model:ir.ui.menu,name:openeducat_attendance.menu_op_attendance_root
-msgid " Attendances"
-msgstr "การเข้าร่วม"
+msgid " Class Attendances"
+msgstr "การเข้าเรียนในชั้นเรียน"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
 msgid "<b>From Date:</b>"
-msgstr "<b>จากวันที่:</b>"
+msgstr "<b> จากวันที่: </b>"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
 msgid "<b>Student Name:</b>"
-msgstr "<b>ชื่อนักเรียน:</b>"
+msgstr "<b> ชื่อนักเรียน: </b>"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
 msgid "<b>To Date:</b>"
-msgstr "<b>ถึงวันที่:</b>"
+msgstr "<b> จนถึงปัจจุบัน: </b>"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
 msgid "<b>Total Absence</b>"
-msgstr "<b>การขาดงานทั้งหมด</b>"
+msgstr "<b> การขาดงานทั้งหมด </b>"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_student_form_attendance_inherit
 msgid "<span class=\"o_stat_text\">Attendance</span>"
-msgstr "<span class=\"o_stat_text\">การเข้าร่วม</span>"
+msgstr "<span class = \"o_stat_text\"> การเข้าร่วม </span>"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
 msgid "<strong>Student Attendance Detail</strong>"
-msgstr "<strong>รายละเอียดการเข้าร่วมของนักเรียน</strong>"
+msgstr "<strong> รายละเอียดการเข้าเรียนของนักเรียน </strong>"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__absent
@@ -56,12 +59,12 @@ msgstr "ไม่มา"
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__excused
 msgid "Absent Excused"
-msgstr "ขาดไป ขออภัย"
+msgstr "ไม่มีข้อแก้ตัว"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__absent
 msgid "Absent Unexcused"
-msgstr "ขาดไป ไม่มีเหตุผล"
+msgstr "ขาดไม่ได้ใช้"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__message_needaction
@@ -69,7 +72,7 @@ msgstr "ขาดไป ไม่มีเหตุผล"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__message_needaction
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__message_needaction
 msgid "Action Needed"
-msgstr "จำเป็นต้องดำเนินการ"
+msgstr "การดำเนินการที่จำเป็น"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__active
@@ -89,7 +92,7 @@ msgstr "คล่องแคล่ว"
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_type_form
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_type_search
 msgid "Archived"
-msgstr "เก็บถาวรแล้ว"
+msgstr "ซึ่งเก็บถาวร"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__message_attachment_count
@@ -121,13 +124,13 @@ msgstr "การวิเคราะห์การเข้าร่วม"
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_line_tree
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_sheet_form
 msgid "Attendance Line"
-msgstr "สายการเข้าร่วม"
+msgstr "สายเข้าร่วม"
 
 #. module: openeducat_attendance
 #: model:ir.model,name:openeducat_attendance.model_op_attendance_line
 #: model:ir.ui.menu,name:openeducat_attendance.menu_op_attendance_line_sub
 msgid "Attendance Lines"
-msgstr "เส้นผู้เข้าร่วม"
+msgstr "สายการเข้าร่วม"
 
 #. module: openeducat_attendance
 #: model:ir.model,name:openeducat_attendance.model_op_attendance_register
@@ -140,7 +143,7 @@ msgstr "ลงทะเบียนเข้าร่วม"
 #. module: openeducat_attendance
 #: model:ir.actions.act_window,name:openeducat_attendance.act_open_op_attendance_register_view
 msgid "Attendance Registers"
-msgstr "ลงทะเบียนเข้าร่วม"
+msgstr "การลงทะเบียนการเข้าร่วม"
 
 #. module: openeducat_attendance
 #: model:ir.model,name:openeducat_attendance.model_report_openeducat_attendance_student_attendance_report
@@ -157,12 +160,12 @@ msgstr "รายงานการเข้าร่วม"
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_sheet_search
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_sheet_tree
 msgid "Attendance Sheet"
-msgstr "เอกสารการเข้างาน"
+msgstr "แผ่นงานเข้าร่วม"
 
 #. module: openeducat_attendance
 #: model:ir.actions.act_window,name:openeducat_attendance.act_open_op_attendance_sheet_view
 msgid "Attendance Sheets"
-msgstr "เอกสารการเข้างาน"
+msgstr "แผ่นงานเข้าร่วม"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields.selection,name:openeducat_attendance.selection__op_attendance_sheet__state__start
@@ -174,7 +177,7 @@ msgstr "เริ่มการเข้าร่วม"
 #: model:ir.model.fields.selection,name:openeducat_attendance.selection__op_attendance_sheet__state__done
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_sheet_form
 msgid "Attendance Taken"
-msgstr "เข้าร่วมแล้ว"
+msgstr "เข้าร่วม"
 
 #. module: openeducat_attendance
 #: model:ir.model,name:openeducat_attendance.model_op_attendance_type
@@ -198,7 +201,7 @@ msgstr "ประเภทการเข้าร่วม"
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_line_search
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_register_search
 msgid "Batch"
-msgstr "แบทช์"
+msgstr "ชุด"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_sheet_form
@@ -220,6 +223,16 @@ msgstr "ปิด"
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_register_search
 msgid "Code"
 msgstr "รหัส"
+
+#. module: openeducat_attendance
+#: model:ir.model.constraint,message:openeducat_attendance.constraint_op_attendance_register_unique_attendance_register_code
+msgid "Code should be unique per attendance register!"
+msgstr "รหัสควรเป็นเอกลักษณ์ต่อการลงทะเบียนการเข้าร่วม!"
+
+#. module: openeducat_attendance
+#: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__company_id
+msgid "Company"
+msgstr "บริษัท"
 
 #. module: openeducat_attendance
 #: model:ir.ui.menu,name:openeducat_attendance.menu_op_attendance_config
@@ -251,7 +264,7 @@ msgstr "สร้างโดย"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__create_date
 #: model:ir.model.fields,field_description:openeducat_attendance.field_student_attendance__create_date
 msgid "Created on"
-msgstr "สร้างบน"
+msgstr "สร้างขึ้นบน"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__attendance_date
@@ -269,7 +282,7 @@ msgstr "วันที่"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__display_name
 #: model:ir.model.fields,field_description:openeducat_attendance.field_student_attendance__display_name
 msgid "Display Name"
-msgstr "ชื่อที่แสดง"
+msgstr "แสดงชื่อ"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields.selection,name:openeducat_attendance.selection__op_attendance_sheet__state__draft
@@ -280,7 +293,7 @@ msgstr "ร่าง"
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__excused
 msgid "Excused ?"
-msgstr "ขอโทษ?"
+msgstr "แก้ตัว?"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__faculty_id
@@ -306,7 +319,7 @@ msgstr "ผู้ติดตาม (พันธมิตร)"
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_student_attendance__from_date
 msgid "From Date"
-msgstr "จากวันที่"
+msgstr "ตั้งแต่วันที่"
 
 #. module: openeducat_attendance
 #: model:ir.actions.report,name:openeducat_attendance.action_report_student_attendance
@@ -319,7 +332,7 @@ msgstr "สร้างการเข้าร่วม"
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_sheet_search
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_type_search
 msgid "Group By..."
-msgstr "จัดกลุ่มตาม..."
+msgstr "กลุ่มโดย ..."
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__has_message
@@ -332,7 +345,7 @@ msgstr "มีข้อความ"
 #. module: openeducat_attendance
 #: model:ir.module.category,description:openeducat_attendance.module_category_all_op_attendance
 msgid "Helps you manage your institutes different-different users."
-msgstr "ช่วยคุณจัดการสถาบันของคุณกับผู้ใช้ที่แตกต่างกัน"
+msgstr "ช่วยให้คุณจัดการสถาบันผู้ใช้ที่แตกต่างกัน"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__id
@@ -341,7 +354,7 @@ msgstr "ช่วยคุณจัดการสถาบันของคุ
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__id
 #: model:ir.model.fields,field_description:openeducat_attendance.field_student_attendance__id
 msgid "ID"
-msgstr "บัตรประจำตัวประชาชน"
+msgstr "รหัสประจำตัว"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_line__message_needaction
@@ -349,7 +362,7 @@ msgstr "บัตรประจำตัวประชาชน"
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_sheet__message_needaction
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_type__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "หากเลือก ข้อความใหม่จะต้องได้รับการดูแลจากคุณ"
+msgstr "หากตรวจสอบข้อความใหม่ต้องการความสนใจของคุณ"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_line__message_has_error
@@ -361,7 +374,7 @@ msgstr "หากเลือก ข้อความใหม่จะต้�
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_type__message_has_error
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_type__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr "หากเลือก แสดงว่าบางข้อความมีข้อผิดพลาดในการส่ง"
+msgstr "หากตรวจสอบข้อความบางข้อความมีข้อผิดพลาดในการจัดส่ง"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__message_is_follower
@@ -369,7 +382,7 @@ msgstr "หากเลือก แสดงว่าบางข้อคว�
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__message_is_follower
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__message_is_follower
 msgid "Is Follower"
-msgstr "เป็นผู้ตาม"
+msgstr "เป็นผู้ติดตาม"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__write_uid
@@ -387,7 +400,7 @@ msgstr "อัปเดตล่าสุดโดย"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__write_date
 #: model:ir.model.fields,field_description:openeducat_attendance.field_student_attendance__write_date
 msgid "Last Updated on"
-msgstr "อัปเดตล่าสุดเมื่อ"
+msgstr "อัปเดตล่าสุด"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__late
@@ -460,7 +473,7 @@ msgstr "จำนวนข้อความที่ต้องดำเนิ
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_sheet__message_has_error_counter
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_type__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr "จำนวนข้อความที่มีข้อผิดพลาดในการส่ง"
+msgstr "จำนวนข้อความที่มีข้อผิดพลาดในการจัดส่ง"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__present
@@ -480,14 +493,6 @@ msgid "Print"
 msgstr "พิมพ์"
 
 #. module: openeducat_attendance
-#: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__rating_ids
-#: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_register__rating_ids
-#: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__rating_ids
-#: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__rating_ids
-msgid "Ratings"
-msgstr "การให้คะแนน"
-
-#. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__register_id
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__register_id
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_sheet_search
@@ -503,7 +508,7 @@ msgstr "ลงทะเบียน"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__remark
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
 msgid "Remark"
-msgstr "ข้อสังเกต"
+msgstr "คำพูด"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__message_has_sms_error
@@ -511,7 +516,7 @@ msgstr "ข้อสังเกต"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__message_has_sms_error
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr "ข้อผิดพลาดในการส่ง SMS"
+msgstr "ข้อผิดพลาดในการจัดส่ง SMS"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__session_id
@@ -522,12 +527,22 @@ msgstr "การประชุม"
 #. module: openeducat_attendance
 #: model:ir.model,name:openeducat_attendance.model_op_session
 msgid "Sessions"
-msgstr "เซสชัน"
+msgstr "การประชุม"
+
+#. module: openeducat_attendance
+#: model:ir.ui.menu,name:openeducat_attendance.menu_attendance_config
+msgid "Settings"
+msgstr "การตั้งค่า"
+
+#. module: openeducat_attendance
+#: model:ir.model.constraint,message:openeducat_attendance.constraint_op_attendance_sheet_unique_register_sheet
+msgid "Sheet must be unique per Register/Session."
+msgstr "แผ่นงานจะต้องไม่ซ้ำกันต่อการลงทะเบียน/เซสชัน"
 
 #. module: openeducat_attendance
 #: model:ir.ui.menu,name:openeducat_attendance.menu_op_attendance_sheet_sub
 msgid "Sheets"
-msgstr "ชีต"
+msgstr "แผ่น"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__state
@@ -545,17 +560,22 @@ msgstr "นักเรียน"
 #: model:ir.actions.act_window,name:openeducat_attendance.op_student_attendance_act
 #: model:ir.model,name:openeducat_attendance.model_student_attendance
 msgid "Student Attendance"
-msgstr "การเข้าร่วมของนักเรียน"
+msgstr "การเข้าร่วมนักเรียน"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_form
 msgid "Student Attendance Report"
-msgstr "รายงานการเข้าร่วมของนักเรียน"
+msgstr "รายงานการเข้าร่วมนักเรียน"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_type_form
 msgid "Student Should Be Marked As"
-msgstr "นักเรียนควรถูกทำเครื่องหมายเป็น"
+msgstr "นักเรียนควรทำเครื่องหมายเป็น"
+
+#. module: openeducat_attendance
+#: model:ir.model.constraint,message:openeducat_attendance.constraint_op_attendance_line_unique_student
+msgid "Student must be unique per Attendance."
+msgstr "นักเรียนจะต้องไม่ซ้ำกันต่อการเข้าร่วม"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_sheet_form
@@ -575,9 +595,8 @@ msgstr "จนถึงปัจจุบัน"
 #. module: openeducat_attendance
 #. odoo-python
 #: code:addons/openeducat_attendance/wizards/student_attendance_wizard.py:0
-#, python-format
 msgid "To Date cannot be set before From Date."
-msgstr "ไม่สามารถตั้งค่าถึงวันที่ก่อนวันที่เริ่มต้นได้"
+msgstr "จนถึงวันที่ไม่สามารถตั้งค่าก่อนวันที่"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_line_search
