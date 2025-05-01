@@ -1,21 +1,24 @@
-
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* openeducat_fees
+#
 msgid ""
 msgstr ""
-"Project-Id-Version:Odoo Server 17.0"
-"Report-Msgid-Bugs-To:"
-"POT-Creation-Date:2024-02-16 05:23+0000"
-"PO-Revision-Date:2024-02-16 05:23+0000"
-"Last-Translator:"
-"Language-Team:"
-"MIME-Version:1.0"
-"Content-Type:text/plain; charset=UTF-8"
-"Content-Transfer-Encoding:"
-"Plural-Forms:"
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-29 07:01+0000\n"
+"PO-Revision-Date: 2025-04-29 07:01+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
-msgid "<strong>Fees Detail</strong>"
-msgstr "<strong>费用详情</strong>"
+msgid "<span>Fees Detail</span>"
+msgstr "<span>费用细节</span>"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_needaction
@@ -30,27 +33,27 @@ msgstr "积极的"
 #. module: openeducat_fees
 #: model:product.template,name:openeducat_fees.op_product_3_product_template
 msgid "Admission Fees for Course-2"
-msgstr "课程2的入场费"
+msgstr "课程2的入学费"
 
 #. module: openeducat_fees
 #: model:product.template,name:openeducat_fees.op_product_6_product_template
 msgid "Admission Fees for Course-4"
-msgstr "课程 4 入场费"
+msgstr "课程4的入学费"
 
 #. module: openeducat_fees
 #: model:product.template,name:openeducat_fees.op_product_1_product_template
 msgid "Admission Fees for Course-Sem-1"
-msgstr "第一学期课程入场费"
+msgstr "课程SEM-1的入学费"
 
 #. module: openeducat_fees
 #: model:product.template,name:openeducat_fees.op_product_2_product_template
 msgid "Admission Fees for G8-AR"
-msgstr "G8-AR 入场费"
+msgstr "G8-AR的入场费"
 
 #. module: openeducat_fees
 #: model:product.template,name:openeducat_fees.op_product_4_product_template
 msgid "Admission Fees for PPHD"
-msgstr "PPHD 入场费"
+msgstr "PPHD的入学费"
 
 #. module: openeducat_fees
 #: model:ir.model.fields.selection,name:openeducat_fees.selection__op_fees_terms__day_type__after
@@ -60,18 +63,18 @@ msgstr "后"
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__after_discount_amount
 msgid "After Discount Amount"
-msgstr "折扣后金额"
+msgstr "折扣金额后"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_form
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_search
 msgid "Archived"
-msgstr "已存档"
+msgstr "存档"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_attachment_count
 msgid "Attachment Count"
-msgstr "附件计数"
+msgstr "依恋数"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__batch_id
@@ -86,8 +89,14 @@ msgstr "前"
 #. module: openeducat_fees
 #: model:ir.model.fields.selection,name:openeducat_fees.selection__op_student_fees_details__state__cancel
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.fees_detail_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.select_fees_term_type_form
 msgid "Cancel"
 msgstr "取消"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__code
+msgid "Code"
+msgstr "代码"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__company_id
@@ -108,8 +117,9 @@ msgstr "课程"
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__create_uid
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__create_uid
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__create_uid
+#: model:ir.model.fields,field_description:openeducat_fees.field_select_fees_term_type_wizard__create_uid
 msgid "Created by"
-msgstr "由...制作"
+msgstr "由"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__create_date
@@ -117,8 +127,9 @@ msgstr "由...制作"
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__create_date
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__create_date
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__create_date
+#: model:ir.model.fields,field_description:openeducat_fees.field_select_fees_term_type_wizard__create_date
 msgid "Created on"
-msgstr "创建于"
+msgstr "创建"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__currency_id
@@ -147,6 +158,7 @@ msgstr "折扣 （％）"
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__display_name
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__display_name
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__display_name
+#: model:ir.model.fields,field_description:openeducat_fees.field_select_fees_term_type_wizard__display_name
 msgid "Display Name"
 msgstr "显示名称"
 
@@ -158,12 +170,12 @@ msgstr "草稿"
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__due_date
 msgid "Due Date"
-msgstr "到期日"
+msgstr "两个日期"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__due_days
 msgid "Due Days"
-msgstr "预产期"
+msgstr "到期日"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__fees_id
@@ -178,58 +190,49 @@ msgid "Fees Amount"
 msgstr "费用金额"
 
 #. module: openeducat_fees
-#: model:ir.ui.menu,name:openeducat_fees.menu_op_fees_analysis_report_main
-msgid "Fees Analysis"
-msgstr "费用分析"
-
-#. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student__fees_detail_ids
 msgid "Fees Collection Details"
-msgstr "收费详情"
-
-#. module: openeducat_fees
-#: model:ir.actions.report,name:openeducat_fees.action_report_fees_detail_analysis
-msgid "Fees Detail Analysi"
-msgstr "费用明细分析"
+msgstr "费用收集详细信息"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.fees_detail_report_wizard_form
-#: model_terms:ir.ui.view,arch_db:openeducat_fees.view_op_student_form_fees_inherit
 msgid "Fees Details"
-msgstr "费用详情"
+msgstr "费用细节"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student__fees_details_count
 msgid "Fees Details Count"
-msgstr "费用详情 计数"
+msgstr "费用细节数量"
 
 #. module: openeducat_fees
 #: model:ir.model,name:openeducat_fees.model_op_fees_terms_line
 msgid "Fees Details Line"
-msgstr "费用详情行"
+msgstr "费用细节线"
 
 #. module: openeducat_fees
 #: model:ir.actions.act_window,name:openeducat_fees.fees_detail_report_wizard_act
+#: model:ir.actions.report,name:openeducat_fees.action_report_fees_detail_analysis
 msgid "Fees Details Report"
-msgstr "费用详情报告"
+msgstr "费用细节报告"
 
 #. module: openeducat_fees
 #: model:ir.model,name:openeducat_fees.model_op_fees_element
 msgid "Fees Element for course"
-msgstr "课程费用要素"
+msgstr "当然的费用元素"
 
 #. module: openeducat_fees
 #: model:ir.actions.act_window,name:openeducat_fees.act_op_fees_element_view
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__fees_element_line
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.op_fees_element_form_1
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.op_fees_element_tree_1
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_form
 msgid "Fees Elements"
-msgstr "费用要素"
+msgstr "费用元素"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__fees_factor
 msgid "Fees Factor"
-msgstr "费用因素"
+msgstr "费用因子"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__fees_filter
@@ -239,7 +242,7 @@ msgstr "费用过滤器"
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__fees_line_id
 msgid "Fees Line"
-msgstr "费用专线"
+msgstr "费用线"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_form
@@ -262,7 +265,7 @@ msgstr "费用开始日期"
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_course__fees_term_id
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_course__fees_term_id
 msgid "Fees Term"
-msgstr "费用期限"
+msgstr "费用"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_form
@@ -272,44 +275,44 @@ msgstr "费用期限"
 #. module: openeducat_fees
 #: model:ir.actions.act_window,name:openeducat_fees.act_open_fees_terms_view
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_element__fees_terms_line_id
-#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__name
+#: model:ir.model.fields,field_description:openeducat_fees.field_select_fees_term_type_wizard__fees_terms
 #: model:ir.ui.menu,name:openeducat_fees.menu_fees_terms
 msgid "Fees Terms"
-msgstr "费用条款"
+msgstr "费用"
 
 #. module: openeducat_fees
 #: model:ir.model,name:openeducat_fees.model_op_fees_terms
 msgid "Fees Terms For Course"
-msgstr "课程费用条款"
+msgstr "课程费用"
 
 #. module: openeducat_fees
 #. odoo-python
 #: code:addons/openeducat_fees/models/fees_terms.py:0
-#, python-format
 msgid "Fees Terms must be Required!"
-msgstr "必须填写费用条款！"
+msgstr "必须需要费用条款！"
 
 #. module: openeducat_fees
 #: model:product.template,name:openeducat_fees.op_product_5_product_template
 msgid "Fees for Course-3"
-msgstr "课程 3 费用"
+msgstr "课程3的费用"
 
 #. module: openeducat_fees
 #. odoo-python
 #: code:addons/openeducat_fees/models/fees_terms.py:0
-#, python-format
 msgid "Fees terms must be divided as such sum up in 100%"
-msgstr "费用条款必须按总和除以 100%"
+msgstr "费用条款必须分配为100％的总和"
 
 #. module: openeducat_fees
 #: model:ir.model.fields.selection,name:openeducat_fees.selection__op_fees_terms__fees_terms__fixed_date
+#: model:ir.model.fields.selection,name:openeducat_fees.selection__select_fees_term_type_wizard__fees_terms__fixed_date
 msgid "Fixed Fees of Dates"
-msgstr "日期固定费用"
+msgstr "固定日期费用"
 
 #. module: openeducat_fees
 #: model:ir.model.fields.selection,name:openeducat_fees.selection__op_fees_terms__fees_terms__fixed_days
+#: model:ir.model.fields.selection,name:openeducat_fees.selection__select_fees_term_type_wizard__fees_terms__fixed_days
 msgid "Fixed Fees of Days"
-msgstr "天数固定费用"
+msgstr "固定费用"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_follower_ids
@@ -319,18 +322,18 @@ msgstr "追随者"
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "关注者（合作伙伴）"
+msgstr "追随者（合作伙伴）"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__has_message
 msgid "Has Message"
-msgstr "有留言"
+msgstr "有消息"
 
 #. module: openeducat_fees
 #: model:ir.module.category,description:openeducat_fees.module_category_all_op_fees
 #: model:ir.module.category,description:openeducat_fees.module_category_openeducat_fees
 msgid "Helps you manage your institutes different-different users."
-msgstr "帮助您管理机构中不同的用户。"
+msgstr "帮助您管理机构不同不同的用户。"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__id
@@ -338,19 +341,20 @@ msgstr "帮助您管理机构中不同的用户。"
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__id
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__id
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__id
+#: model:ir.model.fields,field_description:openeducat_fees.field_select_fees_term_type_wizard__id
 msgid "ID"
 msgstr "ID"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "如果选中，则有新消息需要您注意。"
+msgstr "如果已检查，新消息需要您的注意。"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_has_error
 #: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr "如果检查，则某些消息存在传送错误。"
+msgstr "如果已检查，有些消息会出现交货错误。"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_form
@@ -360,12 +364,12 @@ msgstr "信息"
 #. module: openeducat_fees
 #: model:ir.model.fields.selection,name:openeducat_fees.selection__op_student_fees_details__state__invoice
 msgid "Invoice Created"
-msgstr "发票已创建"
+msgstr "创建了发票"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__invoice_id
 msgid "Invoice ID"
-msgstr "发票编号"
+msgstr "发票ID"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__invoice_state
@@ -375,7 +379,7 @@ msgstr "发票状态"
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_op_student_form_fees_inherit
 msgid "Invoiced"
-msgstr "已开具发票"
+msgstr "开票"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_is_follower
@@ -383,18 +387,14 @@ msgid "Is Follower"
 msgstr "是追随者"
 
 #. module: openeducat_fees
-#: model:ir.model,name:openeducat_fees.model_op_course
-msgid "LMS Course"
-msgstr "学习管理系统课程"
-
-#. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__write_uid
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_element__write_uid
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__write_uid
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__write_uid
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__write_uid
+#: model:ir.model.fields,field_description:openeducat_fees.field_select_fees_term_type_wizard__write_uid
 msgid "Last Updated by"
-msgstr "最后更新者"
+msgstr "最后更新"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__write_date
@@ -402,13 +402,14 @@ msgstr "最后更新者"
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__write_date
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__write_date
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__write_date
+#: model:ir.model.fields,field_description:openeducat_fees.field_select_fees_term_type_wizard__write_date
 msgid "Last Updated on"
-msgstr "最后更新时间"
+msgstr "最后更新"
 
 #. module: openeducat_fees
 #: model:product.template,name:openeducat_fees.op_product_7_product_template
 msgid "Library Fees"
-msgstr "图书馆费用"
+msgstr "图书馆费"
 
 #. module: openeducat_fees
 #: model:res.groups,name:openeducat_fees.group_op_fees_admin
@@ -423,12 +424,23 @@ msgstr "消息传递错误"
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_ids
 msgid "Messages"
-msgstr "留言"
+msgstr "消息"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__name
+msgid "Name"
+msgstr "姓名"
+
+#. module: openeducat_fees
+#. odoo-javascript
+#: code:addons/openeducat_fees/static/src/xml/fees_term_widget_template.xml:0
+msgid "No Image"
+msgstr "没有图像"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__no_days
 msgid "No of Days"
-msgstr "天数"
+msgstr "没有日子"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_needaction_counter
@@ -443,12 +455,17 @@ msgstr "错误数"
 #. module: openeducat_fees
 #: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr "需要采取行动的消息数量"
+msgstr "需要操作的消息数量"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr "发送错误的消息数"
+msgstr "带交货错误的消息数"
+
+#. module: openeducat_fees
+#: model:ir.model,name:openeducat_fees.model_op_course
+msgid "OpenEduCat Course"
+msgstr "开放式课程"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.fees_detail_report_wizard_form
@@ -466,14 +483,20 @@ msgid "Product(s)"
 msgstr "产品）"
 
 #. module: openeducat_fees
-#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__rating_ids
-msgid "Ratings"
-msgstr "评级"
-
-#. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr "短信发送错误"
+msgstr "SMS交付错误"
+
+#. module: openeducat_fees
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.select_fees_term_type_form
+msgid "Save"
+msgstr "节省"
+
+#. module: openeducat_fees
+#: model:ir.actions.act_window,name:openeducat_fees.action_select_fees_term_type
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.select_fees_term_type_form
+msgid "Select Fees Term Type"
+msgstr "选择费用类型"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_element__sequence
@@ -496,17 +519,17 @@ msgstr "学生"
 #. module: openeducat_fees
 #: model:ir.model,name:openeducat_fees.model_op_student_course
 msgid "Student Course Details"
-msgstr "学生课程详情"
+msgstr "学生课程详细信息"
 
 #. module: openeducat_fees
 #: model:ir.model,name:openeducat_fees.model_op_student_fees_details
 msgid "Student Fees Details"
-msgstr "学生费用详情"
+msgstr "学生费用详细信息"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
 msgid "Student Name"
-msgstr "学生姓名"
+msgstr "学生名字"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__date
@@ -522,23 +545,21 @@ msgstr "术语类型"
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__line_ids
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_form
 msgid "Terms"
-msgstr "条款"
+msgstr "术语"
 
 #. module: openeducat_fees
 #. odoo-python
 #: code:addons/openeducat_fees/models/student.py:0
-#, python-format
 msgid "The value of the deposit amount must be positive."
-msgstr "存款金额的值必须为正数。"
+msgstr "存款金额的价值必须为正。"
 
 #. module: openeducat_fees
 #. odoo-python
 #: code:addons/openeducat_fees/models/student.py:0
-#, python-format
 msgid ""
 "There is no income account defined for this product: \"%s\".You may have to "
 "install a chart of account from Accounting app, settings menu."
-msgstr "没有为此产品定义收入帐户：\"%s\"。您可能需要从会计应用程序的设置菜单安装会计科目表。"
+msgstr "该产品没有定义的收入帐户：“％s”。您可能必须从会计应用程序，设置菜单中安装帐户图表。"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
@@ -548,27 +569,27 @@ msgstr "总金额"
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
 msgid "Total Invoiced"
-msgstr "已开具发票总额"
-
-#. module: openeducat_fees
-#: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
-msgid "Total Left"
-msgstr "总左"
+msgstr "总发票"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
 msgid "Total Paid"
-msgstr "总支付"
+msgstr "总付费"
+
+#. module: openeducat_fees
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
+msgid "Total Unpaid"
+msgstr "总无薪"
 
 #. module: openeducat_fees
 #: model:product.template,name:openeducat_fees.op_product_9_product_template
 msgid "Transportation Fees"
-msgstr "交通费"
+msgstr "运输费"
 
 #. module: openeducat_fees
 #: model:product.template,name:openeducat_fees.op_product_8_product_template
 msgid "Tution Fees"
-msgstr "学费"
+msgstr "收费费"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__day_type
@@ -589,14 +610,19 @@ msgstr "价值 （％）"
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__website_message_ids
 msgid "Website Messages"
-msgstr "网站留言"
+msgstr "网站消息"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__website_message_ids
 msgid "Website communication history"
-msgstr "网站通讯历史"
+msgstr "网站通信历史"
 
 #. module: openeducat_fees
 #: model:ir.model,name:openeducat_fees.model_fees_detail_report_wizard
 msgid "Wizard For Fees Details Report"
-msgstr "费用详细报告向导"
+msgstr "费用详细信息报告"
+
+#. module: openeducat_fees
+#: model:ir.model,name:openeducat_fees.model_select_fees_term_type_wizard
+msgid "Wizard For Fees Term Type"
+msgstr "向导费用期限类型"

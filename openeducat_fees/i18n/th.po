@@ -1,26 +1,29 @@
-
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* openeducat_fees
+#
 msgid ""
 msgstr ""
-"Project-Id-Version:Odoo Server 17.0"
-"Report-Msgid-Bugs-To:"
-"POT-Creation-Date:2024-02-16 05:23+0000"
-"PO-Revision-Date:2024-02-16 05:23+0000"
-"Last-Translator:"
-"Language-Team:"
-"MIME-Version:1.0"
-"Content-Type:text/plain; charset=UTF-8"
-"Content-Transfer-Encoding:"
-"Plural-Forms:"
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-29 07:01+0000\n"
+"PO-Revision-Date: 2025-04-29 07:01+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
-msgid "<strong>Fees Detail</strong>"
-msgstr "<strong>รายละเอียดค่าธรรมเนียม</strong>"
+msgid "<span>Fees Detail</span>"
+msgstr "<span> รายละเอียดค่าธรรมเนียม </span>"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_needaction
 msgid "Action Needed"
-msgstr "จำเป็นต้องดำเนินการ"
+msgstr "การดำเนินการที่จำเป็น"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__active
@@ -30,27 +33,27 @@ msgstr "คล่องแคล่ว"
 #. module: openeducat_fees
 #: model:product.template,name:openeducat_fees.op_product_3_product_template
 msgid "Admission Fees for Course-2"
-msgstr "ค่าเข้าชมหลักสูตร-2"
+msgstr "ค่าเข้าชมสำหรับหลักสูตร 2"
 
 #. module: openeducat_fees
 #: model:product.template,name:openeducat_fees.op_product_6_product_template
 msgid "Admission Fees for Course-4"
-msgstr "ค่าเข้าชมหลักสูตร-4"
+msgstr "ค่าเข้าชมสำหรับหลักสูตร -4"
 
 #. module: openeducat_fees
 #: model:product.template,name:openeducat_fees.op_product_1_product_template
 msgid "Admission Fees for Course-Sem-1"
-msgstr "ค่าสมัครหลักสูตร-Sem-1"
+msgstr "ค่าเข้าชมสำหรับหลักสูตร SEM-1"
 
 #. module: openeducat_fees
 #: model:product.template,name:openeducat_fees.op_product_2_product_template
 msgid "Admission Fees for G8-AR"
-msgstr "ค่าเข้าชม G8-AR"
+msgstr "ค่าเข้าชมสำหรับ G8-AR"
 
 #. module: openeducat_fees
 #: model:product.template,name:openeducat_fees.op_product_4_product_template
 msgid "Admission Fees for PPHD"
-msgstr "ค่าธรรมเนียมแรกเข้าสำหรับ PPHD"
+msgstr "ค่าเข้าชมสำหรับ PPHD"
 
 #. module: openeducat_fees
 #: model:ir.model.fields.selection,name:openeducat_fees.selection__op_fees_terms__day_type__after
@@ -60,13 +63,13 @@ msgstr "หลังจาก"
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__after_discount_amount
 msgid "After Discount Amount"
-msgstr "หลังจากจำนวนส่วนลด"
+msgstr "หลังจากส่วนลดจำนวนเงิน"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_form
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_search
 msgid "Archived"
-msgstr "เก็บถาวรแล้ว"
+msgstr "ซึ่งเก็บถาวร"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_attachment_count
@@ -76,7 +79,7 @@ msgstr "จำนวนไฟล์แนบ"
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__batch_id
 msgid "Batch"
-msgstr "แบทช์"
+msgstr "ชุด"
 
 #. module: openeducat_fees
 #: model:ir.model.fields.selection,name:openeducat_fees.selection__op_fees_terms__day_type__before
@@ -86,8 +89,14 @@ msgstr "ก่อน"
 #. module: openeducat_fees
 #: model:ir.model.fields.selection,name:openeducat_fees.selection__op_student_fees_details__state__cancel
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.fees_detail_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.select_fees_term_type_form
 msgid "Cancel"
 msgstr "ยกเลิก"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__code
+msgid "Code"
+msgstr "รหัส"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__company_id
@@ -108,6 +117,7 @@ msgstr "คอร์ส"
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__create_uid
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__create_uid
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__create_uid
+#: model:ir.model.fields,field_description:openeducat_fees.field_select_fees_term_type_wizard__create_uid
 msgid "Created by"
 msgstr "สร้างโดย"
 
@@ -117,8 +127,9 @@ msgstr "สร้างโดย"
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__create_date
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__create_date
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__create_date
+#: model:ir.model.fields,field_description:openeducat_fees.field_select_fees_term_type_wizard__create_date
 msgid "Created on"
-msgstr "สร้างบน"
+msgstr "สร้างขึ้นบน"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__currency_id
@@ -147,8 +158,9 @@ msgstr "การลดราคา (%)"
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__display_name
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__display_name
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__display_name
+#: model:ir.model.fields,field_description:openeducat_fees.field_select_fees_term_type_wizard__display_name
 msgid "Display Name"
-msgstr "ชื่อที่แสดง"
+msgstr "แสดงชื่อ"
 
 #. module: openeducat_fees
 #: model:ir.model.fields.selection,name:openeducat_fees.selection__op_student_fees_details__state__draft
@@ -158,7 +170,7 @@ msgstr "ร่าง"
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__due_date
 msgid "Due Date"
-msgstr "วันครบกำหนด"
+msgstr "สองวัน"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__due_days
@@ -175,33 +187,22 @@ msgstr "ค่าธรรมเนียม"
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__amount
 msgid "Fees Amount"
-msgstr "ค่าธรรมเนียม จำนวน"
-
-#. module: openeducat_fees
-#: model:ir.ui.menu,name:openeducat_fees.menu_op_fees_analysis_report_main
-msgid "Fees Analysis"
-msgstr "การวิเคราะห์ค่าธรรมเนียม"
+msgstr "จำนวนค่าธรรมเนียม"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student__fees_detail_ids
 msgid "Fees Collection Details"
-msgstr "รายละเอียดการเก็บค่าธรรมเนียม"
-
-#. module: openeducat_fees
-#: model:ir.actions.report,name:openeducat_fees.action_report_fees_detail_analysis
-msgid "Fees Detail Analysi"
-msgstr "การวิเคราะห์รายละเอียดค่าธรรมเนียม"
+msgstr "รายละเอียดการรวบรวมค่าธรรมเนียม"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.fees_detail_report_wizard_form
-#: model_terms:ir.ui.view,arch_db:openeducat_fees.view_op_student_form_fees_inherit
 msgid "Fees Details"
 msgstr "รายละเอียดค่าธรรมเนียม"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student__fees_details_count
 msgid "Fees Details Count"
-msgstr "รายละเอียดค่าธรรมเนียม จำนวน"
+msgstr "จำนวนรายละเอียดค่าธรรมเนียม"
 
 #. module: openeducat_fees
 #: model:ir.model,name:openeducat_fees.model_op_fees_terms_line
@@ -210,19 +211,21 @@ msgstr "บรรทัดรายละเอียดค่าธรรมเ
 
 #. module: openeducat_fees
 #: model:ir.actions.act_window,name:openeducat_fees.fees_detail_report_wizard_act
+#: model:ir.actions.report,name:openeducat_fees.action_report_fees_detail_analysis
 msgid "Fees Details Report"
 msgstr "รายงานรายละเอียดค่าธรรมเนียม"
 
 #. module: openeducat_fees
 #: model:ir.model,name:openeducat_fees.model_op_fees_element
 msgid "Fees Element for course"
-msgstr "ค่าธรรมเนียมองค์ประกอบสำหรับหลักสูตร"
+msgstr "องค์ประกอบค่าธรรมเนียมสำหรับหลักสูตร"
 
 #. module: openeducat_fees
 #: model:ir.actions.act_window,name:openeducat_fees.act_op_fees_element_view
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__fees_element_line
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.op_fees_element_form_1
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.op_fees_element_tree_1
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_form
 msgid "Fees Elements"
 msgstr "องค์ประกอบค่าธรรมเนียม"
 
@@ -239,14 +242,14 @@ msgstr "ตัวกรองค่าธรรมเนียม"
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__fees_line_id
 msgid "Fees Line"
-msgstr "ค่าธรรมเนียมบรรทัด"
+msgstr "บรรทัดค่าธรรมเนียม"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_form
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_search
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_tree
 msgid "Fees Reminder Terms"
-msgstr "เงื่อนไขการแจ้งเตือนค่าธรรมเนียม"
+msgstr "เงื่อนไขการเตือนค่าธรรมเนียม"
 
 #. module: openeducat_fees
 #: model:ir.model,name:openeducat_fees.model_report_openeducat_fees_report_fees_analysis
@@ -262,17 +265,17 @@ msgstr "วันที่เริ่มต้นค่าธรรมเนี
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_course__fees_term_id
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_course__fees_term_id
 msgid "Fees Term"
-msgstr "ระยะเวลาค่าธรรมเนียม"
+msgstr "เทอมค่าธรรมเนียม"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_form
 msgid "Fees Term Line"
-msgstr "ค่าธรรมเนียมระยะบรรทัด"
+msgstr "บรรทัดค่าธรรมเนียมค่าธรรมเนียม"
 
 #. module: openeducat_fees
 #: model:ir.actions.act_window,name:openeducat_fees.act_open_fees_terms_view
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_element__fees_terms_line_id
-#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__name
+#: model:ir.model.fields,field_description:openeducat_fees.field_select_fees_term_type_wizard__fees_terms
 #: model:ir.ui.menu,name:openeducat_fees.menu_fees_terms
 msgid "Fees Terms"
 msgstr "เงื่อนไขค่าธรรมเนียม"
@@ -285,29 +288,29 @@ msgstr "เงื่อนไขค่าธรรมเนียมสำหร
 #. module: openeducat_fees
 #. odoo-python
 #: code:addons/openeducat_fees/models/fees_terms.py:0
-#, python-format
 msgid "Fees Terms must be Required!"
-msgstr "ต้องระบุเงื่อนไขค่าธรรมเนียม!"
+msgstr "ต้องมีเงื่อนไขค่าธรรมเนียม!"
 
 #. module: openeducat_fees
 #: model:product.template,name:openeducat_fees.op_product_5_product_template
 msgid "Fees for Course-3"
-msgstr "ค่าธรรมเนียมสำหรับหลักสูตร-3"
+msgstr "ค่าธรรมเนียมสำหรับหลักสูตร -3"
 
 #. module: openeducat_fees
 #. odoo-python
 #: code:addons/openeducat_fees/models/fees_terms.py:0
-#, python-format
 msgid "Fees terms must be divided as such sum up in 100%"
-msgstr "เงื่อนไขค่าธรรมเนียมต้องหารผลรวมดังกล่าวเป็น 100%"
+msgstr "ข้อกำหนดค่าธรรมเนียมจะต้องแบ่งเป็นผลรวมดังกล่าวใน 100%"
 
 #. module: openeducat_fees
 #: model:ir.model.fields.selection,name:openeducat_fees.selection__op_fees_terms__fees_terms__fixed_date
+#: model:ir.model.fields.selection,name:openeducat_fees.selection__select_fees_term_type_wizard__fees_terms__fixed_date
 msgid "Fixed Fees of Dates"
 msgstr "ค่าธรรมเนียมคงที่ของวันที่"
 
 #. module: openeducat_fees
 #: model:ir.model.fields.selection,name:openeducat_fees.selection__op_fees_terms__fees_terms__fixed_days
+#: model:ir.model.fields.selection,name:openeducat_fees.selection__select_fees_term_type_wizard__fees_terms__fixed_days
 msgid "Fixed Fees of Days"
 msgstr "ค่าธรรมเนียมคงที่ของวัน"
 
@@ -330,7 +333,7 @@ msgstr "มีข้อความ"
 #: model:ir.module.category,description:openeducat_fees.module_category_all_op_fees
 #: model:ir.module.category,description:openeducat_fees.module_category_openeducat_fees
 msgid "Helps you manage your institutes different-different users."
-msgstr "ช่วยคุณจัดการสถาบันของคุณกับผู้ใช้ที่แตกต่างกัน"
+msgstr "ช่วยให้คุณจัดการสถาบันผู้ใช้ที่แตกต่างกัน"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__id
@@ -338,19 +341,20 @@ msgstr "ช่วยคุณจัดการสถาบันของคุ
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__id
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__id
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__id
+#: model:ir.model.fields,field_description:openeducat_fees.field_select_fees_term_type_wizard__id
 msgid "ID"
-msgstr "บัตรประจำตัวประชาชน"
+msgstr "รหัสประจำตัว"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "หากเลือก ข้อความใหม่จะต้องได้รับการดูแลจากคุณ"
+msgstr "หากตรวจสอบข้อความใหม่ต้องการความสนใจของคุณ"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_has_error
 #: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr "หากเลือก แสดงว่าบางข้อความมีข้อผิดพลาดในการส่ง"
+msgstr "หากตรวจสอบข้อความบางข้อความมีข้อผิดพลาดในการจัดส่ง"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_form
@@ -360,12 +364,12 @@ msgstr "ข้อมูล"
 #. module: openeducat_fees
 #: model:ir.model.fields.selection,name:openeducat_fees.selection__op_student_fees_details__state__invoice
 msgid "Invoice Created"
-msgstr "สร้างใบแจ้งหนี้แล้ว"
+msgstr "สร้างใบแจ้งหนี้"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__invoice_id
 msgid "Invoice ID"
-msgstr "รหัสใบแจ้งหนี้"
+msgstr "ใบแจ้งหนี้ ID"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__invoice_state
@@ -375,17 +379,12 @@ msgstr "สถานะใบแจ้งหนี้"
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_op_student_form_fees_inherit
 msgid "Invoiced"
-msgstr "ออกใบแจ้งหนี้แล้ว"
+msgstr "ที่ได้รับใบแจ้งหนี้"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_is_follower
 msgid "Is Follower"
-msgstr "เป็นผู้ตาม"
-
-#. module: openeducat_fees
-#: model:ir.model,name:openeducat_fees.model_op_course
-msgid "LMS Course"
-msgstr "หลักสูตร LMS"
+msgstr "เป็นผู้ติดตาม"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__write_uid
@@ -393,6 +392,7 @@ msgstr "หลักสูตร LMS"
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__write_uid
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__write_uid
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__write_uid
+#: model:ir.model.fields,field_description:openeducat_fees.field_select_fees_term_type_wizard__write_uid
 msgid "Last Updated by"
 msgstr "อัปเดตล่าสุดโดย"
 
@@ -402,8 +402,9 @@ msgstr "อัปเดตล่าสุดโดย"
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__write_date
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__write_date
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__write_date
+#: model:ir.model.fields,field_description:openeducat_fees.field_select_fees_term_type_wizard__write_date
 msgid "Last Updated on"
-msgstr "อัปเดตล่าสุดเมื่อ"
+msgstr "อัปเดตล่าสุด"
 
 #. module: openeducat_fees
 #: model:product.template,name:openeducat_fees.op_product_7_product_template
@@ -424,6 +425,17 @@ msgstr "ข้อผิดพลาดในการส่งข้อควา
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_ids
 msgid "Messages"
 msgstr "ข้อความ"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__name
+msgid "Name"
+msgstr "ชื่อ"
+
+#. module: openeducat_fees
+#. odoo-javascript
+#: code:addons/openeducat_fees/static/src/xml/fees_term_widget_template.xml:0
+msgid "No Image"
+msgstr "ไม่มีภาพ"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__no_days
@@ -448,7 +460,12 @@ msgstr "จำนวนข้อความที่ต้องดำเนิ
 #. module: openeducat_fees
 #: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr "จำนวนข้อความที่มีข้อผิดพลาดในการส่ง"
+msgstr "จำนวนข้อความที่มีข้อผิดพลาดในการจัดส่ง"
+
+#. module: openeducat_fees
+#: model:ir.model,name:openeducat_fees.model_op_course
+msgid "OpenEduCat Course"
+msgstr "หลักสูตรเปิด"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.fees_detail_report_wizard_form
@@ -466,14 +483,20 @@ msgid "Product(s)"
 msgstr "สินค้า)"
 
 #. module: openeducat_fees
-#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__rating_ids
-msgid "Ratings"
-msgstr "การให้คะแนน"
-
-#. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr "ข้อผิดพลาดในการส่ง SMS"
+msgstr "ข้อผิดพลาดในการจัดส่ง SMS"
+
+#. module: openeducat_fees
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.select_fees_term_type_form
+msgid "Save"
+msgstr "บันทึก"
+
+#. module: openeducat_fees
+#: model:ir.actions.act_window,name:openeducat_fees.action_select_fees_term_type
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.select_fees_term_type_form
+msgid "Select Fees Term Type"
+msgstr "เลือกประเภทค่าธรรมเนียมค่าธรรมเนียม"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_element__sequence
@@ -496,12 +519,12 @@ msgstr "นักเรียน"
 #. module: openeducat_fees
 #: model:ir.model,name:openeducat_fees.model_op_student_course
 msgid "Student Course Details"
-msgstr "รายละเอียดหลักสูตรนักศึกษา"
+msgstr "รายละเอียดหลักสูตรนักเรียน"
 
 #. module: openeducat_fees
 #: model:ir.model,name:openeducat_fees.model_op_student_fees_details
 msgid "Student Fees Details"
-msgstr "รายละเอียดค่าธรรมเนียมนักศึกษา"
+msgstr "รายละเอียดค่าธรรมเนียมนักเรียน"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
@@ -511,36 +534,34 @@ msgstr "ชื่อนักเรียน"
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__date
 msgid "Submit Date"
-msgstr "วันที่ส่ง"
+msgstr "ส่งวันที่"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__fees_terms
 msgid "Term Type"
-msgstr "ประเภทคำ"
+msgstr "ประเภทคำศัพท์"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__line_ids
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_form
 msgid "Terms"
-msgstr "เงื่อนไข"
+msgstr "คำศัพท์"
 
 #. module: openeducat_fees
 #. odoo-python
 #: code:addons/openeducat_fees/models/student.py:0
-#, python-format
 msgid "The value of the deposit amount must be positive."
 msgstr "มูลค่าของจำนวนเงินฝากจะต้องเป็นบวก"
 
 #. module: openeducat_fees
 #. odoo-python
 #: code:addons/openeducat_fees/models/student.py:0
-#, python-format
 msgid ""
 "There is no income account defined for this product: \"%s\".You may have to "
 "install a chart of account from Accounting app, settings menu."
 msgstr ""
 "ไม่มีบัญชีรายได้ที่กำหนดไว้สำหรับผลิตภัณฑ์นี้: \"%s\" "
-"คุณอาจต้องติดตั้งผังบัญชีจากแอปการบัญชี เมนูการตั้งค่า"
+"คุณอาจต้องติดตั้งแผนภูมิบัญชีจากแอพบัญชีเมนูการตั้งค่า"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
@@ -554,23 +575,23 @@ msgstr "ใบแจ้งหนี้ทั้งหมด"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
-msgid "Total Left"
-msgstr "ซ้ายทั้งหมด"
+msgid "Total Paid"
+msgstr "จ่ายทั้งหมด"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
-msgid "Total Paid"
-msgstr "ทั้งหมดที่จ่าย"
+msgid "Total Unpaid"
+msgstr "ค้างชำระทั้งหมด"
 
 #. module: openeducat_fees
 #: model:product.template,name:openeducat_fees.op_product_9_product_template
 msgid "Transportation Fees"
-msgstr "ค่าธรรมเนียมการขนส่ง"
+msgstr "ค่าขนส่ง"
 
 #. module: openeducat_fees
 #: model:product.template,name:openeducat_fees.op_product_8_product_template
 msgid "Tution Fees"
-msgstr "ค่าเล่าเรียน"
+msgstr "ค่าธรรมเนียมการทดลอง"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__day_type
@@ -601,4 +622,9 @@ msgstr "ประวัติการสื่อสารเว็บไซต
 #. module: openeducat_fees
 #: model:ir.model,name:openeducat_fees.model_fees_detail_report_wizard
 msgid "Wizard For Fees Details Report"
-msgstr "ตัวช่วยสร้างรายงานรายละเอียดค่าธรรมเนียม"
+msgstr "ตัวช่วยสร้างสำหรับรายงานรายละเอียดค่าธรรมเนียม"
+
+#. module: openeducat_fees
+#: model:ir.model,name:openeducat_fees.model_select_fees_term_type_wizard
+msgid "Wizard For Fees Term Type"
+msgstr "ตัวช่วยสร้างสำหรับประเภทเทอมค่าธรรมเนียม"

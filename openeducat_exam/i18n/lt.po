@@ -1,16 +1,19 @@
-
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* openeducat_exam
+#
 msgid ""
 msgstr ""
-"Project-Id-Version:Odoo Server 17.0"
-"Report-Msgid-Bugs-To:"
-"POT-Creation-Date:2024-02-15 07:20+0000"
-"PO-Revision-Date:2024-02-15 07:20+0000"
-"Last-Translator:"
-"Language-Team:"
-"MIME-Version:1.0"
-"Content-Type:text/plain; charset=UTF-8"
-"Content-Transfer-Encoding:"
-"Plural-Forms:"
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-29 06:54+0000\n"
+"PO-Revision-Date: 2025-04-29 06:54+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
@@ -18,18 +21,18 @@ msgid ""
 "<b>Course\n"
 "                                                        </b>"
 msgstr ""
-"<b>Kursas\n"
-" </b>"
+"<b> kurss\n"
+"                                                        </b>"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_ticket
 msgid "<b>Course :</b>"
-msgstr "<b>Kursas:</b>"
+msgstr "<b> kurss: </b>"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
 msgid "<b>Course:</b>"
-msgstr "<b>Kursas:</b>"
+msgstr "<b> kurss: </b>"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
@@ -38,9 +41,9 @@ msgid ""
 "                                                            Code\n"
 "                                                        </b>"
 msgstr ""
-"<b>Egzaminas\n"
-" Kodas\n"
-" </b>"
+"<b> eksāmens\n"
+"                                                            Kodekss\n"
+"                                                        </b>"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
@@ -49,29 +52,29 @@ msgid ""
 "                                                            Name\n"
 "                                                        </b>"
 msgstr ""
-"<b>Egzaminas\n"
-" Vardas\n"
-" </b>"
+"<b> eksāmens\n"
+"                                                            Nosaukt\n"
+"                                                        </b>"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
 msgid "<b>Exam Code:</b>"
-msgstr "<b>Egzamino kodas:</b>"
+msgstr "<b> eksāmena kods: </b>"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
 msgid "<b>Exam Name:</b>"
-msgstr "<b>Egzamino pavadinimas:</b>"
+msgstr "<b> eksāmena nosaukums: </b>"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_ticket
 msgid "<b>Hall Ticket</b>"
-msgstr "<b>Salės bilietas</b>"
+msgstr "<b> zāles biļete </b>"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_ticket
 msgid "<b>Roll No :</b>"
-msgstr "<b>Ritinio Nr.:</b>"
+msgstr "<b> Roll NO: </b>"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
@@ -80,19 +83,19 @@ msgid ""
 "                                                            Name\n"
 "                                                        </b>"
 msgstr ""
-"<b>Mokinio\n"
-" Vardas\n"
-" </b>"
+"<b> students\n"
+"                                                            Nosaukt\n"
+"                                                        </b>"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_ticket
 msgid "<b>Student Name :</b>"
-msgstr "<b>Mokinio vardas:</b>"
+msgstr "<b> Studenta vārds: </b>"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
 msgid "<b>Student Name:</b>"
-msgstr "<b>Mokinio vardas:</b>"
+msgstr "<b> Studenta vārds: </b>"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
@@ -100,19 +103,19 @@ msgid ""
 "<strong>MarkSheet\n"
 "                                            </strong>"
 msgstr ""
-"<strong>MarkSheet\n"
-" </strong>"
+"<strong> Marksheet\n"
+"                                            </strong>"
 
 #. module: openeducat_exam
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_exam_attendees__status__absent
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
 msgid "Absent"
-msgstr "Nėra"
+msgstr "Promesošs"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_held_exam_form
 msgid "Absent Attendees"
-msgstr "Nedalyvaujantys dalyviai"
+msgstr "Prombūtnes dalībnieku"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__message_needaction
@@ -120,7 +123,7 @@ msgstr "Nedalyvaujantys dalyviai"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__message_needaction
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__message_needaction
 msgid "Action Needed"
-msgstr "Reikalingas veiksmas"
+msgstr "Nepieciešama darbība"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__active
@@ -129,14 +132,13 @@ msgstr "Reikalingas veiksmas"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__active
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__active
 msgid "Active"
-msgstr "Aktyvus"
+msgstr "Aktīvs"
 
 #. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/models/result_template.py:0
-#, python-format
 msgid "All subject exam should be done."
-msgstr "Visų dalykų egzaminas turi būti atliktas."
+msgstr "Jāveic visi priekšmetu eksāmens."
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_form
@@ -150,7 +152,7 @@ msgstr "Visų dalykų egzaminas turi būti atliktas."
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_result_template_form
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_result_template_search
 msgid "Archived"
-msgstr "Suarchyvuota"
+msgstr "Arhivēts"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__message_attachment_count
@@ -158,19 +160,24 @@ msgstr "Suarchyvuota"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__message_attachment_count
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__message_attachment_count
 msgid "Attachment Count"
-msgstr "Priedų skaičius"
+msgstr "Pielikumu skaits"
 
 #. module: openeducat_exam
 #: model:ir.model.constraint,message:openeducat_exam.constraint_op_exam_attendees_unique_attendees
 msgid "Attendee must be unique per exam."
-msgstr "Egzamino dalyvis turi būti unikalus."
+msgstr "Dalībniekam jābūt unikālam katram eksāmenam."
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__attendees_line
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_held_exam__attendees_line
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_form
 msgid "Attendees"
-msgstr "Dalyviai"
+msgstr "Apmeklētāji"
+
+#. module: openeducat_exam
+#: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__attendees_count
+msgid "Attendees Count"
+msgstr "Apmeklētāju skaits"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__batch_id
@@ -178,71 +185,70 @@ msgstr "Dalyviai"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_session__batch_id
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_held_exam__batch_id
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__batch_id
+#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_session_pivot
 msgid "Batch"
 msgstr "Partija"
 
 #. module: openeducat_exam
-#: model_terms:ir.ui.view,arch_db:openeducat_exam.student_hall_ticket_form
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_form
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_session_form
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_register_form
 msgid "Cancel"
-msgstr "Atšaukti"
+msgstr "Atcelt"
 
 #. module: openeducat_exam
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_exam__state__cancel
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_exam_session__state__cancel
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_marksheet_register__state__cancelled
 msgid "Cancelled"
-msgstr "Atšauktas"
+msgstr "Atcelts"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_room__capacity
 msgid "Capacity"
-msgstr "Talpa"
+msgstr "Ietilpība"
 
 #. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/models/exam_room.py:0
-#, python-format
 msgid "Capacity over Classroom capacity!"
-msgstr "Pajėgumai viršija klasės talpą!"
+msgstr "Ietilpība salīdzinājumā ar klases jaudu!"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_room__classroom_id
 msgid "Classroom"
-msgstr "Klasė"
+msgstr "Klase"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_type__code
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_type_search
 msgid "Code"
-msgstr "Kodas"
+msgstr "Kodekss"
 
 #. module: openeducat_exam
 #: model:ir.model.constraint,message:openeducat_exam.constraint_op_exam_session_unique_exam_session_code
 msgid "Code should be unique per exam session!"
-msgstr "Kodas turi būti unikalus kiekvienoje egzamino sesijoje!"
+msgstr "Kodam jābūt unikālam katrā eksāmena sesijā!"
 
 #. module: openeducat_exam
 #: model:ir.model.constraint,message:openeducat_exam.constraint_op_exam_type_unique_exam_type_code
 msgid "Code should be unique per exam type!"
-msgstr "Kodas turi būti unikalus kiekvienam egzamino tipui!"
+msgstr "Kodam jābūt unikālam katram eksāmena veidam!"
 
 #. module: openeducat_exam
 #: model:ir.model.constraint,message:openeducat_exam.constraint_op_exam_unique_exam_code
 msgid "Code should be unique per exam!"
-msgstr "Kodas turi būti unikalus kiekvienam egzaminui!"
+msgstr "Kodam jābūt unikālam katram eksāmenam!"
 
 #. module: openeducat_exam
 #: model:ir.ui.menu,name:openeducat_exam.menu_exam_configuration
 msgid "Configuration"
-msgstr "Konfigūracija"
+msgstr "Konfigurācija"
 
 #. module: openeducat_exam
 #: model:ir.model,name:openeducat_exam.model_res_partner
 msgid "Contact"
-msgstr "kontaktas"
+msgstr "Saskare"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__course_id
@@ -250,8 +256,9 @@ msgstr "kontaktas"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_session__course_id
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_held_exam__course_id
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__course_id
+#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_session_pivot
 msgid "Course"
-msgstr "Kursas"
+msgstr "Kurss"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__create_uid
@@ -266,9 +273,8 @@ msgstr "Kursas"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_line__create_uid
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__create_uid
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__create_uid
-#: model:ir.model.fields,field_description:openeducat_exam.field_student_hall_ticket__create_uid
 msgid "Created by"
-msgstr "Sukurta"
+msgstr "Izveidots ar"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__create_date
@@ -283,19 +289,18 @@ msgstr "Sukurta"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_line__create_date
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__create_date
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__create_date
-#: model:ir.model.fields,field_description:openeducat_exam.field_student_hall_ticket__create_date
 msgid "Created on"
-msgstr "Sukurtas"
+msgstr "Izveidots"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_ticket
 msgid "Date"
-msgstr "Data"
+msgstr "Datums"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_form
 msgid "Description"
-msgstr "apibūdinimas"
+msgstr "Apraksts"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__display_name
@@ -310,9 +315,8 @@ msgstr "apibūdinimas"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_line__display_name
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__display_name
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__display_name
-#: model:ir.model.fields,field_description:openeducat_exam.field_student_hall_ticket__display_name
 msgid "Display Name"
-msgstr "Rodomas pavadinimas"
+msgstr "Displeja nosaukums"
 
 #. module: openeducat_exam
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_exam__state__done
@@ -320,7 +324,7 @@ msgstr "Rodomas pavadinimas"
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_form
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_session_form
 msgid "Done"
-msgstr "padaryta"
+msgstr "Darīts"
 
 #. module: openeducat_exam
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_exam__state__draft
@@ -330,76 +334,68 @@ msgstr "padaryta"
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_form
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_session_form
 msgid "Draft"
-msgstr "Juodraštis"
+msgstr "Uzmetums"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_session__end_date
 msgid "End Date"
-msgstr "Pabaigos data"
+msgstr "Beigu datums"
 
 #. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/models/exam_session.py:0
-#, python-format
 msgid "End Date cannot be set before Start Date."
-msgstr "Pabaigos data negali būti nustatyta anksčiau nei pradžios data."
+msgstr "Beigu datumu nevar iestatīt pirms sākuma datuma."
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__end_time
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__end_time
 msgid "End Time"
-msgstr "Pabaigos laikas"
+msgstr "Beigu laiks"
 
 #. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/models/exam.py:0
-#, python-format
 msgid "End Time cannot be set before Start Time."
-msgstr "Pabaigos laikas negali būti nustatytas anksčiau nei pradžios laikas."
+msgstr "Beigu laiku nevar iestatīt pirms sākuma laika."
 
 #. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/models/exam_room.py:0
-#, python-format
 msgid "Enter proper Capacity"
-msgstr "Įveskite tinkamą talpą"
+msgstr "Ievadiet pareizo jaudu"
 
 #. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/models/result_line.py:0
-#, python-format
 msgid "Enter proper Marks or Percentage!"
-msgstr "Įveskite tinkamus ženklus arba procentus!"
+msgstr "Ievadiet pareizas atzīmes vai procentus!"
 
 #. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/models/marksheet_line.py:0
-#, python-format
 msgid "Enter proper marks or percentage!"
-msgstr "Įveskite tinkamus balus arba procentus!"
+msgstr "Ievadiet pareizas atzīmes vai procentus!"
 
 #. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/models/exam.py:0
-#: code:addons/openeducat_exam/models/exam_attendees.py:0
-#, python-format
 msgid "Enter proper marks!"
-msgstr "Įveskite tinkamus pažymius!"
+msgstr "Ievadiet pareizas atzīmes!"
 
 #. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/models/marksheet_register.py:0
-#, python-format
 msgid "Enter proper pass or fail!"
-msgstr "Įveskite tinkamą leidimą arba nesėkmę!"
+msgstr "Ievadiet pareizu caurlaidi vai neizdodas!"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_session__evaluation_type
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_line__evaluation_type
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_line__evaluation_type
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__evaluation_type
-msgid "Evolution type"
-msgstr "Evoliucijos tipas"
+msgid "Evolution Type"
+msgstr "Evolūcijas tips"
 
 #. module: openeducat_exam
 #: model:ir.model,name:openeducat_exam.model_op_exam
@@ -411,13 +407,13 @@ msgstr "Evoliucijos tipas"
 #: model:ir.module.category,name:openeducat_exam.module_category_all_op_exam
 #: model:ir.module.category,name:openeducat_exam.module_category_openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_attendees_search
+#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_calendar_view
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_form
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_search
-#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_session_form
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_tree
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_result_line_search
 msgid "Exam"
-msgstr "Egzaminas"
+msgstr "Eksāmens"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
@@ -425,8 +421,8 @@ msgid ""
 "Exam\n"
 "                                                    Type"
 msgstr ""
-"Exam\n"
-"                                                    Type"
+"Eksāmens\n"
+"                                                    Ierakstīt"
 
 #. module: openeducat_exam
 #: model:ir.actions.act_window,name:openeducat_exam.act_open_op_exam_attendees_view
@@ -437,18 +433,33 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_attendees_tree
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_room_distribution_form
 msgid "Exam Attendees"
-msgstr "Egzamino dalyviai"
+msgstr "Eksāmenu dalībnieki"
+
+#. module: openeducat_exam
+#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_attendees_pivot
+msgid "Exam Attendees Pivot"
+msgstr "Eksāmenu dalībnieki šarnīra"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__exam_code
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_search
 msgid "Exam Code"
-msgstr "Egzamino kodas"
+msgstr "Eksāmena kods"
 
 #. module: openeducat_exam
 #: model:ir.model,name:openeducat_exam.model_report_openeducat_exam_report_marksheet_report
 msgid "Exam Marksheet Report"
-msgstr "Egzamino pažymių ataskaita"
+msgstr "Eksāmena marksheet ziņojums"
+
+#. module: openeducat_exam
+#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_form
+msgid "Exam Name"
+msgstr "Eksāmena nosaukums"
+
+#. module: openeducat_exam
+#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_pivot
+msgid "Exam Pivot"
+msgstr "Eksāmenu pagrieziens"
 
 #. module: openeducat_exam
 #: model:ir.model,name:openeducat_exam.model_op_exam_room
@@ -456,13 +467,13 @@ msgstr "Egzamino pažymių ataskaita"
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_room_search
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_room_tree
 msgid "Exam Room"
-msgstr "Egzaminų kambarys"
+msgstr "Eksāmenu telpa"
 
 #. module: openeducat_exam
 #: model:ir.actions.act_window,name:openeducat_exam.act_open_op_room_distribution_view
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_room_distribution_form
 msgid "Exam Room Distribution"
-msgstr "Egzaminų kambario paskirstymas"
+msgstr "Eksāmenu telpas izplatīšana"
 
 #. module: openeducat_exam
 #: model:ir.actions.act_window,name:openeducat_exam.act_open_op_exam_room_view
@@ -470,7 +481,7 @@ msgstr "Egzaminų kambario paskirstymas"
 #: model:ir.ui.menu,name:openeducat_exam.menu_op_exam_room_sub
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_room_distribution_form
 msgid "Exam Rooms"
-msgstr "Egzaminų kambariai"
+msgstr "Eksāmenu telpas"
 
 #. module: openeducat_exam
 #: model:ir.model,name:openeducat_exam.model_op_exam_session
@@ -479,36 +490,40 @@ msgstr "Egzaminų kambariai"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__exam_session_id
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__exam_session_id
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__exam_session
-#: model:ir.model.fields,field_description:openeducat_exam.field_student_hall_ticket__exam_session_id
+#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_session_calendar_view
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_session_form
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_session_search
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_session_tree
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_register_search
 msgid "Exam Session"
-msgstr "Egzamino sesija"
+msgstr "Eksāmena sesija"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_session__exam_code
 msgid "Exam Session Code"
-msgstr "Egzamino sesijos kodas"
+msgstr "Eksāmenu sesijas kods"
+
+#. module: openeducat_exam
+#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_session_pivot
+msgid "Exam Session Pivot"
+msgstr "Eksāmenu sesijas pagrieziens"
 
 #. module: openeducat_exam
 #: model:ir.actions.act_window,name:openeducat_exam.act_open_op_exam_session_view
 #: model:ir.ui.menu,name:openeducat_exam.menu_op_exam_session
 msgid "Exam Sessions"
-msgstr "Egzaminų sesijos"
+msgstr "Eksāmenu sesijas"
 
 #. module: openeducat_exam
 #: model:ir.model,name:openeducat_exam.model_report_openeducat_exam_report_ticket
 msgid "Exam Ticket Report"
-msgstr "Egzamino bilietų ataskaita"
+msgstr "Eksāmena biļetes ziņojums"
 
 #. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/models/exam.py:0
-#, python-format
 msgid "Exam Time should in between Exam Session Dates."
-msgstr "Egzamino laikas turi būti tarp egzaminų sesijos datų."
+msgstr "Eksāmena laikam vajadzētu būt starp eksāmenu sesijas datumiem."
 
 #. module: openeducat_exam
 #: model:ir.model,name:openeducat_exam.model_op_exam_type
@@ -517,34 +532,34 @@ msgstr "Egzamino laikas turi būti tarp egzaminų sesijos datų."
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_type_search
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_type_tree
 msgid "Exam Type"
-msgstr "Egzamino tipas"
+msgstr "Eksāmena tips"
 
 #. module: openeducat_exam
 #: model:ir.actions.act_window,name:openeducat_exam.act_open_op_exam_type_view
 #: model:ir.ui.menu,name:openeducat_exam.menu_op_exam_type_sub
 msgid "Exam Types"
-msgstr "Egzamino tipai"
+msgstr "Eksāmenu veidi"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_session__exam_ids
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__exam_id
-#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_session_form
 msgid "Exam(s)"
-msgstr "Egzaminas (-ai)"
+msgstr "Eksāmens (-i)"
 
 #. module: openeducat_exam
 #: model:ir.actions.act_window,name:openeducat_exam.act_open_op_exam_view
+#: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_session__exams_count
 #: model:ir.ui.menu,name:openeducat_exam.menu_op_exam_main
 #: model:ir.ui.menu,name:openeducat_exam.menu_op_exam_root
 #: model:ir.ui.menu,name:openeducat_exam.menu_op_school_exam_result
 msgid "Exams"
-msgstr "Egzaminai"
+msgstr "Eksāmeni"
 
 #. module: openeducat_exam
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_marksheet_line__status__fail
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_result_line__status__fail
 msgid "Fail"
-msgstr "Nepavyko"
+msgstr "Neizdoties"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__message_follower_ids
@@ -552,7 +567,7 @@ msgstr "Nepavyko"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__message_follower_ids
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__message_follower_ids
 msgid "Followers"
-msgstr "Sekėjai"
+msgstr "Sekotāji"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__message_partner_ids
@@ -560,29 +575,24 @@ msgstr "Sekėjai"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__message_partner_ids
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Stebėtojai (partneriai)"
-
-#. module: openeducat_exam
-#: model:ir.ui.menu,name:openeducat_exam.menu_op_exam_general
-msgid "General"
-msgstr "Generolas"
+msgstr "Sekotāji (partneri)"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_result_template_form
 msgid "Generate Result"
-msgstr "Sukurti rezultatą"
+msgstr "Rezultāts"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__generated_by
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_register_search
 msgid "Generated By"
-msgstr "Sukūrė"
+msgstr "Ģenerēts"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_line__generated_date
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__generated_date
 msgid "Generated Date"
-msgstr "Sukurta data"
+msgstr "Ģenerēts datums"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_line__grade
@@ -590,7 +600,7 @@ msgstr "Sukurta data"
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_exam_session__evaluation_type__grade
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
 msgid "Grade"
-msgstr "Įvertinimas"
+msgstr "Pakāpe"
 
 #. module: openeducat_exam
 #: model:ir.actions.act_window,name:openeducat_exam.act_open_op_grade_configuration_view
@@ -600,12 +610,12 @@ msgstr "Įvertinimas"
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_grade_configuration_form
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_grade_configuration_tree
 msgid "Grade Configuration"
-msgstr "Įvertinimo konfigūracija"
+msgstr "Pakāpes konfigurācija"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_result_template_form
 msgid "Grades"
-msgstr "Įvertinimai"
+msgstr "Pakāpes"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_attendees_search
@@ -615,7 +625,7 @@ msgstr "Įvertinimai"
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_register_search
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_result_line_search
 msgid "Group By..."
-msgstr "Grupuoti pagal..."
+msgstr "Grupa ..."
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__has_message
@@ -623,7 +633,7 @@ msgstr "Grupuoti pagal..."
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__has_message
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__has_message
 msgid "Has Message"
-msgstr "Turi pranešimą"
+msgstr "Ir ziņojums"
 
 #. module: openeducat_exam
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_exam__state__held
@@ -631,25 +641,25 @@ msgstr "Turi pranešimą"
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_session_form
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_held_exam_form
 msgid "Held"
-msgstr "Surengtas"
+msgstr "Turēts"
 
 #. module: openeducat_exam
 #: model:ir.model,name:openeducat_exam.model_op_held_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_form
 msgid "Held Exam"
-msgstr "Laikė egzaminą"
+msgstr "Turētais eksāmens"
 
 #. module: openeducat_exam
 #: model:ir.actions.act_window,name:openeducat_exam.act_open_op_held_exam_view
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_held_exam_form
 msgid "Held Exam Wizard"
-msgstr "Laikė egzamino vedlys"
+msgstr "Turētais eksāmenu vednis"
 
 #. module: openeducat_exam
 #: model:ir.module.category,description:openeducat_exam.module_category_all_op_exam
 #: model:ir.module.category,description:openeducat_exam.module_category_openeducat_exam
 msgid "Helps you manage your institutes different-different users."
-msgstr "Padeda valdyti skirtingus institutus ir skirtingus vartotojus."
+msgstr "Palīdz pārvaldīt savus institūtus dažādus diferencētus lietotājus."
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__id
@@ -664,9 +674,8 @@ msgstr "Padeda valdyti skirtingus institutus ir skirtingus vartotojus."
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_line__id
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__id
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__id
-#: model:ir.model.fields,field_description:openeducat_exam.field_student_hall_ticket__id
 msgid "ID"
-msgstr "ID"
+msgstr "Personas apliecība"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,help:openeducat_exam.field_op_exam__message_needaction
@@ -674,7 +683,7 @@ msgstr "ID"
 #: model:ir.model.fields,help:openeducat_exam.field_op_marksheet_register__message_needaction
 #: model:ir.model.fields,help:openeducat_exam.field_op_result_template__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "Jei pažymėta, nauji pranešimai reikalauja jūsų dėmesio."
+msgstr "Pārbaudot, jauniem ziņojumiem ir nepieciešama jūsu uzmanība."
 
 #. module: openeducat_exam
 #: model:ir.model.fields,help:openeducat_exam.field_op_exam__message_has_error
@@ -686,7 +695,7 @@ msgstr "Jei pažymėta, nauji pranešimai reikalauja jūsų dėmesio."
 #: model:ir.model.fields,help:openeducat_exam.field_op_result_template__message_has_error
 #: model:ir.model.fields,help:openeducat_exam.field_op_result_template__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr "Jei pažymėta, kai kuriuose pranešimuose yra pristatymo klaida."
+msgstr "Pārbaudot, dažiem ziņojumiem ir piegādes kļūda."
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__message_is_follower
@@ -694,7 +703,7 @@ msgstr "Jei pažymėta, kai kuriuose pranešimuose yra pristatymo klaida."
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__message_is_follower
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__message_is_follower
 msgid "Is Follower"
-msgstr "Yra sekėjas"
+msgstr "Ir sekotājs"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__write_uid
@@ -709,9 +718,8 @@ msgstr "Yra sekėjas"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_line__write_uid
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__write_uid
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__write_uid
-#: model:ir.model.fields,field_description:openeducat_exam.field_student_hall_ticket__write_uid
 msgid "Last Updated by"
-msgstr "Paskutinį kartą atnaujino"
+msgstr "Pēdējo reizi atjaunināts"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__write_date
@@ -726,26 +734,25 @@ msgstr "Paskutinį kartą atnaujino"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_line__write_date
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__write_date
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__write_date
-#: model:ir.model.fields,field_description:openeducat_exam.field_student_hall_ticket__write_date
 msgid "Last Updated on"
-msgstr "Paskutinį kartą atnaujinta"
+msgstr "Pēdējo reizi atjaunināts"
 
 #. module: openeducat_exam
 #: model:res.groups,name:openeducat_exam.group_op_exam_admin
 msgid "Manager"
-msgstr "Vadovas"
+msgstr "Vadītājs"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_attendees__marks
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_line__marks
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_result_line_search
 msgid "Marks"
-msgstr "Ženklai"
+msgstr "Zīmes"
 
 #. module: openeducat_exam
 #: model:ir.actions.report,name:openeducat_exam.report_marksheet
 msgid "Marksheet"
-msgstr "Pažymėkite lapą"
+msgstr "Marķētāja"
 
 #. module: openeducat_exam
 #: model:ir.model,name:openeducat_exam.model_op_marksheet_line
@@ -755,13 +762,18 @@ msgstr "Pažymėkite lapą"
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_line_tree
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_result_line_search
 msgid "Marksheet Line"
-msgstr "Marksheet linija"
+msgstr "Rarkheet līnija"
 
 #. module: openeducat_exam
 #: model:ir.actions.act_window,name:openeducat_exam.act_open_op_marksheet_line_view
 #: model:ir.ui.menu,name:openeducat_exam.menu_op_marksheet_line_sub
 msgid "Marksheet Lines"
-msgstr "Marksheet linijos"
+msgstr "Marksheet līnijas"
+
+#. module: openeducat_exam
+#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_line_pivot
+msgid "Marksheet Pivot"
+msgstr "Marksheet šarnīrs"
 
 #. module: openeducat_exam
 #: model:ir.model,name:openeducat_exam.model_op_marksheet_register
@@ -772,24 +784,30 @@ msgstr "Marksheet linijos"
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_register_search
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_register_tree
 msgid "Marksheet Register"
-msgstr "Marksheet registras"
+msgstr "Marksheet Register"
 
 #. module: openeducat_exam
 #: model:ir.actions.act_window,name:openeducat_exam.act_open_op_marksheet_register_view
 #: model:ir.ui.menu,name:openeducat_exam.menu_op_marksheet_register_sub
 msgid "Marksheet Registers"
-msgstr "Marksheet registrai"
+msgstr "Marksheet reģistri"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__marksheet_line
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_register_form
 msgid "Marksheets"
-msgstr "Marksheets"
+msgstr "Zīmes"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_grade_configuration__max_per
 msgid "Maximum Percentage"
-msgstr "Didžiausia procentinė dalis"
+msgstr "Maksimālais procents"
+
+#. module: openeducat_exam
+#. odoo-python
+#: code:addons/openeducat_exam/models/grade_configuration.py:0
+msgid "Maximum percentage should not be greater than 100"
+msgstr "Maksimālajam procentam nevajadzētu būt lielākam par 100"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__message_has_error
@@ -797,7 +815,7 @@ msgstr "Didžiausia procentinė dalis"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__message_has_error
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__message_has_error
 msgid "Message Delivery error"
-msgstr "Pranešimo pristatymo klaida"
+msgstr "Ziņojuma piegādes kļūda"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__message_ids
@@ -805,19 +823,27 @@ msgstr "Pranešimo pristatymo klaida"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__message_ids
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__message_ids
 msgid "Messages"
-msgstr "Žinutės"
+msgstr "Ziņojumi"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_grade_configuration__min_per
 msgid "Minimum Percentage"
-msgstr "Minimalus procentas"
+msgstr "Minimālais procents"
+
+#. module: openeducat_exam
+#. odoo-python
+#: code:addons/openeducat_exam/models/grade_configuration.py:0
+msgid "Minimum percentage should be not greater than Maximum percentage"
+msgstr "Minimālajam procentam jābūt lielākam par maksimālo procentuālo daļu"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
 msgid ""
 "Month/Year\n"
 "                                                    of Passing"
-msgstr "Praėjimo mėnuo/metai\n"
+msgstr ""
+"Mēnesis/gads\n"
+"                                                    garām garāmgājienam"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_room__name
@@ -825,19 +851,19 @@ msgstr "Praėjimo mėnuo/metai\n"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__name
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_type_search
 msgid "Name"
-msgstr "vardas"
+msgstr "Nosaukt"
 
 #. module: openeducat_exam
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_exam_session__evaluation_type__normal
 msgid "Normal"
-msgstr "Normalus"
+msgstr "Normāls"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__note
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_attendees__note
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_attendees_form
 msgid "Note"
-msgstr "Pastaba"
+msgstr "Atzīmēt"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__message_needaction_counter
@@ -845,7 +871,7 @@ msgstr "Pastaba"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__message_needaction_counter
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__message_needaction_counter
 msgid "Number of Actions"
-msgstr "Veiksmų skaičius"
+msgstr "Darbību skaits"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__message_has_error_counter
@@ -853,7 +879,7 @@ msgstr "Veiksmų skaičius"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__message_has_error_counter
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__message_has_error_counter
 msgid "Number of errors"
-msgstr "Klaidų skaičius"
+msgstr "Kļūdu skaits"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,help:openeducat_exam.field_op_exam__message_needaction_counter
@@ -861,7 +887,7 @@ msgstr "Klaidų skaičius"
 #: model:ir.model.fields,help:openeducat_exam.field_op_marksheet_register__message_needaction_counter
 #: model:ir.model.fields,help:openeducat_exam.field_op_result_template__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr "Pranešimų, kuriems reikia imtis veiksmų, skaičius"
+msgstr "Ziņojumu skaits, kas prasa darbību"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,help:openeducat_exam.field_op_exam__message_has_error_counter
@@ -869,7 +895,7 @@ msgstr "Pranešimų, kuriems reikia imtis veiksmų, skaičius"
 #: model:ir.model.fields,help:openeducat_exam.field_op_marksheet_register__message_has_error_counter
 #: model:ir.model.fields,help:openeducat_exam.field_op_result_template__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr "Laiškų su pristatymo klaida skaičius"
+msgstr "Ziņojumu skaits ar piegādes kļūdu"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
@@ -877,8 +903,8 @@ msgid ""
 "Obtained\n"
 "                                                    Grade"
 msgstr ""
-"Obtained\n"
-"                                                    Grade"
+"Iegūts\n"
+"                                                    Pakāpe"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
@@ -886,8 +912,8 @@ msgid ""
 "Obtained\n"
 "                                                    Marks"
 msgstr ""
-"Obtained\n"
-"                                                    Marks"
+"Iegūts\n"
+"                                                    Zīmes"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
@@ -896,15 +922,15 @@ msgid ""
 "                                                    Marks/Total\n"
 "                                                    Marks"
 msgstr ""
-"Obtained\n"
-"                                                    Marks/Total\n"
-"                                                    Marks"
+"Iegūts\n"
+"                                                    Atzīmes/kopsumma\n"
+"                                                    Zīmes"
 
 #. module: openeducat_exam
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_marksheet_line__status__pass
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_result_line__status__pass
 msgid "Pass"
-msgstr "Praeiti"
+msgstr "Pāriet"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
@@ -912,72 +938,80 @@ msgid ""
 "Passing\n"
 "                                                    Marks"
 msgstr ""
-"Passing\n"
-"                                                    Marks"
+"Aiziešana\n"
+"                                                    Zīmes"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__min_marks
 msgid "Passing Marks"
-msgstr "Pravažiavimo ženklai"
+msgstr "Garāmbraucošais zīmes"
 
 #. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/models/exam.py:0
-#, python-format
 msgid "Passing Marks can't be greater than Total Marks"
-msgstr ""
-"Perduotų taškų skaičius negali būti didesnis nei bendras taškų skaičius"
+msgstr "Garāmbraucošās zīmes nevar būt lielākas par kopējām atzīmēm"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_line__percentage
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
 msgid "Percentage"
-msgstr "Procentas"
+msgstr "Procents"
 
 #. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/models/result_template.py:0
-#, python-format
 msgid "Percentage range conflict with other record."
-msgstr "Procentų diapazonas nesuderinamas su kitu įrašu."
+msgstr "Procentuālā diapazona konflikts ar citiem ierakstiem."
+
+#. module: openeducat_exam
+#. odoo-python
+#: code:addons/openeducat_exam/models/exam_attendees.py:0
+msgid "Please Enter Marks between 0 to %d"
+msgstr "Lūdzu, ievadiet atzīmes no 0 līdz %d"
+
+#. module: openeducat_exam
+#. odoo-python
+#: code:addons/openeducat_exam/wizard/room_distribution.py:0
+msgid "Please Enter both Room And student"
+msgstr "Lūdzu, ievadiet gan istabu, gan studentu"
 
 #. module: openeducat_exam
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_exam_attendees__status__present
 msgid "Present"
-msgstr "Pateikti"
+msgstr "Klātesošs"
 
 #. module: openeducat_exam
-#: model_terms:ir.ui.view,arch_db:openeducat_exam.student_hall_ticket_form
-msgid "Print"
-msgstr "Spausdinti"
-
-#. module: openeducat_exam
-#: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__rating_ids
-#: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_session__rating_ids
-#: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__rating_ids
-#: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__rating_ids
-msgid "Ratings"
-msgstr "Įvertinimai"
+#: model:ir.ui.menu,name:openeducat_exam.menu_op_exam_general
+msgid "Reporting"
+msgstr "Ziņošana"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__responsible_id
 msgid "Responsible"
-msgstr "Atsakingas"
+msgstr "Atbildīgs"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
 msgid "Result"
-msgstr "Rezultatas"
+msgstr "Rezultāts"
+
+#. module: openeducat_exam
+#: model:ir.actions.act_window,name:openeducat_exam.act_open_op_result_line_view_graph
+#: model:ir.ui.menu,name:openeducat_exam.menu_student_hall_ticket
+#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_result_line_graph_view
+msgid "Result Analysis"
+msgstr "Rezultātu analīze"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__result_date
 msgid "Result Date"
-msgstr "Rezultato data"
+msgstr "Rezultāta datums"
 
 #. module: openeducat_exam
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_result_template__state__result_generated
 msgid "Result Generated"
-msgstr "Sugeneruotas rezultatas"
+msgstr "Rezultāts"
 
 #. module: openeducat_exam
 #: model:ir.model,name:openeducat_exam.model_op_result_line
@@ -985,13 +1019,13 @@ msgstr "Sugeneruotas rezultatas"
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_result_line_search
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_result_line_tree
 msgid "Result Line"
-msgstr "Rezultatų eilutė"
+msgstr "Rezultātu līnija"
 
 #. module: openeducat_exam
 #: model:ir.actions.act_window,name:openeducat_exam.act_open_op_result_line_view
 #: model:ir.ui.menu,name:openeducat_exam.menu_op_result_line_sub
 msgid "Result Lines"
-msgstr "Rezultatų eilutės"
+msgstr "Rezultātu līnijas"
 
 #. module: openeducat_exam
 #: model:ir.model,name:openeducat_exam.model_op_result_template
@@ -1000,54 +1034,53 @@ msgstr "Rezultatų eilutės"
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_result_template_search
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_result_template_tree
 msgid "Result Template"
-msgstr "Rezultatų šablonas"
+msgstr "Rezultāta veidne"
 
 #. module: openeducat_exam
 #: model:ir.actions.act_window,name:openeducat_exam.act_open_op_result_template_view
 #: model:ir.ui.menu,name:openeducat_exam.menu_op_result_template
 msgid "Result Templates"
-msgstr "Rezultatų šablonai"
+msgstr "Rezultātu veidnes"
 
 #. module: openeducat_exam
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_exam__state__result_updated
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_form
 msgid "Result Updated"
-msgstr "Rezultatas atnaujintas"
+msgstr "Rezultāts atjaunināts"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_grade_configuration__result
 msgid "Result to Display"
-msgstr "Rezultatas į ekraną"
+msgstr ""
+"Error 500 (Server Error)!!1500.That’s an error.There was an error. Please "
+"try again later.That’s all we know."
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_line__result_line
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_line_form
 msgid "Results"
-msgstr "Rezultatai"
+msgstr "Rezultāti"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_attendees__room_id
 msgid "Room"
-msgstr "Kambarys"
+msgstr "Telpa"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__room_capacity
 msgid "Room Capacity"
-msgstr "Kambario talpa"
+msgstr "Istabas ietilpība"
 
 #. module: openeducat_exam
 #: model:ir.model,name:openeducat_exam.model_op_room_distribution
 msgid "Room Distribution"
-msgstr "Kambarių paskirstymas"
+msgstr "Istabas izplatīšana"
 
 #. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/wizard/room_distribution.py:0
-#, python-format
-msgid ""
-"Room capacity must be greater than total number                       of "
-"student"
-msgstr "Kambario tūris turi būti didesnis nei bendras studentų skaičius"
+msgid "Room capacity must be greater than total number of student"
+msgstr "Istabas jaudai jābūt lielākai par kopējo studentu skaitu"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__message_has_sms_error
@@ -1055,40 +1088,45 @@ msgstr "Kambario tūris turi būti didesnis nei bendras studentų skaičius"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__message_has_sms_error
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr "SMS pristatymo klaida"
+msgstr "SMS piegādes kļūda"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_session_form
 msgid "Schedule"
-msgstr "Tvarkaraštis"
+msgstr "Plānot"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_form
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_room_distribution_form
 msgid "Schedule Exam"
-msgstr "Suplanuokite egzaminą"
+msgstr "Grafika eksāmens"
 
 #. module: openeducat_exam
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_exam__state__schedule
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_exam_session__state__schedule
 msgid "Scheduled"
-msgstr "Suplanuota"
+msgstr "Plānots"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_register_form
 msgid "Set to Draft"
-msgstr "Nustatyti į juodraštį"
+msgstr "Iestatīts uz melnrakstu"
+
+#. module: openeducat_exam
+#: model:ir.ui.menu,name:openeducat_exam.menu_exam_config
+msgid "Settings"
+msgstr "Iestatījumi"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_session__start_date
 msgid "Start Date"
-msgstr "Pradžios data"
+msgstr "Sākuma datums"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__start_time
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__start_time
 msgid "Start Time"
-msgstr "Pradžios laikas"
+msgstr "Sākuma laiks"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__state
@@ -1096,7 +1134,7 @@ msgstr "Pradžios laikas"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__state
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_search
 msgid "State"
-msgstr "valstybė"
+msgstr "Štats"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_attendees__status
@@ -1107,7 +1145,7 @@ msgstr "valstybė"
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_register_search
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_result_line_search
 msgid "Status"
-msgstr "Būsena"
+msgstr "Statuss"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_attendees__student_id
@@ -1117,30 +1155,29 @@ msgstr "Būsena"
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_attendees_search
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_line_search
 msgid "Student"
-msgstr "Studentas"
-
-#. module: openeducat_exam
-#: model:ir.actions.report,name:openeducat_exam.action_student_hall_ticket_report
-#: model:ir.model,name:openeducat_exam.model_student_hall_ticket
-#: model_terms:ir.ui.view,arch_db:openeducat_exam.student_hall_ticket_form
-msgid "Student Hall Ticket"
-msgstr "Studentų salės bilietas"
-
-#. module: openeducat_exam
-#: model:ir.actions.act_window,name:openeducat_exam.student_hall_ticket_act
-#: model:ir.ui.menu,name:openeducat_exam.menu_student_hall_ticket
-msgid "Student Hall Tickets"
-msgstr "Studentų salės bilietai"
+msgstr "Students"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_ticket
 msgid "Student Image"
-msgstr "Mokinio įvaizdis"
+msgstr "Studenta tēls"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_result_line_search
 msgid "Students"
-msgstr "Studentai"
+msgstr "Studenti"
+
+#. module: openeducat_exam
+#: model:ir.actions.report,name:openeducat_exam.action_student_hall_ticket_report
+msgid "Students Hall Tickets"
+msgstr "Studentu zāles biļetes"
+
+#. module: openeducat_exam
+#. odoo-python
+#: code:addons/openeducat_exam/wizard/room_distribution.py:0
+msgid ""
+"Students are already scheduled for another exam during the specified time."
+msgstr "Studenti noteiktā laikā jau ir plānoti citam eksāmenam."
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__subject_id
@@ -1150,17 +1187,30 @@ msgstr "Studentai"
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_ticket
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_search
 msgid "Subject"
-msgstr "Tema"
+msgstr "Priekšmets"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_ticket
 msgid "Supervisor Sign"
-msgstr "Prižiūrėtojo ženklas"
+msgstr "Vadītāja zīme"
+
+#. module: openeducat_exam
+#. odoo-python
+#: code:addons/openeducat_exam/models/exam.py:0
+msgid "The exam time overlaps with an existing exam for the same subject."
+msgstr ""
+"Eksāmena laiks pārklājas ar esošo eksāmenu vienam un tam pašam priekšmetam."
+
+#. module: openeducat_exam
+#. odoo-python
+#: code:addons/openeducat_exam/wizard/room_distribution.py:0
+msgid "The selected rooms are already booked for the specified time."
+msgstr "Izvēlētās istabas jau ir rezervētas uz norādīto laiku."
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_ticket
 msgid "Time"
-msgstr "Laikas"
+msgstr "Laiks"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
@@ -1168,46 +1218,46 @@ msgid ""
 "Total\n"
 "                                                    Marks"
 msgstr ""
-"Total\n"
-"                                                    Marks"
+"Kopsumma\n"
+"                                                    Zīmes"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__total_failed
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_register_search
 msgid "Total Fail"
-msgstr "Visiška nesėkmė"
+msgstr "Total Fail"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__total_marks
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_line__total_marks
 msgid "Total Marks"
-msgstr "Bendri ženklai"
+msgstr "Kopējās atzīmes"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__total_pass
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_register_search
 msgid "Total Pass"
-msgstr "Bendras leidimas"
+msgstr "Kopējā caurlaide"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__total_student
 msgid "Total Student"
-msgstr "Visas studentas"
+msgstr "Kopējais students"
 
 #. module: openeducat_exam
 #: model:res.groups,name:openeducat_exam.group_op_exam_user
 msgid "User"
-msgstr "Vartotojas"
+msgstr "Lietotājs"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_register_form
 msgid "Validate Marksheet"
-msgstr "Patvirtinkite žymų lapą"
+msgstr "Apstiprināt Marksheet"
 
 #. module: openeducat_exam
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_marksheet_register__state__validated
 msgid "Validated"
-msgstr "Patvirtinta"
+msgstr "Apstiprināts"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_session__venue
@@ -1216,7 +1266,7 @@ msgstr "Patvirtinta"
 #: model:ir.model.fields,field_description:openeducat_exam.field_res_partner__is_venue
 #: model:ir.model.fields,field_description:openeducat_exam.field_res_users__is_venue
 msgid "Venue"
-msgstr "Vieta"
+msgstr "Norises vieta"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__website_message_ids
@@ -1224,7 +1274,7 @@ msgstr "Vieta"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__website_message_ids
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__website_message_ids
 msgid "Website Messages"
-msgstr "Svetainės pranešimai"
+msgstr "Vietnes ziņojumi"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,help:openeducat_exam.field_op_exam__website_message_ids
@@ -1232,4 +1282,14 @@ msgstr "Svetainės pranešimai"
 #: model:ir.model.fields,help:openeducat_exam.field_op_marksheet_register__website_message_ids
 #: model:ir.model.fields,help:openeducat_exam.field_op_result_template__website_message_ids
 msgid "Website communication history"
-msgstr "Svetainės komunikacijos istorija"
+msgstr "Tīmekļa komunikācijas vēsture"
+
+#. module: openeducat_exam
+#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_session_form
+msgid "exam"
+msgstr "eksāmens"
+
+#. module: openeducat_exam
+#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_session_pivot
+msgid "exam Code"
+msgstr "eksāmena kods"
