@@ -22,15 +22,48 @@ from odoo import fields, models
 
 
 class OpCategory(models.Model):
+    """Category model for OpenEduCat.
+
+    This model manages categories within the institution,
+    used for organizing and classifying various entities.
+
+    Attributes:
+        name (str): Name of the category
+        code (str): Unique code identifier for the category
+        company_id (int): Reference to the company
+    """
+
     _name = "op.category"
     _description = "OpenEduCat Category"
+    _inherit = "mail.thread"
+    _order = "name"
 
-    name = fields.Char('Name', size=256, required=True)
-    code = fields.Char('Code', size=16, required=True)
+    name = fields.Char(
+        string='Name',
+        size=256,
+        required=True,
+        tracking=True,
+        help="Name of the category"
+    )
+    
+    code = fields.Char(
+        string='Code',
+        size=16,
+        required=True,
+        tracking=True,
+        help="Unique code identifier for the category"
+    )
+    
     company_id = fields.Many2one(
-        "res.company", string="Company", default=lambda self: self.env.company
+        comodel_name="res.company",
+        string="Company",
+        default=lambda self: self.env.company,
+        tracking=True,
+        help="Company this category belongs to"
     )
 
     _sql_constraints = [
         ('unique_category_code',
-         'unique(code)', 'Code should be unique per category!')]
+         'unique(code)',
+         'Code should be unique per category!')
+    ]

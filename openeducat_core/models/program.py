@@ -18,31 +18,140 @@
 #
 ###############################################################################
 
-from odoo import fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class OpProgram(models.Model):
+    """Program model for OpenEduCat.
+
+    This model manages academic programs within the institution,
+    including their requirements and department associations.
+
+    Attributes:
+        name (str): Name of the program
+        code (str): Unique code identifier for the program
+        max_unit_load (float): Maximum allowed unit load
+        min_unit_load (float): Minimum required unit load
+        department_id (int): Reference to the department
+        active (bool): Program active status
+        image_1920 (binary): Program image
+        program_level_id (int): Reference to the program level
+    """
+
     _name = "op.program"
     _inherit = "mail.thread"
     _description = "OpenEduCat Program"
+    _order = "name"
 
-    name = fields.Char('Name', required=True, translate=True, tracking=True)
-    code = fields.Char('Code', size=16, required=True, translate=True)
-    max_unit_load = fields.Float("Maximum Unit Load")
-    min_unit_load = fields.Float("Minimum Unit Load")
+    name = fields.Char(
+        string='Name',
+        required=True,
+        translate=True,
+        tracking=True,
+        help="Name of the program"
+    )
+    
+    code = fields.Char(
+        string='Code',
+        size=16,
+        required=True,
+        translate=True,
+        tracking=True,
+        help="Unique code identifier for the program"
+    )
+    
+    max_unit_load = fields.Float(
+        string="Maximum Unit Load",
+        tracking=True,
+        help="Maximum allowed unit load for the program"
+    )
+    
+    min_unit_load = fields.Float(
+        string="Minimum Unit Load",
+        tracking=True,
+        help="Minimum required unit load for the program"
+    )
+    
     department_id = fields.Many2one(
-        'op.department', 'Department',
-        default=lambda self:
-        self.env.user.dept_id and self.env.user.dept_id.id or False)
-    active = fields.Boolean(default=True)
-    image_1920 = fields.Image('Image', attachment=True)
+        comodel_name='op.department',
+        string='Department',
+        default=lambda self: self.env.user.dept_id.id or False,
+        tracking=True,
+        help="Department offering the program"
+    )
+    
+    active = fields.Boolean(
+        default=True,
+        tracking=True,
+        help="Program active status"
+    )
+    
+    image_1920 = fields.Image(
+        string='Image',
+        attachment=True,
+        help="Program image"
+    )
+    
     program_level_id = fields.Many2one(
-        'op.program.level', 'Program Level', required=True)
+        comodel_name='op.program.level',
+        string='Program Level',
+        required=True,
+        tracking=True,
+        help="Level of the program"
+    )
+
+    _sql_constraints = [
+        ('unique_code',
+         'unique(code)',
+         'Program code must be unique!')
+    ]
+
+    @api.constrains('max_unit_load', 'min_unit_load')
+    def _check_unit_load(self):
+        """Validate unit load constraints.
+
+        Ensures that:
+        - Maximum unit load is greater than minimum unit load
+        - Both values are non-negative
+
+        Raises:
+            ValidationError: If unit load constraints are violated
+        """
+        for record in self:
+            if record.max_unit_load < record.min_unit_load:
+                raise ValidationError(_(
+                    "Maximum unit load cannot be less than minimum unit load!"))
+            if record.max_unit_load < 0 or record.min_unit_load < 0:
+                raise ValidationError(_(
+                    "Unit loads cannot be negative!"))
 
 
 class OpProgramLevel(models.Model):
+    """Program Level model for OpenEduCat.
+
+    This model manages the different levels of academic programs
+    within the institution.
+
+    Attributes:
+        name (str): Name of the program level
+    """
+
     _name = "op.program.level"
     _inherit = "mail.thread"
-    _description = "OpenEduCat Program level"
+    _description = "OpenEduCat Program Level"
+    _order = "name"
 
-    name = fields.Char('Name', required=True, translate=True, tracking=True)
+    name = fields.Char(
+        string='Name',
+        required=True,
+        translate=True,
+        tracking=True,
+        help="Name of the program level"
+    )
+
+    _sql_constraints = [
+        ('unique_name',
+         'unique(name)',
+         'Program level name must be unique!')
+    ]

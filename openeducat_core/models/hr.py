@@ -22,16 +22,41 @@ from odoo import api, models
 
 
 class HrEmployee(models.Model):
+    """Extension of the HR Employee model.
+
+    This model extends the standard HR Employee model to add
+    additional functionality specific to OpenEduCat, including
+    automatic synchronization of contact information between
+    related records.
+
+    The model inherits from hr.employee and adds:
+    - Automatic email synchronization from user record
+    - Automatic phone number synchronization from address record
+    """
+
     _inherit = "hr.employee"
+    _description = "OpenEduCat HR Employee"
 
     @api.onchange('user_id')
     def onchange_user(self):
+        """Update employee information when user is changed.
+
+        When a user is assigned to an employee:
+        - Sets the work email from the user's email
+        - Clears the identification ID
+        """
         if self.user_id:
             self.work_email = self.user_id.email
             self.identification_id = False
 
     @api.onchange('address_id')
     def onchange_address_id(self):
+        """Update employee contact information when address is changed.
+
+        When an address is assigned to an employee:
+        - Sets the work phone from the address phone
+        - Sets the mobile phone from the address mobile
+        """
         if self.address_id:
             self.work_phone = self.address_id.phone
             self.mobile_phone = self.address_id.mobile

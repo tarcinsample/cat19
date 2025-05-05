@@ -23,47 +23,129 @@ from odoo.exceptions import ValidationError
 
 
 class OpBatch(models.Model):
+    """Batch model for OpenEduCat.
+
+    This model manages student batches within the institution,
+    including their scheduling and course associations.
+
+    Attributes:
+        code (str): Unique code identifier for the batch
+        name (str): Name of the batch
+        start_date (date): Start date of the batch
+        end_date (date): End date of the batch
+        course_id (int): Reference to the associated course
+        active (bool): Batch active status
+    """
+
     _name = "op.batch"
     _inherit = "mail.thread"
     _description = "OpenEduCat Batch"
+    _order = "start_date"
 
-    code = fields.Char('Code', size=16, required=True)
-    name = fields.Char('Name', size=32, required=True)
+    code = fields.Char(
+        string='Code',
+        size=16,
+        required=True,
+        tracking=True,
+        help="Unique code identifier for the batch"
+    )
+    
+    name = fields.Char(
+        string='Name',
+        size=32,
+        required=True,
+        tracking=True,
+        help="Name of the batch"
+    )
+    
     start_date = fields.Date(
-        'Start Date', required=True, default=fields.Date.today())
-    end_date = fields.Date('End Date', required=True)
-    course_id = fields.Many2one('op.course', 'Course', required=True)
-    active = fields.Boolean(default=True)
+        string='Start Date',
+        required=True,
+        default=fields.Date.today(),
+        tracking=True,
+        help="Start date of the batch"
+    )
+    
+    end_date = fields.Date(
+        string='End Date',
+        required=True,
+        tracking=True,
+        help="End date of the batch"
+    )
+    
+    course_id = fields.Many2one(
+        comodel_name='op.course',
+        string='Course',
+        required=True,
+        tracking=True,
+        help="Course associated with the batch"
+    )
+    
+    active = fields.Boolean(
+        default=True,
+        tracking=True,
+        help="Batch active status"
+    )
 
     _sql_constraints = [
         ('unique_batch_code',
-         'unique(code)', 'Code should be unique per batch!')]
+         'unique(code)',
+         'Code should be unique per batch!')
+    ]
 
     @api.constrains('start_date', 'end_date')
-    def check_dates(self):
+    def _check_dates(self):
+        """Validate batch dates.
+
+        Ensures that:
+        - End date is not before start date
+
+        Raises:
+            ValidationError: If date validation fails
+        """
         for record in self:
-            start_date = fields.Date.from_string(record.start_date)
-            end_date = fields.Date.from_string(record.end_date)
-            if start_date > end_date:
-                raise ValidationError(
-                    _("End Date cannot be set before Start Date."))
+            if record.start_date > record.end_date:
+                raise ValidationError(_(
+                    "End Date cannot be set before Start Date."))
 
     @api.model
     def name_search(self, name, args=None, operator='ilike', limit=100):
+        """Search for batches by name.
+
+        If context contains 'get_parent_batch', also includes batches
+        from parent courses in the search results.
+
+        Args:
+            name (str): Name to search for
+            args (list): Additional search criteria
+            operator (str): Search operator
+            limit (int): Maximum number of results
+
+        Returns:
+            list: List of (id, display_name) tuples
+        """
         if self.env.context.get('get_parent_batch', False):
-            lst = []
-            lst.append(self.env.context.get('course_id'))
-            courses = self.env['op.course'].browse(lst)
+            course_ids = [self.env.context.get('course_id')]
+            courses = self.env['op.course'].browse(course_ids)
+            
+            # Collect all parent course IDs
             while courses.parent_id:
-                lst.append(courses.parent_id.id)
+                course_ids.append(courses.parent_id.id)
                 courses = courses.parent_id
-            batches = self.env['op.batch'].search([('course_id', 'in', lst)])
+            
+            # Search for batches in all related courses
+            batches = self.search([('course_id', 'in', course_ids)])
             return [(batch.id, batch.display_name) for batch in batches]
-        return super(OpBatch, self).name_search(
-            name, args, operator=operator, limit=limit)
+            
+        return super().name_search(name, args, operator=operator, limit=limit)
 
     @api.model
     def get_import_templates(self):
+        """Get the import template for batch data.
+
+        Returns:
+            list: List containing template information
+        """
         return [{
             'label': _('Import Template for Batch'),
             'template': '/openeducat_core/static/xls/op_batch.xls'

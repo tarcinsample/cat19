@@ -1,28 +1,38 @@
-###############################################################################
+# -*- coding: utf-8 -*-
+# Part of OpenEduCat. See LICENSE file for full copyright & licensing details.
+
+###########################################################################
 #
-#    OpenEduCat Inc
-#    Copyright (C) 2009-TODAY OpenEduCat Inc(<https://www.openeducat.org>).
+#    OpenEduCat Inc.
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Lesser General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Lesser General Public License for more details.
-#
-#    You should have received a copy of the GNU Lesser General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-###############################################################################
+###########################################################################
 
 from odoo import fields, models
 
 
 class StudentPortal(models.Model):
-    _inherit = 'res.partner'
+    """Student Portal model for OpenEduCat.
 
-    is_parent = fields.Boolean("Is a Parent")
-    is_student = fields.Boolean("Is a Student")
+    This model extends the res.partner model to add student portal functionality,
+    allowing partners to be identified as students or parents in the system.
+
+    Attributes:
+        is_parent (bool): Indicates if the partner is a parent
+        is_student (bool): Indicates if the partner is a student
+    """
+
+    _inherit = 'res.partner'
+    _description = 'Student Portal'
+
+    is_parent = fields.Boolean(
+        string="Is a Parent",
+        help="Indicates if this partner is a parent in the system",
+        tracking=True
+    )
+    
+    is_student = fields.Boolean(
+        string="Is a Student",
+        help="Indicates if this partner is a student in the system",
+        tracking=True
+    )

@@ -23,18 +23,71 @@ from odoo.exceptions import ValidationError
 
 
 class OpFaculty(models.Model):
+    """Faculty model for OpenEduCat.
+
+    This model manages faculty members within the institution,
+    including their personal information, department assignments,
+    and subject associations.
+
+    Attributes:
+        partner_id (int): Reference to the associated partner record
+        first_name (str): Faculty member's first name
+        middle_name (str): Faculty member's middle name
+        last_name (str): Faculty member's last name
+        birth_date (date): Date of birth
+        blood_group (str): Blood group type
+        gender (str): Gender of the faculty member
+        nationality (int): Reference to country of nationality
+        emergency_contact (int): Reference to emergency contact partner
+        visa_info (str): Visa information
+        id_number (str): ID card number
+        faculty_subject_ids (list): List of subjects taught by the faculty
+        emp_id (int): Reference to HR employee record
+        main_department_id (int): Primary department assignment
+        allowed_department_ids (list): List of departments faculty can access
+    """
+
     _name = "op.faculty"
     _description = "OpenEduCat Faculty"
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _inherits = {"res.partner": "partner_id"}
     _parent_name = False
+    _order = "name"
 
-    partner_id = fields.Many2one('res.partner', 'Partner',
-                                 required=True, ondelete="cascade")
-    first_name = fields.Char('First Name', translate=True, required=True)
-    middle_name = fields.Char('Middle Name', size=128)
-    last_name = fields.Char('Last Name', size=128, required=True)
-    birth_date = fields.Date('Birth Date', required=True)
+    partner_id = fields.Many2one(
+        comodel_name='res.partner',
+        string='Partner',
+        required=True,
+        ondelete="cascade",
+        tracking=True
+    )
+    
+    first_name = fields.Char(
+        string='First Name',
+        required=True,
+        translate=True,
+        tracking=True
+    )
+    
+    middle_name = fields.Char(
+        string='Middle Name',
+        size=128,
+        tracking=True
+    )
+    
+    last_name = fields.Char(
+        string='Last Name',
+        size=128,
+        required=True,
+        tracking=True
+    )
+    
+    birth_date = fields.Date(
+        string='Birth Date',
+        required=True,
+        tracking=True
+    )
+    
     blood_group = fields.Selection([
         ('A+', 'A+ve'),
         ('B+', 'B+ve'),
@@ -44,35 +97,93 @@ class OpFaculty(models.Model):
         ('B-', 'B-ve'),
         ('O-', 'O-ve'),
         ('AB-', 'AB-ve')
-    ], string='Blood Group')
+    ], string='Blood Group', tracking=True)
+    
     gender = fields.Selection([
         ('male', 'Male'),
         ('female', 'Female')
-    ], 'Gender', required=True)
-    nationality = fields.Many2one('res.country', 'Nationality')
+    ], string='Gender', required=True, tracking=True)
+    
+    nationality = fields.Many2one(
+        comodel_name='res.country',
+        string='Nationality',
+        tracking=True
+    )
+    
     emergency_contact = fields.Many2one(
-        'res.partner', 'Emergency Contact')
-    visa_info = fields.Char('Visa Info', size=64)
-    id_number = fields.Char('ID Card Number', size=64)
+        comodel_name='res.partner',
+        string='Emergency Contact',
+        tracking=True
+    )
+    
+    visa_info = fields.Char(
+        string='Visa Info',
+        size=64,
+        tracking=True
+    )
+    
+    id_number = fields.Char(
+        string='ID Card Number',
+        size=64,
+        tracking=True
+    )
+    
     login = fields.Char(
-        'Login', related='partner_id.user_id.login', readonly=True)
-    last_login = fields.Datetime('Latest Connection', readonly=True,
-                                 related='partner_id.user_id.login_date')
-    faculty_subject_ids = fields.Many2many('op.subject', string='Subject(s)',
-                                           tracking=True)
-    emp_id = fields.Many2one('hr.employee', 'HR Employee')
+        string='Login',
+        related='partner_id.user_id.login',
+        readonly=True
+    )
+    
+    last_login = fields.Datetime(
+        string='Latest Connection',
+        readonly=True,
+        related='partner_id.user_id.login_date'
+    )
+    
+    faculty_subject_ids = fields.Many2many(
+        comodel_name='op.subject',
+        string='Subject(s)',
+        tracking=True
+    )
+    
+    emp_id = fields.Many2one(
+        comodel_name='hr.employee',
+        string='HR Employee',
+        tracking=True
+    )
+    
     main_department_id = fields.Many2one(
-        'op.department', 'Main Department',
-        default=lambda self:
-        self.env.user.dept_id and self.env.user.dept_id.id or False)
+        comodel_name='op.department',
+        string='Main Department',
+        default=lambda self: self.env.user.dept_id.id or False,
+        tracking=True
+    )
+    
     allowed_department_ids = fields.Many2many(
-        'op.department', string='Allowed Department',
-        default=lambda self:
-        self.env.user.department_ids and self.env.user.department_ids.ids or False)
-    active = fields.Boolean(default=True)
+        comodel_name='op.department',
+        string='Allowed Department',
+        default=lambda self: self.env.user.department_ids.ids or False,
+        tracking=True
+    )
+    
+    active = fields.Boolean(
+        default=True,
+        tracking=True
+    )
+
+    _sql_constraints = [
+        ('unique_id_number',
+         'unique(id_number)',
+         'ID Card Number must be unique!')
+    ]
 
     @api.constrains('birth_date')
     def _check_birthdate(self):
+        """Validate that birth date is not in the future.
+
+        Raises:
+            ValidationError: If birth date is greater than current date.
+        """
         for record in self:
             if record.birth_date > fields.Date.today():
                 raise ValidationError(_(
@@ -80,14 +191,18 @@ class OpFaculty(models.Model):
 
     @api.onchange('first_name', 'middle_name', 'last_name')
     def _onchange_name(self):
+        """Update the name field based on first, middle, and last names."""
         if not self.middle_name:
-            self.name = str(self.first_name) + " " + str(
-                self.last_name)
+            self.name = f"{self.first_name} {self.last_name}"
         else:
-            self.name = str(self.first_name) + " " + str(
-                self.middle_name) + " " + str(self.last_name)
+            self.name = f"{self.first_name} {self.middle_name} {self.last_name}"
 
     def create_employee(self):
+        """Create an HR employee record for the faculty member.
+
+        Creates a new employee record and updates the faculty record
+        with the employee reference.
+        """
         for record in self:
             vals = {
                 'name': record.name,
@@ -96,19 +211,38 @@ class OpFaculty(models.Model):
             }
             emp_id = self.env['hr.employee'].create(vals)
             record.write({'emp_id': emp_id.id})
-            record.partner_id.write({'partner_share': True, 'employee': True})
+            record.partner_id.write({
+                'partner_share': True,
+                'employee': True
+            })
 
     @api.model
     def get_import_templates(self):
+        """Get the import template for faculty data.
+
+        Returns:
+            list: List containing template information
+        """
         return [{
             'label': _('Import Template for Faculties'),
             'template': '/openeducat_core/static/xls/op_faculty.xls'
         }]
 
-    class PartnerTitle(models.Model):
-        _inherit = 'res.partner.title'
 
-        @api.depends('shortcut')
-        def _compute_display_name(self):
-            for record in self:
-                record.display_name = f"{record.shortcut}"
+class PartnerTitle(models.Model):
+    """Extension of res.partner.title model.
+
+    This model extends the partner title model to customize
+    the display name format.
+    """
+
+    _inherit = 'res.partner.title'
+
+    @api.depends('shortcut')
+    def _compute_display_name(self):
+        """Compute the display name based on the shortcut.
+
+        Sets the display name to be the same as the shortcut.
+        """
+        for record in self:
+            record.display_name = record.shortcut

@@ -18,38 +18,113 @@
 #
 ###############################################################################
 
+from typing import List, Dict, Any
 from odoo import _, api, fields, models
 
 
 class OpSubject(models.Model):
+    """Subject model for managing educational subjects.
+
+    This model represents subjects that can be taught in educational institutions.
+    It includes information about subject name, code, type, and department association.
+
+    Attributes:
+        name (str): Name of the subject
+        code (str): Unique code identifier for the subject
+        grade_weightage (float): Weightage of the subject in grade calculation
+        type (str): Type of subject (theory/practical/both/other)
+        subject_type (str): Whether subject is compulsory or elective
+        department_id (int): Reference to the department offering the subject
+        active (bool): Whether the subject is active
+    """
+
     _name = "op.subject"
     _inherit = "mail.thread"
     _description = "Subject"
+    _order = "name"
 
-    name = fields.Char('Name', size=128, required=True)
-    code = fields.Char('Code', size=256, required=True)
-    grade_weightage = fields.Float('Grade Weightage')
+    name = fields.Char(
+        string='Name',
+        required=True,
+        size=128,
+        tracking=True,
+        help="Name of the subject"
+    )
+    
+    code = fields.Char(
+        string='Code',
+        required=True,
+        size=256,
+        tracking=True,
+        help="Unique code identifier for the subject"
+    )
+    
+    grade_weightage = fields.Float(
+        string='Grade Weightage',
+        tracking=True,
+        help="Weightage of the subject in grade calculation"
+    )
+    
     type = fields.Selection(
-        [('theory', 'Theory'), ('practical', 'Practical'),
-         ('both', 'Both'), ('other', 'Other')],
-        'Type', default="theory", required=True)
+        selection=[
+            ('theory', 'Theory'),
+            ('practical', 'Practical'),
+            ('both', 'Both'),
+            ('other', 'Other')
+        ],
+        string='Type',
+        required=True,
+        default="theory",
+        tracking=True,
+        help="Type of subject delivery"
+    )
+    
     subject_type = fields.Selection(
-        [('compulsory', 'Compulsory'), ('elective', 'Elective')],
-        'Subject Type', default="compulsory", required=True)
+        selection=[
+            ('compulsory', 'Compulsory'),
+            ('elective', 'Elective')
+        ],
+        string='Subject Type',
+        required=True,
+        default="compulsory",
+        tracking=True,
+        help="Whether the subject is compulsory or elective"
+    )
+    
     department_id = fields.Many2one(
-        'op.department', 'Department',
-        default=lambda self:
-        self.env.user.dept_id and self.env.user.dept_id.id or False)
-    active = fields.Boolean(default=True)
+        comodel_name='op.department',
+        string='Department',
+        tracking=True,
+        default=lambda self: self.env.user.dept_id.id if self.env.user.dept_id else False,
+        help="Department offering the subject"
+    )
+    
+    active = fields.Boolean(
+        default=True,
+        help="If unchecked, the subject will be hidden from the system"
+    )
 
     _sql_constraints = [
         ('unique_subject_code',
-         'unique(code)', 'Code should be unique per subject!'),
+         'unique(code)',
+         'Subject code must be unique!')
     ]
 
     @api.model
-    def get_import_templates(self):
+    def get_import_templates(self) -> List[Dict[str, Any]]:
+        """Get the import template for subjects.
+
+        Returns:
+            List[Dict[str, Any]]: List containing template information
+        """
         return [{
             'label': _('Import Template for Subjects'),
             'template': '/openeducat_core/static/xls/op_subject.xls'
         }]
+
+    @api.constrains('grade_weightage')
+    def _check_grade_weightage(self):
+        """Validate that grade weightage is not negative."""
+        for record in self:
+            if record.grade_weightage < 0:
+                raise models.ValidationError(_("Grade weightage cannot be negative."))
