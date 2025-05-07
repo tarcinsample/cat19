@@ -127,6 +127,13 @@
                 font-size: 18px;
             }
         }
+        .student-name, .faculty-name{
+            .o_field_widget {
+                input.o_field_translate{
+                    padding-right: 0 !important;
+                }
+            }
+        }
         @media only screen and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2){
             .oe_button_box{
                 flex: 0 0 58.33333333%;
