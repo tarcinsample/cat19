@@ -62,7 +62,6 @@
         'menu/student_menu.xml',
     ],
     'demo': [
-        'demo/homepage_template.xml',
         'demo/department_demo.xml',
         'demo/op.program.level.csv',
         'demo/op.program.csv',
