@@ -103,18 +103,3 @@ class OpAcademicTerm(models.Model):
                     raise ValidationError(_(
                         "Term dates must fall within the academic year!"))
 
-            # Check for overlapping terms
-            overlapping = self.search([
-                ('id', '!=', record.id),
-                ('academic_year_id', '=', record.academic_year_id.id),
-                '|',
-                '&',
-                ('term_start_date', '<=', record.term_start_date),
-                ('term_end_date', '>=', record.term_start_date),
-                '&',
-                ('term_start_date', '<=', record.term_end_date),
-                ('term_end_date', '>=', record.term_end_date)
-            ])
-            if overlapping:
-                raise ValidationError(_(
-                    "Term dates cannot overlap with existing terms!"))

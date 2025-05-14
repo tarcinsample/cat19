@@ -88,6 +88,7 @@ class ResConfigSettings(models.TransientModel):
     module_openeducat_exam_grading_bridge = fields.Boolean(string="Exam Grading Bridge")
     module_openeducat_quiz_anti_cheating = fields.Boolean(string="Quiz Anti Cheating")
     module_openeducat_omr = fields.Boolean(string="OMR")
+    module_openeducat_grading = fields.Boolean(string="Grading")
     
     # Facility and Asset Settings
     module_openeducat_facility_enterprise = fields.Boolean(string="Facility Enterprise")
