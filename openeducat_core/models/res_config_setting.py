@@ -1,492 +1,173 @@
-# -*- coding: utf-8 -*-
-# Part of OpenEduCat. See LICENSE file for full copyright & licensing details.
-
-###########################################################################
+###############################################################################
 #
-#    OpenEduCat Inc.
-#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<https://www.openeducat.org>).
 #
-###########################################################################
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Lesser General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Lesser General Public License for more details.
+#
+#    You should have received a copy of the GNU Lesser General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+###############################################################################
 
-from odoo import models, fields, api
+from odoo import fields, models
 
 
 class ResConfigSettings(models.TransientModel):
-    """Configuration settings for OpenEduCat modules and features.
-
-    This model extends the base configuration settings to include OpenEduCat
-    specific settings. It provides options to enable/disable various modules
-    and configure system-wide settings.
-
-    Attributes:
-        module_openeducat_activity (bool): Enable activity module
-        module_openeducat_facility (bool): Enable facility management
-        module_openeducat_exam (bool): Enable examination management
-        module_openeducat_timetable (bool): Enable timetable management
-        module_openeducat_library (bool): Enable library management
-        module_openeducat_transportation (bool): Enable transportation management
-        module_openeducat_achievement (bool): Enable achievement tracking
-        module_openeducat_parent (bool): Enable parent portal
-        module_openeducat_discipline (bool): Enable discipline management
-        module_openeducat_attendance (bool): Enable attendance tracking
-        module_openeducat_health (bool): Enable health management
-        module_openeducat_scholarship (bool): Enable scholarship management
-        module_openeducat_fees (bool): Enable fee management
-        module_openeducat_admission (bool): Enable admission management
-        module_openeducat_alumni (bool): Enable alumni management
-        module_openeducat_assignment (bool): Enable assignment management
-        module_openeducat_online_admission (bool): Enable online admission
-        module_openeducat_online_course (bool): Enable online courses
-        module_openeducat_online_facility (bool): Enable online facility booking
-        module_openeducat_online_library (bool): Enable online library
-        module_openeducat_online_exam (bool): Enable online examinations
-        module_openeducat_online_meeting (bool): Enable online meetings
-        module_openeducat_online_timetable (bool): Enable online timetable
-        module_openeducat_online_attendance (bool): Enable online attendance
-        module_openeducat_online_assignment (bool): Enable online assignments
-        module_openeducat_online_admission_enterprise (bool): Enable enterprise admission
-        module_openeducat_online_course_enterprise (bool): Enable enterprise courses
-        module_openeducat_online_facility_enterprise (bool): Enable enterprise facilities
-        module_openeducat_online_library_enterprise (bool): Enable enterprise library
-        module_openeducat_online_exam_enterprise (bool): Enable enterprise exams
-        module_openeducat_online_meeting_enterprise (bool): Enable enterprise meetings
-        module_openeducat_online_timetable_enterprise (bool): Enable enterprise timetable
-        module_openeducat_online_attendance_enterprise (bool): Enable enterprise attendance
-        module_openeducat_online_assignment_enterprise (bool): Enable enterprise assignments
-        module_openeducat_online_admission_standard (bool): Enable standard admission
-        module_openeducat_online_course_standard (bool): Enable standard courses
-        module_openeducat_online_facility_standard (bool): Enable standard facilities
-        module_openeducat_online_library_standard (bool): Enable standard library
-        module_openeducat_online_exam_standard (bool): Enable standard exams
-        module_openeducat_online_meeting_standard (bool): Enable standard meetings
-        module_openeducat_online_timetable_standard (bool): Enable standard timetable
-        module_openeducat_online_attendance_standard (bool): Enable standard attendance
-        module_openeducat_online_assignment_standard (bool): Enable standard assignments
-        module_openeducat_online_admission_professional (bool): Enable professional admission
-        module_openeducat_online_course_professional (bool): Enable professional courses
-        module_openeducat_online_facility_professional (bool): Enable professional facilities
-        module_openeducat_online_library_professional (bool): Enable professional library
-        module_openeducat_online_exam_professional (bool): Enable professional exams
-        module_openeducat_online_meeting_professional (bool): Enable professional meetings
-        module_openeducat_online_timetable_professional (bool): Enable professional timetable
-        module_openeducat_online_attendance_professional (bool): Enable professional attendance
-        module_openeducat_online_assignment_professional (bool): Enable professional assignments
-        module_openeducat_online_admission_enterprise_standard (bool): Enable enterprise standard admission
-        module_openeducat_online_course_enterprise_standard (bool): Enable enterprise standard courses
-        module_openeducat_online_facility_enterprise_standard (bool): Enable enterprise standard facilities
-        module_openeducat_online_library_enterprise_standard (bool): Enable enterprise standard library
-        module_openeducat_online_exam_enterprise_standard (bool): Enable enterprise standard exams
-        module_openeducat_online_meeting_enterprise_standard (bool): Enable enterprise standard meetings
-        module_openeducat_online_timetable_enterprise_standard (bool): Enable enterprise standard timetable
-        module_openeducat_online_attendance_enterprise_standard (bool): Enable enterprise standard attendance
-        module_openeducat_online_assignment_enterprise_standard (bool): Enable enterprise standard assignments
-        module_openeducat_online_admission_enterprise_professional (bool): Enable enterprise professional admission
-        module_openeducat_online_course_enterprise_professional (bool): Enable enterprise professional courses
-        module_openeducat_online_facility_enterprise_professional (bool): Enable enterprise professional facilities
-        module_openeducat_online_library_enterprise_professional (bool): Enable enterprise professional library
-        module_openeducat_online_exam_enterprise_professional (bool): Enable enterprise professional exams
-        module_openeducat_online_meeting_enterprise_professional (bool): Enable enterprise professional meetings
-        module_openeducat_online_timetable_enterprise_professional (bool): Enable enterprise professional timetable
-        module_openeducat_online_attendance_enterprise_professional (bool): Enable enterprise professional attendance
-        module_openeducat_online_assignment_enterprise_professional (bool): Enable enterprise professional assignments
-        module_openeducat_online_admission_standard_professional (bool): Enable standard professional admission
-        module_openeducat_online_course_standard_professional (bool): Enable standard professional courses
-        module_openeducat_online_facility_standard_professional (bool): Enable standard professional facilities
-        module_openeducat_online_library_standard_professional (bool): Enable standard professional library
-        module_openeducat_online_exam_standard_professional (bool): Enable standard professional exams
-        module_openeducat_online_meeting_standard_professional (bool): Enable standard professional meetings
-        module_openeducat_online_timetable_standard_professional (bool): Enable standard professional timetable
-        module_openeducat_online_attendance_standard_professional (bool): Enable standard professional attendance
-        module_openeducat_online_assignment_standard_professional (bool): Enable standard professional assignments
-        module_openeducat_online_admission_enterprise_standard_professional (bool): Enable enterprise standard professional admission
-        module_openeducat_online_course_enterprise_standard_professional (bool): Enable enterprise standard professional courses
-        module_openeducat_online_facility_enterprise_standard_professional (bool): Enable enterprise standard professional facilities
-        module_openeducat_online_library_enterprise_standard_professional (bool): Enable enterprise standard professional library
-        module_openeducat_online_exam_enterprise_standard_professional (bool): Enable enterprise standard professional exams
-        module_openeducat_online_meeting_enterprise_standard_professional (bool): Enable enterprise standard professional meetings
-        module_openeducat_online_timetable_enterprise_standard_professional (bool): Enable enterprise standard professional timetable
-        module_openeducat_online_attendance_enterprise_standard_professional (bool): Enable enterprise standard professional attendance
-        module_openeducat_online_assignment_enterprise_standard_professional (bool): Enable enterprise standard professional assignments
-        attendance_subject_generic (str): Attendance collection method
+    """Configuration settings for OpenEduCat modules.
+    
+    This class manages the installation and configuration settings for all
+    OpenEduCat modules, including core features, enterprise features, and
+    third-party integrations.
     """
-
     _inherit = 'res.config.settings'
 
-    # Core Modules
-    module_openeducat_activity = fields.Boolean(
-        string='Activity',
-        help='Enable activity tracking and management'
-    )
-    module_openeducat_facility = fields.Boolean(
-        string='Facility',
-        help='Enable facility management and booking'
-    )
-    module_openeducat_exam = fields.Boolean(
-        string='Exam',
-        help='Enable examination management and grading'
-    )
-    module_openeducat_timetable = fields.Boolean(
-        string='Timetable',
-        help='Enable timetable management and scheduling'
-    )
-    module_openeducat_library = fields.Boolean(
-        string='Library',
-        help='Enable library management and book tracking'
-    )
-    module_openeducat_transportation = fields.Boolean(
-        string='Transportation',
-        help='Enable transportation management and routing'
-    )
-    module_openeducat_achievement = fields.Boolean(
-        string='Achievement',
-        help='Enable achievement tracking and recognition'
-    )
-    module_openeducat_parent = fields.Boolean(
-        string='Parent',
-        help='Enable parent portal and communication'
-    )
-    module_openeducat_discipline = fields.Boolean(
-        string='Discipline',
-        help='Enable discipline management and tracking'
-    )
-    module_openeducat_attendance = fields.Boolean(
-        string='Attendance',
-        help='Enable attendance tracking and reporting'
-    )
-    module_openeducat_health = fields.Boolean(
-        string='Health',
-        help='Enable health management and tracking'
-    )
-    module_openeducat_scholarship = fields.Boolean(
-        string='Scholarship',
-        help='Enable scholarship management and tracking'
-    )
-    module_openeducat_fees = fields.Boolean(
-        string='Fees',
-        help='Enable fee management and collection'
-    )
-    module_openeducat_admission = fields.Boolean(
-        string='Admission',
-        help='Enable admission management and processing'
-    )
-    module_openeducat_alumni = fields.Boolean(
-        string='Alumni',
-        help='Enable alumni management and tracking'
-    )
-    module_openeducat_assignment = fields.Boolean(
-        string='Assignment',
-        help='Enable assignment management and grading'
-    )
+    # Core Module Settings
+    module_openeducat_activity = fields.Boolean(string="Activity")
+    module_openeducat_facility = fields.Boolean(string="Facility")
+    module_openeducat_parent = fields.Boolean(string="Parent")
+    module_openeducat_assignment = fields.Boolean(string="Assignment")
+    module_openeducat_classroom = fields.Boolean(string="Classroom")
+    module_openeducat_fees = fields.Boolean(string="Fees")
+    module_openeducat_admission = fields.Boolean(string="Admission")
+    module_openeducat_timetable = fields.Boolean(string="Timetable")
+    module_openeducat_exam = fields.Boolean(string="Exam")
+    module_openeducat_library = fields.Boolean(string="Library")
+    module_openeducat_attendance = fields.Boolean(string="Attendance")
+    module_openeducat_quiz = fields.Boolean(string="Quiz Enterprise")
 
-    # Online Modules
-    module_openeducat_online_admission = fields.Boolean(
-        string='Online Admission',
-        help='Enable online admission process'
-    )
-    module_openeducat_online_course = fields.Boolean(
-        string='Online Course',
-        help='Enable online course management'
-    )
-    module_openeducat_online_facility = fields.Boolean(
-        string='Online Facility',
-        help='Enable online facility booking'
-    )
-    module_openeducat_online_library = fields.Boolean(
-        string='Online Library',
-        help='Enable online library management'
-    )
-    module_openeducat_online_exam = fields.Boolean(
-        string='Online Exam',
-        help='Enable online examination system'
-    )
-    module_openeducat_online_meeting = fields.Boolean(
-        string='Online Meeting',
-        help='Enable online meeting management'
-    )
-    module_openeducat_online_timetable = fields.Boolean(
-        string='Online Timetable',
-        help='Enable online timetable management'
-    )
-    module_openeducat_online_attendance = fields.Boolean(
-        string='Online Attendance',
-        help='Enable online attendance tracking'
-    )
-    module_openeducat_online_assignment = fields.Boolean(
-        string='Online Assignment',
-        help='Enable online assignment management'
-    )
-
-    # Enterprise Modules
-    module_openeducat_online_admission_enterprise = fields.Boolean(
-        string='Online Admission Enterprise',
-        help='Enable enterprise online admission'
-    )
-    module_openeducat_online_course_enterprise = fields.Boolean(
-        string='Online Course Enterprise',
-        help='Enable enterprise online courses'
-    )
-    module_openeducat_online_facility_enterprise = fields.Boolean(
-        string='Online Facility Enterprise',
-        help='Enable enterprise online facilities'
-    )
-    module_openeducat_online_library_enterprise = fields.Boolean(
-        string='Online Library Enterprise',
-        help='Enable enterprise online library'
-    )
-    module_openeducat_online_exam_enterprise = fields.Boolean(
-        string='Online Exam Enterprise',
-        help='Enable enterprise online exams'
-    )
-    module_openeducat_online_meeting_enterprise = fields.Boolean(
-        string='Online Meeting Enterprise',
-        help='Enable enterprise online meetings'
-    )
-    module_openeducat_online_timetable_enterprise = fields.Boolean(
-        string='Online Timetable Enterprise',
-        help='Enable enterprise online timetable'
-    )
-    module_openeducat_online_attendance_enterprise = fields.Boolean(
-        string='Online Attendance Enterprise',
-        help='Enable enterprise online attendance'
-    )
-    module_openeducat_online_assignment_enterprise = fields.Boolean(
-        string='Online Assignment Enterprise',
-        help='Enable enterprise online assignments'
-    )
-
-    # Standard Modules
-    module_openeducat_online_admission_standard = fields.Boolean(
-        string='Online Admission Standard',
-        help='Enable standard online admission'
-    )
-    module_openeducat_online_course_standard = fields.Boolean(
-        string='Online Course Standard',
-        help='Enable standard online courses'
-    )
-    module_openeducat_online_facility_standard = fields.Boolean(
-        string='Online Facility Standard',
-        help='Enable standard online facilities'
-    )
-    module_openeducat_online_library_standard = fields.Boolean(
-        string='Online Library Standard',
-        help='Enable standard online library'
-    )
-    module_openeducat_online_exam_standard = fields.Boolean(
-        string='Online Exam Standard',
-        help='Enable standard online exams'
-    )
-    module_openeducat_online_meeting_standard = fields.Boolean(
-        string='Online Meeting Standard',
-        help='Enable standard online meetings'
-    )
-    module_openeducat_online_timetable_standard = fields.Boolean(
-        string='Online Timetable Standard',
-        help='Enable standard online timetable'
-    )
-    module_openeducat_online_attendance_standard = fields.Boolean(
-        string='Online Attendance Standard',
-        help='Enable standard online attendance'
-    )
-    module_openeducat_online_assignment_standard = fields.Boolean(
-        string='Online Assignment Standard',
-        help='Enable standard online assignments'
-    )
-
-    # Professional Modules
-    module_openeducat_online_admission_professional = fields.Boolean(
-        string='Online Admission Professional',
-        help='Enable professional online admission'
-    )
-    module_openeducat_online_course_professional = fields.Boolean(
-        string='Online Course Professional',
-        help='Enable professional online courses'
-    )
-    module_openeducat_online_facility_professional = fields.Boolean(
-        string='Online Facility Professional',
-        help='Enable professional online facilities'
-    )
-    module_openeducat_online_library_professional = fields.Boolean(
-        string='Online Library Professional',
-        help='Enable professional online library'
-    )
-    module_openeducat_online_exam_professional = fields.Boolean(
-        string='Online Exam Professional',
-        help='Enable professional online exams'
-    )
-    module_openeducat_online_meeting_professional = fields.Boolean(
-        string='Online Meeting Professional',
-        help='Enable professional online meetings'
-    )
-    module_openeducat_online_timetable_professional = fields.Boolean(
-        string='Online Timetable Professional',
-        help='Enable professional online timetable'
-    )
-    module_openeducat_online_attendance_professional = fields.Boolean(
-        string='Online Attendance Professional',
-        help='Enable professional online attendance'
-    )
-    module_openeducat_online_assignment_professional = fields.Boolean(
-        string='Online Assignment Professional',
-        help='Enable professional online assignments'
-    )
-
-    # Enterprise Standard Modules
-    module_openeducat_online_admission_enterprise_standard = fields.Boolean(
-        string='Online Admission Enterprise Standard',
-        help='Enable enterprise standard online admission'
-    )
-    module_openeducat_online_course_enterprise_standard = fields.Boolean(
-        string='Online Course Enterprise Standard',
-        help='Enable enterprise standard online courses'
-    )
-    module_openeducat_online_facility_enterprise_standard = fields.Boolean(
-        string='Online Facility Enterprise Standard',
-        help='Enable enterprise standard online facilities'
-    )
-    module_openeducat_online_library_enterprise_standard = fields.Boolean(
-        string='Online Library Enterprise Standard',
-        help='Enable enterprise standard online library'
-    )
-    module_openeducat_online_exam_enterprise_standard = fields.Boolean(
-        string='Online Exam Enterprise Standard',
-        help='Enable enterprise standard online exams'
-    )
-    module_openeducat_online_meeting_enterprise_standard = fields.Boolean(
-        string='Online Meeting Enterprise Standard',
-        help='Enable enterprise standard online meetings'
-    )
-    module_openeducat_online_timetable_enterprise_standard = fields.Boolean(
-        string='Online Timetable Enterprise Standard',
-        help='Enable enterprise standard online timetable'
-    )
-    module_openeducat_online_attendance_enterprise_standard = fields.Boolean(
-        string='Online Attendance Enterprise Standard',
-        help='Enable enterprise standard online attendance'
-    )
-    module_openeducat_online_assignment_enterprise_standard = fields.Boolean(
-        string='Online Assignment Enterprise Standard',
-        help='Enable enterprise standard online assignments'
-    )
-
-    # Enterprise Professional Modules
-    module_openeducat_online_admission_enterprise_professional = fields.Boolean(
-        string='Online Admission Enterprise Professional',
-        help='Enable enterprise professional online admission'
-    )
-    module_openeducat_online_course_enterprise_professional = fields.Boolean(
-        string='Online Course Enterprise Professional',
-        help='Enable enterprise professional online courses'
-    )
-    module_openeducat_online_facility_enterprise_professional = fields.Boolean(
-        string='Online Facility Enterprise Professional',
-        help='Enable enterprise professional online facilities'
-    )
-    module_openeducat_online_library_enterprise_professional = fields.Boolean(
-        string='Online Library Enterprise Professional',
-        help='Enable enterprise professional online library'
-    )
-    module_openeducat_online_exam_enterprise_professional = fields.Boolean(
-        string='Online Exam Enterprise Professional',
-        help='Enable enterprise professional online exams'
-    )
-    module_openeducat_online_meeting_enterprise_professional = fields.Boolean(
-        string='Online Meeting Enterprise Professional',
-        help='Enable enterprise professional online meetings'
-    )
-    module_openeducat_online_timetable_enterprise_professional = fields.Boolean(
-        string='Online Timetable Enterprise Professional',
-        help='Enable enterprise professional online timetable'
-    )
-    module_openeducat_online_attendance_enterprise_professional = fields.Boolean(
-        string='Online Attendance Enterprise Professional',
-        help='Enable enterprise professional online attendance'
-    )
-    module_openeducat_online_assignment_enterprise_professional = fields.Boolean(
-        string='Online Assignment Enterprise Professional',
-        help='Enable enterprise professional online assignments'
-    )
-
-    # Standard Professional Modules
-    module_openeducat_online_admission_standard_professional = fields.Boolean(
-        string='Online Admission Standard Professional',
-        help='Enable standard professional online admission'
-    )
-    module_openeducat_online_course_standard_professional = fields.Boolean(
-        string='Online Course Standard Professional',
-        help='Enable standard professional online courses'
-    )
-    module_openeducat_online_facility_standard_professional = fields.Boolean(
-        string='Online Facility Standard Professional',
-        help='Enable standard professional online facilities'
-    )
-    module_openeducat_online_library_standard_professional = fields.Boolean(
-        string='Online Library Standard Professional',
-        help='Enable standard professional online library'
-    )
-    module_openeducat_online_exam_standard_professional = fields.Boolean(
-        string='Online Exam Standard Professional',
-        help='Enable standard professional online exams'
-    )
-    module_openeducat_online_meeting_standard_professional = fields.Boolean(
-        string='Online Meeting Standard Professional',
-        help='Enable standard professional online meetings'
-    )
-    module_openeducat_online_timetable_standard_professional = fields.Boolean(
-        string='Online Timetable Standard Professional',
-        help='Enable standard professional online timetable'
-    )
-    module_openeducat_online_attendance_standard_professional = fields.Boolean(
-        string='Online Attendance Standard Professional',
-        help='Enable standard professional online attendance'
-    )
-    module_openeducat_online_assignment_standard_professional = fields.Boolean(
-        string='Online Assignment Standard Professional',
-        help='Enable standard professional online assignments'
-    )
-
-    # Enterprise Standard Professional Modules
-    module_openeducat_online_admission_enterprise_standard_professional = fields.Boolean(
-        string='Online Admission Enterprise Standard Professional',
-        help='Enable enterprise standard professional online admission'
-    )
-    module_openeducat_online_course_enterprise_standard_professional = fields.Boolean(
-        string='Online Course Enterprise Standard Professional',
-        help='Enable enterprise standard professional online courses'
-    )
-    module_openeducat_online_facility_enterprise_standard_professional = fields.Boolean(
-        string='Online Facility Enterprise Standard Professional',
-        help='Enable enterprise standard professional online facilities'
-    )
-    module_openeducat_online_library_enterprise_standard_professional = fields.Boolean(
-        string='Online Library Enterprise Standard Professional',
-        help='Enable enterprise standard professional online library'
-    )
-    module_openeducat_online_exam_enterprise_standard_professional = fields.Boolean(
-        string='Online Exam Enterprise Standard Professional',
-        help='Enable enterprise standard professional online exams'
-    )
-    module_openeducat_online_meeting_enterprise_standard_professional = fields.Boolean(
-        string='Online Meeting Enterprise Standard Professional',
-        help='Enable enterprise standard professional online meetings'
-    )
-    module_openeducat_online_timetable_enterprise_standard_professional = fields.Boolean(
-        string='Online Timetable Enterprise Standard Professional',
-        help='Enable enterprise standard professional online timetable'
-    )
-    module_openeducat_online_attendance_enterprise_standard_professional = fields.Boolean(
-        string='Online Attendance Enterprise Standard Professional',
-        help='Enable enterprise standard professional online attendance'
-    )
-    module_openeducat_online_assignment_enterprise_standard_professional = fields.Boolean(
-        string='Online Assignment Enterprise Standard Professional',
-        help='Enable enterprise standard professional online assignments'
-    )
-
+    # Enterprise Module Settings
+    module_openeducat_discipline = fields.Boolean(string="Discipline Enterprise")
+    module_openeducat_health_enterprise = fields.Boolean(string="Health Enterprise")
+    module_openeducat_achievement_enterprise = fields.Boolean(string="Achievement Enterprise")
+    module_openeducat_activity_enterprise = fields.Boolean(string="Activity Enterprise")
+    module_openeducat_admission_enterprise = fields.Boolean(string="Admission Enterprise")
+    
+    # Alumni Related Settings
+    module_openeducat_alumni_enterprise = fields.Boolean(string="Alumni Enterprise")
+    module_openeducat_alumni_blog_enterprise = fields.Boolean(string="Alumni Blog Enterprise")
+    module_openeducat_alumni_event_enterprise = fields.Boolean(string="Alumni Event Enterprise")
+    module_openeducat_alumni_job_enterprise = fields.Boolean(string="Alumni Job Enterprise")
+    module_openeducat_job_enterprise = fields.Boolean(string="Job Enterprise")
+    
+    # Assignment Related Settings
+    module_openeducat_assignment_enterprise = fields.Boolean(string="Assignment Enterprise")
+    module_openeducat_assignment_rubrics = fields.Boolean(string="Assignment Rubrics")
+    module_openeducat_assignment_grading_enterprise = fields.Boolean(string="Assignment Grading Enterprise")
+    module_openeducat_assignment_grading_bridge = fields.Boolean(string="Assignment Grading Bridge")
+    
+    # Attendance Related Settings
+    module_openeducat_attendance_enterprise = fields.Boolean(string="Attendance Enterprise")
+    module_openeducat_student_attendance_enterprise = fields.Boolean(string="Student Attendance Kiosk")
+    module_openeducat_attendance_face_recognition = fields.Boolean(string="Attendance Face Recognition")
+    module_openeducat_attendance_report_xlsx = fields.Boolean(string="Attendance Xlsx Report")
+    
+    # Virtual Meeting Settings
+    module_bigbluebutton = fields.Boolean(string="Bigbluebutton Enterprise")
+    module_googlemeet = fields.Boolean(string="Google Meet")
+    module_openeducat_jitsi_enterprise = fields.Boolean(string="Jitsi Enterprise")
+    module_openeducat_skypemeet = fields.Boolean(string="Skype Meet")
+    module_teams = fields.Boolean(string="Teams")
+    module_zoom = fields.Boolean(string="Zoom")
+    
+    # Campus and Classroom Settings
+    module_openeducat_campus_enterprise = fields.Boolean(string="Campus Enterprise")
+    module_openeducat_classroom_enterprise = fields.Boolean(string="Classroom Enterprise")
+    
+    # Exam and Assessment Settings
+    module_openeducat_exam_enterprise = fields.Boolean(string="Exam Enterprise")
+    module_openeducat_exam_gpa_enterprise = fields.Boolean(string="Exam GPA Enterprise")
+    module_openeducat_exam_grading_bridge = fields.Boolean(string="Exam Grading Bridge")
+    module_openeducat_quiz_anti_cheating = fields.Boolean(string="Quiz Anti Cheating")
+    module_openeducat_omr = fields.Boolean(string="OMR")
+    
+    # Facility and Asset Settings
+    module_openeducat_facility_enterprise = fields.Boolean(string="Facility Enterprise")
+    module_openeducat_asset_request_enterprise = fields.Boolean(string="Asset Request Enterprise")
+    
+    # Fees Related Settings
+    module_openeducat_fees_plan = fields.Boolean(string="Fees Plan")
+    module_openeducat_fees_parent_bridge = fields.Boolean(string="Fees Parent Bridge")
+    
+    # Library Settings
+    module_openeducat_library_barcode = fields.Boolean(string="Library Barcode Enterprise")
+    module_openeducat_library_enterprise = fields.Boolean(string="Library Enterprise")
+    module_openeducat_digital_library = fields.Boolean(string="Digital Library")
+    
+    # LMS Settings
+    module_openeducat_lms = fields.Boolean(string="LMS Enterprise")
+    module_openeducat_lms_blog = fields.Boolean(string="LMS Blog Enterprise")
+    module_openeducat_lms_forum = fields.Boolean(string="LMS Forum Enterprise")
+    module_openeducat_lms_gamification = fields.Boolean(string="LMS Gamification Enterprise")
+    module_openeducat_lms_sale = fields.Boolean(string="LMS Sale Enterprise")
+    module_openeducat_lms_survey = fields.Boolean(string="LMS Survey Enterprise")
+    module_openeducat_lms_admission = fields.Boolean(string="LMS Admission")
+    module_openeducat_lms_h5p = fields.Boolean(string="LMS H5P Enterprise")
+    
+    # Meeting and Communication Settings
+    module_openeducat_meeting_enterprise = fields.Boolean(string="Meeting Enterprise")
+    module_openeducat_notice_board_enterprise = fields.Boolean(string="Notice Board Enterprise")
+    module_online_appointment = fields.Boolean(string="Online Appointment Enterprise")
+    
+    # Parent and Student Settings
+    module_openeducat_parent_enterprise = fields.Boolean(string="Parent Enterprise")
+    module_openeducat_student_leave_enterprise = fields.Boolean(string="Student Leave")
+    module_openeducat_student_progress_enterprise = fields.Boolean(string="Student Progress Enterprise")
+    module_openeducat_student_skill_assessment = fields.Boolean(string="Skill Assessment Enterprise")
+    
+    # Placement and Career Settings
+    module_openeducat_placement_enterprise = fields.Boolean(string="Placement Enterprise")
+    module_openeducat_placement_job_enterprise = fields.Boolean(string="Placement Job Enterprise")
+    
+    # Additional Enterprise Features
+    module_openeducat_scholarship_enterprise = fields.Boolean(string="Scholarship Enterprise")
+    module_openeducat_timetable_enterprise = fields.Boolean(string="Timetable Enterprise")
+    module_openeducat_transportation_enterprise = fields.Boolean(string="Transportation Enterprise")
+    module_openeducat_lesson = fields.Boolean(string="Lesson Enterprise")
+    module_openeducat_skill_enterprise = fields.Boolean(string="Skill Enterprise")
+    module_openeducat_dynamic_admission = fields.Boolean(string="Dynamic Admission")
+    module_openeducat_crm_enterprise = fields.Boolean(string="CRM Enterprise")
+    module_openeducat_dashboard_kpi = fields.Boolean(string="Dashboard KPI")
+    module_openeducat_event_enterprise = fields.Boolean(string="Event Enterprise")
+    module_openeducat_grievance_enterprise = fields.Boolean(string="Grievance")
+    module_openeducat_secure = fields.Boolean(string="Secure QR")
+    module_openeducat_mass_subject_registration = fields.Boolean(string="Mass Subject Registration")
+    
+    # Live Meeting Features
+    module_openeducat_live = fields.Boolean(string="Live Meeting")
+    module_openeducat_live_assignment = fields.Boolean(string="Live Meeting Assignment")
+    module_openeducat_live_attendance = fields.Boolean(string="Live Meeting Attendance")
+    module_openeducat_live_attentiveness = fields.Boolean(string="Live Meeting Attentiveness")
+    
+    # System Settings
+    module_backend_theme = fields.Boolean(string="Backend Theme")
+    module_openeducat_subject_material_allocation = fields.Boolean(string="Subject Material Allocation")
+    
+    # Backup Settings
+    module_auto_database_backup = fields.Boolean(string="Database Backup to Local Server")
+    module_auto_database_backup_dropbox = fields.Boolean(string="Database Backup to Dropbox")
+    module_auto_database_backup_ftp = fields.Boolean(string="Database Backup to Remote FTP Server")
+    module_auto_database_backup_google_drive = fields.Boolean(string="Database Backup to Google Drive")
+    module_auto_database_backup_onedrive = fields.Boolean(string="Database Backup to Onedrive")
+    module_auto_database_backup_sftp = fields.Boolean(string="Database Backup to Remote SFTP Server")
+    
     # Attendance Configuration
-    attendance_subject_generic = fields.Selection([
-        ('subject', 'Subject Wise'),
-        ('generic', 'Generic')
-    ], string='Attendance Collection',
-        help='Choose how attendance should be collected - by subject or generically',
+    attendance_subject_generic = fields.Selection(
+        [('subject', 'Subject Wise'), ('generic', 'Generic')],
+        help=(
+            "Subject-specific attendance will be gathered during a "
+            "particular session, whereas general attendance will be "
+            "collected by one responsible faculty member for the "
+            "entire day."
+        ),
+        config_parameter="attendance_subject_generic_parameter",
         default='subject'
     )
