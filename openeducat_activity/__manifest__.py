@@ -19,32 +19,54 @@
 ###############################################################################
 
 {
+    # Module Information
     'name': 'OpenEduCat Activity',
     'version': '18.0.1.0',
     'license': 'LGPL-3',
     'category': 'Education',
-    "sequence": 3,
-    'summary': 'Manage Activities',
+    'sequence': 3,
+    'summary': 'Manage Student Activities',
     'complexity': "easy",
     'author': 'OpenEduCat Inc',
     'website': 'https://www.openeducat.org',
-    'depends': ['openeducat_core'],
+
+    # Dependencies
+    'depends': [
+        'openeducat_core',
+    ],
+
+    # Data Files
     'data': [
+        # Security
         'security/op_security.xml',
         'security/ir.model.access.csv',
+        
+        # Data
         'data/activity_type_data.xml',
+        
+        # Wizards
         'wizard/student_migrate_wizard_view.xml',
+        
+        # Views
         'views/activity_view.xml',
         'views/activity_type_view.xml',
         'views/student_view.xml',
+        
+        # Menus
         'menus/op_menu.xml'
     ],
+
+    # Demo Data
     'demo': [
         'demo/activity_demo.xml',
     ],
+
+    # Module Assets
     'images': [
         'static/description/openeducat-activity_banner.jpg',
     ],
+
+    # Module Settings
     'installable': True,
     'auto_install': False,
     'application': True,

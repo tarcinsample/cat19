@@ -18,5 +18,8 @@
 #
 ###############################################################################
 
+# Core Imports
 from . import models
+
+# Additional Features
 from . import wizard

@@ -22,8 +22,14 @@ from odoo import fields, models
 
 
 class OpActivityType(models.Model):
+    """
+    Activity Type Model for categorizing student activities.
+    Defines different types of activities that can be performed.
+    """
     _name = "op.activity.type"
     _description = "Activity Type"
+    _order = "name"
 
+    # Basic Information
     name = fields.Char('Name', size=128, required=True)
     active = fields.Boolean(default=True)

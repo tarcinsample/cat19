@@ -22,11 +22,24 @@ from odoo import fields, models
 
 
 class OpFacilityLine(models.Model):
+    """
+    Facility Line Model
+    
+    This model extends the base facility line model to add classroom-specific
+    facility information. It manages the relationship between facilities and classrooms.
+    """
     _inherit = "op.facility.line"
 
-    classroom_id = fields.Many2one('op.classroom', 'Classroom')
+    # Relationships
+    classroom_id = fields.Many2one(
+        'op.classroom',
+        string='Classroom',
+        help="The classroom this facility is associated with"
+    )
 
+    # Constraints
     _sql_constraints = [
         ('unique_facility_classroom',
          'UNIQUE(facility_id, classroom_id)',
-         'Facility name exists. Please choose a unique name or update the quantity.')]
+         'Facility name exists. Please choose a unique name or update the quantity.')
+    ]

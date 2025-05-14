@@ -1,4 +1,4 @@
-##############################################################################
+###############################################################################
 #
 #    OpenEduCat Inc
 #    Copyright (C) 2009-TODAY OpenEduCat Inc(<https://www.openeducat.org>).
@@ -16,8 +16,9 @@
 #    You should have received a copy of the GNU Lesser General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+###############################################################################
 
-from . import asset
-from . import facility_line
+# Core Models
 from . import classroom
+from . import facility_line
+from . import asset

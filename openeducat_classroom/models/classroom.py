@@ -22,24 +22,78 @@ from odoo import api, fields, models
 
 
 class OpClassroom(models.Model):
+    """
+    Classroom Management Model
+    
+    This model represents a physical classroom in the educational institution.
+    It manages classroom details, capacity, facilities, and assets.
+    """
     _name = "op.classroom"
     _description = "Classroom"
+    _order = "name"
 
-    name = fields.Char('Name', size=16, required=True)
-    code = fields.Char('Code', size=16, required=True)
-    course_id = fields.Many2one('op.course', 'Course')
-    batch_id = fields.Many2one('op.batch', 'Batch')
-    capacity = fields.Integer(string='No Of Person')
-    facilities = fields.One2many('op.facility.line', 'classroom_id',
-                                 string='Facility Lines')
-    asset_line = fields.One2many('op.asset', 'asset_id',
-                                 string='Asset')
-    active = fields.Boolean(default=True)
+    # Basic Information
+    name = fields.Char(
+        string='Name',
+        size=16,
+        required=True,
+        help="Name of the classroom"
+    )
+    code = fields.Char(
+        string='Code',
+        size=16,
+        required=True,
+        help="Unique identifier code for the classroom"
+    )
+    
+    # Academic Information
+    course_id = fields.Many2one(
+        'op.course',
+        string='Course',
+        help="Associated course for this classroom"
+    )
+    batch_id = fields.Many2one(
+        'op.batch',
+        string='Batch',
+        help="Associated batch for this classroom"
+    )
+    
+    # Capacity and Facilities
+    capacity = fields.Integer(
+        string='No Of Person',
+        help="Maximum number of persons that can be accommodated"
+    )
+    facilities = fields.One2many(
+        'op.facility.line',
+        'classroom_id',
+        string='Facility Lines',
+        help="Facilities available in this classroom"
+    )
+    
+    # Assets
+    asset_line = fields.One2many(
+        'op.asset',
+        'asset_id',
+        string='Asset',
+        help="Assets assigned to this classroom"
+    )
+    
+    # Status
+    active = fields.Boolean(
+        default=True,
+        help="If unchecked, the classroom will be hidden from the system"
+    )
 
+    # Constraints
     _sql_constraints = [
         ('unique_classroom_code',
-         'unique(code)', 'Code should be unique per classroom!')]
+         'unique(code)',
+         'Code should be unique per classroom!')
+    ]
 
     @api.onchange('course_id')
     def onchange_course(self):
+        """
+        Reset batch when course is changed
+        """
         self.batch_id = False

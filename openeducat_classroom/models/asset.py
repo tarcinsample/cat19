@@ -22,10 +22,37 @@ from odoo import fields, models
 
 
 class OpAsset(models.Model):
+    """
+    Classroom Asset Model
+    
+    This model manages the assets assigned to classrooms. It tracks
+    the products, quantities, and codes associated with classroom assets.
+    """
     _name = "op.asset"
     _description = "Classroom Assets"
+    _order = "code"
 
-    asset_id = fields.Many2one('op.classroom', 'Asset')
-    product_id = fields.Many2one('product.product', 'Product', required=True)
-    code = fields.Char('Code', size=256)
-    product_uom_qty = fields.Float('Quantity', required=True)
+    # Relationships
+    asset_id = fields.Many2one(
+        'op.classroom',
+        string='Asset',
+        help="The classroom this asset is assigned to"
+    )
+    product_id = fields.Many2one(
+        'product.product',
+        string='Product',
+        required=True,
+        help="The product representing this asset"
+    )
+
+    # Asset Information
+    code = fields.Char(
+        string='Code',
+        size=256,
+        help="Unique identifier code for the asset"
+    )
+    product_uom_qty = fields.Float(
+        string='Quantity',
+        required=True,
+        help="Quantity of the asset"
+    )

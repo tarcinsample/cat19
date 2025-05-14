@@ -22,19 +22,26 @@ from odoo import fields, models
 
 
 class OpStudent(models.Model):
+    """
+    Extends Student Model to add activity tracking functionality.
+    Manages student activities and provides activity count information.
+    """
     _inherit = "op.student"
 
+    # Activity Information
     activity_log = fields.One2many('op.activity', 'student_id',
                                    string='Activity Log')
     activity_count = fields.Integer(compute='_compute_count')
 
     def get_activity(self):
+        """Return action to view student activities."""
         action = self.env.ref('openeducat_activity.'
                               'act_open_op_activity_view').sudo().read()[0]
         action['domain'] = [('student_id', 'in', self.ids)]
         return action
 
     def _compute_count(self):
+        """Compute the total number of activities for each student."""
         for record in self:
             record.activity_count = self.env['op.activity'].search_count(
                 [('student_id', 'in', self.ids)])

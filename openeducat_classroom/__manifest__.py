@@ -19,29 +19,47 @@
 ###############################################################################
 
 {
+    # Module Information
     'name': 'OpenEduCat Classroom',
     'version': '18.0.1.0',
     'license': 'LGPL-3',
     'category': 'Education',
-    "sequence": 3,
+    'sequence': 3,
     'summary': 'Manage Classroom',
     'complexity': "easy",
     'author': 'OpenEduCat Inc',
     'website': 'https://www.openeducat.org',
-    'depends': ['openeducat_core', 'openeducat_facility', 'product'],
+    
+    # Dependencies
+    'depends': [
+        'openeducat_core',
+        'openeducat_facility',
+        'product',
+    ],
+    
+    # Data Files
     'data': [
+        # Security
         'security/op_classroom_security.xml',
         'security/ir.model.access.csv',
+        # Views
         'views/classroom_view.xml',
+        # Menus
         'menus/op_menu.xml',
     ],
+    
+    # Demo Data
     'demo': [
         'demo/classroom_demo.xml',
         'demo/facility_line_demo.xml'
     ],
+    
+    # Assets
     'images': [
         'static/description/openeducat-classroom_banner.jpg',
     ],
+    
+    # Installation Options
     'installable': True,
     'auto_install': False,
     'application': True,

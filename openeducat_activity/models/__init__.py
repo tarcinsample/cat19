@@ -18,6 +18,9 @@
 #
 ###############################################################################
 
-from . import activity
+# Core Models
 from . import activity_type
+from . import activity
+
+# Extended Models
 from . import student
