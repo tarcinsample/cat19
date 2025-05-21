@@ -107,27 +107,30 @@ class OpRoomDistribution(models.TransientModel):
             ('room_id', 'in', self.room_ids.ids),
             ('exam_id.start_time', '<', self.end_time),
             ('exam_id.end_time', '>', self.start_time),
-            ('exam_id.state', 'not in', non_conflict_exam_states), 
-            ('exam_id', '!=', self.exam_id.id) 
+            ('exam_id.state', 'not in', non_conflict_exam_states),
+            ('exam_id', '!=', self.exam_id.id)
         ])
 
         if booked_rooms:
             booked_room_names = ', '.join(booked_rooms.mapped('room_id.name'))
             raise ValidationError(
-                _("The selected rooms (%s) are already booked for the specified time by other active exams.") % booked_room_names)
+                _("The selected rooms (%s) are already booked for the specified "
+                  "time by other active exams.") % booked_room_names)
 
         conflicting_students = attendance_model.search([
             ('student_id', 'in', self.student_ids.ids),
             ('exam_id.start_time', '<', self.end_time),
             ('exam_id.end_time', '>', self.start_time),
-            ('exam_id.state', 'not in', non_conflict_exam_states), 
-            ('exam_id', '!=', self.exam_id.id) 
+            ('exam_id.state', 'not in', non_conflict_exam_states),
+            ('exam_id', '!=', self.exam_id.id)
         ])
 
         if conflicting_students:
-            conflicting_student_names = ', '.join(conflicting_students.mapped('student_id.name'))
+            conflicting_student_names = ', '.join(
+                conflicting_students.mapped('student_id.name'))
             raise ValidationError(
-                _("Students (%s) are already scheduled for another active exam during the specified time.") % conflicting_student_names)
+                _("Students (%s) are already scheduled for another active exam during the \
+                                    specified time.") % conflicting_student_names)
 
         for exam_wiz in self:
             if exam_wiz.total_student > exam_wiz.room_capacity:
@@ -140,12 +143,13 @@ class OpRoomDistribution(models.TransientModel):
                 assigned_in_room = 0
                 room_current_capacity = room.capacity
 
-                while student_ids_to_assign and assigned_in_room < room_current_capacity:
+                while student_ids_to_assign and \
+                        assigned_in_room < room_current_capacity:
                     student_id = student_ids_to_assign.pop(0)
                     attendance_model.create({
                         'exam_id': exam_wiz.exam_id.id,
                         'student_id': student_id,
-                        'status': 'present', 
+                        'status': 'present',
                         'course_id': exam_wiz.course_id.id,
                         'batch_id': exam_wiz.batch_id.id,
                         'room_id': room.id

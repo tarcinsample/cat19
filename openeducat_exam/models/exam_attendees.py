@@ -31,14 +31,17 @@ class OpExamAttendees(models.Model):
     status = fields.Selection(
         [('present', 'Present'), ('absent', 'Absent')],
         'Status', default="present", required=True)
-    marks = fields.Integer('Marks') 
+    marks = fields.Integer('Marks')
     note = fields.Text('Note')
     exam_id = fields.Many2one(
         'op.exam', 'Exam', required=True, ondelete="cascade")
-    course_id = fields.Many2one('op.course', 'Course', compute='_compute_exam_details', store=True, readonly=True)
-    batch_id = fields.Many2one('op.batch', 'Batch', compute='_compute_exam_details', store=True, readonly=True)
+    course_id = fields.Many2one('op.course', 'Course',
+                                compute='_compute_exam_details',
+                                store=True, readonly=True)
+    batch_id = fields.Many2one('op.batch', 'Batch',
+                               compute='_compute_exam_details',
+                               store=True, readonly=True)
     room_id = fields.Many2one('op.exam.room', 'Room')
-
 
     _sql_constraints = [
         ('unique_attendees',
@@ -73,14 +76,17 @@ class OpExamAttendees(models.Model):
         else:
             self.course_id = False
             self.batch_id = False
-        self.student_id = False 
+        self.student_id = False
+
     @api.constrains('marks', 'status')
     def _check_marks(self):
         for record in self:
-            if record.status == 'present': 
-                if record.exam_id and (record.marks < 0 or record.marks > record.exam_id.total_marks):
-                    raise ValidationError(_(
-                        "Please Enter Marks between 0 and %d for a present student." % record.exam_id.total_marks))
-            elif record.status == 'absent': 
+            if record.status == 'present':
+                if record.exam_id and (
+                        record.marks < 0 or record.marks > record.exam_id.total_marks):
+                    raise ValidationError(
+                        _("Please Enter Marks between 0 and %d for a present student.")
+                        % record.exam_id.total_marks)
+            elif record.status == 'absent':
                 if record.marks and record.marks != 0:
-                     record.marks = 0
+                    record.marks = 0

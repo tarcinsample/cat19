@@ -39,11 +39,10 @@ class OpClassroom(models.Model):
     _sql_constraints = [
         ('unique_classroom_code',
          'unique(code)', 'Code should be unique per classroom!'),
-         (
-            'capacity_check', 
-            'CHECK (capacity > 0)', 
-            'Integer field must be greater than  0' 
-         )]
+        ('capacity_check',
+         'CHECK (capacity > 0)',
+         'Integer field must be greater than  0')
+    ]
 
     @api.onchange('course_id')
     def onchange_course(self):
