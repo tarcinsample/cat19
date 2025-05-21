@@ -92,47 +92,65 @@ class OpRoomDistribution(models.TransientModel):
         return res
 
     def schedule_exam(self):
-        attendance = self.env['op.exam.attendees']
+        attendance_model = self.env['op.exam.attendees']
         if not self.room_ids or not self.student_ids:
             raise ValidationError(
                 _("Please Enter both Room And student"))
 
-        booked_rooms = self.env['op.exam.attendees'].search([
+        non_conflict_exam_states = ['done', 'cancel', 'draft', 'result_updated']
+        existing_attendees_for_this_exam = attendance_model.search([
+            ('exam_id', '=', self.exam_id.id)
+        ])
+        if existing_attendees_for_this_exam:
+            existing_attendees_for_this_exam.unlink()
+        booked_rooms = attendance_model.search([
             ('room_id', 'in', self.room_ids.ids),
             ('exam_id.start_time', '<', self.end_time),
             ('exam_id.end_time', '>', self.start_time),
-            ('exam_id.state', '!=', 'done')])
+            ('exam_id.state', 'not in', non_conflict_exam_states), 
+            ('exam_id', '!=', self.exam_id.id) 
+        ])
 
         if booked_rooms:
+            booked_room_names = ', '.join(booked_rooms.mapped('room_id.name'))
             raise ValidationError(
-                _("The selected rooms are already booked for the specified time."))
+                _("The selected rooms (%s) are already booked for the specified time by other active exams.") % booked_room_names)
 
-        conflicting_students = self.env['op.exam.attendees'].search([
+        conflicting_students = attendance_model.search([
             ('student_id', 'in', self.student_ids.ids),
             ('exam_id.start_time', '<', self.end_time),
             ('exam_id.end_time', '>', self.start_time),
-            ('exam_id.state', '!=', 'done')])
+            ('exam_id.state', 'not in', non_conflict_exam_states), 
+            ('exam_id', '!=', self.exam_id.id) 
+        ])
 
         if conflicting_students:
-            raise ValidationError(_("Students are already scheduled for another exam during the specified time.")) # noqa
+            conflicting_student_names = ', '.join(conflicting_students.mapped('student_id.name'))
+            raise ValidationError(
+                _("Students (%s) are already scheduled for another active exam during the specified time.") % conflicting_student_names)
 
-        for exam in self:
-            if exam.total_student > exam.room_capacity:
+        for exam_wiz in self:
+            if exam_wiz.total_student > exam_wiz.room_capacity:
                 raise exceptions.AccessError(
                     _("Room capacity must be greater than total number of student"))
-            student_ids = exam.student_ids.ids
-            for room in exam.room_ids:
-                for _cap in range(room.capacity):
-                    if not student_ids:
-                        continue
-                    attendance.create({
-                        'exam_id': exam.exam_id.id,
-                        'student_id': student_ids[0],
-                        'status': 'present',
-                        'course_id': exam.course_id.id,
-                        'batch_id': exam.batch_id.id,
+
+            student_ids_to_assign = list(exam_wiz.student_ids.ids)
+
+            for room in exam_wiz.room_ids:
+                assigned_in_room = 0
+                room_current_capacity = room.capacity
+
+                while student_ids_to_assign and assigned_in_room < room_current_capacity:
+                    student_id = student_ids_to_assign.pop(0)
+                    attendance_model.create({
+                        'exam_id': exam_wiz.exam_id.id,
+                        'student_id': student_id,
+                        'status': 'present', 
+                        'course_id': exam_wiz.course_id.id,
+                        'batch_id': exam_wiz.batch_id.id,
                         'room_id': room.id
                     })
-                    student_ids.remove(student_ids[0])
-            exam.exam_id.state = 'schedule'
+                    assigned_in_room += 1
+            exam_wiz.exam_id.state = 'schedule'
+            self.exam_id.results_entered = False
             return True
