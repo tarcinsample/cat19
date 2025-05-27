@@ -125,15 +125,15 @@ repos:
   #         - --header
   #         - "# generated from manifests external_dependencies"
   - repo: https://github.com/PyCQA/flake8
-    rev: 3.9.2
+    rev: 6.1.0
     hooks:
       - id: flake8
         name: flake8
 #        args: ['--max-line-length=88','--ignore=E123,E133,E226,E241,E242,F811,F601,W503,W504,E203','--exclude=__unported__,__init__.py,__manifest__.py,examples']
-        additional_dependencies: ["flake8-bugbear==21.9.2"]
+        additional_dependencies: ["flake8-bugbear==23.9.16", "flake8-print==5.0.0", "importlib-metadata<6.0.0"]
         entry: flake8 --config=cfg_run_flake8.cfg
   - repo: https://github.com/OCA/pylint-odoo
-    rev: 7.0.2
+    rev: v9.3.6
     hooks:
       # C8103
       # - id: pylint_odoo

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- oca-hooks:disable=xml-redundant-module-name -->
 <odoo noupdate="1">
 
         <record id="op_parent_1" model="op.parent">

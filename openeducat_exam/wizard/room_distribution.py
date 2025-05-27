@@ -129,8 +129,8 @@ class OpRoomDistribution(models.TransientModel):
             conflicting_student_names = ', '.join(
                 conflicting_students.mapped('student_id.name'))
             raise ValidationError(
-                _("Students (%s) are already scheduled for another active exam during the \
-                                    specified time.") % conflicting_student_names)
+                _("Students (%s) are already scheduled for another active exam "
+                  "during the specified time.") % conflicting_student_names)
 
         for exam_wiz in self:
             if exam_wiz.total_student > exam_wiz.room_capacity:
