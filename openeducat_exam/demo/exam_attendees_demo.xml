@@ -136,7 +136,7 @@
 
         <record id="op_exam_attendees_20" model="op.exam.attendees">
             <field name="status">present</field>
-            <field name="marks">65</field>
+            <field name="marks">80</field>
             <field name="exam_id" ref="op_exam_5"/>
             <field name="student_id" ref="openeducat_core.op_student_12"/>
         </record>
