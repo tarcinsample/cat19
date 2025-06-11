@@ -174,7 +174,8 @@ class OpStudent(models.Model):
         inv_ids = []
         for student in self:
             inv_ids += [invoice.id for invoice in student.invoice_ids]
-            result['context'] = {'default_partner_id': student.partner_id.id}
+            result['context'] = {'default_partner_id': student.partner_id.id,
+                                 'default_move_type': 'out_invoice'}
         if len(inv_ids) > 1:
             result['domain'] = \
                 "[('id','in',[" + ','.join(map(str, inv_ids)) + "])]"
