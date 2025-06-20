@@ -230,6 +230,21 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                title="It specifies health of the student.">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_openeducat_convocation" />
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_openeducat_convocation" />
+                                    <span class="fa fa-info-circle " title="Openeducat Enterprise Module"/>
+                                    <a
+                                        href="https://doc.openeducat.org/applications/openeducat/convocation-openeducat.html#configure-documents"
+                                        title="Documentation" class="o_doc_link"
+                                        target="_blank" />
+                                    <div class="text-muted">Manage Convocation Ceremonies</div>
+                                </div>
+                            </div>
 
                         </div>
                         <h2 id="openeducat_admission_apps">Admission</h2>
@@ -1515,6 +1530,25 @@
                                     <div class="text-muted">It will generate Secure QR
                                         Code.
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 id="openeducat_secure_apps">Thesis</h2>
+                        <div class="row mt16 o_settings_container"
+                            title="Specify different activities which is held in an institute.">
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                title="It will generate Secure QR Code.">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_openeducat_thesis" />
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_openeducat_thesis" />
+                                    <span class="fa fa-info-circle" title="Openeducat Enterprise Module"/>
+                                    <a
+                                        href="https://doc.openeducat.org/applications/thesis/configuration.html#thesis-configuration"
+                                        title="Documentation" class="o_doc_link"
+                                        target="_blank" />
+                                    <div class="text-muted">Manage thesis registration, submission and evaluation process</div>
                                 </div>
                             </div>
                         </div>
