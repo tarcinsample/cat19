@@ -2,7 +2,7 @@
 
 import { CharField, charField } from "@web/views/fields/char/char_field";
 import { registry } from "@web/core/registry";
-import { onMounted } from "@odoo/owl";
+import { onMounted, useEffect } from "@odoo/owl";
 
 export class InlineCharField extends CharField {
     static template = 'openeducat_core.InlineCharField';
@@ -10,6 +10,14 @@ export class InlineCharField extends CharField {
     setup() {
         super.setup();
         onMounted(() => {
+            this._createSizer();
+            this._resizeInput();
+        });
+    }
+
+    setup() {
+        super.setup();
+        useEffect(() => {
             this._createSizer();
             this._resizeInput();
         });
