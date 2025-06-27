@@ -57,6 +57,7 @@ class OpAttendanceLine(models.Model):
     attendance_type_id = fields.Many2one(
         'op.attendance.type', 'Attendance Type',
         required=False, tracking=True)
+    state = fields.Selection(related = "attendance_id.state")
 
     _sql_constraints = [
         ('unique_student',
