@@ -78,6 +78,16 @@ class OpRoomDistribution(models.TransientModel):
                         student_ids.append(reg.student_id.id)
         student_ids = list(set(student_ids))
         total_student = len(student_ids)
+        withdrawal_student = self.env['op.student.course'].sudo().search([
+            ('state', '=', 'finished'),
+            ('course_id', '=', session.course_id.id),
+        ])
+        print(student_ids,"student_ids1 ==========================\n\n")
+        withdrawal_student_ids = withdrawal_student.student_id.ids
+        print(withdrawal_student_ids,"withdrawal_student_ids ================\n\n")
+        student_ids = [sid for sid in student_ids if sid not in withdrawal_student_ids]
+        print(withdrawal_student,"withdrawal_student ==========================\n\n")
+        print(student_ids,"student_ids2 ==========================\n\n")
         res.update({
             'exam_id': active_id,
             'name': exam.name,
