@@ -64,6 +64,7 @@ class OpAssignment(models.Model):
                                             required=True, ondelete="cascade")
     assignment_sub_line_count = fields.Integer(
         'Submissions', compute="_compute_assignment_count_compute")
+    courses_subjects = fields.Many2many('op.subject')
 
     @api.constrains('issued_date', 'submission_date')
     def check_dates(self):
@@ -84,6 +85,12 @@ class OpAssignment(models.Model):
             subject_ids = self.env['op.course'].search([
                 ('id', '=', self.course_id.id)]).subject_ids
             return {'domain': {'subject_id': [('id', 'in', subject_ids.ids)]}}
+
+    @api.onchange('course_id')
+    def onchange_subjects(self):
+        for rec in self:
+            if rec.course_id:
+                rec.courses_subjects = rec.course_id.subject_ids
 
     def act_publish(self):
         result = self.state = 'publish'
