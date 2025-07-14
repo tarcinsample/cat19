@@ -98,6 +98,10 @@ class OpStudent(models.Model):
                                         'Course Details',
                                         tracking=True)
     active = fields.Boolean(default=True)
+    certificate_number=fields.Char(
+        string='Certificate No.',
+        readonly=True,
+        copy=False,)
 
     _sql_constraints = [(
         'unique_gr_no',

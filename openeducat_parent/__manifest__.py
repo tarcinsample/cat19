@@ -36,6 +36,7 @@
         'views/parent_view.xml',
         'views/parent_relationship_view.xml',
         'menus/op_menu.xml',
+        'report/report_student_bonafide_inherit.xml',
     ],
     'demo': [
         'demo/res_partner_demo.xml',
