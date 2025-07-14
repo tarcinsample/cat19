@@ -1,1 +1,1 @@
-from . import bonafide_report 
+from . import bonafide_report

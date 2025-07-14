@@ -8,17 +8,17 @@
                 <group>
                     <field name="student_ids" readonly="1" widget="many2many_tags"/>
                     <field name="certificate_purpose" required="1"/>
-                    <field name="other_purpose" 
+                    <field name="other_purpose"
                            invisible="certificate_purpose != 'other'"
                            required="certificate_purpose == 'other'"/>
                 </group>
                 <footer>
-                    <button name="action_print_bonafide_certificate" 
-                            string="Print Certificate" 
-                            type="object" 
+                    <button name="action_print_bonafide_certificate"
+                            string="Print Certificate"
+                            type="object"
                             class="btn-primary"/>
-                    <button string="Cancel" 
-                            class="btn-secondary" 
+                    <button string="Cancel"
+                            class="btn-secondary"
                             special="cancel"/>
                 </footer>
             </form>
@@ -32,4 +32,4 @@
         <field name="target">new</field>
         <field name="binding_model_id" ref="openeducat_core.model_op_student"/>
     </record>
-</odoo> 
+</odoo>

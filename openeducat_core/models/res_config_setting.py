@@ -207,5 +207,5 @@ class ResConfigSettings(models.TransientModel):
         config_parameter="attendance_subject_generic_parameter",
         default='subject'
     )
-    module_openeducat_thesis=fields.Boolean(string='Thesis')
-    module_openeducat_convocation=fields.Boolean(string='Convocation')
+    module_openeducat_thesis = fields.Boolean(string='Thesis')
+    module_openeducat_convocation = fields.Boolean(string='Convocation')

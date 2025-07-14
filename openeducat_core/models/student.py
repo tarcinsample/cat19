@@ -98,7 +98,7 @@ class OpStudent(models.Model):
                                         'Course Details',
                                         tracking=True)
     active = fields.Boolean(default=True)
-    certificate_number=fields.Char(
+    certificate_number = fields.Char(
         string='Certificate No.',
         readonly=True,
         copy=False,)

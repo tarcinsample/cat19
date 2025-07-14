@@ -1,4 +1,4 @@
-from odoo import api, fields, models, _
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -7,7 +7,7 @@ class BonafideCertificateWizard(models.TransientModel):
     _description = 'Bonafide Certificate Wizard'
 
     student_ids = fields.Many2many('op.student', string='Students', required=True)
-    
+
     certificate_purpose = fields.Selection([
         ('passport', 'Passport Application'),
         ('bank_account', 'Bank Account Opening'),
@@ -17,7 +17,8 @@ class BonafideCertificateWizard(models.TransientModel):
         ('address_proof', 'Address Proof'),
         ('other', 'Other')
     ], string='Certificate Purpose', required=True, default='passport')
-    other_purpose = fields.Char('Other Purpose', help='Specify other purpose if selected')
+    other_purpose = fields.Char(
+        'Other Purpose', help='Specify other purpose if selected')
 
     @api.model
     def default_get(self, fields):
@@ -37,14 +38,20 @@ class BonafideCertificateWizard(models.TransientModel):
             raise UserError(_("No students selected for the certificate."))
         for student in students:
             if not student.certificate_number:
-                student.certificate_number = self.env['ir.sequence'].next_by_code('op.student.certificate')
-        action = self.env.ref('openeducat_core.action_report_student_bonafide').report_action(
-            students.ids,
-            data={
-                'certificate_purpose': self.certificate_purpose,
-                'other_purpose': self.other_purpose,
-                'purpose_display': self._get_purpose_display()
-            }
+                student.certificate_number = (
+                    self.env['ir.sequence']
+                    .next_by_code('op.student.certificate')
+                )
+        action = (
+            self.env.ref('openeducat_core.action_report_student_bonafide')
+            .report_action(
+                students.ids,
+                data={
+                    'certificate_purpose': self.certificate_purpose,
+                    'other_purpose': self.other_purpose,
+                    'purpose_display': self._get_purpose_display()
+                }
+            )
         )
         action['close_on_report_download'] = True
         return action
@@ -60,4 +67,4 @@ class BonafideCertificateWizard(models.TransientModel):
             'address_proof': 'Address Proof',
             'other': self.other_purpose or 'Other'
         }
-        return purpose_mapping.get(self.certificate_purpose, 'Other') 
+        return purpose_mapping.get(self.certificate_purpose, 'Other')
