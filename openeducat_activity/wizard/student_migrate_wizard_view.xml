@@ -18,9 +18,11 @@
                                 <field name="optional_sub"/>
                             </group>
                             <group>
+                                <field name="valid_to_course_ids" invisible="1"/>
                                 <field name="course_to_id"
                                 required="course_completed == False"
-                                invisible="course_completed == True"/>
+                                invisible="course_completed == True"
+                                domain="[('id', 'in', valid_to_course_ids)]"/>
                                 <field name="batch_id"
                                 required="course_completed == False"
                                 invisible="course_completed == True"
@@ -30,7 +32,7 @@
                         <notebook>
                             <page string="Student(s)" name="students">
                                 <field name="student_ids" nolabel="1"
-                                       domain="[('course_detail_ids.course_id', '=', course_from_id )]">
+                                       domain="[('id', 'in', student_ids_domain)]">
                                     <list>
                                         <field name="title"/>
                                         <field name="name"/>
