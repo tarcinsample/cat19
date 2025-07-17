@@ -67,8 +67,9 @@
                         </div>
                         <group>
                             <group>
+                                <field name="courses_subjects" invisible="1"/>
                                 <field name="course_id" readonly="state !='draft'"/>
-                                <field name="subject_id" readonly="state !='draft'"/>
+                                <field name="subject_id" readonly="state !='draft'" domain="[('id','in',courses_subjects)]"/>
                                 <field name="assignment_type" readonly="state !='draft'"/>
                             </group>
                             <group>
