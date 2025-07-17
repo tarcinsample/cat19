@@ -36,4 +36,4 @@ class OpStudent(models.Model):
     def _compute_count_assignment(self):
         for record in self:
             record.assignment_count = self.env['op.assignment'].search_count(
-                [('allocation_ids', '=', self.id)])
+                [('allocation_ids', 'in', self.ids)])
