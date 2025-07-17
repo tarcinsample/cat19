@@ -60,7 +60,7 @@
                             <field name="attendance_line" colspan="4" nolabel="1" readonly="state in ('done','cancel')">
                                 <list string="Attendance Line" editable="top">
                                     <field name="student_id"
-                                           domain="[('course_detail_ids.course_id','=',parent.course_id),('course_detail_ids.batch_id','=',parent.batch_id)]"/>
+                                           domain="[('course_detail_ids.course_id','=',parent.course_id),('course_detail_ids.batch_id','=',parent.batch_id),('course_detail_ids.state', '=', 'running')]"/>
                                     <field name="present"/>
                                     <field name="late"/>
                                     <field name="excused"/>
