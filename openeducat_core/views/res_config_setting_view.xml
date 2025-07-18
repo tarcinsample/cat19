@@ -245,7 +245,21 @@
                                     <div class="text-muted">Manage Convocation Ceremonies</div>
                                 </div>
                             </div>
-
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                title="Enable and configure student feedback functionality.">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_openeducat_student_feedback_management"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_openeducat_student_feedback_management"/>
+                                    <span class="fa fa-info-circle" title="OpenEduCat Student Feedback Module"/>
+                                        <a
+                                        href="https://doc.openeducat.org/applications/openeducat/student-feedback.html#configure-documents"
+                                        title="Documentation" class="o_doc_link"
+                                        target="_blank" />
+                                    <div class="text-muted">Collect and manage student feedback across courses and subjects.</div>
+                                </div>
+                            </div>
                         </div>
                         <h2 id="openeducat_admission_apps">Admission</h2>
                         <div class="row mt16 o_settings_container"
