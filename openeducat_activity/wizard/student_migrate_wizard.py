@@ -39,6 +39,8 @@ class StudentMigrate(models.TransientModel):
     student_ids_domain = fields.Many2many(
         'op.student', compute='_compute_student_domain', store=False
     )
+    year_id = fields.Many2one('op.academic.year', 'Academic Year')
+    term_id = fields.Many2one('op.academic.term', 'Terms')
 
     @api.depends('course_from_id')
     def _compute_student_domain(self):
