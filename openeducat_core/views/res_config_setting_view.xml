@@ -260,6 +260,21 @@
                                     <div class="text-muted">Collect and manage student feedback across courses and subjects.</div>
                                 </div>
                             </div>
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                title="It specifies health of the student.">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_openeducat_student_withdrawal_mgmt" />
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_openeducat_student_withdrawal_mgmt" />
+                                    <span class="fa fa-info-circle " title="Openeducat Enterprise Module"/>
+                                    <a
+                                        href="https://doc.openeducat.org/applications/student-withdrawal/student_withdrawal.html"
+                                        title="Documentation" class="o_doc_link"
+                                        target="_blank" />
+                                    <div class="text-muted">Manage Student Withdrawals</div>
+                                </div>
+                            </div>
                         </div>
                         <h2 id="openeducat_admission_apps">Admission</h2>
                         <div class="row mt16 o_settings_container"

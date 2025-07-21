@@ -215,3 +215,5 @@ class ResConfigSettings(models.TransientModel):
         string="Student Migration Exam Bridge")
     module_openeducat_student_feedback_management = fields.Boolean(
         string="Student Feedback")
+    module_openeducat_student_withdrawal_mgmt = fields.Boolean(
+        string="Student Withdrawal Management")
