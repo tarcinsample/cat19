@@ -288,9 +288,9 @@
             <field name="company_id" ref="base.main_company"/>
             <field name="groups_id"
                    eval="[(4,ref('openeducat_core.group_op_faculty'))]"/>
-            <field name="dept_id" ref="openeducat_core.op_department_3"/>
+            <field name="dept_id" ref="openeducat_core.op_department_1"/>
             <field name="department_ids"
-                   eval="[(4,ref('openeducat_core.op_department_3'))]"/>
+                   eval="[(4,ref('openeducat_core.op_department_1'))]"/>
         </record>
 
         <record id="base.user_demo" model="res.users">
