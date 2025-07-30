@@ -1087,6 +1087,30 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field
+                                                        name="module_openeducat_admission_grading_bridge" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label
+                                                        for="module_openeducat_admission_grading_bridge"
+                                                        string="Grading Admission Bridge" />
+                                                        <span class="fa fa-info-circle "
+                                                              title="Openeducat Enterprise Module"/>
+<!--                                                    <a-->
+<!--                                                        href="https://doc.openeducat.org/openeducat/fees-openeducat.html?highlight=fees#fees-on-duration"-->
+<!--                                                        title="Documentation"-->
+<!--                                                        class="o_doc_link"-->
+<!--                                                        target="_blank" />-->
+                                                    <div class="text-muted">Allows to create Gradebook upon
+                                                        student admission enrollment.
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
                                         </div>
                                     </div>
                                 </div>
