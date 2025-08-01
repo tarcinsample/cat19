@@ -95,6 +95,13 @@ class OpParent(models.Model):
                 record.user_id = user_id
                 record.name.user_id = user_id
 
+    @api.model
+    def get_import_templates(self):
+        return [{
+            'label': _('Import Template for Parent'),
+            'template': '/openeducat_parent/static/xls/op_parent.xls'
+        }]
+
 
 class OpStudent(models.Model):
     _inherit = "op.student"
