@@ -19,3 +19,9 @@
 ###############################################################################
 
 from . import test_library
+from . import test_library_common
+from . import test_media_management
+from . import test_library_card
+from . import test_media_movement
+from . import test_media_queue
+from . import test_library_reports

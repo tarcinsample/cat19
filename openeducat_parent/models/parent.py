@@ -34,6 +34,7 @@ class OpParent(models.Model):
     _name = "op.parent"
     _description = "Parent"
     _rec_name = "name"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Many2one(
         'res.partner', 
@@ -360,6 +361,28 @@ class OpStudent(models.Model):
     _inherit = "op.student"
 
     parent_ids = fields.Many2many('op.parent', string='Parent')
+    parent_count = fields.Integer(
+        string='Parent Count',
+        compute='_compute_parent_count',
+        help="Number of parents associated with this student"
+    )
+
+    @api.depends('parent_ids')
+    def _compute_parent_count(self):
+        """Compute the number of parents associated with this student."""
+        for student in self:
+            student.parent_count = len(student.parent_ids)
+
+    def action_view_parents(self):
+        """Open view showing parents associated with this student.
+        
+        Returns:
+            Action dictionary for opening parent list view
+        """
+        action = self.env.ref('openeducat_parent.act_open_op_parent_view').read()[0]
+        action['domain'] = [('student_ids', 'in', self.ids)]
+        action['context'] = {'default_student_ids': [(6, 0, self.ids)]}
+        return action
 
     @api.model_create_multi
     def create(self, vals):

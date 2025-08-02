@@ -23,10 +23,11 @@ import logging
 from .test_admission_common import TestAdmissionCommon
 
 
-class TestAdmission(TestAdmissionCommon):
+class TestAdmissionLegacy(TestAdmissionCommon):
+    """Legacy admission tests - maintained for compatibility."""
 
     def setUp(self):
-        super(TestAdmission, self).setUp()
+        super(TestAdmissionLegacy, self).setUp()
 
     def test_case_1_admissions(self):
         admissions = self.op_admission.search([])

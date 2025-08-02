@@ -18,7 +18,11 @@
 #
 ###############################################################################
 
-from odoo import fields, models
+import logging
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
+
+_logger = logging.getLogger(__name__)
 
 
 class OpParentRelation(models.Model):
@@ -26,11 +30,12 @@ class OpParentRelation(models.Model):
     _description = "Relationships"
 
     name = fields.Char('Name', required=True)
+    description = fields.Text('Description', help="Description of the relationship type")
 
     _sql_constraints = [
         ('unique_relationship_name',
-         'unique(lower(name))',
-         'Relationship name must be unique (case insensitive)!')
+         'unique(name)',
+         'Relationship name must be unique!')
     ]
 
     @api.depends('name')

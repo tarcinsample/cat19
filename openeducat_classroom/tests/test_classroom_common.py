@@ -18,12 +18,81 @@
 #
 ###############################################################################
 
+from datetime import date, timedelta
+from odoo.tests import TransactionCase, tagged
 
-from odoo.tests import common
 
+@tagged('post_install', '-at_install', 'openeducat_classroom')
+class TestClassroomCommon(TransactionCase):
+    """Common test setup for classroom module tests."""
 
-class TestClassroomCommon(common.TransactionCase):
-    def setUp(self):
-        super(TestClassroomCommon, self).setUp()
-        self.op_classroom = self.env['op.classroom']
-        self.op_asset = self.env['op.asset']
+    @classmethod
+    def setUpClass(cls):
+        """Set up test data for classroom tests."""
+        super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        
+        # Create academic year
+        cls.academic_year = cls.env['op.academic.year'].create({
+            'name': 'Test Year 2024-25',
+            'code': 'TY24',
+            'date_start': '2024-06-01',
+            'date_stop': '2025-05-31',
+        })
+        
+        # Create department
+        cls.department = cls.env['op.department'].create({
+            'name': 'Test Department',
+            'code': 'TD001',
+        })
+        
+        # Create course
+        cls.course = cls.env['op.course'].create({
+            'name': 'Test Course',
+            'code': 'TC001',
+            'department_id': cls.department.id,
+        })
+        
+        # Create batch
+        cls.batch = cls.env['op.batch'].create({
+            'name': 'Test Batch',
+            'code': 'TB001',
+            'course_id': cls.course.id,
+            'start_date': '2024-06-01',
+            'end_date': '2024-12-31',
+        })
+
+    def create_classroom(self, **kwargs):
+        """Helper method to create classroom."""
+        vals = {
+            'name': 'Test Classroom',
+            'code': 'TC-001',
+            'capacity': 50,
+            'type': 'classroom',
+        }
+        vals.update(kwargs)
+        return self.env['op.classroom'].create(vals)
+
+    def create_asset(self, classroom=None, **kwargs):
+        """Helper method to create asset."""
+        vals = {
+            'name': 'Test Asset',
+            'asset_id': 'ASSET-001',
+            'type': 'furniture',
+        }
+        if classroom:
+            vals['classroom_id'] = classroom.id
+        vals.update(kwargs)
+        return self.env['op.asset'].create(vals)
+
+    def create_facility_line(self, classroom=None, **kwargs):
+        """Helper method to create facility line."""
+        vals = {
+            'name': 'Test Facility',
+            'type': 'projector',
+            'quantity': 1,
+        }
+        if classroom:
+            vals['classroom_id'] = classroom.id
+        vals.update(kwargs)
+        return self.env['op.facility.line'].create(vals)

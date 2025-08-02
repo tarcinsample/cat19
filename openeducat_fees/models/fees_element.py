@@ -39,7 +39,7 @@ class OpFeesElementLine(models.Model):
     product_id = fields.Many2one(
         'product.product', 'Product(s)', 
         required=True, 
-        domain="[('can_be_expensed', '=', False)]",
+        domain="[('type', '=', 'service')]",
         help="Product representing this fee component")
     value = fields.Float(
         'Value (%)', required=True,

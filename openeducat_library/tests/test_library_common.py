@@ -17,19 +17,192 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ###############################################################################
-from odoo.tests import common
+
+from datetime import date, timedelta
+from odoo.tests import TransactionCase, tagged
 
 
-class TestLibraryCommon(common.TransactionCase):
-    def setUp(self):
-        super(TestLibraryCommon, self).setUp()
-        self.op_library_card_type = self.env['op.library.card.type']
-        self.op_library_card = self.env['op.library.card']
-        self.op_media = self.env['op.media']
-        self.op_media_unit = self.env['op.media.unit']
-        self.op_media_movement = self.env['op.media.movement']
-        self.op_media_purchase = self.env['op.media.purchase']
-        self.op_media_queue = self.env['op.media.queue']
-        self.wizard_issue = self.env['issue.media']
-        self.reserve_media = self.env['reserve.media']
-        self.return_media = self.env['return.media']
+@tagged('post_install', '-at_install', 'openeducat_library')
+class TestLibraryCommon(TransactionCase):
+    """Common test setup for library module tests."""
+
+    @classmethod
+    def setUpClass(cls):
+        """Set up test data for library tests."""
+        super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        
+        # Create academic year
+        cls.academic_year = cls.env['op.academic.year'].create({
+            'name': 'Test Year 2024-25',
+            'code': 'TY24',
+            'date_start': '2024-06-01',
+            'date_stop': '2025-05-31',
+        })
+        
+        # Create academic term
+        cls.academic_term = cls.env['op.academic.term'].create({
+            'name': 'Test Term 1',
+            'code': 'TT1',
+            'term_start_date': '2024-06-01',
+            'term_end_date': '2024-12-31',
+            'parent_id': cls.academic_year.id,
+        })
+        
+        # Create department
+        cls.department = cls.env['op.department'].create({
+            'name': 'Test Department',
+            'code': 'TD001',
+        })
+        
+        # Create course
+        cls.course = cls.env['op.course'].create({
+            'name': 'Test Course',
+            'code': 'TC001',
+            'department_id': cls.department.id,
+        })
+        
+        # Create batch
+        cls.batch = cls.env['op.batch'].create({
+            'name': 'Test Batch',
+            'code': 'TB001',
+            'course_id': cls.course.id,
+            'start_date': '2024-06-01',
+            'end_date': '2024-12-31',
+        })
+        
+        # Create students
+        cls.student1 = cls.env['op.student'].create({
+            'name': 'Test Student 1',
+            'first_name': 'Test',
+            'last_name': 'Student1',
+            'birth_date': '2000-01-01',
+            'course_detail_ids': [(0, 0, {
+                'course_id': cls.course.id,
+                'batch_id': cls.batch.id,
+                'academic_years_id': cls.academic_year.id,
+                'academic_term_id': cls.academic_term.id,
+            })],
+        })
+        
+        cls.student2 = cls.env['op.student'].create({
+            'name': 'Test Student 2',
+            'first_name': 'Test',
+            'last_name': 'Student2',
+            'birth_date': '2000-02-02',
+            'course_detail_ids': [(0, 0, {
+                'course_id': cls.course.id,
+                'batch_id': cls.batch.id,
+                'academic_years_id': cls.academic_year.id,
+                'academic_term_id': cls.academic_term.id,
+            })],
+        })
+        
+        # Create faculty
+        cls.faculty = cls.env['op.faculty'].create({
+            'name': 'Test Faculty',
+        })
+        
+        # Create library card type
+        cls.card_type = cls.env['op.library.card.type'].create({
+            'name': 'Student Card',
+            'allow_day': 7,
+            'penalties_day': 1.0,
+        })
+        
+        # Create authors
+        cls.author1 = cls.env['op.author'].create({
+            'name': 'Test Author 1',
+            'birth_date': '1970-01-01',
+            'country_id': cls.env.ref('base.us').id,
+        })
+        
+        cls.author2 = cls.env['op.author'].create({
+            'name': 'Test Author 2',
+            'birth_date': '1975-02-02',
+            'country_id': cls.env.ref('base.uk').id,
+        })
+        
+        # Create publisher
+        cls.publisher = cls.env['op.publisher'].create({
+            'name': 'Test Publisher',
+            'website': 'https://testpublisher.com',
+        })
+        
+        # Create media types
+        cls.media_type_book = cls.env['op.media.type'].create({
+            'name': 'Book',
+            'code': 'BOOK',
+        })
+        
+        cls.media_type_journal = cls.env['op.media.type'].create({
+            'name': 'Journal',
+            'code': 'JOURNAL',
+        })
+        
+        # Create media units
+        cls.media_unit = cls.env['op.media.unit'].create({
+            'name': 'Central Library',
+            'code': 'CL001',
+        })
+        
+        # Create tags
+        cls.tag_science = cls.env['op.tag'].create({
+            'name': 'Science',
+        })
+        
+        cls.tag_fiction = cls.env['op.tag'].create({
+            'name': 'Fiction',
+        })
+        
+        # Helper methods
+        cls.today = date.today()
+        cls.tomorrow = cls.today + timedelta(days=1)
+        cls.next_week = cls.today + timedelta(days=7)
+
+    def create_media(self, **kwargs):
+        """Helper method to create media."""
+        vals = {
+            'name': 'Test Book',
+            'isbn': '978-0123456789',
+            'author_ids': [(6, 0, [self.author1.id])],
+            'publisher_id': self.publisher.id,
+            'media_type': self.media_type_book.id,
+            'unit_id': self.media_unit.id,
+            'tag_ids': [(6, 0, [self.tag_science.id])],
+            'state': 'available',
+        }
+        vals.update(kwargs)
+        return self.env['op.media'].create(vals)
+
+    def create_library_card(self, student, **kwargs):
+        """Helper method to create library card."""
+        vals = {
+            'student_id': student.id,
+            'card_type_id': self.card_type.id,
+        }
+        vals.update(kwargs)
+        return self.env['op.library.card'].create(vals)
+
+    def create_media_movement(self, media, student, movement_type='issue', **kwargs):
+        """Helper method to create media movement."""
+        vals = {
+            'media_id': media.id,
+            'student_id': student.id,
+            'type': movement_type,
+            'issue_date': self.today,
+        }
+        if movement_type == 'issue':
+            vals['return_date'] = self.today + timedelta(days=7)
+        vals.update(kwargs)
+        return self.env['op.media.movement'].create(vals)
+
+    def create_media_queue(self, media, student, **kwargs):
+        """Helper method to create media queue entry."""
+        vals = {
+            'media_id': media.id,
+            'student_id': student.id,
+            'request_date': self.today,
+        }
+        vals.update(kwargs)
+        return self.env['op.media.queue'].create(vals)

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo noupdate="1">
+    <!-- Demo data commented out due to missing required fees_terms_line_id field -->
+    <!-- 
         <record id="op_fees_element_line_1" model="op.fees.element">
             <field name="product_id" ref="op_product_7"/>
             <field name="value">50.0</field>
@@ -69,6 +71,6 @@
             <field name="product_id" ref="op_product_9"/>
             <field name="value">50.0</field>
         </record>
-
+    -->
 
 </odoo>

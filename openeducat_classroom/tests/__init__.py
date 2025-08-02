@@ -20,3 +20,5 @@
 
 
 from . import test_classroom
+from . import test_classroom_common
+from . import test_classroom_management
