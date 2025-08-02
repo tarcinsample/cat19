@@ -63,15 +63,22 @@ class OpAdmissionRegister(models.Model):
                                        'Terms', readonly=True,
                                        tracking=True)
     minimum_age_criteria = fields.Integer('Minimum Required Age(Years)', default=3)
-    application_count = fields.Integer(string="Total_record",
-                                       compute="_compute_calculate_record_application")
-    is_favorite = fields.Boolean(string="Is Favorite", default=False)
+    application_count = fields.Integer(string="Total Applications",
+                                       compute="_compute_calculate_record_application",
+                                       help="Total number of applications for this register")
+    is_favorite = fields.Boolean(string="Is Favorite", default=False,
+                                help="Mark this register as favorite for quick access")
     company_id = fields.Many2one('res.company', string='Company',
-                                 default=lambda self: self.env.user.company_id)
-    draft_count = fields.Integer(compute="_compute_counts")
-    confirm_count = fields.Integer(compute="_compute_counts")
-    done_count = fields.Integer(compute="_compute_counts")
-    online_count = fields.Integer(compute='_compute_application_counts')
+                                 default=lambda self: self.env.user.company_id,
+                                 help="Company this admission register belongs to")
+    draft_count = fields.Integer(compute="_compute_counts", string="Draft Applications",
+                                help="Number of applications in draft state")
+    confirm_count = fields.Integer(compute="_compute_counts", string="Confirmed Applications", 
+                                  help="Number of confirmed applications")
+    done_count = fields.Integer(compute="_compute_counts", string="Enrolled Students",
+                               help="Number of students successfully enrolled")
+    online_count = fields.Integer(compute='_compute_application_counts', string="Online Applications",
+                                 help="Number of online applications")
     admission_base = fields.Selection([('program', 'Program'), ('course', 'Course')],
                                       default='course')
     admission_fees_line_ids = fields.One2many('op.admission.fees.line', 'register_id',
@@ -89,44 +96,61 @@ class OpAdmissionRegister(models.Model):
 
     program_id = fields.Many2one('op.program', string="Program", tracking=True)
 
+    @api.depends('admission_ids.state')
     def _compute_counts(self):
+        """Compute application counts by state.
+        
+        Efficiently counts applications in different states.
+        """
         for record in self:
-            draft_admissions = record.admission_ids.filtered(
-                lambda a: a.state == 'draft')
-            confirmed_admissions = record.admission_ids.filtered(
-                lambda a: a.state == 'confirm')
-            done_admissions = record.admission_ids.filtered(
-                lambda a: a.state == 'done')
+            admission_states = record.admission_ids.mapped('state')
+            record.draft_count = admission_states.count('draft')
+            record.confirm_count = admission_states.count('confirm')
+            record.done_count = admission_states.count('done')
 
-            record.draft_count = len(draft_admissions)
-            record.confirm_count = len(confirmed_admissions)
-            record.done_count = len(done_admissions)
-
+    @api.depends('admission_ids.state')
     def _compute_application_counts(self):
+        """Compute online application counts.
+        
+        Efficiently counts online applications.
+        """
         for record in self:
-            record.draft_count = record.admission_ids.filtered(
-                lambda a: a.state == 'draft').mapped('id').__len__()
-            record.online_count = record.admission_ids.filtered(
-                lambda a: a.state == 'online').mapped('id').__len__()
+            admission_states = record.admission_ids.mapped('state')
+            record.online_count = admission_states.count('online')
 
     @api.constrains('start_date', 'end_date')
     def check_dates(self):
+        """Validate admission register date constraints.
+        
+        Raises:
+            ValidationError: If end date is before start date
+        """
         for record in self:
-            start_date = fields.Date.from_string(record.start_date)
-            end_date = fields.Date.from_string(record.end_date)
-            if end_date and start_date > end_date:
-                raise ValidationError(
-                    _("End Date cannot be set before Start Date."))
+            if not record.start_date:
+                continue
+                
+            if record.end_date and record.start_date > record.end_date:
+                raise ValidationError(_(
+                    "End Date (%s) cannot be set before Start Date (%s).") % (
+                    record.end_date, record.start_date))
 
     @api.constrains('min_count', 'max_count')
     def check_no_of_admission(self):
+        """Validate admission count constraints.
+        
+        Raises:
+            ValidationError: If admission counts are invalid
+        """
         for record in self:
-            if (record.min_count <= 0) or (record.max_count <= 0):
-                raise ValidationError(
-                    _("No of Admission should be positive!"))
+            if record.min_count <= 0 or record.max_count <= 0:
+                raise ValidationError(_(
+                    "Minimum (%s) and Maximum (%s) admission counts must be positive.") % (
+                    record.min_count, record.max_count))
             if record.min_count > record.max_count:
                 raise ValidationError(_(
-                    "Min Admission can't be greater than Max Admission"))
+                    "Minimum admission count (%s) cannot be greater than "
+                    "Maximum admission count (%s).") % (
+                    record.min_count, record.max_count))
 
     def open_student_application(self):
         return {
@@ -137,27 +161,60 @@ class OpAdmissionRegister(models.Model):
             "view_mode": "list,form",
         }
 
+    @api.depends('admission_ids')
     def _compute_calculate_record_application(self):
-        record = self.env["op.admission"].search_count([
-            ("register_id", "=", self.id)])
-        self.application_count = record
+        """Compute total application count.
+        
+        Efficiently counts total applications for this register.
+        """
+        for record in self:
+            record.application_count = len(record.admission_ids)
 
     def confirm_register(self):
+        """Confirm admission register and make it active for applications.
+        
+        Validates required fields before confirmation.
+        """
+        self.ensure_one()
+        if not self.course_id and self.admission_base == 'course':
+            raise ValidationError(_("Course must be selected for course-based admission."))
+        if not self.program_id and self.admission_base == 'program':
+            raise ValidationError(_("Program must be selected for program-based admission."))
         self.state = 'confirm'
 
     def set_to_draft(self):
+        """Reset admission register to draft state for editing."""
+        self.ensure_one()
         self.state = 'draft'
 
     def cancel_register(self):
+        """Cancel admission register.
+        
+        Validates that no confirmed applications exist.
+        """
+        self.ensure_one()
+        if self.admission_ids.filtered(lambda a: a.state in ['confirm', 'admission', 'done']):
+            raise ValidationError(_(
+                "Cannot cancel register with confirmed or enrolled applications."))
         self.state = 'cancel'
 
     def start_application(self):
+        """Start application gathering phase."""
+        self.ensure_one()
+        if self.state != 'confirm':
+            raise ValidationError(_("Register must be confirmed before starting applications."))
         self.state = 'application'
 
     def start_admission(self):
+        """Start admission process phase."""
+        self.ensure_one()
+        if self.state != 'application':
+            raise ValidationError(_("Must be in application phase before starting admissions."))
         self.state = 'admission'
 
     def close_register(self):
+        """Close admission register and mark as completed."""
+        self.ensure_one()
         self.state = 'done'
 
     def action_open_draft_courses(self):

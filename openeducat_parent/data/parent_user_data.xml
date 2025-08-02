@@ -1,10 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo noupdate="1">
+        <!-- Enhanced parent template user with proper security groups -->
         <record id="parent_template_user" model="res.users" context="{'no_reset_password': True}">
-            <field name="name">Parent Template User</field>
-            <field name="login">parentportaltemplate</field>
+            <field name="name">Parent Portal Template</field>
+            <field name="login">parent.portal.template@openeducat.org</field>
             <field name="active" eval="False"/>
-            <field name="groups_id" eval="[(6, 0, [ref('base.group_portal')])]"/>
+            <field name="is_parent" eval="True"/>
+            <field name="tz">UTC</field>
+            <field name="groups_id" eval="[(6, 0, [ref('openeducat_parent.group_op_parent_portal')])]"/>
+            <field name="comment">Template user for parent portal access with enhanced security</field>
+        </record>
+        
+        <!-- Default parent relationship types -->
+        <record id="op_parent_relationship_father" model="op.parent.relationship">
+            <field name="name">Father</field>
+            <field name="description">Biological or adoptive father</field>
+        </record>
+        
+        <record id="op_parent_relationship_mother" model="op.parent.relationship">
+            <field name="name">Mother</field>
+            <field name="description">Biological or adoptive mother</field>
+        </record>
+        
+        <record id="op_parent_relationship_guardian" model="op.parent.relationship">
+            <field name="name">Guardian</field>
+            <field name="description">Legal guardian or caretaker</field>
+        </record>
+        
+        <record id="op_parent_relationship_stepfather" model="op.parent.relationship">
+            <field name="name">Step Father</field>
+            <field name="description">Step father or father figure</field>
+        </record>
+        
+        <record id="op_parent_relationship_stepmother" model="op.parent.relationship">
+            <field name="name">Step Mother</field>
+            <field name="description">Step mother or mother figure</field>
         </record>
 
 </odoo>

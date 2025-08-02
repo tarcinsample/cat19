@@ -54,9 +54,12 @@ class OpAdmission(models.Model):
     birth_date = fields.Date(
         'Birth Date', required=True)
     course_id = fields.Many2one(
-        'op.course', 'Course', required=True)
+        'op.course', 'Course', required=True, tracking=True,
+        help="Course for which admission is being applied")
     batch_id = fields.Many2one(
-        'op.batch', 'Batch', required=False)
+        'op.batch', 'Batch', required=False, 
+        domain="[('course_id', '=', course_id), ('active', '=', True)]",
+        help="Batch associated with the selected course")
     street = fields.Char(
         'Street', size=256)
     street2 = fields.Char(
@@ -98,7 +101,8 @@ class OpAdmission(models.Model):
         'op.student', 'Student')
     nbr = fields.Integer('No of Admission', readonly=True)
     register_id = fields.Many2one(
-        'op.admission.register', 'Admission Register', required=True)
+        'op.admission.register', 'Admission Register', required=True, tracking=True,
+        help="Admission register for this admission cycle")
     partner_id = fields.Many2one('res.partner', 'Partner')
     is_student = fields.Boolean('Is Already Student')
     fees_term_id = fields.Many2one('op.fees.terms', 'Fees Term')
@@ -137,13 +141,21 @@ class OpAdmission(models.Model):
 
     @api.onchange('first_name', 'middle_name', 'last_name')
     def _onchange_name(self):
-        if not self.middle_name:
-            self.name = str(self.first_name) + " " + str(
-                self.last_name
-            )
+        """Compute full name from first, middle, and last names.
+        
+        Handles None values gracefully and uses proper string formatting.
+        """
+        if self.first_name and self.last_name:
+            if self.middle_name:
+                self.name = f"{self.first_name} {self.middle_name} {self.last_name}"
+            else:
+                self.name = f"{self.first_name} {self.last_name}"
+        elif self.first_name:
+            self.name = self.first_name
+        elif self.last_name:
+            self.name = self.last_name
         else:
-            self.name = str(self.first_name) + " " + str(
-                self.middle_name) + " " + str(self.last_name)
+            self.name = False
 
     @api.onchange('student_id', 'is_student')
     def onchange_student(self):
@@ -206,47 +218,111 @@ class OpAdmission(models.Model):
 
     @api.constrains('register_id', 'application_date')
     def _check_admission_register(self):
+        """Validate application date within admission register period.
+        
+        Raises:
+            ValidationError: If application date is outside register period
+        """
         for rec in self:
-            start_date = fields.Date.from_string(rec.register_id.start_date)
-            end_date = fields.Date.from_string(rec.register_id.end_date)
-            application_date = fields.Date.from_string(rec.application_date)
+            if not rec.register_id:
+                continue
+            
+            start_date = rec.register_id.start_date
+            end_date = rec.register_id.end_date
+            application_date = rec.application_date.date() if rec.application_date else False
+            
+            if not application_date:
+                raise ValidationError(_("Application date is required."))
+                
             if application_date < start_date or application_date > end_date:
                 raise ValidationError(_(
-                    "Application Date should be between Start Date & End Date of Admission Register."))  # noqa
+                    "Application Date (%s) should be between Start Date (%s) "
+                    "and End Date (%s) of Admission Register '%s'.") % (
+                    application_date, start_date, end_date, rec.register_id.name))
 
-    @api.constrains('birth_date')
+    @api.constrains('birth_date', 'register_id')
     def _check_birthdate(self):
+        """Validate birth date and age criteria.
+        
+        Raises:
+            ValidationError: If birth date is invalid or age criteria not met
+        """
         for record in self:
-            if record.birth_date and record.birth_date > fields.Date.today():
+            if not record.birth_date:
+                continue
+                
+            today_date = fields.Date.today()
+            
+            # Check birth date not in future
+            if record.birth_date > today_date:
                 raise ValidationError(_(
-                    "Birth Date can't be greater than current date!"))
-            elif record and record.birth_date:
-                today_date = fields.Date.today()
-                day = (today_date - record.birth_date).days
-                years = day // 365
-                if years < self.register_id.minimum_age_criteria:
-                    raise ValidationError(_(
-                        "Not Eligible for Admission minimum "
-                        "required age is :"
-                        " %s " % self.register_id.minimum_age_criteria))
+                    "Birth Date (%s) cannot be greater than current date (%s).") % (
+                    record.birth_date, today_date))
+            
+            # Check minimum age criteria if register has requirement
+            if record.register_id and hasattr(record.register_id, 'minimum_age_criteria'):
+                if record.register_id.minimum_age_criteria > 0:
+                    age_years = (today_date - record.birth_date).days // 365
+                    if age_years < record.register_id.minimum_age_criteria:
+                        raise ValidationError(_(
+                            "Not eligible for admission. Minimum required age is %s years. "
+                            "Current age is %s years.") % (
+                            record.register_id.minimum_age_criteria, age_years))
 
-    @api.constrains('name')
-    def create_sequence(self):
-        if not self.application_number:
-            self.application_number = self.env['ir.sequence'].next_by_code(
-                'op.admission') or '/'
+    @api.model
+    def create(self, vals):
+        """Override create to generate application number sequence.
+        
+        Ensures application number is generated with proper error handling.
+        """
+        if not vals.get('application_number'):
+            sequence = self.env['ir.sequence'].next_by_code('op.admission')
+            if not sequence:
+                raise ValidationError(_(
+                    "Unable to generate application number. "
+                    "Please check admission sequence configuration."))
+            vals['application_number'] = sequence
+        return super(OpAdmission, self).create(vals)
 
     def submit_form(self):
+        """Submit admission application for review.
+        
+        Validates required fields before submission.
+        """
+        self.ensure_one()
+        if not self.name or not self.email:
+            raise ValidationError(_("Name and Email are required to submit application."))
         self.state = 'submit'
 
     def admission_confirm(self):
+        """Confirm admission application.
+        
+        Validates course and batch availability before confirmation.
+        """
+        self.ensure_one()
+        if not self.course_id:
+            raise ValidationError(_("Course must be selected before confirmation."))
         self.state = 'admission'
 
     def confirm_in_progress(self):
+        """Set admission status to confirmed/in-progress.
+        
+        Validates admission criteria before confirming.
+        """
         for record in self:
+            if not record.batch_id and record.register_id.admission_base == 'course':
+                raise ValidationError(_("Batch must be selected for course-based admission."))
             record.state = 'confirm'
 
     def get_student_vals(self):
+        """Prepare student creation values from admission data.
+        
+        Creates user account if configuration parameter is enabled.
+        Formats all student data including course details and fee information.
+        
+        Returns:
+            dict: Dictionary containing student creation values
+        """
         enable_create_student_user = self.env['ir.config_parameter'].get_param(
             'openeducat_admission.enable_create_student_user')
         for student in self:
@@ -305,6 +381,14 @@ class OpAdmission(models.Model):
             return details
 
     def enroll_student(self):
+        """Enroll student after admission confirmation.
+        
+        Creates student record, handles course enrollment, manages fee terms,
+        and creates subject registration. Validates maximum admission count.
+        
+        Raises:
+            ValidationError: If maximum admission count exceeded
+        """
         for record in self:
             if record.register_id.max_count:
                 total_admission = self.env['op.admission'].search_count(

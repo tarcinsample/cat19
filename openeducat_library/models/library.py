@@ -36,10 +36,22 @@ class OpLibraryCardType(models.Model):
                                        required=True)
 
     @api.constrains('allow_media', 'duration', 'penalty_amt_per_day')
-    def check_details(self):
-        if self.allow_media < 0 or self.duration < 0.0 or \
-                self.penalty_amt_per_day < 0.0:
-            raise ValidationError(_('Enter proper value'))
+    def _check_card_type_details(self):
+        """Validate library card type configuration.
+        
+        Raises:
+            ValidationError: If card type values are invalid
+        """
+        for record in self:
+            if record.allow_media < 0:
+                raise ValidationError(_(
+                    "Number of allowed media cannot be negative."))
+            if record.duration <= 0:
+                raise ValidationError(_(
+                    "Duration must be positive (minimum 1 day)."))
+            if record.penalty_amt_per_day < 0:
+                raise ValidationError(_(
+                    "Penalty amount per day cannot be negative."))
 
 
 class OpLibraryCard(models.Model):
@@ -68,28 +80,118 @@ class OpLibraryCard(models.Model):
         'unique(number)',
         'Library card Number should be unique per card!')]
 
+    @api.constrains('student_id', 'faculty_id', 'type')
+    def _check_student_faculty_consistency(self):
+        """Validate student/faculty consistency with card type.
+        
+        Raises:
+            ValidationError: If type doesn't match selected person
+        """
+        for record in self:
+            if record.type == 'student' and not record.student_id:
+                raise ValidationError(_(
+                    "Student must be selected for student library card."))
+            if record.type == 'faculty' and not record.faculty_id:
+                raise ValidationError(_(
+                    "Faculty must be selected for faculty library card."))
+            if record.type == 'student' and record.faculty_id:
+                raise ValidationError(_(
+                    "Faculty cannot be selected for student library card."))
+            if record.type == 'faculty' and record.student_id:
+                raise ValidationError(_(
+                    "Student cannot be selected for faculty library card."))
+
     @api.model_create_multi
     def create(self, vals_list):
+        """Override create to generate card number and link to student/faculty.
+        
+        Ensures proper sequence generation and establishes bidirectional links.
+        """
         for vals in vals_list:
-            x = self.env['ir.sequence'].next_by_code(
-                'op.library.card') or '/'
-            vals['number'] = x
-        res = super(OpLibraryCard, self).create(vals_list)
-        if res.type == 'student':
-            res.student_id.library_card_id = res
-        else:
-            res.faculty_id.library_card_id = res
-        return res
+            sequence = self.env['ir.sequence'].next_by_code('op.library.card')
+            if not sequence:
+                raise ValidationError(_(
+                    "Unable to generate library card number. "
+                    "Please check sequence configuration."))
+            vals['number'] = sequence
+            
+        result = super(OpLibraryCard, self).create(vals_list)
+        
+        # Link cards to students/faculty
+        for res in result:
+            if res.type == 'student' and res.student_id:
+                res.student_id.library_card_id = res.id
+            elif res.type == 'faculty' and res.faculty_id:
+                res.faculty_id.library_card_id = res.id
+                
+        return result
 
     @api.onchange('type')
     def onchange_type(self):
+        """Clear person fields when card type changes."""
         self.student_id = False
         self.faculty_id = False
         self.partner_id = False
+        
+        # Return domain based on card type
+        if self.type == 'student':
+            return {
+                'domain': {
+                    'student_id': [('library_card_id', '=', False), ('active', '=', True)]
+                }
+            }
+        elif self.type == 'faculty':
+            return {
+                'domain': {
+                    'faculty_id': [('library_card_id', '=', False), ('active', '=', True)]
+                }
+            }
 
     @api.onchange('student_id', 'faculty_id')
     def onchange_student_faculty(self):
+        """Update partner when student or faculty is selected."""
         if self.student_id:
             self.partner_id = self.student_id.partner_id
-        if not self.student_id and self.faculty_id:
+            # Ensure consistency with card type
+            if self.type != 'student':
+                self.type = 'student'
+        elif self.faculty_id:
             self.partner_id = self.faculty_id.partner_id
+            # Ensure consistency with card type
+            if self.type != 'faculty':
+                self.type = 'faculty'
+        else:
+            self.partner_id = False
+            
+    def get_issued_media_count(self):
+        """Get count of currently issued media for this card.
+        
+        Returns number of media units currently issued to this card.
+        """
+        self.ensure_one()
+        return self.env['op.media.movement'].search_count([
+            ('library_card_id', '=', self.id),
+            ('state', '=', 'issue')
+        ])
+        
+    def check_media_limit(self):
+        """Check if card has reached media limit.
+        
+        Returns True if more media can be issued, False otherwise.
+        """
+        self.ensure_one()
+        current_count = self.get_issued_media_count()
+        return current_count < self.library_card_type_id.allow_media
+        
+    def get_overdue_media(self):
+        """Get list of overdue media for this card.
+        
+        Returns recordset of overdue media movements.
+        """
+        self.ensure_one()
+        today = fields.Date.today()
+        return self.env['op.media.movement'].search([
+            ('library_card_id', '=', self.id),
+            ('state', '=', 'issue'),
+            ('return_date', '<', today)
+        ])

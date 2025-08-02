@@ -27,8 +27,160 @@ class OpParentRelation(models.Model):
 
     name = fields.Char('Name', required=True)
 
-    _sql_constraints = [(
-        'unique_relationship_name',
-        'unique(name)',
-        'Can not create relationship multiple times.!'
-    )]
+    _sql_constraints = [
+        ('unique_relationship_name',
+         'unique(lower(name))',
+         'Relationship name must be unique (case insensitive)!')
+    ]
+
+    @api.depends('name')
+    def _compute_parent_count(self):
+        """Compute the number of parents using this relationship type."""
+        for relationship in self:
+            relationship.parent_count = self.env['op.parent'].search_count([
+                ('relationship_id', '=', relationship.id)
+            ])
+
+    @api.constrains('name')
+    def _check_name_validity(self):
+        """Validate relationship name format and content.
+        
+        Raises:
+            ValidationError: If name is invalid
+        """
+        for relationship in self:
+            if relationship.name:
+                # Check minimum length
+                if len(relationship.name.strip()) < 2:
+                    raise ValidationError(
+                        _('Relationship name must be at least 2 characters long.')
+                    )
+                    
+                # Check for invalid characters
+                if not relationship.name.replace(' ', '').isalpha():
+                    raise ValidationError(
+                        _('Relationship name can only contain letters and spaces.')
+                    )
+                    
+    @api.model_create_multi
+    def create(self, vals_list):
+        """Create relationship records with validation.
+        
+        Args:
+            vals_list: List of dictionaries containing relationship data
+            
+        Returns:
+            Created relationship records
+        """
+        for vals in vals_list:
+            if 'name' in vals and vals['name']:
+                vals['name'] = vals['name'].strip().title()
+                
+        relationships = super(OpParentRelation, self).create(vals_list)
+        
+        for relationship in relationships:
+            _logger.info(f"Created parent relationship type: {relationship.name}")
+            
+        return relationships
+        
+    def write(self, vals):
+        """Update relationship records with validation.
+        
+        Args:
+            vals: Dictionary containing updated values
+            
+        Returns:
+            True if successful
+        """
+        if 'name' in vals and vals['name']:
+            vals['name'] = vals['name'].strip().title()
+            
+        res = super(OpParentRelation, self).write(vals)
+        
+        for relationship in self:
+            _logger.info(f"Updated parent relationship type: {relationship.name}")
+            
+        return res
+        
+    def unlink(self):
+        """Delete relationship records with dependency validation.
+        
+        Returns:
+            True if successful
+            
+        Raises:
+            ValidationError: If relationship is still in use
+        """
+        for relationship in self:
+            parent_count = self.env['op.parent'].search_count([
+                ('relationship_id', '=', relationship.id)
+            ])
+            
+            if parent_count > 0:
+                raise ValidationError(
+                    _('Cannot delete relationship type "%s" as it is currently used by %d parent(s). '
+                      'Please reassign or remove the parents first.') % 
+                    (relationship.name, parent_count)
+                )
+                
+        return super(OpParentRelation, self).unlink()
+        
+    @api.model
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
+        """Enhanced name search with case-insensitive matching.
+        
+        Args:
+            name: Search term
+            args: Additional domain conditions
+            operator: Search operator
+            limit: Maximum number of results
+            
+        Returns:
+            List of (id, name) tuples
+        """
+        if args is None:
+            args = []
+            
+        domain = args.copy()
+        
+        if name:
+            domain = ['|', 
+                     ('name', operator, name),
+                     ('description', operator, name)] + domain
+                     
+        relationships = self.search(domain, limit=limit)
+        return relationships.name_get()
+        
+    def name_get(self):
+        """Return display name with parent count.
+        
+        Returns:
+            List of (id, display_name) tuples
+        """
+        result = []
+        for relationship in self:
+            parent_count = self.env['op.parent'].search_count([
+                ('relationship_id', '=', relationship.id)
+            ])
+            
+            if parent_count > 0:
+                display_name = f"{relationship.name} ({parent_count} parents)"
+            else:
+                display_name = relationship.name
+                
+            result.append((relationship.id, display_name))
+            
+        return result
+        
+    def action_view_parents(self):
+        """Open view showing parents using this relationship type.
+        
+        Returns:
+            Action dictionary for opening parent list view
+        """
+        action = self.env.ref('openeducat_parent.act_open_op_parent_view').read()[0]
+        action['domain'] = [('relationship_id', 'in', self.ids)]
+        action['context'] = {
+            'default_relationship_id': self.id if len(self) == 1 else False
+        }
+        return action
