@@ -29,10 +29,14 @@ class OpStudentCourse(models.Model):
     _rec_name = 'student_id'
 
     student_id = fields.Many2one('op.student', 'Student',
-                                 ondelete="cascade", tracking=True)
-    course_id = fields.Many2one('op.course', 'Course', required=True, tracking=True)
-    batch_id = fields.Many2one('op.batch', 'Batch', tracking=True)
-    roll_number = fields.Char('Roll Number', tracking=True)
+                                 ondelete="cascade", tracking=True,
+                                 help="Student enrolled in this course")
+    course_id = fields.Many2one('op.course', 'Course', required=True, tracking=True,
+                                help="Course in which the student is enrolled")
+    batch_id = fields.Many2one('op.batch', 'Batch', tracking=True,
+                               help="Batch assigned to the student for this course")
+    roll_number = fields.Char('Roll Number', tracking=True,
+                              help="Unique roll number assigned to student in the batch")
     subject_ids = fields.Many2many('op.subject', string='Subjects')
     academic_years_id = fields.Many2one('op.academic.year', 'Academic Year')
     academic_term_id = fields.Many2one('op.academic.term', 'Terms')
@@ -41,15 +45,12 @@ class OpStudentCourse(models.Model):
                              string="Status", default="running")
 
     _sql_constraints = [
-        ('unique_name_roll_number_id',
-         'unique(roll_number,course_id,batch_id,student_id)',
-         'Roll Number & Student must be unique per Batch!'),
-        ('unique_name_roll_number_course_id',
+        ('unique_roll_number_per_batch',
          'unique(roll_number,course_id,batch_id)',
          'Roll Number must be unique per Batch!'),
-        ('unique_name_roll_number_student_id',
+        ('unique_student_per_course_batch',
          'unique(student_id,course_id,batch_id)',
-         'Student must be unique per Batch!'),
+         'Student must be unique per Course and Batch!'),
     ]
 
     @api.model
@@ -96,7 +97,8 @@ class OpStudent(models.Model):
     category_id = fields.Many2one('op.category', 'Category')
     course_detail_ids = fields.One2many('op.student.course', 'student_id',
                                         'Course Details',
-                                        tracking=True)
+                                        tracking=True,
+                                        help="List of courses in which the student is enrolled")
     active = fields.Boolean(default=True)
     certificate_number = fields.Char(
         string='Certificate No.',
@@ -111,16 +113,26 @@ class OpStudent(models.Model):
 
     @api.onchange('first_name', 'middle_name', 'last_name')
     def _onchange_name(self):
-        if not self.middle_name:
-            self.name = str(self.first_name) + " " + str(
-                self.last_name
-            )
+        """Compute full name from first, middle, and last names."""
+        if self.first_name and self.last_name:
+            if self.middle_name:
+                self.name = f"{self.first_name} {self.middle_name} {self.last_name}"
+            else:
+                self.name = f"{self.first_name} {self.last_name}"
+        elif self.first_name:
+            self.name = self.first_name
+        elif self.last_name:
+            self.name = self.last_name
         else:
-            self.name = str(self.first_name) + " " + str(
-                self.middle_name) + " " + str(self.last_name)
+            self.name = False
 
     @api.constrains('birth_date')
     def _check_birthdate(self):
+        """Validate student birth date is not in the future.
+        
+        Raises:
+            ValidationError: If birth date is greater than current date
+        """
         for record in self:
             if record.birth_date and record.birth_date > fields.Date.today():
                 raise ValidationError(_(
@@ -128,12 +140,22 @@ class OpStudent(models.Model):
 
     @api.model
     def get_import_templates(self):
+        """Get import template for bulk student data import.
+        
+        Returns:
+            list: Dictionary containing template label and file path
+        """
         return [{
             'label': _('Import Template for Students'),
             'template': '/openeducat_core/static/xls/op_student.xls'
         }]
 
     def create_student_user(self):
+        """Create portal user account for selected students.
+        
+        Creates a new res.users record linked to the student with portal access rights.
+        Skips students who already have a user account.
+        """
         user_group = self.env.ref("base.group_portal") or False
         users_res = self.env['res.users']
         for record in self:

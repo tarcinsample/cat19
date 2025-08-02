@@ -59,7 +59,8 @@ class OpFaculty(models.Model):
     last_login = fields.Datetime('Latest Connection', readonly=True,
                                  related='partner_id.user_id.login_date')
     faculty_subject_ids = fields.Many2many('op.subject', string='Subject(s)',
-                                           tracking=True)
+                                           tracking=True,
+                                           help="Subjects that this faculty member can teach")
     emp_id = fields.Many2one('hr.employee', 'HR Employee')
     main_department_id = fields.Many2one(
         'op.department', 'Main Department',
@@ -73,21 +74,37 @@ class OpFaculty(models.Model):
 
     @api.constrains('birth_date')
     def _check_birthdate(self):
+        """Validate faculty birth date is not in the future.
+        
+        Raises:
+            ValidationError: If birth date is greater than current date
+        """
         for record in self:
-            if record.birth_date > fields.Date.today():
+            if record.birth_date and record.birth_date > fields.Date.today():
                 raise ValidationError(_(
                     "Birth Date can't be greater than current date!"))
 
     @api.onchange('first_name', 'middle_name', 'last_name')
     def _onchange_name(self):
-        if not self.middle_name:
-            self.name = str(self.first_name) + " " + str(
-                self.last_name)
+        """Compute full name from first, middle, and last names."""
+        if self.first_name and self.last_name:
+            if self.middle_name:
+                self.name = f"{self.first_name} {self.middle_name} {self.last_name}"
+            else:
+                self.name = f"{self.first_name} {self.last_name}"
+        elif self.first_name:
+            self.name = self.first_name
+        elif self.last_name:
+            self.name = self.last_name
         else:
-            self.name = str(self.first_name) + " " + str(
-                self.middle_name) + " " + str(self.last_name)
+            self.name = False
 
     def create_employee(self):
+        """Create HR employee record for faculty members.
+        
+        Creates a linked hr.employee record with basic information from faculty.
+        Updates the partner record to mark as employee.
+        """
         for record in self:
             vals = {
                 'name': record.name,
@@ -100,6 +117,11 @@ class OpFaculty(models.Model):
 
     @api.model
     def get_import_templates(self):
+        """Get import template for bulk faculty data import.
+        
+        Returns:
+            list: Dictionary containing template label and file path
+        """
         return [{
             'label': _('Import Template for Faculties'),
             'template': '/openeducat_core/static/xls/op_faculty.xls'

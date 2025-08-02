@@ -42,7 +42,8 @@ class OpCourse(models.Model):
         default=lambda self:
         self.env.user.dept_id and self.env.user.dept_id.id or False)
     active = fields.Boolean(default=True)
-    program_id = fields.Many2one('op.program', string="Program", tracking=True)
+    program_id = fields.Many2one('op.program', string="Program", tracking=True,
+                                 help="Educational program this course belongs to")
 
     _sql_constraints = [
         ('unique_course_code',

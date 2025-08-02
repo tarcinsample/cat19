@@ -21,3 +21,8 @@
 
 from . import test_core_common
 from . import test_core
+from . import test_student
+from . import test_student_course
+from . import test_faculty
+from . import test_batch
+from . import test_course
