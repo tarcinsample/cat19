@@ -420,12 +420,12 @@ class OpSubjectRegistration(models.Model):
     @api.model_create_multi
     def create(self, vals):
         if self.env.user.child_ids:
-            raise ValidationError(_('Invalid Action!\n Parent can not \
-            create Subject Registration!'))
+            raise ValidationError(
+                _("Invalid action! Parents cannot create subject registrations."))
         return super(OpSubjectRegistration, self).create(vals)
 
     def write(self, vals):
         if self.env.user.child_ids:
-            raise ValidationError(_('Invalid Action!\n Parent can not edit \
-            Subject Registration!'))
+            raise ValidationError(
+                _("Invalid action! Parents cannot edit subject registrations."))
         return super(OpSubjectRegistration, self).write(vals)

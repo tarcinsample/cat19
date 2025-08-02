@@ -54,10 +54,10 @@ class OpAdmission(models.Model):
     birth_date = fields.Date(
         'Birth Date', required=True)
     course_id = fields.Many2one(
-        'op.course', 'Course', required=True, tracking=True,
+        'op.course', 'Course', required=True, tracking=True, index=True,
         help="Course for which admission is being applied")
     batch_id = fields.Many2one(
-        'op.batch', 'Batch', required=False, 
+        'op.batch', 'Batch', required=False, index=True,
         domain="[('course_id', '=', course_id), ('active', '=', True)]",
         help="Batch associated with the selected course")
     street = fields.Char(
@@ -83,7 +83,7 @@ class OpAdmission(models.Model):
          ('confirm', 'Confirmed'), ('admission', 'Admission Confirm'),
          ('reject', 'Rejected'), ('pending', 'Pending'),
          ('cancel', 'Cancelled'), ('done', 'Done')],
-        'State', default='draft', tracking=True)
+        'State', default='draft', tracking=True, index=True)
     due_date = fields.Date('Due Date')
     prev_institute_id = fields.Char('Previous Institute')
     prev_course_id = fields.Char('Previous Course')

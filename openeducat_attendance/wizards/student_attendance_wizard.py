@@ -41,7 +41,11 @@ class StudentAttendance(models.TransientModel):
                     _("To Date cannot be set before From Date."))
 
     def print_report(self):
-        data = self.read(['from_date', 'to_date'])[0]
+        # Optimized: direct field access instead of read()
+        data = {
+            'from_date': self.from_date,
+            'to_date': self.to_date
+        }
         data.update({'student_id': self.env.context.get('active_id', False)})
 
         return self.env.ref(

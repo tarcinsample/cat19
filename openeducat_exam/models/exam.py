@@ -70,7 +70,7 @@ class OpExam(models.Model):
                 raise ValidationError(_('Enter proper marks!'))
             if record.min_marks > record.total_marks:
                 raise ValidationError(_(
-                    "Passing Marks can't be greater than Total Marks"))
+                    "Passing marks cannot be greater than total marks."))
 
     @api.constrains('start_time', 'end_time', 'session_id')
     def _check_date_time(self):
@@ -96,7 +96,7 @@ class OpExam(models.Model):
                         _('End Time cannot be set before Start Time.'))
                 elif start_time_dt == end_time_dt:
                     raise ValidationError(
-                        _('End Time and start time can not set at same time.'))
+                        _("End time and start time cannot be set at the same time."))
                 elif start_time_dt < session_start_dt or \
                         start_time_dt > session_end_dt or \
                         end_time_dt < session_start_dt or \

@@ -18,8 +18,12 @@
 #
 ###############################################################################
 
+import logging
+
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+
+_logger = logging.getLogger(__name__)
 
 
 class OpFaculty(models.Model):
@@ -30,7 +34,7 @@ class OpFaculty(models.Model):
     _parent_name = False
 
     partner_id = fields.Many2one('res.partner', 'Partner',
-                                 required=True, ondelete="cascade")
+                                 required=True, ondelete="cascade", index=True)
     first_name = fields.Char('First Name', translate=True, required=True)
     middle_name = fields.Char('Middle Name', size=128)
     last_name = fields.Char('Last Name', size=128, required=True)
@@ -63,7 +67,7 @@ class OpFaculty(models.Model):
                                            help="Subjects that this faculty member can teach")
     emp_id = fields.Many2one('hr.employee', 'HR Employee')
     main_department_id = fields.Many2one(
-        'op.department', 'Main Department',
+        'op.department', 'Main Department', index=True,
         default=lambda self:
         self.env.user.dept_id and self.env.user.dept_id.id or False)
     allowed_department_ids = fields.Many2many(
@@ -82,7 +86,7 @@ class OpFaculty(models.Model):
         for record in self:
             if record.birth_date and record.birth_date > fields.Date.today():
                 raise ValidationError(_(
-                    "Birth Date can't be greater than current date!"))
+                    "Birth date cannot be greater than current date."))
 
     @api.onchange('first_name', 'middle_name', 'last_name')
     def _onchange_name(self):
@@ -106,14 +110,19 @@ class OpFaculty(models.Model):
         Updates the partner record to mark as employee.
         """
         for record in self:
-            vals = {
-                'name': record.name,
-                'country_id': record.nationality.id,
-                'gender': record.gender,
-            }
-            emp_id = self.env['hr.employee'].create(vals)
-            record.write({'emp_id': emp_id.id})
-            record.partner_id.write({'partner_share': True, 'employee': True})
+            try:
+                vals = {
+                    'name': record.name,
+                    'country_id': record.nationality.id,
+                    'gender': record.gender,
+                }
+                emp_id = self.env['hr.employee'].create(vals)
+                record.write({'emp_id': emp_id.id})
+                record.partner_id.write({'partner_share': True, 'employee': True})
+                _logger.info(f"Created employee record for faculty: {record.name} (ID: {record.id})")
+            except Exception as e:
+                _logger.error(f"Failed to create employee for faculty {record.name} (ID: {record.id}): {e}")
+                raise
 
     @api.model
     def get_import_templates(self):

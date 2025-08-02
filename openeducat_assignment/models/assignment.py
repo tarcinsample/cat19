@@ -29,7 +29,7 @@ class GradingAssigment(models.Model):
     name = fields.Char('Name', required=True, help="Assignment title or name")
     course_id = fields.Many2one('op.course', 'Course', required=True, tracking=True,
                                 help="Course for which this assignment is created")
-    subject_id = fields.Many2one('op.subject', string='Subject', tracking=True,
+    subject_id = fields.Many2one('op.subject', string=_('Subject'), tracking=True,
                                  domain="[('id', 'in', course_subject_ids)]",
                                  help="Subject within the course")
     course_subject_ids = fields.Many2many(

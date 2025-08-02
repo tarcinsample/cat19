@@ -58,7 +58,7 @@ class OpAssignmentSubLine(models.Model):
     faculty_user_id = fields.Many2one(
         'res.users', related='assignment_id.faculty_id.user_id',
         string='Faculty User')
-    user_boolean = fields.Boolean(string='Check user',
+    user_boolean = fields.Boolean(string=_('Check user'),
                                   compute='_compute_get_user_group')
     active = fields.Boolean(default=True)
     company_id = fields.Many2one(
@@ -90,19 +90,19 @@ class OpAssignmentSubLine(models.Model):
             if not record.state == 'draft' and not self.env.user.has_group(
                     'openeducat_assignment.group_op_assignment_user'):
                 raise ValidationError(
-                    _("You can't delete none draft submissions!"))
+                    _("You cannot delete non-draft submissions."))
         res = super(OpAssignmentSubLine, self).unlink()
         return res
 
     @api.model_create_multi
     def create(self, vals):
         if self.env.user.child_ids:
-            raise Warning(_('Invalid Action!\n Parent can not \
-            create Assignment Submissions!'))
+            raise ValidationError(
+                _("Invalid action! Parents cannot create assignment submissions."))
         return super(OpAssignmentSubLine, self).create(vals)
 
     def write(self, vals):
         if self.env.user.child_ids:
-            raise Warning(_('Invalid Action!\n Parent can not edit \
-            Assignment Submissions!'))
+            raise ValidationError(
+                _("Invalid action! Parents cannot edit assignment submissions."))
         return super(OpAssignmentSubLine, self).write(vals)

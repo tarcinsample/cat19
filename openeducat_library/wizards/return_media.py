@@ -42,9 +42,10 @@ class ReturnMedia(models.TransientModel):
                     [('media_unit_id', '=', media.media_unit_id.id),
                      ('state', '=', 'issue')])
                 if not media_move_search:
-                    raise UserError(_("Can't return media."))
+                    raise UserError(_("Cannot return media."))
                 media_move_search.return_media(media.actual_return_date)
             else:
-                raise UserError(_("Media Unit can not be returned because it's already: %s") % (dict( # noqa
-                    media.media_unit_id._fields['state'].selection).get(
-                    media.media_unit_id.state)))
+                raise UserError(
+                    _("Media unit cannot be returned because it is already: %s") % (
+                        dict(media.media_unit_id._fields['state'].selection).get(
+                            media.media_unit_id.state)))

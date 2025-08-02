@@ -96,7 +96,7 @@ class TestStudent(TestCoreCommon):
         with self.assertRaises(ValidationError) as cm:
             self._create_test_student(birth_date='2030-01-01')
         
-        self.assertIn("Birth Date can't be greater than current date", str(cm.exception))
+        self.assertIn("Birth date cannot be greater than current date", str(cm.exception))
 
     def test_student_birth_date_validation_valid_date(self):
         """Test birth date validation with valid date."""

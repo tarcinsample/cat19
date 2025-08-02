@@ -18,8 +18,12 @@
 #
 ###############################################################################
 
+import logging
+
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+
+_logger = logging.getLogger(__name__)
 
 
 class OpStudentCourse(models.Model):
@@ -92,9 +96,9 @@ class OpStudent(models.Model):
     id_number = fields.Char('ID Card Number', size=64)
     partner_id = fields.Many2one('res.partner', 'Partner',
                                  required=True, ondelete="cascade")
-    user_id = fields.Many2one('res.users', 'User', ondelete="cascade")
-    gr_no = fields.Char("Registration Number", size=20)
-    category_id = fields.Many2one('op.category', 'Category')
+    user_id = fields.Many2one('res.users', 'User', ondelete="cascade", index=True)
+    gr_no = fields.Char("Registration Number", size=20, index=True)
+    category_id = fields.Many2one('op.category', 'Category', index=True)
     course_detail_ids = fields.One2many('op.student.course', 'student_id',
                                         'Course Details',
                                         tracking=True,
@@ -136,7 +140,7 @@ class OpStudent(models.Model):
         for record in self:
             if record.birth_date and record.birth_date > fields.Date.today():
                 raise ValidationError(_(
-                    "Birth Date can't be greater than current date!"))
+                    "Birth date cannot be greater than current date."))
 
     @api.model
     def get_import_templates(self):
@@ -160,12 +164,17 @@ class OpStudent(models.Model):
         users_res = self.env['res.users']
         for record in self:
             if not record.user_id:
-                user_id = users_res.create({
-                    'name': record.name,
-                    'partner_id': record.partner_id.id,
-                    'login': record.email,
-                    'groups_id': user_group,
-                    'is_student': True,
-                    'tz': self._context.get('tz'),
-                })
-                record.user_id = user_id
+                try:
+                    user_id = users_res.create({
+                        'name': record.name,
+                        'partner_id': record.partner_id.id,
+                        'login': record.email,
+                        'groups_id': user_group,
+                        'is_student': True,
+                        'tz': self._context.get('tz'),
+                    })
+                    record.user_id = user_id
+                    _logger.info(f"Created user account for student: {record.name} (ID: {record.id})")
+                except Exception as e:
+                    _logger.error(f"Failed to create user for student {record.name} (ID: {record.id}): {e}")
+                    raise

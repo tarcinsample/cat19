@@ -18,7 +18,9 @@
 #
 ###############################################################################
 
-from odoo import _, api, fields, models
+from functools import lru_cache
+
+from odoo import _, api, fields, models, tools
 from odoo.exceptions import ValidationError
 
 
@@ -88,8 +90,9 @@ class OpExamRoom(models.Model):
         else:
             self.capacity = 0
             
+    @tools.ormcache('self.id', 'exam_id', 'student_count')
     def check_availability(self, exam_id, student_count=1):
-        """Check if room has sufficient capacity for exam.
+        """Check if room has sufficient capacity for exam with caching.
         
         Args:
             exam_id: ID of the exam to check availability for

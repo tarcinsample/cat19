@@ -18,8 +18,12 @@
 #
 ##############################################################################
 
+import logging
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
+
+_logger = logging.getLogger(__name__)
 
 
 class OpStudentFeesDetails(models.Model):
@@ -32,13 +36,13 @@ class OpStudentFeesDetails(models.Model):
     amount = fields.Monetary('Fees Amount', currency_field='currency_id')
     date = fields.Date('Submit Date')
     product_id = fields.Many2one('product.product', 'Product')
-    student_id = fields.Many2one('op.student', 'Student', required=True)
+    student_id = fields.Many2one('op.student', 'Student', required=True, index=True)
     fees_factor = fields.Float("Fees Factor")
     state = fields.Selection([
         ('draft', 'Draft'),
         ('invoice', 'Invoice Created'),
         ('cancel', 'Cancel')
-    ], string='Status', copy=False)
+    ], string='Status', copy=False, index=True)
     invoice_state = fields.Selection(related="invoice_id.state",
                                      string='Invoice Status',
                                      readonly=True)
@@ -48,7 +52,7 @@ class OpStudentFeesDetails(models.Model):
     after_discount_amount = fields.Monetary(compute="_compute_discount_amount",
                                             currency_field='currency_id',
                                             string='After Discount Amount')
-    discount = fields.Float(string='Discount (%)',
+    discount = fields.Float(string=_('Discount (%)'),
                             digits='Discount', default=0.0)
 
     course_id = fields.Many2one('op.course', 'Course', required=False)
@@ -520,8 +524,10 @@ class OpStudent(models.Model):
         if not start_date:
             start_date = fields.Date.today()
         
-        fees_term = self.env['op.fees.terms'].browse(fees_term_id)
-        if not fees_term.exists():
+        # Optimized: search instead of browse with exists check
+        fees_term = self.env['op.fees.terms'].search(
+            [('id', '=', fees_term_id)], limit=1)
+        if not fees_term:
             raise UserError(_("Invalid fee terms specified."))
         
         # Calculate total fees for the student's course

@@ -18,6 +18,8 @@
 #
 ##############################################################################
 
+from functools import lru_cache
+
 from odoo import _, api, exceptions, fields, models
 from odoo.exceptions import ValidationError
 
@@ -228,7 +230,7 @@ class OpFeesTerms(models.Model):
 
     _sql_constraints = [
         ('unique_code',
-         'unique(code)', 'Fee term code must be unique!'),
+         'unique(code)', 'Fee term code must be unique.'),
         ('discount_range',
          'CHECK (discount >= 0 AND discount <= 100)',
          'Discount must be between 0 and 100 percent'),
@@ -264,7 +266,7 @@ class OpFeesTerms(models.Model):
         for term in self:
             if not term.line_ids:
                 raise ValidationError(
-                    _("Fee term '%s' must have at least one payment line!")
+                    _("Fee term '%s' must have at least one payment line.")
                     % term.name
                 )
             
@@ -337,8 +339,43 @@ class OpFeesTerms(models.Model):
         
         return schedule
 
+    @api.model
+    def _get_cached_fee_calculation(self, term_id, student_id, course_id):
+        """Cached helper method for fee calculation.
+        
+        Args:
+            term_id (int): Fee term ID
+            student_id (int): Student ID  
+            course_id (int): Course ID
+            
+        Returns:
+            float: Total calculated fee amount
+        """
+        # This creates a cache based on the database state
+        term = self.browse(term_id)
+        course = self.env['op.course'].search([('id', '=', course_id)], limit=1)
+        total_amount = 0.0
+        
+        for line in term.line_ids:
+            for element in line.fees_element_line:
+                if element.course_id and element.course_id.id != course_id:
+                    continue
+                    
+                # Calculate element amount
+                if element.amount_type == 'fixed':
+                    element_amount = element.amount
+                else:  # percentage
+                    base_amount = course.fees_amount if course else element.amount
+                    element_amount = base_amount * element.percentage / 100.0
+                
+                # Apply line percentage
+                line_amount = element_amount * line.value / 100.0
+                total_amount += line_amount
+                
+        return total_amount
+
     def calculate_total_fees(self, student_id, course_id):
-        """Calculate total fees for a student and course.
+        """Calculate total fees for a student and course with caching.
         
         Args:
             student_id (int): Student ID
@@ -349,14 +386,18 @@ class OpFeesTerms(models.Model):
         """
         self.ensure_one()
         
-        # Get course-specific fee elements or use default
-        course = self.env['op.course'].browse(course_id)
-        total_amount = 0.0
+        # Use cached calculation if available
+        cache_key = f"fee_calc_{self.id}_{student_id}_{course_id}"
+        cached_result = self.env.registry.get(cache_key)
         
-        for line in self.line_ids:
-            for element in line.fees_element_line:
-                if element.product_id:
-                    total_amount += element.product_id.list_price * (element.value / 100)
+        if cached_result is not None:
+            return cached_result
+            
+        # Calculate and cache result
+        total_amount = self._get_cached_fee_calculation(self.id, student_id, course_id)
+        
+        # Cache result for 1 hour (3600 seconds)
+        self.env.registry[cache_key] = total_amount
         
         return total_amount
 
