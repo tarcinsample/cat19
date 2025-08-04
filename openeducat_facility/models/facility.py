@@ -30,6 +30,7 @@ class OpFacility(models.Model):
     """
     _name = "op.facility"
     _description = "Manage Facility"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = "name, code"
 
     name = fields.Char(

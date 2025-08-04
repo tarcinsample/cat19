@@ -111,7 +111,7 @@ class IssueMedia(models.TransientModel):
                     raise UserError(
                         _("Media unit cannot be issued because it is already: %s") % (
                             dict(media.media_unit_id._fields['state'].selection).get(
-                                media.media_unit_id.state))))
+                                media.media_unit_id.state)))
             else:
                 raise UserError(
                     _("Maximum number of media allowed for %s is: %s") % (

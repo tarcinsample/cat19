@@ -91,7 +91,7 @@
                         </group>
                         <notebook>
                             <page string="Students" name="students">
-                                <field name="student_ids" context="{'default_parent_ids': [(4, active_id)]}">
+                                <field name="student_ids">
                                     <list>
                                         <field name="name"/>
                                         <field name="course_detail_ids" widget="many2many_tags"/>

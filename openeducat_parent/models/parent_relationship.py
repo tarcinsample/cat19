@@ -28,9 +28,12 @@ _logger = logging.getLogger(__name__)
 class OpParentRelation(models.Model):
     _name = "op.parent.relationship"
     _description = "Relationships"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char('Name', required=True)
     description = fields.Text('Description', help="Description of the relationship type")
+    active = fields.Boolean('Active', default=True)
+    parent_count = fields.Integer('Parent Count', compute='_compute_parent_count', store=False)
 
     _sql_constraints = [
         ('unique_relationship_name',
