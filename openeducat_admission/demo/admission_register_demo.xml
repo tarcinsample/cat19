@@ -9,6 +9,7 @@
             <field name="end_date" eval="DateTime.now() + relativedelta(days=30)"/>
             <field name="course_id" ref="openeducat_core.op_course_1"/>
             <field name="product_id" ref="openeducat_fees.op_product_1"/>
+            <field name="academic_years_id" ref="openeducat_core.academic_year_6" />
         </record>
 
         <record id="op_admission_register_2" model="op.admission.register">
@@ -20,6 +21,7 @@
             <field name="end_date" eval="DateTime.now() + relativedelta(days=30)"/>
             <field name="course_id" ref="openeducat_core.op_course_7"/>
             <field name="product_id" ref="openeducat_fees.op_product_3"/>
+            <field name="academic_years_id" ref="openeducat_core.academic_year_2" />
         </record>
 
         <record id="op_admission_register_3" model="op.admission.register">
@@ -31,6 +33,7 @@
             <field name="end_date" eval="DateTime.now() + relativedelta(days=30)"/>
             <field name="course_id" ref="openeducat_core.op_course_5"/>
             <field name="product_id" ref="openeducat_fees.op_product_5"/>
+            <field name="academic_years_id" ref="openeducat_core.academic_year_3" />
         </record>
 
         <record id="op_admission_register_4" model="op.admission.register">
@@ -42,5 +45,6 @@
             <field name="end_date" eval="DateTime.now() + relativedelta(days=30)"/>
             <field name="course_id" ref="openeducat_core.op_course_8"/>
             <field name="product_id" ref="openeducat_fees.op_product_6"/>
+            <field name="academic_years_id" ref="openeducat_core.academic_year_4" />
         </record>
 </odoo>
