@@ -41,7 +41,7 @@
 
         <record id="op_attendance_line_8" model="op.attendance.line">
             <field name="attendance_id" ref="op_attendance_sheet_2"/>
-            <field name="present" eval="False"/>
+            <field name="absent" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_4"/>
         </record>
 

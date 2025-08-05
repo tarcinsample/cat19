@@ -262,7 +262,7 @@ class TestAttendanceSecurity(TestAttendanceCommon):
             pass
 
     def test_faculty_cannot_access_unassigned_classes(self):
-        """Test faculty cannot access attendance for unassigned classes."""
+        """Test faculty cannot access attendance sheets for unassigned classes."""
         # Create another faculty and register
         other_faculty = self.env['op.faculty'].create({
             'name': 'Other Faculty',
@@ -273,17 +273,23 @@ class TestAttendanceSecurity(TestAttendanceCommon):
             'code': 'OR001',
             'course_id': self.course.id,
             'batch_id': self.batch.id,
+        })
+        
+        # Create attendance sheet assigned to other faculty
+        other_sheet = self.env['op.attendance.sheet'].create({
+            'register_id': other_register.id,
             'faculty_id': other_faculty.id,
+            'attendance_date': self.today,
         })
         
         faculty_env = self.env(user=self.faculty_user)
         
-        # Test faculty cannot access other faculty's registers
+        # Test faculty cannot access other faculty's attendance sheets
         try:
-            other_registers = faculty_env['op.attendance.register'].search([
+            other_sheets = faculty_env['op.attendance.sheet'].search([
                 ('faculty_id', '=', other_faculty.id)
             ])
-            faculty_restricted = len(other_registers) == 0
+            faculty_restricted = len(other_sheets) == 0
         except AccessError:
             faculty_restricted = True
         

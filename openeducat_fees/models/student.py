@@ -52,7 +52,7 @@ class OpStudentFeesDetails(models.Model):
     after_discount_amount = fields.Monetary(compute="_compute_discount_amount",
                                             currency_field='currency_id',
                                             string='After Discount Amount')
-    discount = fields.Float(string=_('Discount (%)'),
+    discount = fields.Float(string='Discount (%)',
                             digits='Discount', default=0.0)
 
     course_id = fields.Many2one('op.course', 'Course', required=False)

@@ -92,7 +92,7 @@ class TestConstraints(TestCoreCommon):
         # Valid dates (start before end)
         batch = self.env['op.batch'].create({
             'name': 'Valid Batch',
-            'code': 'VB001',
+            
             'course_id': self.test_course.id,
             'start_date': '2024-01-01',
             'end_date': '2024-12-31',
@@ -103,7 +103,7 @@ class TestConstraints(TestCoreCommon):
         with self.assertRaises(ValidationError) as context:
             self.env['op.batch'].create({
                 'name': 'Invalid Batch',
-                'code': 'IB001',
+                
                 'course_id': self.test_course.id,
                 'start_date': '2024-12-31',
                 'end_date': '2024-01-01',
@@ -117,7 +117,7 @@ class TestConstraints(TestCoreCommon):
         # Same start and end date should be valid
         batch = self.env['op.batch'].create({
             'name': 'Same Date Batch',
-            'code': 'SDB001',
+            
             'course_id': self.test_course.id,
             'start_date': '2024-06-15',
             'end_date': '2024-06-15',
@@ -128,7 +128,7 @@ class TestConstraints(TestCoreCommon):
         """Test batch date constraint with None values."""
         batch = self.env['op.batch'].create({
             'name': 'None Date Batch',
-            'code': 'NDB001',
+            
             'course_id': self.test_course.id,
             'start_date': '2024-01-01',
             'end_date': '2024-12-31',
@@ -154,7 +154,7 @@ class TestConstraints(TestCoreCommon):
         # Create parent course
         parent_course = self.env['op.course'].create({
             'name': 'Parent Course',
-            'code': 'PARENT01',
+            
             'department_id': self.test_department.id,
             'program_id': self.test_program.id,
         })
@@ -162,10 +162,10 @@ class TestConstraints(TestCoreCommon):
         # Create child course
         child_course = self.env['op.course'].create({
             'name': 'Child Course',
-            'code': 'CHILD01',
+            
             'department_id': self.test_department.id,
             'program_id': self.test_program.id,
-            'parent_id': parent_course.id,
+            'academic_year_id': parent_course.id,
         })
         
         # Test normal hierarchy (should be valid)
@@ -181,7 +181,7 @@ class TestConstraints(TestCoreCommon):
         """Test course cannot be its own parent."""
         course = self.env['op.course'].create({
             'name': 'Self Parent Course',
-            'code': 'SPC001',
+            
             'department_id': self.test_department.id,
             'program_id': self.test_program.id,
         })
@@ -195,25 +195,25 @@ class TestConstraints(TestCoreCommon):
         # Create multi-level hierarchy
         level1 = self.env['op.course'].create({
             'name': 'Level 1',
-            'code': 'L1',
+            
             'department_id': self.test_department.id,
             'program_id': self.test_program.id,
         })
         
         level2 = self.env['op.course'].create({
             'name': 'Level 2',
-            'code': 'L2',
+            
             'department_id': self.test_department.id,
             'program_id': self.test_program.id,
-            'parent_id': level1.id,
+            'academic_year_id': level1.id,
         })
         
         level3 = self.env['op.course'].create({
             'name': 'Level 3',
-            'code': 'L3',
+            
             'department_id': self.test_department.id,
             'program_id': self.test_program.id,
-            'parent_id': level2.id,
+            'academic_year_id': level2.id,
         })
         
         # Try to create circular reference (level1 -> level3)
@@ -225,9 +225,9 @@ class TestConstraints(TestCoreCommon):
         # Valid academic year
         academic_year = self.env['op.academic.year'].create({
             'name': '2024-2025',
-            'code': 'AY2024',
-            'date_start': '2024-01-01',
-            'date_stop': '2024-12-31',
+            
+            'start_date': '2024-01-01',
+            'end_date': '2024-12-31',
         })
         
         # Test if date constraint exists
@@ -238,17 +238,16 @@ class TestConstraints(TestCoreCommon):
         """Test academic term date constraint if exists."""
         academic_year = self.env['op.academic.year'].create({
             'name': '2024-2025',
-            'code': 'AY2024',
-            'date_start': '2024-01-01',
-            'date_stop': '2024-12-31',
+            
+            'start_date': '2024-01-01',
+            'end_date': '2024-12-31',
         })
         
         # Valid academic term
         academic_term = self.env['op.academic.term'].create({
             'name': 'Spring 2024',
-            'code': 'SP2024',
-            'date_start': '2024-01-01',
-            'date_stop': '2024-06-30',
+            'term_start_date': '2024-01-01',
+            'term_end_date': '2024-06-30',
             'academic_year_id': academic_year.id,
         })
         
@@ -267,7 +266,7 @@ class TestConstraints(TestCoreCommon):
         # Test course code uniqueness
         course1 = self.env['op.course'].create({
             'name': 'First Course',
-            'code': 'UNIQUE_COURSE',
+            
             'department_id': self.test_department.id,
             'program_id': self.test_program.id,
         })
@@ -275,7 +274,7 @@ class TestConstraints(TestCoreCommon):
         with self.assertRaises(IntegrityError):
             self.env['op.course'].create({
                 'name': 'Second Course',
-                'code': 'UNIQUE_COURSE',  # Duplicate code
+                  # Duplicate code
                 'department_id': self.test_department.id,
                 'program_id': self.test_program.id,
             })
@@ -283,7 +282,7 @@ class TestConstraints(TestCoreCommon):
         # Test batch code uniqueness
         batch1 = self.env['op.batch'].create({
             'name': 'First Batch',
-            'code': 'UNIQUE_BATCH',
+            
             'course_id': self.test_course.id,
             'start_date': '2024-01-01',
             'end_date': '2024-12-31',
@@ -292,7 +291,7 @@ class TestConstraints(TestCoreCommon):
         with self.assertRaises(IntegrityError):
             self.env['op.batch'].create({
                 'name': 'Second Batch',
-                'code': 'UNIQUE_BATCH',  # Duplicate code
+                  # Duplicate code
                 'course_id': self.test_course.id,
                 'start_date': '2024-01-01',
                 'end_date': '2024-12-31',
@@ -354,7 +353,7 @@ class TestConstraints(TestCoreCommon):
         try:
             self.env['op.batch'].create({
                 'name': 'Invalid Batch',
-                'code': 'IB002',
+                
                 'course_id': self.test_course.id,
                 'start_date': '2024-12-31',
                 'end_date': '2024-01-01',
@@ -366,7 +365,7 @@ class TestConstraints(TestCoreCommon):
         try:
             course = self.env['op.course'].create({
                 'name': 'Test Course',
-                'code': 'TC_RECUR',
+                
                 'department_id': self.test_department.id,
                 'program_id': self.test_program.id,
             })

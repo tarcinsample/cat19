@@ -34,6 +34,7 @@ class OpParentRelation(models.Model):
     description = fields.Text('Description', help="Description of the relationship type")
     active = fields.Boolean('Active', default=True)
     parent_count = fields.Integer('Parent Count', compute='_compute_parent_count', store=False)
+    display_name = fields.Char('Display Name', compute='_compute_display_name')
 
     _sql_constraints = [
         ('unique_relationship_name',
@@ -157,28 +158,19 @@ class OpParentRelation(models.Model):
                      ('description', operator, name)] + domain
                      
         relationships = self.search(domain, limit=limit)
-        return relationships.name_get()
+        return [(r.id, r.display_name) for r in relationships]
         
-    def name_get(self):
-        """Return display name with parent count.
-        
-        Returns:
-            List of (id, display_name) tuples
-        """
-        result = []
+    def _compute_display_name(self):
+        """Compute display name with parent count."""
         for relationship in self:
             parent_count = self.env['op.parent'].search_count([
                 ('relationship_id', '=', relationship.id)
             ])
             
             if parent_count > 0:
-                display_name = f"{relationship.name} ({parent_count} parents)"
+                relationship.display_name = f"{relationship.name} ({parent_count} parents)"
             else:
-                display_name = relationship.name
-                
-            result.append((relationship.id, display_name))
-            
-        return result
+                relationship.display_name = relationship.name
         
     def action_view_parents(self):
         """Open view showing parents using this relationship type.

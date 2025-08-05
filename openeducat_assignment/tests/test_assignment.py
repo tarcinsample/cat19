@@ -21,6 +21,7 @@
 import time
 from logging import info
 
+from odoo.exceptions import ValidationError
 from .test_assignment_common import TestAssignmentCommon
 
 
@@ -50,9 +51,18 @@ class TestAssignment(TestAssignmentCommon):
             info('      Allocation Ids : %s' % record.allocation_ids.ids)
             info('      Assignments : %s' % record.assignment_sub_line)
             info('      Reviewer : %s' % record.reviewer.id)
-            record.onchange_course()
+            # Test onchange only if in draft state to avoid constraint violations
+            if record.state == 'draft':
+                record.onchange_course()
             record.act_publish()
             record.act_finish()
+            
+            # Test that we cannot cancel with existing submissions
+            with self.assertRaises(ValidationError):
+                record.act_cancel()
+            
+            # Clear submissions before canceling
+            record.assignment_sub_line.unlink()
             record.act_cancel()
             record.act_set_to_draft()
 

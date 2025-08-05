@@ -20,6 +20,7 @@
 
 import logging
 from datetime import date
+import uuid
 from dateutil.relativedelta import relativedelta
 from odoo.exceptions import ValidationError, UserError
 from .test_admission_common import TestAdmissionCommon
@@ -100,7 +101,7 @@ class TestAdmissionIntegration(TestAdmissionCommon):
         # Create additional batches for same course
         batch2 = self.op_batch.create({
             'name': 'Test Batch 2024-B',
-            'code': 'TB2024B',
+            'code': 'TB2024B_' + str(uuid.uuid4())[:8].replace('-', ''),
             'course_id': self.course.id,
             'start_date': date.today() + relativedelta(months=1),
             'end_date': date.today() + relativedelta(years=1, months=1),

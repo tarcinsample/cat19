@@ -25,11 +25,12 @@ from odoo.exceptions import ValidationError
 class GradingAssigment(models.Model):
     _name = 'grading.assignment'
     _description = "Grading Assignment"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char('Name', required=True, help="Assignment title or name")
     course_id = fields.Many2one('op.course', 'Course', required=True, tracking=True,
                                 help="Course for which this assignment is created")
-    subject_id = fields.Many2one('op.subject', string=_('Subject'), tracking=True,
+    subject_id = fields.Many2one('op.subject', string='Subject', tracking=True,
                                  domain="[('id', 'in', course_subject_ids)]",
                                  help="Subject within the course")
     course_subject_ids = fields.Many2many(
@@ -112,8 +113,10 @@ class OpAssignment(models.Model):
         
         Updates batch and subject domains when course changes.
         """
-        self.batch_id = False
-        self.subject_id = False
+        # Only clear fields if in draft state to avoid constraint violations
+        if self.state in ('draft', False):
+            self.batch_id = False
+            self.subject_id = False
         self.courses_subjects = False
         
         if self.course_id:

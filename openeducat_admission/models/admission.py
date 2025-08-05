@@ -269,20 +269,21 @@ class OpAdmission(models.Model):
                             "Current age is %s years.") % (
                             record.register_id.minimum_age_criteria, age_years))
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         """Override create to generate application number sequence.
         
         Ensures application number is generated with proper error handling.
         """
-        if not vals.get('application_number'):
-            sequence = self.env['ir.sequence'].next_by_code('op.admission')
-            if not sequence:
-                raise ValidationError(_(
-                    "Unable to generate application number. "
-                    "Please check admission sequence configuration."))
-            vals['application_number'] = sequence
-        return super(OpAdmission, self).create(vals)
+        for vals in vals_list:
+            if not vals.get('application_number'):
+                sequence = self.env['ir.sequence'].next_by_code('op.admission')
+                if not sequence:
+                    raise ValidationError(_(
+                        "Unable to generate application number. "
+                        "Please check admission sequence configuration."))
+                vals['application_number'] = sequence
+        return super(OpAdmission, self).create(vals_list)
 
     def submit_form(self):
         """Submit admission application for review.

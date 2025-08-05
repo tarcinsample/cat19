@@ -19,6 +19,7 @@
 ###############################################################################
 
 from datetime import datetime, timedelta
+from odoo import fields
 from odoo.tests import tagged
 from .test_assignment_common import TestAssignmentCommon
 
@@ -60,7 +61,11 @@ class TestAssignmentReporting(TestAssignmentCommon):
                 'is_company': False
             })
             student = self.op_student.create({
-                'partner_id': partner.id
+                'partner_id': partner.id,
+                'first_name': f'Analytics{i+1}',
+                'last_name': 'Student',
+                'birth_date': '2000-01-01',
+                'gender': 'f' if i % 2 else 'm'
             })
             students.append(student)
         
@@ -149,7 +154,11 @@ class TestAssignmentReporting(TestAssignmentCommon):
                 'is_company': False
             })
             faculty = self.op_faculty.create({
-                'partner_id': partner.id
+                'partner_id': partner.id,
+                'first_name': f'Report{i+1}',
+                'last_name': 'Faculty',
+                'birth_date': '1980-01-01',
+                'gender': 'male'
             })
             faculty_members.append(faculty)
         
@@ -421,7 +430,8 @@ class TestAssignmentReporting(TestAssignmentCommon):
                 'is_company': False
             })
             student = self.op_student.create({
-                'partner_id': partner.id
+                'partner_id': partner.id,
+                'gender': 'm'
             })
             
             submission = self.op_assignment_subline.create({
@@ -502,7 +512,9 @@ class TestAssignmentReporting(TestAssignmentCommon):
             # Create batch for course
             batch = self.op_batch.create({
                 'name': f'Course {i+1} Batch',
-                'course_id': course.id
+                'code': f'C{i+1}B001',
+                'course_id': course.id,
+                'start_date': fields.Date.today()
             })
             
             # Create assignments (different numbers per course)

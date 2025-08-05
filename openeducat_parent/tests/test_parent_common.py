@@ -19,6 +19,7 @@
 ###############################################################################
 
 from datetime import date
+import uuid
 from odoo.tests import TransactionCase, tagged
 
 
@@ -35,18 +36,18 @@ class TestParentCommon(TransactionCase):
         # Create academic year
         cls.academic_year = cls.env['op.academic.year'].create({
             'name': 'Test Year 2024-25',
-            'code': 'TY24',
-            'date_start': '2024-06-01',
-            'date_stop': '2025-05-31',
+            
+            'start_date': '2024-06-01',
+            'end_date': '2025-05-31',
         })
         
         # Create academic term
         cls.academic_term = cls.env['op.academic.term'].create({
             'name': 'Test Term 1',
-            'code': 'TT1',
+            
             'term_start_date': '2024-06-01',
             'term_end_date': '2024-12-31',
-            'parent_id': cls.academic_year.id,
+            'academic_year_id': cls.academic_year.id,
         })
         
         # Create department
@@ -65,18 +66,23 @@ class TestParentCommon(TransactionCase):
         # Create batch
         cls.batch = cls.env['op.batch'].create({
             'name': 'Test Batch',
-            'code': 'TB001',
+            'code': 'TB001_' + str(uuid.uuid4())[:8].replace('-', ''),
             'course_id': cls.course.id,
             'start_date': '2024-06-01',
             'end_date': '2024-12-31',
         })
         
-        # Create students
-        cls.student1 = cls.env['op.student'].create({
+        # Create students with required partners
+        partner1 = cls.env['res.partner'].create({
             'name': 'Test Student 1',
+            'is_company': False,
+        })
+        cls.student1 = cls.env['op.student'].create({
+            'partner_id': partner1.id,
             'first_name': 'Test',
             'last_name': 'Student1',
             'birth_date': '2005-01-01',
+            'gender': 'm',
             'course_detail_ids': [(0, 0, {
                 'course_id': cls.course.id,
                 'batch_id': cls.batch.id,
@@ -85,11 +91,16 @@ class TestParentCommon(TransactionCase):
             })],
         })
         
-        cls.student2 = cls.env['op.student'].create({
+        partner2 = cls.env['res.partner'].create({
             'name': 'Test Student 2',
+            'is_company': False,
+        })
+        cls.student2 = cls.env['op.student'].create({
+            'partner_id': partner2.id,
             'first_name': 'Test',
             'last_name': 'Student2',
             'birth_date': '2005-02-02',
+            'gender': 'f',
             'course_detail_ids': [(0, 0, {
                 'course_id': cls.course.id,
                 'batch_id': cls.batch.id,

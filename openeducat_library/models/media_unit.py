@@ -48,7 +48,7 @@ class OpMediaUnit(models.Model):
     ]
 
     current_movement = fields.Many2one('op.media.movement', 'Current Movement',
-                                       compute='_compute_current_movement',
+                                       compute='_compute_current_movement', store=True,
                                        help="Current active movement for this unit")
     is_overdue = fields.Boolean('Is Overdue', compute='_compute_overdue_status',
                                 help="True if unit is overdue for return")

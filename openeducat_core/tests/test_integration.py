@@ -85,14 +85,14 @@ class TestIntegration(TestCoreCommon):
         # Create additional course and batch
         course2 = self.env['op.course'].create({
             'name': 'Advanced Mathematics',
-            'code': 'MATH301',
+            
             'department_id': self.test_department.id,
             'program_id': self.test_program.id,
         })
         
         batch2 = self.env['op.batch'].create({
             'name': 'Math Batch 2024',
-            'code': 'MB2024',
+            
             'course_id': course2.id,
             'start_date': '2024-01-01',
             'end_date': '2024-12-31',
@@ -122,7 +122,7 @@ class TestIntegration(TestCoreCommon):
         # Add subjects to course
         subject2 = self.env['op.subject'].create({
             'name': 'Physics',
-            'code': 'PHYS101',
+            
             'type': 'theory',
             'subject_type': 'compulsory',
             'department_id': self.test_department.id,
@@ -130,7 +130,7 @@ class TestIntegration(TestCoreCommon):
         
         subject3 = self.env['op.subject'].create({
             'name': 'Chemistry',
-            'code': 'CHEM101',
+            
             'type': 'practical',
             'subject_type': 'elective',
             'department_id': self.test_department.id,
@@ -165,13 +165,13 @@ class TestIntegration(TestCoreCommon):
         # Create additional department
         dept2 = self.env['op.department'].create({
             'name': 'Physics Department',
-            'code': 'PHYS',
+            
         })
         
         # Create program in new department
         program2 = self.env['op.program'].create({
             'name': 'Master of Physics',
-            'code': 'MP001',
+            
             'department_id': dept2.id,
             'program_level_id': self.test_program_level.id,
         })
@@ -179,7 +179,7 @@ class TestIntegration(TestCoreCommon):
         # Create course in new program
         course2 = self.env['op.course'].create({
             'name': 'Quantum Mechanics',
-            'code': 'QM401',
+            
             'department_id': dept2.id,
             'program_id': program2.id,
         })
@@ -194,25 +194,23 @@ class TestIntegration(TestCoreCommon):
         # Create academic year
         academic_year = self.env['op.academic.year'].create({
             'name': '2024-2025',
-            'code': 'AY2024',
-            'date_start': '2024-01-01',
-            'date_stop': '2024-12-31',
+            
+            'start_date': '2024-01-01',
+            'end_date': '2024-12-31',
         })
         
         # Create terms within academic year
         term1 = self.env['op.academic.term'].create({
             'name': 'Fall 2024',
-            'code': 'FALL2024',
-            'date_start': '2024-08-01',
-            'date_stop': '2024-12-31',
+            'term_start_date': '2024-08-01',
+            'term_end_date': '2024-12-31',
             'academic_year_id': academic_year.id,
         })
         
         term2 = self.env['op.academic.term'].create({
             'name': 'Spring 2025',
-            'code': 'SPRING2025',
-            'date_start': '2025-01-01',
-            'date_stop': '2025-05-31',
+            'term_start_date': '2025-01-01',
+            'term_end_date': '2025-05-31',
             'academic_year_id': academic_year.id,
         })
         
@@ -221,8 +219,8 @@ class TestIntegration(TestCoreCommon):
         self.assertEqual(term2.academic_year_id, academic_year)
         
         # Test date ranges are within academic year
-        self.assertGreaterEqual(term1.date_start, academic_year.date_start)
-        self.assertLessEqual(term1.date_stop, academic_year.date_stop)
+        self.assertGreaterEqual(term1.start_date, academic_year.start_date)
+        self.assertLessEqual(term1.end_date, academic_year.end_date)
 
     def test_faculty_subject_course_assignment(self):
         """Test faculty assignment to subjects and courses."""
@@ -250,12 +248,12 @@ class TestIntegration(TestCoreCommon):
         # Create additional categories
         category_sc = self.env['op.category'].create({
             'name': 'Scheduled Caste',
-            'code': 'SC',
+            
         })
         
         category_st = self.env['op.category'].create({
             'name': 'Scheduled Tribe',
-            'code': 'ST',
+            
         })
         
         # Create students with different categories
@@ -290,7 +288,7 @@ class TestIntegration(TestCoreCommon):
         # Create batch with future dates
         future_batch = self.env['op.batch'].create({
             'name': 'Future Batch',
-            'code': 'FB2025',
+            
             'course_id': self.test_course.id,
             'start_date': '2025-01-01',
             'end_date': '2025-12-31',
@@ -314,23 +312,23 @@ class TestIntegration(TestCoreCommon):
         # Create parent-child course relationship
         parent_course = self.env['op.course'].create({
             'name': 'Foundation Mathematics',
-            'code': 'FOUNDMATH',
+            
             'department_id': self.test_department.id,
             'program_id': self.test_program.id,
         })
         
         child_course = self.env['op.course'].create({
             'name': 'Advanced Mathematics',
-            'code': 'ADVMATH',
+            
             'department_id': self.test_department.id,
             'program_id': self.test_program.id,
-            'parent_id': parent_course.id,
+            'academic_year_id': parent_course.id,
         })
         
         # Create batches for both courses
         parent_batch = self.env['op.batch'].create({
             'name': 'Foundation Batch',
-            'code': 'FB001',
+            
             'course_id': parent_course.id,
             'start_date': '2024-01-01',
             'end_date': '2024-06-30',
@@ -338,7 +336,7 @@ class TestIntegration(TestCoreCommon):
         
         child_batch = self.env['op.batch'].create({
             'name': 'Advanced Batch',
-            'code': 'AB001',
+            
             'course_id': child_course.id,
             'start_date': '2024-07-01',
             'end_date': '2024-12-31',

@@ -243,9 +243,9 @@ class TestPermissions(TestCoreCommon):
         """Test academic year access permissions."""
         academic_year = self.env['op.academic.year'].create({
             'name': '2024-2025',
-            'code': 'AY2024',
-            'date_start': '2024-01-01',
-            'date_stop': '2024-12-31',
+            
+            'start_date': '2024-01-01',
+            'end_date': '2024-12-31',
         })
         
         # All users should be able to read academic year
@@ -260,16 +260,15 @@ class TestPermissions(TestCoreCommon):
         """Test academic term access permissions."""
         academic_year = self.env['op.academic.year'].create({
             'name': '2024-2025',
-            'code': 'AY2024',
-            'date_start': '2024-01-01',
-            'date_stop': '2024-12-31',
+            
+            'start_date': '2024-01-01',
+            'end_date': '2024-12-31',
         })
         
         academic_term = self.env['op.academic.term'].create({
             'name': 'Spring 2024',
-            'code': 'SP2024',
-            'date_start': '2024-01-01',
-            'date_stop': '2024-06-30',
+            'term_start_date': '2024-01-01',
+            'term_end_date': '2024-06-30',
             'academic_year_id': academic_year.id,
         })
         

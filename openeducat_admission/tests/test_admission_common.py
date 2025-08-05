@@ -19,6 +19,7 @@
 ###############################################################################
 
 from datetime import datetime, date
+import uuid
 from dateutil.relativedelta import relativedelta
 from odoo.tests import TransactionCase
 from odoo.exceptions import ValidationError, UserError
@@ -48,15 +49,13 @@ class TestAdmissionCommon(TransactionCase):
         # Create test academic year
         self.academic_year = self.op_academic_year.create({
             'name': 'Test Academic Year 2024-25',
-            'code': 'TAY2425',
-            'date_start': date.today(),
-            'date_stop': date.today() + relativedelta(years=1),
+            'start_date': date.today(),
+            'end_date': date.today() + relativedelta(years=1),
         })
         
         # Create test academic term
         self.academic_term = self.op_academic_term.create({
             'name': 'Test Term 1',
-            'code': 'TT1',
             'academic_year_id': self.academic_year.id,
             'term_start_date': date.today(),
             'term_end_date': date.today() + relativedelta(months=6),
@@ -72,22 +71,26 @@ class TestAdmissionCommon(TransactionCase):
         # Create test batch
         self.batch = self.op_batch.create({
             'name': 'Test Batch 2024',
-            'code': 'TB2024',
+            'code': 'TB2024_' + str(uuid.uuid4())[:8].replace('-', ''),
             'course_id': self.course.id,
             'start_date': date.today(),
             'end_date': date.today() + relativedelta(years=1),
         })
         
+        # Create test product for fees
+        self.fees_product = self.env['product.product'].create({
+            'name': 'Admission Fee Product',
+            'type': 'service',
+            'list_price': 1000.0,
+        })
+        
         # Create test fees terms
         self.fees_term = self.op_fees_terms.create({
             'name': 'Test Admission Fees',
-            'course_id': self.course.id,
-            'term_id': self.academic_term.id,
-            'product_id': self.env['product.product'].create({
-                'name': 'Admission Fee Product',
-                'type': 'service',
-                'list_price': 1000.0,
-            }).id,
+            'code': 'TAF001',
+            'fees_terms': 'fixed_days',
+            'no_days': 30,
+            'day_type': 'after',
         })
         
         # Create test admission register

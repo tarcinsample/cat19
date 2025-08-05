@@ -19,6 +19,7 @@
 ###############################################################################
 
 from datetime import datetime, timedelta
+import uuid
 from odoo.tests import TransactionCase
 
 
@@ -63,9 +64,13 @@ class TestAssignmentCommon(TransactionCase):
         # Get or create test batch
         self.batch = self.env.ref('openeducat_core.op_batch_1', raise_if_not_found=False)
         if not self.batch:
+            from datetime import date
             self.batch = self.op_batch.create({
                 'name': 'Test Batch',
-                'course_id': self.course.id
+                'code': 'TB001_' + str(uuid.uuid4())[:8].replace('-', ''),
+                'course_id': self.course.id,
+                'start_date': date.today(),
+                'end_date': date.today() + timedelta(days=365)
             })
         
         # Get or create test subject
@@ -85,7 +90,11 @@ class TestAssignmentCommon(TransactionCase):
                 'is_company': False
             })
             self.faculty = self.op_faculty.create({
-                'partner_id': faculty_partner.id
+                'partner_id': faculty_partner.id,
+                'first_name': 'Test',
+                'last_name': 'Faculty',
+                'birth_date': '1980-01-01',
+                'gender': 'male'
             })
         
         # Get or create test students
@@ -96,7 +105,11 @@ class TestAssignmentCommon(TransactionCase):
                 'is_company': False
             })
             self.student1 = self.op_student.create({
-                'partner_id': student1_partner.id
+                'partner_id': student1_partner.id,
+                'first_name': 'Test',
+                'last_name': 'Student1',
+                'birth_date': '2000-01-01',
+                'gender': 'm'
             })
         
         self.student2 = self.env.ref('openeducat_core.op_student_2', raise_if_not_found=False)
@@ -106,7 +119,11 @@ class TestAssignmentCommon(TransactionCase):
                 'is_company': False
             })
             self.student2 = self.op_student.create({
-                'partner_id': student2_partner.id
+                'partner_id': student2_partner.id,
+                'first_name': 'Test',
+                'last_name': 'Student2',
+                'birth_date': '2000-01-01',
+                'gender': 'm'
             })
         
         # Create grading assignment

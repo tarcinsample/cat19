@@ -212,18 +212,24 @@ class TestAttendanceRegister(TestAttendanceCommon):
                      "Subject should be in domain")
 
     def test_attendance_register_faculty_assignment(self):
-        """Test faculty assignment to register."""
+        """Test faculty assignment via attendance sheets (not directly on register)."""
         register = self.env['op.attendance.register'].create({
             'name': 'Faculty Register',
             'code': 'FR001',
             'course_id': self.course.id,
             'batch_id': self.batch.id,
             'subject_id': self.subject.id,
-            'faculty_id': self.faculty.id,
         })
         
-        self.assertEqual(register.faculty_id, self.faculty, 
-                        "Faculty should be assigned")
+        # Faculty is assigned to attendance sheets, not registers
+        sheet = self.env['op.attendance.sheet'].create({
+            'register_id': register.id,
+            'faculty_id': self.faculty.id,
+            'attendance_date': self.today,
+        })
+        
+        self.assertEqual(sheet.faculty_id, self.faculty, 
+                        "Faculty should be assigned to attendance sheet")
 
     def test_attendance_register_active_functionality(self):
         """Test active field functionality."""

@@ -194,19 +194,20 @@ class OpFacilityLine(models.Model):
             self.quantity -= transfer_qty
             self.notes = (self.notes or '') + f"\n{transfer_qty} units transferred"
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         """Override create to add allocation tracking."""
-        line = super().create(vals)
+        lines = super().create(vals_list)
         
         # Log allocation creation
-        if line.facility_id:
-            line.facility_id.message_post(
-                body=_("Facility allocated: %s units to %s") %
-                     (line.quantity, line.display_name)
-            )
+        for line in lines:
+            if line.facility_id:
+                line.facility_id.message_post(
+                    body=_("Facility allocated: %s units to %s") %
+                         (line.quantity, line.display_name)
+                )
         
-        return line
+        return lines
 
     def write(self, vals):
         """Override write to track quantity changes."""

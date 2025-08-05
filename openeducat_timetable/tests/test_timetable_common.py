@@ -19,6 +19,7 @@
 ###############################################################################
 
 from datetime import datetime, time, timedelta
+import uuid
 from odoo.tests import TransactionCase, tagged
 
 
@@ -35,18 +36,18 @@ class TestTimetableCommon(TransactionCase):
         # Create academic year
         cls.academic_year = cls.env['op.academic.year'].create({
             'name': 'Test Year 2024-25',
-            'code': 'TY24',
-            'date_start': '2024-06-01',
-            'date_stop': '2025-05-31',
+            
+            'start_date': '2024-06-01',
+            'end_date': '2025-05-31',
         })
         
         # Create academic term
         cls.academic_term = cls.env['op.academic.term'].create({
             'name': 'Test Term 1',
-            'code': 'TT1',
+            
             'term_start_date': '2024-06-01',
             'term_end_date': '2024-12-31',
-            'parent_id': cls.academic_year.id,
+            'academic_year_id': cls.academic_year.id,
         })
         
         # Create department
@@ -65,7 +66,7 @@ class TestTimetableCommon(TransactionCase):
         # Create batch
         cls.batch = cls.env['op.batch'].create({
             'name': 'Test Batch',
-            'code': 'TB001',
+            'code': 'TB001_' + str(uuid.uuid4())[:8].replace('-', ''),
             'course_id': cls.course.id,
             'start_date': '2024-06-01',
             'end_date': '2024-12-31',
@@ -84,32 +85,57 @@ class TestTimetableCommon(TransactionCase):
             'department_id': cls.department.id,
         })
         
-        # Create faculty
-        cls.faculty1 = cls.env['op.faculty'].create({
+        # Create faculty with required fields
+        faculty_partner1 = cls.env['res.partner'].create({
             'name': 'Test Faculty 1',
+            'is_company': False,
+        })
+        cls.faculty1 = cls.env['op.faculty'].create({
+            'partner_id': faculty_partner1.id,
+            'first_name': 'Test',
+            'last_name': 'Faculty1',
+            'birth_date': '1980-01-01',
+            'gender': 'male',
         })
         
-        cls.faculty2 = cls.env['op.faculty'].create({
+        faculty_partner2 = cls.env['res.partner'].create({
             'name': 'Test Faculty 2',
+            'is_company': False,
+        })
+        cls.faculty2 = cls.env['op.faculty'].create({
+            'partner_id': faculty_partner2.id,
+            'first_name': 'Test',
+            'last_name': 'Faculty2',
+            'birth_date': '1980-01-01',
+            'gender': 'female',
         })
         
         # Create timings
         cls.timing_morning1 = cls.env['op.timing'].create({
-            'start_time': 9.0,  # 9:00 AM
-            'end_time': 10.0,   # 10:00 AM
             'name': 'Period 1 (9:00-10:00)',
+            'hour': '9',
+            'minute': '00',
+            'am_pm': 'am',
+            'duration': 1.0,
+            'sequence': 1,
         })
         
         cls.timing_morning2 = cls.env['op.timing'].create({
-            'start_time': 10.0,  # 10:00 AM
-            'end_time': 11.0,    # 11:00 AM
             'name': 'Period 2 (10:00-11:00)',
+            'hour': '10',
+            'minute': '00',
+            'am_pm': 'am',
+            'duration': 1.0,
+            'sequence': 2,
         })
         
         cls.timing_afternoon1 = cls.env['op.timing'].create({
-            'start_time': 14.0,  # 2:00 PM
-            'end_time': 15.0,    # 3:00 PM
-            'name': 'Period 3 (14:00-15:00)',
+            'name': 'Period 3 (2:00-3:00)',
+            'hour': '2',
+            'minute': '00',
+            'am_pm': 'pm',
+            'duration': 1.0,
+            'sequence': 3,
         })
 
     def create_timetable_session(self, **kwargs):
@@ -126,12 +152,15 @@ class TestTimetableCommon(TransactionCase):
         vals.update(kwargs)
         return self.env['op.session'].create(vals)
 
-    def create_timing(self, start_time, end_time, **kwargs):
+    def create_timing(self, hour, minute='00', am_pm='am', duration=1.0, **kwargs):
         """Helper method to create timing."""
         vals = {
-            'start_time': start_time,
-            'end_time': end_time,
-            'name': f'Period ({start_time:02.0f}:00-{end_time:02.0f}:00)',
+            'name': f'Period ({hour}:{minute} {am_pm.upper()})',
+            'hour': str(hour),
+            'minute': minute,
+            'am_pm': am_pm,
+            'duration': duration,
+            'sequence': int(hour) if am_pm == 'am' else int(hour) + 12,
         }
         vals.update(kwargs)
         return self.env['op.timing'].create(vals)

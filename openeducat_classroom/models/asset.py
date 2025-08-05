@@ -166,23 +166,24 @@ class OpAsset(models.Model):
             'value': self.total_value,
         }
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         """Override create to auto-generate code if not provided."""
-        if not vals.get('code') and vals.get('product_id') and vals.get('asset_id'):
-            product = self.env['product.product'].browse(vals['product_id'])
-            classroom = self.env['op.classroom'].browse(vals['asset_id'])
-            
-            # Count existing assets of same product in classroom
-            existing_count = self.search_count([
-                ('product_id', '=', vals['product_id']),
-                ('asset_id', '=', vals['asset_id'])
-            ])
-            
-            sequence = existing_count + 1
-            vals['code'] = f"{product.default_code or 'AST'}-{classroom.code}-{sequence:03d}"
+        for vals in vals_list:
+            if not vals.get('code') and vals.get('product_id') and vals.get('asset_id'):
+                product = self.env['product.product'].browse(vals['product_id'])
+                classroom = self.env['op.classroom'].browse(vals['asset_id'])
+                
+                # Count existing assets of same product in classroom
+                existing_count = self.search_count([
+                    ('product_id', '=', vals['product_id']),
+                    ('asset_id', '=', vals['asset_id'])
+                ])
+                
+                sequence = existing_count + 1
+                vals['code'] = f"{product.default_code or 'AST'}-{classroom.code}-{sequence:03d}"
         
-        return super().create(vals)
+        return super().create(vals_list)
 
     def unlink(self):
         """Override unlink to add validation."""

@@ -227,6 +227,10 @@ class OpFeesTerms(models.Model):
         'Valid Term',
         compute='_compute_validity',
         help="True if term configuration is valid")
+    display_name = fields.Char(
+        'Display Name',
+        compute='_compute_display_name',
+        help="Display name with code and type info")
 
     _sql_constraints = [
         ('unique_code',
@@ -288,9 +292,8 @@ class OpFeesTerms(models.Model):
                       "hyphens, and underscores.") % term.code
                 )
 
-    def name_get(self):
-        """Return fee term name with code and type info."""
-        result = []
+    def _compute_display_name(self):
+        """Compute display name for fee term with code and type info."""
         for term in self:
             name = f"{term.name} [{term.code}]"
             if term.fees_terms:
@@ -298,8 +301,7 @@ class OpFeesTerms(models.Model):
                 name += f" - {term_type}"
             if not term.is_valid:
                 name += " (Invalid)"
-            result.append((term.id, name))
-        return result
+            term.display_name = name
 
     def get_payment_schedule(self, start_date, total_amount):
         """Generate payment schedule for given start date and amount.

@@ -19,6 +19,7 @@
 ###############################################################################
 
 from datetime import date, timedelta
+import uuid
 from odoo.tests import TransactionCase, tagged
 
 
@@ -35,18 +36,16 @@ class TestAttendanceCommon(TransactionCase):
         # Create academic year
         cls.academic_year = cls.env['op.academic.year'].create({
             'name': 'Test Year 2024-25',
-            'code': 'TY24',
-            'date_start': date(2024, 6, 1),
-            'date_stop': date(2025, 5, 31),
+            'start_date': date(2024, 6, 1),
+            'end_date': date(2025, 5, 31),
         })
         
         # Create academic term
         cls.academic_term = cls.env['op.academic.term'].create({
             'name': 'Test Term 1',
-            'code': 'TT1',
             'term_start_date': date(2024, 6, 1),
             'term_end_date': date(2024, 12, 31),
-            'parent_id': cls.academic_year.id,
+            'academic_year_id': cls.academic_year.id,
         })
         
         # Create department
@@ -71,24 +70,37 @@ class TestAttendanceCommon(TransactionCase):
         # Create batch
         cls.batch = cls.env['op.batch'].create({
             'name': 'Test Batch',
-            'code': 'TB001',
+            'code': 'TB001_' + str(uuid.uuid4())[:8].replace('-', ''),
             'course_id': cls.course.id,
             'start_date': date(2024, 6, 1),
             'end_date': date(2024, 12, 31),
         })
         
-        # Create faculty
-        cls.faculty = cls.env['op.faculty'].create({
+        # Create faculty with required fields
+        faculty_partner = cls.env['res.partner'].create({
             'name': 'Test Faculty',
+            'is_company': False,
+        })
+        cls.faculty = cls.env['op.faculty'].create({
+            'partner_id': faculty_partner.id,
+            'first_name': 'Test',
+            'last_name': 'Faculty',
+            'birth_date': date(1980, 1, 1),
+            'gender': 'male',
             'faculty_subject_ids': [(6, 0, [cls.subject.id])],
         })
         
-        # Create students
-        cls.student1 = cls.env['op.student'].create({
+        # Create students with required partners
+        partner1 = cls.env['res.partner'].create({
             'name': 'Test Student 1',
+            'is_company': False,
+        })
+        cls.student1 = cls.env['op.student'].create({
+            'partner_id': partner1.id,
             'first_name': 'Test',
             'last_name': 'Student1',
             'birth_date': date(2000, 1, 1),
+            'gender': 'm',
             'course_detail_ids': [(0, 0, {
                 'course_id': cls.course.id,
                 'batch_id': cls.batch.id,
@@ -97,11 +109,16 @@ class TestAttendanceCommon(TransactionCase):
             })],
         })
         
-        cls.student2 = cls.env['op.student'].create({
+        partner2 = cls.env['res.partner'].create({
             'name': 'Test Student 2',
+            'is_company': False,
+        })
+        cls.student2 = cls.env['op.student'].create({
+            'partner_id': partner2.id,
             'first_name': 'Test',
             'last_name': 'Student2',
             'birth_date': date(2000, 2, 2),
+            'gender': 'f',
             'course_detail_ids': [(0, 0, {
                 'course_id': cls.course.id,
                 'batch_id': cls.batch.id,
@@ -117,7 +134,6 @@ class TestAttendanceCommon(TransactionCase):
             'course_id': cls.course.id,
             'batch_id': cls.batch.id,
             'subject_id': cls.subject.id,
-            'faculty_id': cls.faculty.id,
         })
         
         # Create attendance session

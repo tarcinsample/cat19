@@ -19,6 +19,7 @@
 ###############################################################################
 
 from datetime import date, timedelta
+import uuid
 from odoo.tests import TransactionCase, tagged
 
 
@@ -35,9 +36,8 @@ class TestClassroomCommon(TransactionCase):
         # Create academic year
         cls.academic_year = cls.env['op.academic.year'].create({
             'name': 'Test Year 2024-25',
-            'code': 'TY24',
-            'date_start': '2024-06-01',
-            'date_stop': '2025-05-31',
+            'start_date': '2024-06-01',
+            'end_date': '2025-05-31',
         })
         
         # Create department
@@ -56,7 +56,7 @@ class TestClassroomCommon(TransactionCase):
         # Create batch
         cls.batch = cls.env['op.batch'].create({
             'name': 'Test Batch',
-            'code': 'TB001',
+            'code': 'TB001_' + str(uuid.uuid4())[:8].replace('-', ''),
             'course_id': cls.course.id,
             'start_date': '2024-06-01',
             'end_date': '2024-12-31',

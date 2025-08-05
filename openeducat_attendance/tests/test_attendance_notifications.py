@@ -217,12 +217,20 @@ class TestAttendanceNotifications(TestAttendanceCommon):
                 }
                 faculty_notifications.append(notification)
         
-        # Check for low attendance in faculty's classes
-        faculty_classes = self.env['op.attendance.register'].search([
+        # Check for low attendance in faculty's classes via attendance sheets
+        faculty_sheets = self.env['op.attendance.sheet'].search([
             ('faculty_id', '=', self.faculty.id)
         ])
         
-        for register in faculty_classes:
+        # Group sheets by register to calculate statistics
+        registers_with_sheets = {}
+        for sheet in faculty_sheets:
+            register = sheet.register_id
+            if register not in registers_with_sheets:
+                registers_with_sheets[register] = []
+            registers_with_sheets[register].append(sheet)
+        
+        for register, sheets in registers_with_sheets.items():
             # Calculate class attendance statistics
             all_lines = self.env['op.attendance.line'].search([
                 ('attendance_id.register_id', '=', register.id)
@@ -235,8 +243,8 @@ class TestAttendanceNotifications(TestAttendanceCommon):
                 
                 if class_percentage < 70.0:  # Class-wide low attendance
                     notification = {
-                        'recipient': register.faculty_id.email if hasattr(register.faculty_id, 'email') else None,
-                        'faculty_name': register.faculty_id.name,
+                        'recipient': self.faculty.email if hasattr(self.faculty, 'email') else None,
+                        'faculty_name': self.faculty.name,
                         'subject': f'Low Class Attendance - {register.name}',
                         'message': f'Class attendance for {register.name} is {class_percentage:.1f}%. Please review.',
                         'register_id': register.id,

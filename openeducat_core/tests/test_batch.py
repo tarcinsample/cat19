@@ -19,6 +19,7 @@
 ###############################################################################
 
 from datetime import date, timedelta
+import uuid
 from odoo.tests import tagged
 from odoo.exceptions import ValidationError
 from psycopg2 import IntegrityError
@@ -32,7 +33,8 @@ class TestBatch(TestCoreCommon):
     def _create_test_batch(self, **kwargs):
         """Helper method to create a test batch with default values."""
         import time
-        unique_suffix = str(int(time.time() * 1000))[-6:]  # Last 6 digits of timestamp
+        # Use both timestamp and random UUID to ensure uniqueness
+        unique_suffix = str(int(time.time() * 1000))[-6:] + str(uuid.uuid4())[:4]
         
         defaults = {
             'name': f'Test Batch {unique_suffix}',
@@ -244,7 +246,7 @@ class TestBatch(TestCoreCommon):
         """Test batch display name functionality."""
         batch = self._create_test_batch(
             name='Display Test Batch',
-            code='DTB2024'
+            code='DTB2024_' + str(uuid.uuid4())[:4]
         )
         
         display_name = batch.display_name
