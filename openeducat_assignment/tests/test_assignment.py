@@ -54,8 +54,10 @@ class TestAssignment(TestAssignmentCommon):
             # Test onchange only if in draft state to avoid constraint violations
             if record.state == 'draft':
                 record.onchange_course()
-            record.act_publish()
-            record.act_finish()
+                record.act_publish()
+                record.act_finish()
+            elif record.state == 'publish':
+                record.act_finish()
             
             # Test that we cannot cancel with existing submissions
             with self.assertRaises(ValidationError):

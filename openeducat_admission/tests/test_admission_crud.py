@@ -269,16 +269,17 @@ class TestAdmissionCRUD(TestAdmissionCommon):
         # Test bulk state changes
         draft_admissions = admissions.filtered(lambda a: a.state == 'draft')
         if draft_admissions:
-            draft_admissions.submit_form()
             for admission in draft_admissions:
+                admission.submit_form()
                 self.assertEqual(admission.state, 'submit')
                 
         # Test bulk operations with different states
         submit_admissions = admissions.filtered(lambda a: a.state == 'submit')
         if submit_admissions:
-            submit_admissions.admission_confirm()
             for admission in submit_admissions:
-                self.assertEqual(admission.state, 'confirm')
+                admission.admission_confirm()
+            for admission in submit_admissions:
+                self.assertEqual(admission.state, 'admission')
                 
     def test_admission_search_and_filters(self):
         """Test admission search operations and filters."""

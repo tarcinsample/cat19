@@ -234,18 +234,16 @@ class OpActivityType(models.Model):
             if not self.duration_hours:
                 self.duration_hours = defaults.get('duration_hours', 2.0)
 
-    def name_get(self):
+    def _compute_display_name(self):
         """Return activity type name with code and category info."""
-        result = []
         for activity_type in self:
-            name = activity_type.name
+            name = activity_type.name or ''
             if activity_type.code:
                 name = f"[{activity_type.code}] {name}"
             if activity_type.category:
                 category_name = dict(activity_type._fields['category'].selection)[activity_type.category]
                 name += f" ({category_name})"
-            result.append((activity_type.id, name))
-        return result
+            activity_type.display_name = name
 
     @api.model
     def name_search(self, name='', args=None, operator='ilike', limit=100):
@@ -260,7 +258,9 @@ class OpActivityType(models.Model):
                      ('code', operator, name),
                      ('category', operator, name)] + domain
         
-        return self.search(domain, limit=limit).name_get()
+        records = self.search(domain, limit=limit)
+        records._compute_display_name()
+        return [(record.id, record.display_name) for record in records]
 
     def action_view_activities(self):
         """Open view showing all activities of this type.

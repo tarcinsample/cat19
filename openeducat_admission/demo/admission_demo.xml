@@ -21,6 +21,7 @@
             <field name="course_id" ref="openeducat_core.op_course_4"/>
             <field name="batch_id" ref="openeducat_core.op_batch_11"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_1"/>
+            <field name="fees_start_date" eval="DateTime.now()"/>
             <field name="register_id" ref="op_admission_register_1"/>
             <field name="application_date" eval="DateTime.now()"/>
             <field name="admission_date" eval="DateTime.now()"/>
@@ -49,6 +50,7 @@
             <field name="course_id" ref="openeducat_core.op_course_4"/>
             <field name="batch_id" ref="openeducat_core.op_batch_11"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_1"/>
+            <field name="fees_start_date" eval="DateTime.now()"/>
             <field name="register_id" ref="op_admission_register_1"/>
             <field name="application_date" eval="DateTime.now()"/>
             <field name="admission_date" eval="DateTime.now()"/>
@@ -77,6 +79,7 @@
             <field name="course_id" ref="openeducat_core.op_course_4"/>
             <field name="batch_id" ref="openeducat_core.op_batch_11"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_1"/>
+            <field name="fees_start_date" eval="DateTime.now()"/>
             <field name="register_id" ref="op_admission_register_1"/>
             <field name="application_date" eval="DateTime.now()"/>
             <field name="admission_date" eval="DateTime.now()"/>
@@ -105,6 +108,7 @@
             <field name="course_id" ref="openeducat_core.op_course_4"/>
             <field name="batch_id" ref="openeducat_core.op_batch_11"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_1"/>
+            <field name="fees_start_date" eval="DateTime.now()"/>
             <field name="register_id" ref="op_admission_register_1"/>
             <field name="application_date" eval="DateTime.now()"/>
             <field name="admission_date" eval="DateTime.now()"/>
@@ -133,6 +137,7 @@
             <field name="course_id" ref="openeducat_core.op_course_4"/>
             <field name="batch_id" ref="openeducat_core.op_batch_11"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_1"/>
+            <field name="fees_start_date" eval="DateTime.now()"/>
             <field name="register_id" ref="op_admission_register_1"/>
             <field name="application_date" eval="DateTime.now()"/>
             <field name="admission_date" eval="DateTime.now()"/>
@@ -161,6 +166,7 @@
             <field name="course_id" ref="openeducat_core.op_course_4"/>
             <field name="batch_id" ref="openeducat_core.op_batch_11"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_1"/>
+            <field name="fees_start_date" eval="DateTime.now()"/>
             <field name="register_id" ref="op_admission_register_1"/>
             <field name="application_date" eval="DateTime.now()"/>
             <field name="admission_date" eval="DateTime.now()"/>
@@ -189,6 +195,7 @@
             <field name="course_id" ref="openeducat_core.op_course_4"/>
             <field name="batch_id" ref="openeducat_core.op_batch_11"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_1"/>
+            <field name="fees_start_date" eval="DateTime.now()"/>
             <field name="register_id" ref="op_admission_register_1"/>
             <field name="application_date" eval="DateTime.now()"/>
             <field name="admission_date" eval="DateTime.now()"/>
@@ -217,6 +224,7 @@
             <field name="course_id" ref="openeducat_core.op_course_4"/>
             <field name="batch_id" ref="openeducat_core.op_batch_11"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_1"/>
+            <field name="fees_start_date" eval="DateTime.now()"/>
             <field name="register_id" ref="op_admission_register_1"/>
             <field name="application_date" eval="DateTime.now()"/>
             <field name="admission_date" eval="DateTime.now()"/>
@@ -245,6 +253,7 @@
             <field name="course_id" ref="openeducat_core.op_course_7"/>
             <field name="batch_id" ref="openeducat_core.op_batch_8"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_2"/>
+            <field name="fees_start_date" eval="DateTime.now()"/>
             <field name="register_id" ref="op_admission_register_2"/>
             <field name="application_date" eval="DateTime.now()"/>
             <field name="admission_date" eval="DateTime.now()"/>
@@ -274,6 +283,7 @@
             <field name="course_id" ref="openeducat_core.op_course_7"/>
             <field name="batch_id" ref="openeducat_core.op_batch_8"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_2"/>
+            <field name="fees_start_date" eval="DateTime.now()"/>
             <field name="register_id" ref="op_admission_register_2"/>
             <field name="application_date" eval="DateTime.now()"/>
             <field name="admission_date" eval="DateTime.now()"/>
@@ -302,6 +312,7 @@
             <field name="course_id" ref="openeducat_core.op_course_7"/>
             <field name="batch_id" ref="openeducat_core.op_batch_8"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_2"/>
+            <field name="fees_start_date" eval="DateTime.now()"/>
             <field name="register_id" ref="op_admission_register_2"/>
             <field name="application_date" eval="DateTime.now()"/>
             <field name="admission_date" eval="DateTime.now()"/>
@@ -330,6 +341,7 @@
             <field name="course_id" ref="openeducat_core.op_course_7"/>
             <field name="batch_id" ref="openeducat_core.op_batch_8"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_2"/>
+            <field name="fees_start_date" eval="DateTime.now()"/>
             <field name="register_id" ref="op_admission_register_2"/>
             <field name="application_date" eval="DateTime.now()"/>
             <field name="admission_date" eval="DateTime.now()"/>
@@ -358,6 +370,7 @@
             <field name="course_id" ref="openeducat_core.op_course_5"/>
             <field name="batch_id" ref="openeducat_core.op_batch_4"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_3"/>
+            <field name="fees_start_date" eval="DateTime.now()"/>
             <field name="register_id" ref="op_admission_register_3"/>
             <field name="application_date" eval="DateTime.now()"/>
             <field name="admission_date" eval="DateTime.now()"/>
@@ -386,6 +399,7 @@
             <field name="course_id" ref="openeducat_core.op_course_5"/>
             <field name="batch_id" ref="openeducat_core.op_batch_4"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_3"/>
+            <field name="fees_start_date" eval="DateTime.now()"/>
             <field name="register_id" ref="op_admission_register_3"/>
             <field name="application_date" eval="DateTime.now()"/>
             <field name="admission_date" eval="DateTime.now()"/>
@@ -414,6 +428,7 @@
             <field name="course_id" ref="openeducat_core.op_course_5"/>
             <field name="batch_id" ref="openeducat_core.op_batch_7"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_3"/>
+            <field name="fees_start_date" eval="DateTime.now()"/>
             <field name="register_id" ref="op_admission_register_3"/>
             <field name="application_date" eval="DateTime.now()"/>
             <field name="admission_date" eval="DateTime.now()"/>
@@ -442,6 +457,7 @@
             <field name="course_id" ref="openeducat_core.op_course_5"/>
             <field name="batch_id" ref="openeducat_core.op_batch_7"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_3"/>
+            <field name="fees_start_date" eval="DateTime.now()"/>
             <field name="register_id" ref="op_admission_register_3"/>
             <field name="application_date" eval="DateTime.now()"/>
             <field name="admission_date" eval="DateTime.now()"/>
@@ -470,6 +486,7 @@
             <field name="course_id" ref="openeducat_core.op_course_8"/>
             <field name="batch_id" ref="openeducat_core.op_batch_5"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_3"/>
+            <field name="fees_start_date" eval="DateTime.now()"/>
             <field name="register_id" ref="op_admission_register_4"/>
             <field name="application_date" eval="DateTime.now()"/>
             <field name="admission_date" eval="DateTime.now()"/>
@@ -498,6 +515,7 @@
             <field name="course_id" ref="openeducat_core.op_course_8"/>
             <field name="batch_id" ref="openeducat_core.op_batch_5"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_3"/>
+            <field name="fees_start_date" eval="DateTime.now()"/>
             <field name="register_id" ref="op_admission_register_4"/>
             <field name="application_date" eval="DateTime.now()"/>
             <field name="admission_date" eval="DateTime.now()"/>
@@ -526,6 +544,7 @@
             <field name="course_id" ref="openeducat_core.op_course_8"/>
             <field name="batch_id" ref="openeducat_core.op_batch_5"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_3"/>
+            <field name="fees_start_date" eval="DateTime.now()"/>
             <field name="register_id" ref="op_admission_register_4"/>
             <field name="application_date" eval="DateTime.now()"/>
             <field name="admission_date" eval="DateTime.now()"/>
@@ -554,6 +573,7 @@
             <field name="course_id" ref="openeducat_core.op_course_8"/>
             <field name="batch_id" ref="openeducat_core.op_batch_5"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_3"/>
+            <field name="fees_start_date" eval="DateTime.now()"/>
             <field name="register_id" ref="op_admission_register_4"/>
             <field name="application_date" eval="DateTime.now()"/>
             <field name="admission_date" eval="DateTime.now()"/>
@@ -582,6 +602,7 @@
             <field name="course_id" ref="openeducat_core.op_course_8"/>
             <field name="batch_id" ref="openeducat_core.op_batch_5"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_3"/>
+            <field name="fees_start_date" eval="DateTime.now()"/>
             <field name="register_id" ref="op_admission_register_4"/>
             <field name="application_date" eval="DateTime.now()"/>
             <field name="admission_date" eval="DateTime.now()"/>
@@ -610,6 +631,7 @@
             <field name="course_id" ref="openeducat_core.op_course_8"/>
             <field name="batch_id" ref="openeducat_core.op_batch_5"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_3"/>
+            <field name="fees_start_date" eval="DateTime.now()"/>
             <field name="register_id" ref="op_admission_register_4"/>
             <field name="application_date" eval="DateTime.now()"/>
             <field name="admission_date" eval="DateTime.now()"/>
@@ -638,6 +660,7 @@
             <field name="course_id" ref="openeducat_core.op_course_8"/>
             <field name="batch_id" ref="openeducat_core.op_batch_5"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_3"/>
+            <field name="fees_start_date" eval="DateTime.now()"/>
             <field name="register_id" ref="op_admission_register_4"/>
             <field name="application_date" eval="DateTime.now()"/>
             <field name="admission_date" eval="DateTime.now()"/>
@@ -665,6 +688,7 @@
             <field name="course_id" ref="openeducat_core.op_course_7"/>
             <field name="batch_id" ref="openeducat_core.op_batch_8"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_2"/>
+            <field name="fees_start_date" eval="DateTime.now()"/>
             <field name="register_id" ref="op_admission_register_2"/>
             <field name="application_date" eval="DateTime.now()"/>
             <field name="admission_date" eval="DateTime.now()"/>
@@ -692,6 +716,7 @@
             <field name="course_id" ref="openeducat_core.op_course_5"/>
             <field name="batch_id" ref="openeducat_core.op_batch_4"/>
             <field name="fees_term_id" ref="openeducat_fees.op_fees_term_3"/>
+            <field name="fees_start_date" eval="DateTime.now()"/>
             <field name="register_id" ref="op_admission_register_3"/>
             <field name="application_date" eval="DateTime.now()"/>
             <field name="admission_date" eval="DateTime.now()"/>

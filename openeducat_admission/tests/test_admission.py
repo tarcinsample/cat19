@@ -19,6 +19,7 @@
 ###############################################################################
 
 import logging
+from datetime import date
 
 from .test_admission_common import TestAdmissionCommon
 
@@ -73,6 +74,7 @@ class TestAdmissionLegacy(TestAdmissionCommon):
                 'openeducat_admission.op_admission_register_3').id,
             'student_id': self.env.ref('openeducat_core.op_student_18').id,
             'fees_term_id': 2,
+            'fees_start_date': date.today(),
             'fees': 1000,
         }
 
@@ -103,19 +105,18 @@ class TestAdmissionregister(TestAdmissionCommon):
         super(TestAdmissionregister, self).setUp()
 
     def test_case_1_register(self):
-        register = self.op_register.search([])
+        registers = self.op_register.search([])
 
-        for registers in register:
-            logging.info('Admission registar Name : %s :' % (registers.name))
-
-        register.confirm_register()
-        register.set_to_draft()
-        register.cancel_register()
-        register.start_application()
-        register.start_admission()
-        register.close_register()
-        register.check_dates()
-        register.check_no_of_admission()
+        for register in registers:
+            logging.info('Admission registar Name : %s :' % (register.name))
+            register.confirm_register()
+            register.set_to_draft()
+            register.cancel_register()
+            register.start_application()
+            register.start_admission()
+            register.close_register()
+            register.check_dates()
+            register.check_no_of_admission()
 
 
 class TestAdmissionAnalysisWizard(TestAdmissionCommon):

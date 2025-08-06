@@ -97,6 +97,17 @@ class OpAssignment(models.Model):
                 raise ValidationError(_(
                     "Submission Date (%s) cannot be set before Issue Date (%s).") % (
                     submission_date, issued_date))
+    
+    @api.constrains('batch_id', 'state')
+    def _check_batch_required(self):
+        """Ensure batch_id is not cleared on non-draft assignments.
+        
+        Raises:
+            ValidationError: If batch_id is empty on non-draft assignment
+        """
+        for record in self:
+            if record.state and record.state != 'draft' and not record.batch_id:
+                raise ValidationError(_("Batch is required for non-draft assignments."))
 
     @api.depends('assignment_sub_line')
     def _compute_assignment_count_compute(self):
@@ -113,10 +124,16 @@ class OpAssignment(models.Model):
         
         Updates batch and subject domains when course changes.
         """
-        # Only clear fields if in draft state to avoid constraint violations
-        if self.state in ('draft', False):
-            self.batch_id = False
-            self.subject_id = False
+        # Only clear fields if in draft state AND when actually changing course
+        # This prevents clearing required fields during other operations
+        if self.state == 'draft' and self._origin.course_id != self.course_id:
+            # Only clear batch if it doesn't belong to the new course
+            if self.batch_id and self.course_id and self.batch_id.course_id != self.course_id:
+                self.batch_id = False
+            # Only clear subject if it doesn't belong to the new course
+            if self.subject_id and self.course_id and self.subject_id not in self.course_id.subject_ids:
+                self.subject_id = False
+        
         self.courses_subjects = False
         
         if self.course_id:

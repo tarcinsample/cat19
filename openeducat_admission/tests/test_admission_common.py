@@ -122,6 +122,7 @@ class TestAdmissionCommon(TransactionCase):
             'register_id': self.admission_register.id,
             'fees': 1000.0,
             'fees_term_id': self.fees_term.id,
+            'fees_start_date': date.today(),
         }
         
     def create_test_admission(self, vals=None):

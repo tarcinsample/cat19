@@ -21,7 +21,7 @@
 import logging
 from datetime import date
 from dateutil.relativedelta import relativedelta
-from odoo.exceptions import ValidationError, UserError
+from odoo.exceptions import ValidationError
 from .test_admission_common import TestAdmissionCommon
 
 _logger = logging.getLogger(__name__)
@@ -93,7 +93,7 @@ class TestAdmissionRegister(TestAdmissionCommon):
         register.check_dates()
         
         # Test invalid date range
-        with self.assertRaises((ValidationError, UserError)):
+        with self.assertRaises(ValidationError):
             register.write({
                 'start_date': date.today() + relativedelta(days=10),
                 'end_date': date.today(),  # End date before start date
@@ -117,7 +117,7 @@ class TestAdmissionRegister(TestAdmissionCommon):
                 
         # Verify max count validation
         if len(admissions) > register.max_count:
-            with self.assertRaises((ValidationError, UserError)):
+            with self.assertRaises(ValidationError):
                 register.check_no_of_admission()
                 
     def test_register_compute_methods(self):
@@ -229,7 +229,7 @@ class TestAdmissionRegister(TestAdmissionCommon):
         self.assertEqual(register.academic_term_id, self.academic_term)
         
         # Test constraints with academic year
-        with self.assertRaises((ValidationError, UserError)):
+        with self.assertRaises(ValidationError):
             self.op_register.create({
                 'name': 'Invalid Register',
                 'start_date': self.academic_year.date_stop + relativedelta(days=1),
@@ -254,7 +254,7 @@ class TestAdmissionRegister(TestAdmissionCommon):
         valid_admission._check_birthdate()
         
         # Test admission with invalid age
-        with self.assertRaises((ValidationError, UserError)):
+        with self.assertRaises(ValidationError):
             invalid_admission = self.create_test_admission({
                 'birth_date': date.today() - relativedelta(years=16),
                 'email': 'invalid.age@test.com',
@@ -340,7 +340,7 @@ class TestAdmissionRegister(TestAdmissionCommon):
         self.assertTrue(overlapping_register.id)
         
         # Test past date validation
-        with self.assertRaises((ValidationError, UserError)):
+        with self.assertRaises(ValidationError):
             self.op_register.create({
                 'name': 'Past Date Register',
                 'start_date': date.today() - relativedelta(months=2),
@@ -362,6 +362,8 @@ class TestAdmissionRegister(TestAdmissionCommon):
                 'end_date': date.today() + relativedelta(days=i+30),
                 'course_id': self.course.id,
                 'academic_years_id': self.academic_year.id,
+                'min_count': 5,
+                'max_count': 50,
             })
             registers.append(register)
             
