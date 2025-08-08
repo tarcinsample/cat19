@@ -33,6 +33,12 @@ class TestFeesCommon(TransactionCase):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         
+        # Model references for legacy tests
+        cls.op_student_fees = cls.env['op.student.fees.details']
+        cls.op_student = cls.env['op.student']
+        cls.op_fees_wizard = cls.env['fees.detail.report.wizard']
+        cls.op_fees_terms = cls.env['op.fees.terms']
+        
         # Create academic year
         cls.academic_year = cls.env['op.academic.year'].create({
             'name': 'Test Year 2024-25',
@@ -113,10 +119,19 @@ class TestFeesCommon(TransactionCase):
 
     def create_fees_element(self, **kwargs):
         """Helper method to create fees element."""
+        # Create a fees terms line first if not provided
+        if 'fees_terms_line_id' not in kwargs:
+            fees_terms = self.create_fees_terms()
+            fees_line = self.env['op.fees.terms.line'].create({
+                'fees_id': fees_terms.id,
+                'due_days': 30,
+                'value': 100.0,
+            })
+            kwargs['fees_terms_line_id'] = fees_line.id
+        
         vals = {
-            'name': 'Test Fee Element',
             'product_id': self.tuition_product.id,
-            'amount': 500.0,
+            'value': 50.0,  # percentage value
         }
         vals.update(kwargs)
         return self.env['op.fees.element'].create(vals)

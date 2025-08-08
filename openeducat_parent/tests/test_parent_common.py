@@ -33,6 +33,33 @@ class TestParentCommon(TransactionCase):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         
+        # Create or get parent relationship types
+        cls.relationship_father = cls.env['op.parent.relationship'].search([('name', '=', 'Father')], limit=1)
+        if not cls.relationship_father:
+            cls.relationship_father = cls.env['op.parent.relationship'].create({
+                'name': 'Father',
+                'description': 'Father relationship'
+            })
+        
+        cls.relationship_mother = cls.env['op.parent.relationship'].search([('name', '=', 'Mother')], limit=1)
+        if not cls.relationship_mother:
+            cls.relationship_mother = cls.env['op.parent.relationship'].create({
+                'name': 'Mother',
+                'description': 'Mother relationship'
+            })
+        
+        cls.relationship_guardian = cls.env['op.parent.relationship'].search([('name', '=', 'Guardian')], limit=1)
+        if not cls.relationship_guardian:
+            cls.relationship_guardian = cls.env['op.parent.relationship'].create({
+                'name': 'Guardian',
+                'description': 'Guardian relationship'
+            })
+        
+        # Model references for legacy tests
+        cls.op_parent = cls.env['op.parent']
+        cls.op_student = cls.env['op.student']
+        cls.subject_registration = cls.env['op.subject.registration']
+        
         # Create academic year
         cls.academic_year = cls.env['op.academic.year'].create({
             'name': 'Test Year 2024-25',
@@ -111,14 +138,32 @@ class TestParentCommon(TransactionCase):
 
     def create_parent(self, **kwargs):
         """Helper method to create parent."""
+        # Always create partner if 'name' field is a string (not an ID)
+        partner = None
+        parent_name = kwargs.pop('parent_name', kwargs.pop('name', 'Test Parent'))
+        
+        # If parent_name is a string, create the partner
+        if isinstance(parent_name, str):
+            partner = self.env['res.partner'].create({
+                'name': parent_name,
+                'email': kwargs.pop('email', 'parent@test.com'),
+                'phone': kwargs.pop('phone', '+1234567890'),
+                'is_company': False,
+            })
+            name_field = partner.id
+        else:
+            name_field = parent_name  # It's already an ID
+        
         vals = {
-            'name': 'Test Parent',
-            'first_name': 'Test',
-            'last_name': 'Parent',
-            'email': 'parent@test.com',
-            'phone': '+1234567890',
-            'is_parent': True,
+            'name': name_field,
+            'relationship_id': self.relationship_father.id,
         }
+        
+        # Remove fields that are not valid for op.parent model
+        invalid_fields = ['first_name', 'last_name', 'email', 'phone', 'is_parent', 'parent_name', 'street']
+        for field in invalid_fields:
+            kwargs.pop(field, None)
+            
         vals.update(kwargs)
         return self.env['op.parent'].create(vals)
 
@@ -130,4 +175,22 @@ class TestParentCommon(TransactionCase):
             'relation': relation_type,
         }
         vals.update(kwargs)
-        return self.env['op.parent.relation'].create(vals)
+        # Create or get the relationship type
+        relationship_type = self.env['op.parent.relationship'].search([('name', '=', relation_type.title())], limit=1)
+        if not relationship_type:
+            relationship_type = self.env['op.parent.relationship'].create({
+                'name': relation_type.title(),
+                'description': f'{relation_type.title()} relationship'
+            })
+        
+        # Update the parent's relationship_id to match the requested relation type
+        parent.write({'relationship_id': relationship_type.id})
+        
+        # Add the student to the parent's student_ids
+        parent.write({'student_ids': [(4, student.id)]})
+        
+        # Also add parent to student's parent_ids if the field exists
+        if hasattr(student, 'parent_ids'):
+            student.write({'parent_ids': [(4, parent.id)]})
+            
+        return parent  # Return the parent instead of a separate relation record

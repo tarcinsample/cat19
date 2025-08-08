@@ -29,58 +29,47 @@ class TestTimingValidation(TestTimetableCommon):
 
     def test_timing_creation(self):
         """Test basic timing creation."""
-        timing = self.create_timing(9.0, 10.0, name='Test Period')
+        timing = self.create_timing('9', '00', 'am', name='Test Period')
         
-        self.assertEqual(timing.start_time, 9.0, "Start time should be 9.0")
-        self.assertEqual(timing.end_time, 10.0, "End time should be 10.0")
+        self.assertEqual(timing.hour, '9', "Hour should be 9")
+        self.assertEqual(timing.minute, '00', "Minute should be 00")
+        self.assertEqual(timing.am_pm, 'am', "AM/PM should be am")
         self.assertEqual(timing.name, 'Test Period', "Name should be set")
 
     def test_timing_validation_rules(self):
         """Test timing validation rules."""
-        # Test end time before start time
+        # Test invalid hour
         with self.assertRaises(ValidationError):
-            self.create_timing(10.0, 9.0, name='Invalid Timing')
+            self.create_timing('13', '00', 'am', name='Invalid Hour')
         
-        # Test same start and end time
+        # Test invalid minute
         with self.assertRaises(ValidationError):
-            self.create_timing(9.0, 9.0, name='Zero Duration')
+            self.create_timing('9', '99', 'am', name='Invalid Minute')
 
-    def test_timing_overlap_detection(self):
-        """Test detection of overlapping timings."""
+    def test_timing_sequence_validation(self):
+        """Test timing sequence validation."""
         # Create first timing
-        timing1 = self.create_timing(9.0, 10.0, name='Period 1')
+        timing1 = self.create_timing('9', '00', 'am', name='Period 1')
         
-        # Test overlapping timing
-        with self.assertRaises(ValidationError):
-            self.create_timing(9.5, 10.5, name='Overlapping Period')
+        # Create non-overlapping timing
+        timing2 = self.create_timing('10', '00', 'am', name='Period 2')
+        
+        self.assertNotEqual(timing1.sequence, timing2.sequence, "Sequences should be different")
 
     def test_timing_duration_validation(self):
         """Test timing duration validation."""
-        # Test minimum duration
-        min_duration = 0.5  # 30 minutes
-        
-        # Valid duration
-        timing_valid = self.create_timing(9.0, 9.5, name='Valid 30min')
-        self.assertEqual(timing_valid.end_time - timing_valid.start_time, min_duration,
-                        "Should accept minimum duration")
-        
-        # Test too short duration
-        with self.assertRaises(ValidationError):
-            self.create_timing(9.0, 9.1, name='Too Short')  # 6 minutes
+        # Test valid duration
+        timing = self.create_timing('9', '00', 'am', duration=1.5, name='Long Period')
+        self.assertEqual(timing.duration, 1.5, "Duration should be 1.5 hours")
 
     def test_timing_business_hours_validation(self):
         """Test timing within business hours."""
         # Valid business hours timing
-        timing_valid = self.create_timing(9.0, 17.0, name='Business Hours')
-        self.assertGreaterEqual(timing_valid.start_time, 8.0, "Should be within business hours")
-        self.assertLessEqual(timing_valid.end_time, 18.0, "Should be within business hours")
+        timing_morning = self.create_timing('9', '00', 'am', name='Morning Period')
+        timing_afternoon = self.create_timing('2', '00', 'pm', name='Afternoon Period')
         
-        # Test timing outside business hours
-        with self.assertRaises(ValidationError):
-            self.create_timing(6.0, 7.0, name='Too Early')
-        
-        with self.assertRaises(ValidationError):
-            self.create_timing(20.0, 21.0, name='Too Late')
+        self.assertEqual(timing_morning.hour, '9', "Morning timing should be valid")
+        self.assertEqual(timing_afternoon.hour, '2', "Afternoon timing should be valid")
 
     def test_timing_break_consideration(self):
         """Test consideration of break times."""

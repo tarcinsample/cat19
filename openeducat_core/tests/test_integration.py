@@ -85,14 +85,14 @@ class TestIntegration(TestCoreCommon):
         # Create additional course and batch
         course2 = self.env['op.course'].create({
             'name': 'Advanced Mathematics',
-            
+            'code': 'MATH301',
             'department_id': self.test_department.id,
             'program_id': self.test_program.id,
         })
         
         batch2 = self.env['op.batch'].create({
             'name': 'Math Batch 2024',
-            
+            'code': 'MB2024',
             'course_id': course2.id,
             'start_date': '2024-01-01',
             'end_date': '2024-12-31',
@@ -122,7 +122,7 @@ class TestIntegration(TestCoreCommon):
         # Add subjects to course
         subject2 = self.env['op.subject'].create({
             'name': 'Physics',
-            
+            'code': 'PHY101',
             'type': 'theory',
             'subject_type': 'compulsory',
             'department_id': self.test_department.id,
@@ -130,7 +130,7 @@ class TestIntegration(TestCoreCommon):
         
         subject3 = self.env['op.subject'].create({
             'name': 'Chemistry',
-            
+            'code': 'CHEM101',
             'type': 'practical',
             'subject_type': 'elective',
             'department_id': self.test_department.id,
@@ -165,13 +165,13 @@ class TestIntegration(TestCoreCommon):
         # Create additional department
         dept2 = self.env['op.department'].create({
             'name': 'Physics Department',
-            
+            'code': 'PHY001',
         })
         
         # Create program in new department
         program2 = self.env['op.program'].create({
             'name': 'Master of Physics',
-            
+            'code': 'MSP001',
             'department_id': dept2.id,
             'program_level_id': self.test_program_level.id,
         })
@@ -179,7 +179,7 @@ class TestIntegration(TestCoreCommon):
         # Create course in new program
         course2 = self.env['op.course'].create({
             'name': 'Quantum Mechanics',
-            
+            'code': 'QM301',
             'department_id': dept2.id,
             'program_id': program2.id,
         })
@@ -194,7 +194,6 @@ class TestIntegration(TestCoreCommon):
         # Create academic year
         academic_year = self.env['op.academic.year'].create({
             'name': '2024-2025',
-            
             'start_date': '2024-01-01',
             'end_date': '2024-12-31',
         })

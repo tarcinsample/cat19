@@ -38,6 +38,8 @@ class GradingAssigment(models.Model):
         help="Available subjects for the selected course")
     issued_date = fields.Datetime('Issued Date', required=True, tracking=True,
                                   help="Date when assignment was issued")
+    end_date = fields.Datetime('End Date', tracking=True,
+                              help="Assignment end date (optional)")
     assignment_type = fields.Many2one('grading.assignment.type',
                                       string='Assignment Type', required=True,
                                       help="Type/category of assignment")
@@ -90,13 +92,32 @@ class OpAssignment(models.Model):
             if not record.issued_date or not record.submission_date:
                 continue
                 
-            issued_date = record.issued_date.date() if record.issued_date else False
-            submission_date = record.submission_date.date() if record.submission_date else False
+            issued_date = record.issued_date.date() if hasattr(record.issued_date, 'date') and record.issued_date else False
+            submission_date = record.submission_date.date() if hasattr(record.submission_date, 'date') and record.submission_date else False
             
             if issued_date and submission_date and issued_date > submission_date:
                 raise ValidationError(_(
                     "Submission Date (%s) cannot be set before Issue Date (%s).") % (
                     submission_date, issued_date))
+    
+    @api.constrains('issued_date', 'end_date')
+    def check_end_date(self):
+        """Validate assignment end date constraints.
+        
+        Raises:
+            ValidationError: If end date is before issue date
+        """
+        for record in self:
+            if not record.issued_date or not record.end_date:
+                continue
+                
+            issued_date = record.issued_date.date() if hasattr(record.issued_date, 'date') and record.issued_date else False
+            end_date = record.end_date.date() if hasattr(record.end_date, 'date') and record.end_date else False
+            
+            if issued_date and end_date and issued_date > end_date:
+                raise ValidationError(_(
+                    "End Date (%s) cannot be set before Issue Date (%s).") % (
+                    end_date, issued_date))
     
     @api.constrains('batch_id', 'state')
     def _check_batch_required(self):

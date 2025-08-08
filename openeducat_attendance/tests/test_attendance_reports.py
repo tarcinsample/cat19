@@ -169,7 +169,7 @@ class TestAttendanceReports(TestAttendanceCommon):
                     'course': sheet.course_id.name,
                     'batch': sheet.batch_id.name,
                     'status': 'Present' if line.present else 'Absent',
-                    'remarks': line.remarks or '',
+                    'remark': line.remark or '',
                     'faculty': sheet.faculty_id.name if sheet.faculty_id else ''
                 })
         
@@ -182,7 +182,7 @@ class TestAttendanceReports(TestAttendanceCommon):
         
         self.assertIsNotNone(student2_today, "Should find student2's today record")
         self.assertEqual(student2_today['status'], 'Absent', "Student2 should be absent today")
-        self.assertEqual(student2_today['remarks'], 'Sick', "Should have sick remark")
+        self.assertEqual(student2_today['remark'], 'Sick', "Should have sick remark")
 
     def test_attendance_export_functionality(self):
         """Test attendance data export functionality."""
@@ -195,7 +195,7 @@ class TestAttendanceReports(TestAttendanceCommon):
         
         lines = self.env['op.attendance.line'].search([
             ('attendance_id.register_id', '=', self.register.id)
-        ], order='attendance_id.attendance_date desc, student_id.name')
+        ], order='attendance_date desc, student_id.name')
         
         for line in lines:
             row = [
@@ -204,7 +204,7 @@ class TestAttendanceReports(TestAttendanceCommon):
                 'Present' if line.present else 'Absent',
                 line.attendance_id.course_id.name,
                 line.attendance_id.batch_id.name,
-                line.remarks or ''
+                line.remark or ''
             ]
             export_data.append(row)
         
@@ -351,7 +351,8 @@ class TestAttendanceReports(TestAttendanceCommon):
             self.create_attendance_line(self.sheet2, student, present=i % 2 == 0)
         
         # Test report generation performance
-        start_time = self.env.now()
+        from datetime import datetime
+        start_time = datetime.now()
         
         # Generate comprehensive report
         all_lines = self.env['op.attendance.line'].search([
@@ -374,7 +375,7 @@ class TestAttendanceReports(TestAttendanceCommon):
                 'total': total_count
             })
         
-        end_time = self.env.now()
+        end_time = datetime.now()
         generation_time = (end_time - start_time).total_seconds()
         
         # Performance assertions

@@ -45,14 +45,16 @@ class TestTimetable(TestTimetableCommon):
         super(TestTimetable, self).setUp()
 
     def test_case_timetable(self):
+        from datetime import datetime, timedelta
+        now = datetime.now()
         session = self.op_session.create({
-            'timing_id': self.env.ref('openeducat_timetable.op_timing_1').id,
-            'start_datetime': time.strftime('%Y-%m-10 11:00'),
-            'end_datetime': time.strftime('%Y-%m-10 12:00'),
-            'course_id': self.env.ref('openeducat_core.op_course_2').id,
-            'faculty_id': self.env.ref('openeducat_core.op_faculty_1').id,
-            'batch_id': self.env.ref('openeducat_core.op_batch_1').id,
-            'subject_id': self.env.ref('openeducat_core.op_subject_1').id
+            'timing_id': self.timing_morning1.id,
+            'start_datetime': now,
+            'end_datetime': now + timedelta(hours=1),
+            'course_id': self.course.id,
+            'faculty_id': self.faculty1.id,
+            'batch_id': self.batch.id,
+            'subject_id': self.subject1.id
         })
         info('  Details Of Timetable Sessions:.....')
         session._compute_day()
@@ -75,11 +77,15 @@ class TestGenerateTimetable(TestTimetableCommon):
         super(TestGenerateTimetable, self).setUp()
 
     def test_case_wizard_generate_timetable(self):
+        from datetime import date
+        start_date = date.today().replace(day=1)  # First day of current month
+        end_date = date.today().replace(day=28)   # End of month (safe date)
+        
         wizard = self.generate_timetable.create({
-            'course_id': self.env.ref('openeducat_core.op_course_2').id,
-            'batch_id': self.env.ref('openeducat_core.op_batch_1').id,
-            'start_date': time.strftime('%Y-%m-01'),
-            'end_date':  time.strftime('%Y-%m-01')
+            'course_id': self.course.id,
+            'batch_id': self.batch.id,
+            'start_date': start_date,
+            'end_date': end_date
         })
         info('  Details Of Sessions:.....')
         wizard.act_gen_time_table()

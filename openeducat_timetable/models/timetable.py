@@ -256,7 +256,8 @@ class OpSession(models.Model):
 
     @api.depends('faculty_id', 'subject_id', 'start_datetime', 'end_datetime')
     def _compute_name(self):
-        tz = pytz.timezone(self.env.user.tz)
+        user_tz = self.env.user.tz or 'UTC'
+        tz = pytz.timezone(user_tz)
         for session in self:
             if session.faculty_id and session.subject_id \
                     and session.start_datetime and session.end_datetime:

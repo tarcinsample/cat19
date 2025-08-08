@@ -18,7 +18,7 @@
 #
 ###############################################################################
 
-from datetime import timedelta
+from datetime import timedelta, datetime
 from odoo.tests import tagged
 from .test_attendance_common import TestAttendanceCommon
 
@@ -69,12 +69,16 @@ class TestAttendancePerformance(TestAttendanceCommon):
             for i, student in enumerate(self.large_students):
                 # Create varied attendance patterns
                 present = (i + sheet.id) % 3 != 0  # ~67% attendance
-                attendance_data.append({
+                vals = {
                     'attendance_id': sheet.id,
                     'student_id': student.id,
                     'present': present,
-                    'remarks': f'Perf test {i}' if i % 10 == 0 else False
-                })
+                    'remark': f'Perf test {i}' if i % 10 == 0 else False
+                }
+                # Set absent status when not present
+                if not present:
+                    vals['absent'] = True
+                attendance_data.append(vals)
         
         # Batch create all attendance lines
         self.env['op.attendance.line'].create(attendance_data)
@@ -90,14 +94,14 @@ class TestAttendancePerformance(TestAttendanceCommon):
 
     def test_large_dataset_query_performance(self):
         """Test query performance with large attendance dataset."""
-        start_time = self.env.now()
+        start_time = datetime.now()
         
         # Test complex query performance
         all_lines = self.env['op.attendance.line'].search([
             ('attendance_id.register_id', '=', self.register.id)
         ])
         
-        end_time = self.env.now()
+        end_time = datetime.now()
         query_time = (end_time - start_time).total_seconds()
         
         # Performance assertions
@@ -109,7 +113,7 @@ class TestAttendancePerformance(TestAttendanceCommon):
 
     def test_attendance_percentage_calculation_performance(self):
         """Test performance of attendance percentage calculations."""
-        start_time = self.env.now()
+        start_time = datetime.now()
         
         # Calculate attendance percentage for all students
         student_percentages = {}
@@ -125,7 +129,7 @@ class TestAttendancePerformance(TestAttendanceCommon):
             percentage = (present_count / total_count) * 100 if total_count > 0 else 0
             student_percentages[student.id] = percentage
         
-        end_time = self.env.now()
+        end_time = datetime.now()
         calculation_time = (end_time - start_time).total_seconds()
         
         # Performance assertions
@@ -145,7 +149,7 @@ class TestAttendancePerformance(TestAttendanceCommon):
 
     def test_attendance_aggregation_performance(self):
         """Test performance of attendance data aggregation."""
-        start_time = self.env.now()
+        start_time = datetime.now()
         
         # Aggregate attendance by date
         date_aggregations = {}
@@ -167,7 +171,7 @@ class TestAttendancePerformance(TestAttendanceCommon):
                 'attendance_rate': attendance_rate
             }
         
-        end_time = self.env.now()
+        end_time = datetime.now()
         aggregation_time = (end_time - start_time).total_seconds()
         
         # Performance assertions
@@ -189,15 +193,15 @@ class TestAttendancePerformance(TestAttendanceCommon):
             ('present', '=', False)
         ])
         
-        start_time = self.env.now()
+        start_time = datetime.now()
         
         # Bulk update attendance status
         lines_to_update.write({
             'present': True,
-            'remarks': 'Bulk updated for performance test'
+            'remark': 'Bulk updated for performance test'
         })
         
-        end_time = self.env.now()
+        end_time = datetime.now()
         update_time = (end_time - start_time).total_seconds()
         
         # Performance assertions
@@ -213,18 +217,18 @@ class TestAttendancePerformance(TestAttendanceCommon):
 
     def test_attendance_search_with_complex_filters(self):
         """Test performance of complex attendance searches."""
-        start_time = self.env.now()
+        start_time = datetime.now()
         
         # Complex search with multiple conditions
         complex_search = self.env['op.attendance.line'].search([
             ('attendance_id.register_id', '=', self.register.id),
-            ('attendance_id.attendance_date', '>=', self.today - timedelta(days=15)),
-            ('attendance_id.attendance_date', '<=', self.today),
+            ('attendance_date', '>=', self.today - timedelta(days=15)),
+            ('attendance_date', '<=', self.today),
             ('present', '=', True),
             ('student_id.name', 'ilike', 'Performance')
         ])
         
-        end_time = self.env.now()
+        end_time = datetime.now()
         search_time = (end_time - start_time).total_seconds()
         
         # Performance assertions
@@ -235,7 +239,7 @@ class TestAttendancePerformance(TestAttendanceCommon):
 
     def test_attendance_statistics_computation_performance(self):
         """Test performance of statistics computation."""
-        start_time = self.env.now()
+        start_time = datetime.now()
         
         # Compute various statistics
         statistics = {
@@ -281,7 +285,7 @@ class TestAttendancePerformance(TestAttendanceCommon):
                     'rate': student_rate
                 })
         
-        end_time = self.env.now()
+        end_time = datetime.now()
         computation_time = (end_time - start_time).total_seconds()
         
         # Performance assertions
@@ -301,11 +305,11 @@ class TestAttendancePerformance(TestAttendanceCommon):
 
     def test_attendance_report_generation_performance(self):
         """Test performance of comprehensive report generation."""
-        start_time = self.env.now()
+        start_time = datetime.now()
         
         # Generate comprehensive attendance report
         report_data = {
-            'generated_at': self.env.now(),
+            'generated_at': datetime.now(),
             'period': {
                 'start_date': self.today - timedelta(days=29),
                 'end_date': self.today
@@ -334,9 +338,9 @@ class TestAttendancePerformance(TestAttendanceCommon):
         for line in sample_lines:
             report_data['detailed_data'].append({
                 'student_name': line.student_id.name,
-                'date': str(line.attendance_id.attendance_date),
+                'date': str(line.attendance_date),
                 'status': 'Present' if line.present else 'Absent',
-                'remarks': line.remarks or ''
+                'remark': line.remark or ''
             })
         
         # Charts data (weekly aggregation for performance)
@@ -354,7 +358,7 @@ class TestAttendancePerformance(TestAttendanceCommon):
         
         report_data['charts_data'] = weeks_data
         
-        end_time = self.env.now()
+        end_time = datetime.now()
         generation_time = (end_time - start_time).total_seconds()
         
         # Performance assertions
@@ -400,7 +404,7 @@ class TestAttendancePerformance(TestAttendanceCommon):
 
     def test_database_connection_efficiency(self):
         """Test database connection efficiency with large operations."""
-        start_time = self.env.now()
+        start_time = datetime.now()
         
         # Perform multiple database operations
         operation_count = 0
@@ -416,7 +420,7 @@ class TestAttendancePerformance(TestAttendanceCommon):
             ])
             operation_count += 1
         
-        end_time = self.env.now()
+        end_time = datetime.now()
         operation_time = (end_time - start_time).total_seconds()
         
         # Efficiency assertions
@@ -431,7 +435,7 @@ class TestAttendancePerformance(TestAttendanceCommon):
 
     def test_concurrent_access_simulation(self):
         """Test performance under simulated concurrent access."""
-        start_time = self.env.now()
+        start_time = datetime.now()
         
         # Simulate concurrent read/write operations
         operations = []
@@ -440,7 +444,7 @@ class TestAttendancePerformance(TestAttendanceCommon):
         for i in range(10):
             lines = self.env['op.attendance.line'].search([
                 ('attendance_id.register_id', '=', self.register.id),
-                ('attendance_id.attendance_date', '=', self.today - timedelta(days=i))
+                ('attendance_date', '=', self.today - timedelta(days=i))
             ])
             operations.append(('read', len(lines)))
         
@@ -451,10 +455,10 @@ class TestAttendancePerformance(TestAttendanceCommon):
         ], limit=50)
         
         if update_lines:
-            update_lines.write({'remarks': 'Concurrent test update'})
+            update_lines.write({'remark': 'Concurrent test update'})
             operations.append(('update', len(update_lines)))
         
-        end_time = self.env.now()
+        end_time = datetime.now()
         concurrent_time = (end_time - start_time).total_seconds()
         
         # Concurrency performance assertions

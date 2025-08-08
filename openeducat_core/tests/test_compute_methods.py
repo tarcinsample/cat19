@@ -57,21 +57,21 @@ class TestComputeMethods(TestCoreCommon):
         student.first_name = None
         student.middle_name = None
         student.last_name = None
-        student._compute_name()
+        student._onchange_name()
         self.assertFalse(student.name)
         
         # Test with empty strings
         student.first_name = ''
         student.middle_name = ''
         student.last_name = ''
-        student._compute_name()
+        student._onchange_name()
         self.assertFalse(student.name)
         
         # Test with whitespace only
         student.first_name = '   '
         student.middle_name = '   '
         student.last_name = '   '
-        student._compute_name()
+        student._onchange_name()
         self.assertFalse(student.name)
 
     def test_faculty_name_compute_dependencies(self):
@@ -103,21 +103,21 @@ class TestComputeMethods(TestCoreCommon):
         faculty.first_name = None
         faculty.middle_name = None
         faculty.last_name = None
-        faculty._compute_name()
+        faculty._onchange_name()
         self.assertFalse(faculty.name)
         
         # Test with only first name
         faculty.first_name = 'John'
         faculty.middle_name = None
         faculty.last_name = None
-        faculty._compute_name()
+        faculty._onchange_name()
         self.assertEqual(faculty.name, 'John')
         
         # Test with only last name
         faculty.first_name = None
         faculty.middle_name = None
         faculty.last_name = 'Smith'
-        faculty._compute_name()
+        faculty._onchange_name()
         self.assertEqual(faculty.name, 'Smith')
 
     def test_student_course_compute_methods(self):
@@ -134,7 +134,7 @@ class TestComputeMethods(TestCoreCommon):
         """Test batch name_search method computation."""
         batch1 = self.env['op.batch'].create({
             'name': 'Test Batch Alpha',
-            
+            'code': 'TBA001',
             'course_id': self.test_course.id,
             'start_date': '2024-01-01',
             'end_date': '2024-12-31',
@@ -142,7 +142,7 @@ class TestComputeMethods(TestCoreCommon):
         
         batch2 = self.env['op.batch'].create({
             'name': 'Test Batch Beta',
-            
+            'code': 'TBB001',
             'course_id': self.test_course.id,
             'start_date': '2024-01-01',
             'end_date': '2024-12-31',
@@ -172,10 +172,9 @@ class TestComputeMethods(TestCoreCommon):
         child_course = self.env['op.course'].create({
             'name': 'Child Course',
             'code': 'CC001',
-            
             'department_id': self.test_department.id,
             'program_id': self.test_program.id,
-            'academic_year_id': parent_course.id,
+            'parent_id': parent_course.id,
         })
         
         # Test _has_cycle method

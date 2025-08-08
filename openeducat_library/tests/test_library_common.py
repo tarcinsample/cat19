@@ -125,27 +125,23 @@ class TestLibraryCommon(TransactionCase):
         # Create library card type
         cls.card_type = cls.env['op.library.card.type'].create({
             'name': 'Student Card',
-            'allow_day': 7,
-            'penalties_day': 1.0,
+            'allow_media': 5,
+            'duration': 7,
+            'penalty_amt_per_day': 1.0,
         })
         
         # Create authors
         cls.author1 = cls.env['op.author'].create({
             'name': 'Test Author 1',
-            'birth_date': '1970-01-01',
-            'country_id': cls.env.ref('base.us').id,
         })
         
         cls.author2 = cls.env['op.author'].create({
             'name': 'Test Author 2',
-            'birth_date': '1975-02-02',
-            'country_id': cls.env.ref('base.uk').id,
         })
         
         # Create publisher
         cls.publisher = cls.env['op.publisher'].create({
             'name': 'Test Publisher',
-            'website': 'https://testpublisher.com',
         })
         
         # Create media types
@@ -159,10 +155,20 @@ class TestLibraryCommon(TransactionCase):
             'code': 'JOURNAL',
         })
         
+        # Create base media first
+        cls.media = cls.env['op.media'].create({
+            'name': 'Test Book Base',
+            'isbn': '978-0123456780',  # Different from test_media ISBN
+            'author_ids': [(6, 0, [cls.author1.id])],
+            'publisher_ids': [(6, 0, [cls.publisher.id])],
+            'media_type_id': cls.media_type_book.id,
+        })
+        
         # Create media units
         cls.media_unit = cls.env['op.media.unit'].create({
             'name': 'Central Library',
-            'code': 'CL001',
+            'media_id': cls.media.id,
+            'barcode': 'CL001',
         })
         
         # Create tags
@@ -181,15 +187,20 @@ class TestLibraryCommon(TransactionCase):
 
     def create_media(self, **kwargs):
         """Helper method to create media."""
+        # Generate unique ISBN if not provided
+        if 'isbn' not in kwargs:
+            import random
+            unique_isbn = f'978-{random.randint(1000000000, 9999999999)}'
+        else:
+            unique_isbn = kwargs.pop('isbn')
+            
         vals = {
             'name': 'Test Book',
-            'isbn': '978-0123456789',
+            'isbn': unique_isbn,
             'author_ids': [(6, 0, [self.author1.id])],
-            'publisher_id': self.publisher.id,
-            'media_type': self.media_type_book.id,
-            'unit_id': self.media_unit.id,
-            'tag_ids': [(6, 0, [self.tag_science.id])],
-            'state': 'available',
+            'publisher_ids': [(6, 0, [self.publisher.id])],
+            'media_type_id': self.media_type_book.id,
+            'tags': [(6, 0, [self.tag_science.id])],
         }
         vals.update(kwargs)
         return self.env['op.media'].create(vals)

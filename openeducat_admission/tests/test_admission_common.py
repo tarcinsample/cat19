@@ -104,6 +104,8 @@ class TestAdmissionCommon(TransactionCase):
             'min_count': 5,
             'max_count': 50,
             'minimum_age_criteria': 18,
+            'product_id': self.fees_product.id,
+            'admission_base': 'course',
         })
         
         # Test admission data
@@ -123,6 +125,8 @@ class TestAdmissionCommon(TransactionCase):
             'fees': 1000.0,
             'fees_term_id': self.fees_term.id,
             'fees_start_date': date.today(),
+            'application_date': datetime.now(),
+            'company_id': self.env.user.company_id.id,
         }
         
     def create_test_admission(self, vals=None):

@@ -138,53 +138,47 @@ class TestExamCommon(TransactionCase):
             })],
         })
         
-        # Create exam session
+        # Create exam session with all required fields
         cls.exam_session = cls.env['op.exam.session'].create({
             'name': 'Test Exam Session',
             'course_id': cls.course.id,
             'batch_id': cls.batch.id,
+            'exam_code': 'TES2024',
             'start_date': '2024-11-01',
             'end_date': '2024-11-30',
-            'exam_type_id': cls.exam_type.id,
+            'exam_type': cls.exam_type.id,
+            'evaluation_type': 'normal',
             'state': 'schedule',
         })
         
-        # Create grade configuration
+        # Create grade configuration with correct fields
         cls.grade_config = cls.env['op.grade.configuration'].create({
-            'name': 'Standard Grading',
-            'result_line': [(0, 0, {
-                'name': 'A+',
-                'marks_range_from': 90,
-                'marks_range_to': 100,
-                'grade': 'A+',
-            }), (0, 0, {
-                'name': 'A',
-                'marks_range_from': 80,
-                'marks_range_to': 89,
-                'grade': 'A',
-            }), (0, 0, {
-                'name': 'B',
-                'marks_range_from': 70,
-                'marks_range_to': 79,
-                'grade': 'B',
-            }), (0, 0, {
-                'name': 'C',
-                'marks_range_from': 60,
-                'marks_range_to': 69,
-                'grade': 'C',
-            }), (0, 0, {
-                'name': 'F',
-                'marks_range_from': 0,
-                'marks_range_to': 59,
-                'grade': 'F',
-            })],
+            'min_per': 90,
+            'max_per': 100, 
+            'result': 'A+',
         })
         
-        # Create result template
+        # Create result template with correct fields
         cls.result_template = cls.env['op.result.template'].create({
             'name': 'Standard Result Template',
-            'grade_configuration_id': cls.grade_config.id,
+            'exam_session_id': cls.exam_session.id,
+            'result_date': '2024-11-30',
+            'grade_ids': [(6, 0, [cls.grade_config.id])],
         })
+        
+        # Model references for legacy tests
+        cls.op_exam = cls.env['op.exam']
+        cls.op_exam_attendees = cls.env['op.exam.attendees']
+        cls.op_exam_room = cls.env['op.exam.room']
+        cls.op_exam_type = cls.env['op.exam.type']
+        cls.op_grade_configuration = cls.env['op.grade.configuration']
+        cls.op_marksheet_line = cls.env['op.marksheet.line']
+        cls.op_marksheet_register = cls.env['op.marksheet.register']
+        cls.op_result_line = cls.env['op.result.line']
+        cls.op_result_template = cls.env['op.result.template']
+        cls.op_exam_session = cls.env['op.exam.session']
+        cls.op_held_exam = cls.env['op.held.exam']
+        cls.op_room_distribution = cls.env['op.room.distribution']
         
         # Helper methods
         cls.today = datetime.now().date()
@@ -193,8 +187,11 @@ class TestExamCommon(TransactionCase):
 
     def create_exam(self, **kwargs):
         """Helper method to create exam."""
-        default_start = datetime.combine(self.tomorrow, datetime.min.time().replace(hour=9))
-        default_end = datetime.combine(self.tomorrow, datetime.min.time().replace(hour=12))
+        # Use a date within the exam session period (2024-11-01 to 2024-11-30)
+        from datetime import date
+        exam_date = date(2024, 11, 15)  # Within session dates
+        default_start = datetime.combine(exam_date, datetime.min.time().replace(hour=9))
+        default_end = datetime.combine(exam_date, datetime.min.time().replace(hour=12))
         
         vals = {
             'name': 'Test Exam',
@@ -224,9 +221,7 @@ class TestExamCommon(TransactionCase):
         vals = {
             'name': 'Test Marksheet Register',
             'exam_session_id': self.exam_session.id,
-            'course_id': self.course.id,
-            'batch_id': self.batch.id,
-            'grade_configuration_id': self.grade_config.id,
+            'result_template_id': self.result_template.id,
         }
         vals.update(kwargs)
         return self.env['op.marksheet.register'].create(vals)

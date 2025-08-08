@@ -161,6 +161,7 @@ class OpAttendanceSheet(models.Model):
                     'attendance_id': self.id,
                     'student_id': student.id,
                     'present': False,  # Default to absent for manual marking
+                    'absent': True,   # Set absent status to pass validation
                 })
         
         if attendance_lines:

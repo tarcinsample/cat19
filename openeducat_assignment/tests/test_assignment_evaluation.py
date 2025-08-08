@@ -44,7 +44,8 @@ class TestAssignmentEvaluation(TestAssignmentCommon):
         submission1 = self.op_assignment_subline.create({
             'assignment_id': assignment.id,
             'student_id': self.student1.id,
-            'description': 'Excellent submission with comprehensive analysis'
+            'description': 'Excellent submission with comprehensive analysis',
+            'submission_date': datetime.now()
         })
         
         submission2 = self.op_assignment_subline.create({
@@ -248,10 +249,10 @@ class TestAssignmentEvaluation(TestAssignmentCommon):
         satisfactory = len([m for m in all_marks if 70 <= m < 80])  # C grade
         needs_improvement = len([m for m in all_marks if m < 70])  # Below C
         
-        self.assertEqual(excellent, 4)  # 95, 92, 91, 88 (if 88 >= 90, adjust logic)
-        self.assertEqual(good, 4)  # 87, 83, 88, 82
-        self.assertEqual(satisfactory, 2)  # 78, 76
-        self.assertEqual(needs_improvement, 0)  # 69 (adjust if threshold changes)
+        self.assertEqual(excellent, 3)  # 95, 92, 91 (marks >= 90)
+        self.assertEqual(good, 4)  # 87, 83, 88, 82 (80 <= marks < 90)  
+        self.assertEqual(satisfactory, 2)  # 78, 76 (70 <= marks < 80)
+        self.assertEqual(needs_improvement, 1)  # 69 (marks < 70)
     
     def test_plagiarism_detection_integration(self):
         """Test Task 11: Validate assignment plagiarism detection integration."""

@@ -111,7 +111,8 @@ class TestAssignmentPerformance(TestAssignmentCommon):
                 'assignment_id': assignment.id,
                 'student_id': student.id,
                 'description': f'Bulk submission {i+1}',
-                'state': 'draft'
+                'state': 'draft',
+                'submission_date': datetime.now()
             })
             submissions.append(submission)
         
@@ -332,7 +333,8 @@ class TestAssignmentPerformance(TestAssignmentCommon):
         submission = self.op_assignment_subline.create({
             'assignment_id': assignment.id,
             'student_id': self.student1.id,
-            'description': large_description
+            'description': large_description,
+            'submission_date': datetime.now()
         })
         
         end_time = time.time()
@@ -375,7 +377,8 @@ class TestAssignmentPerformance(TestAssignmentCommon):
                 submission = self.op_assignment_subline.create({
                     'assignment_id': assignment.id,
                     'student_id': self.student1.id if j % 2 == 0 else self.student2.id,
-                    'description': f'Workflow submission {j+1}'
+                    'description': f'Workflow submission {j+1}',
+                    'submission_date': datetime.now()
                 })
                 
                 # Complex submission workflow

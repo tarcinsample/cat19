@@ -18,6 +18,7 @@
 #
 ###############################################################################
 
+from datetime import datetime, timedelta
 from odoo.exceptions import ValidationError
 from odoo.tests import tagged
 from .test_attendance_common import TestAttendanceCommon
@@ -54,6 +55,8 @@ class TestAttendanceSession(TestAttendanceCommon):
         """Test get_attendance validation when session lacks course/batch."""
         session_incomplete = self.env['op.session'].create({
             'name': 'Incomplete Session',
+            'start_datetime': datetime.now(),
+            'end_datetime': datetime.now() + timedelta(hours=1),
         })
         
         with self.assertRaises(ValidationError) as context:
@@ -81,6 +84,8 @@ class TestAttendanceSession(TestAttendanceCommon):
             'name': 'Session No Register',
             'course_id': other_course.id,
             'batch_id': other_batch.id,
+            'start_datetime': datetime.now(),
+            'end_datetime': datetime.now() + timedelta(hours=1),
         })
         
         with self.assertRaises(ValidationError) as context:
@@ -194,6 +199,8 @@ class TestAttendanceSession(TestAttendanceCommon):
             'name': 'Other Session',
             'course_id': self.course.id,
             'batch_id': self.batch.id,
+            'start_datetime': datetime.now(),
+            'end_datetime': datetime.now() + timedelta(hours=1),
         })
         sheet2 = self.create_attendance_sheet(session_id=other_session.id)
         
@@ -217,6 +224,8 @@ class TestAttendanceSession(TestAttendanceCommon):
                 'course_id': self.course.id,
                 'batch_id': self.batch.id,
                 'subject_id': self.subject.id,
+                'start_datetime': datetime.now() + timedelta(hours=i),
+                'end_datetime': datetime.now() + timedelta(hours=i+1),
             })
             sessions.append(session)
         
@@ -254,6 +263,8 @@ class TestAttendanceSession(TestAttendanceCommon):
             'name': 'No Subject Session',
             'course_id': self.course.id,
             'batch_id': self.batch.id,
+            'start_datetime': datetime.now(),
+            'end_datetime': datetime.now() + timedelta(hours=1),
         })
         
         # Should still work (register doesn't require subject match)

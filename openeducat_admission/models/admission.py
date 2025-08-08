@@ -47,17 +47,19 @@ class OpAdmission(models.Model):
         'Application Number', size=16, copy=False,
         readonly=True, store=True)
     admission_date = fields.Date(
-        'Admission Date', copy=False)
+        'Admission Date', copy=False, tracking=True,
+        help="Date when admission was confirmed")
     application_date = fields.Datetime(
-        'Application Date', required=True, copy=False,
-        default=lambda self: fields.Datetime.now())
+        'Application Date', required=True, copy=False, tracking=True,
+        default=lambda self: fields.Datetime.now(),
+        help="Date when application was submitted")
     birth_date = fields.Date(
         'Birth Date', required=True)
     course_id = fields.Many2one(
         'op.course', 'Course', required=True, tracking=True, index=True,
         help="Course for which admission is being applied")
     batch_id = fields.Many2one(
-        'op.batch', 'Batch', required=False, index=True,
+        'op.batch', 'Batch', required=False, index=True, tracking=True,
         domain="[('course_id', '=', course_id), ('active', '=', True)]",
         help="Batch associated with the selected course")
     street = fields.Char(
@@ -69,14 +71,16 @@ class OpAdmission(models.Model):
     mobile = fields.Char(
         'Mobile', size=16)
     email = fields.Char(
-        'Email', size=256, required=True)
+        'Email', size=256, required=True, tracking=True,
+        help="Email address for communication")
     city = fields.Char('City', size=64)
     zip = fields.Char('Zip', size=8)
     state_id = fields.Many2one(
         'res.country.state', 'States', domain="[('country_id', '=', country_id)]")
     country_id = fields.Many2one(
         'res.country', 'Country')
-    fees = fields.Float('Fees')
+    fees = fields.Float('Fees', digits='Product Price', default=0.0,
+                      help="Total admission fees amount")
     image = fields.Image('image')
     state = fields.Selection(
         [('draft', 'Draft'), ('submit', 'Submitted'),
@@ -98,8 +102,10 @@ class OpAdmission(models.Model):
         string='Gender',
         required=True)
     student_id = fields.Many2one(
-        'op.student', 'Student')
-    nbr = fields.Integer('No of Admission', readonly=True)
+        'op.student', 'Student', readonly=True, tracking=True,
+        help="Student record created after enrollment")
+    nbr = fields.Integer('No of Admission', readonly=True, default=0,
+                       help="Admission sequence number")
     register_id = fields.Many2one(
         'op.admission.register', 'Admission Register', required=True, tracking=True,
         help="Admission register for this admission cycle")
@@ -110,7 +116,8 @@ class OpAdmission(models.Model):
     discount = fields.Float(string='Discount (%)',
                             digits='Discount', default=0.0)
 
-    fees_start_date = fields.Date('Fees Start Date')
+    fees_start_date = fields.Date('Fees Start Date',
+                                 help="Date from which fees payment starts")
     company_id = fields.Many2one(
         'res.company', string='Company',
         default=lambda self: self.env.user.company_id)
@@ -261,13 +268,14 @@ class OpAdmission(models.Model):
             
             # Check minimum age criteria if register has requirement
             if record.register_id and hasattr(record.register_id, 'minimum_age_criteria'):
-                if record.register_id.minimum_age_criteria > 0:
+                min_age = record.register_id.minimum_age_criteria or 0
+                if min_age > 0:
                     age_years = (today_date - record.birth_date).days // 365
-                    if age_years < record.register_id.minimum_age_criteria:
+                    if age_years < min_age:
                         raise ValidationError(_(
                             "Not eligible for admission. Minimum required age is %s years. "
                             "Current age is %s years.") % (
-                            record.register_id.minimum_age_criteria, age_years))
+                            min_age, age_years))
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -311,7 +319,10 @@ class OpAdmission(models.Model):
         Validates admission criteria before confirming.
         """
         for record in self:
-            if not record.batch_id and record.register_id.admission_base == 'course':
+            # Check batch requirement for course-based admission
+            if (record.register_id and 
+                record.register_id.admission_base == 'course' and 
+                not record.batch_id):
                 raise ValidationError(_("Batch must be selected for course-based admission."))
             record.state = 'confirm'
 
@@ -369,12 +380,12 @@ class OpAdmission(models.Model):
                     'batch_id':
                         student.batch_id and student.batch_id.id or False,
                     'academic_years_id':
-                        student.register_id.academic_years_id.id or False,
+                        student.register_id.academic_years_id and student.register_id.academic_years_id.id or False,
                     'academic_term_id':
-                        student.register_id.academic_term_id.id or False,
-                    'fees_term_id': student.fees_term_id.id,
-                    'fees_start_date': student.fees_start_date,
-                    'product_id': student.register_id.product_id.id,
+                        student.register_id.academic_term_id and student.register_id.academic_term_id.id or False,
+                    'fees_term_id': student.fees_term_id and student.fees_term_id.id or False,
+                    'fees_start_date': student.fees_start_date or False,
+                    'product_id': student.register_id.product_id and student.register_id.product_id.id or False,
                 }]],
                 'user_id': student_user.id if student_user else False,
                 'company_id': self.company_id.id
@@ -391,14 +402,15 @@ class OpAdmission(models.Model):
             ValidationError: If maximum admission count exceeded
         """
         for record in self:
-            if record.register_id.max_count:
+            max_count = record.register_id.max_count or 0
+            if max_count > 0:
                 total_admission = self.env['op.admission'].search_count(
                     [('register_id', '=', record.register_id.id),
                      ('state', '=', 'done')])
-                if not total_admission < record.register_id.max_count:
-                    msg = 'Max Admission In Admission Register :- (%s)' % (
-                        record.register_id.max_count)
-                    raise ValidationError(_(msg))
+                if total_admission >= max_count:
+                    raise ValidationError(_(
+                        'Maximum admission limit (%s) reached for register "%s"') % (
+                        max_count, record.register_id.name))
             if not record.student_id:
                 vals = record.get_student_vals()
                 if vals:
@@ -415,24 +427,31 @@ class OpAdmission(models.Model):
                             record.course_id and record.course_id.id or False,
                         'batch_id':
                             record.batch_id and record.batch_id.id or False,
-                        'fees_term_id': record.fees_term_id.id,
-                        'fees_start_date': record.fees_start_date,
-                        'product_id': record.register_id.product_id.id,
+                        'academic_years_id':
+                            record.register_id.academic_years_id and record.register_id.academic_years_id.id or False,
+                        'academic_term_id':
+                            record.register_id.academic_term_id and record.register_id.academic_term_id.id or False,
+                        'fees_term_id': record.fees_term_id and record.fees_term_id.id or False,
+                        'fees_start_date': record.fees_start_date or False,
+                        'product_id': record.register_id.product_id and record.register_id.product_id.id or False,
                     }]],
                 })
-            if record.fees_term_id.fees_terms in ['fixed_days', 'fixed_date']:
+            if (record.fees_term_id and 
+                record.fees_term_id.fees_terms in ['fixed_days', 'fixed_date']):
                 val = []
-                product_id = record.register_id.product_id.id
+                product_id = (record.register_id.product_id and 
+                            record.register_id.product_id.id or False)
                 for line in record.fees_term_id.line_ids:
-                    no_days = line.due_days
-                    per_amount = line.value
-                    amount = (per_amount * record.fees) / 100
+                    no_days = line.due_days or 0
+                    per_amount = line.value or 0
+                    amount = (per_amount * (record.fees or 0)) / 100
                     dict_val = {
                         'fees_line_id': line.id,
                         'amount': amount,
                         'fees_factor': per_amount,
                         'product_id': product_id,
-                        'discount': record.discount or record.fees_term_id.discount,
+                        'discount': (record.discount or 
+                                   (record.fees_term_id.discount if hasattr(record.fees_term_id, 'discount') else 0)),
                         'state': 'draft',
                         'course_id': record.course_id and record.course_id.id or False,
                         'batch_id': record.batch_id and record.batch_id.id or False,
@@ -442,8 +461,8 @@ class OpAdmission(models.Model):
                         dict_val.update({
                             'date': date
                         })
-                    elif self.fees_start_date:
-                        date = self.fees_start_date + relativedelta(
+                    elif record.fees_start_date:
+                        date = record.fees_start_date + relativedelta(
                             days=no_days)
                         dict_val.update({
                             'date': date,
@@ -465,15 +484,18 @@ class OpAdmission(models.Model):
                 'student_id': student_id,
                 'is_student': True,
             })
-            reg_id = self.env['op.subject.registration'].create({
-                'student_id': student_id,
-                'batch_id': record.batch_id.id,
-                'course_id': record.course_id.id,
-                'min_unit_load': record.course_id.min_unit_load or 0.0,
-                'max_unit_load': record.course_id.max_unit_load or 0.0,
-                'state': 'draft',
-            })
-            reg_id.get_subjects()
+            # Create subject registration if batch is available
+            if record.batch_id:
+                reg_id = self.env['op.subject.registration'].create({
+                    'student_id': student_id,
+                    'batch_id': record.batch_id.id,
+                    'course_id': record.course_id.id,
+                    'min_unit_load': record.course_id.min_unit_load or 0.0,
+                    'max_unit_load': record.course_id.max_unit_load or 0.0,
+                    'state': 'draft',
+                })
+                if hasattr(reg_id, 'get_subjects'):
+                    reg_id.get_subjects()
 
     def confirm_rejected(self):
         self.state = 'reject'

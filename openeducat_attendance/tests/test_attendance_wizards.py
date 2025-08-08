@@ -73,7 +73,7 @@ class TestAttendanceWizards(TestAttendanceCommon):
         # Get all attendance lines
         lines = self.env['op.attendance.line'].search([
             ('attendance_id.register_id', '=', self.register.id)
-        ], order='attendance_id.attendance_date desc, student_id.name')
+        ], order='attendance_date desc, student_id')
         
         for line in lines:
             row = [
@@ -83,7 +83,7 @@ class TestAttendanceWizards(TestAttendanceCommon):
                 line.attendance_id.course_id.name,
                 line.attendance_id.batch_id.name,
                 line.attendance_id.register_id.subject_id.name if line.attendance_id.register_id.subject_id else '',
-                line.remarks or ''
+                line.remark or ''
             ]
             export_data.append(row)
         
@@ -126,7 +126,7 @@ class TestAttendanceWizards(TestAttendanceCommon):
                 line.attendance_id.batch_id.name,
                 str(line.attendance_id.attendance_date),
                 'Present' if line.present else 'Absent',
-                line.remarks or ''
+                line.remark or ''
             ])
         
         # Verify Excel data structure
@@ -160,7 +160,7 @@ Test Student 2,2024-01-02,Present,Imported"""
                     'student_id': student.id,
                     'date': row['Date'],
                     'present': row['Status'] == 'Present',
-                    'remarks': row['Remarks']
+                    'remark': row['Remarks']
                 })
         
         csv_buffer.close()
@@ -173,7 +173,7 @@ Test Student 2,2024-01-02,Present,Imported"""
         self.assertEqual(first_record['student_id'], self.student1.id, 
                         "Should identify correct student")
         self.assertTrue(first_record['present'], "Should parse present status")
-        self.assertEqual(first_record['remarks'], 'Imported', "Should parse remarks")
+        self.assertEqual(first_record['remark'], 'Imported', "Should parse remarks")
 
     def test_attendance_import_validation(self):
         """Test validation during attendance import."""
@@ -233,8 +233,8 @@ Test Student 2,2024-01-01,Invalid Status,Should fail"""
         """Test attendance export with various filters."""
         # Test date range filter
         date_filtered_lines = self.env['op.attendance.line'].search([
-            ('attendance_id.attendance_date', '>=', self.today),
-            ('attendance_id.attendance_date', '<=', self.today)
+            ('attendance_date', '>=', self.today),
+            ('attendance_date', '<=', self.today)
         ])
         
         self.assertEqual(len(date_filtered_lines), 2, 
@@ -270,7 +270,7 @@ Test Student 2,2024-01-01,Invalid Status,Should fail"""
                     'student_name': student.name,
                     'date': str(date),
                     'status': 'Present' if day % 2 == 0 else 'Absent',
-                    'remarks': f'Bulk import day {day}'
+                    'remark': f'Bulk import day {day}'
                 })
         
         # Process bulk import
@@ -378,7 +378,7 @@ Test Student 2,2024-01-01,Invalid Status,Should fail"""
             'student_id': self.student1.id,
             'sheet_id': self.sheet1.id,
             'present': True,
-            'remarks': 'Updated via import'
+            'remark': 'Updated via import'
         }
         
         # Find and update existing line
@@ -390,13 +390,13 @@ Test Student 2,2024-01-01,Invalid Status,Should fail"""
         if line_to_update:
             line_to_update.write({
                 'present': update_data['present'],
-                'remarks': update_data['remarks']
+                'remark': update_data['remark']
             })
         
         # Verify update
         updated_line = self.env['op.attendance.line'].browse(existing_line.id)
         self.assertTrue(updated_line.present, "Should update to present")
-        self.assertEqual(updated_line.remarks, 'Updated via import', 
+        self.assertEqual(updated_line.remark, 'Updated via import', 
                         "Should update remarks")
 
     def test_attendance_export_performance(self):
@@ -425,7 +425,8 @@ Test Student 2,2024-01-01,Invalid Status,Should fail"""
             self.create_attendance_line(self.sheet1, student, present=True)
         
         # Measure export performance
-        start_time = self.env.now()
+        from datetime import datetime
+        start_time = datetime.now()
         
         # Export all attendance lines
         all_lines = self.env['op.attendance.line'].search([
@@ -438,10 +439,10 @@ Test Student 2,2024-01-01,Invalid Status,Should fail"""
                 'student': line.student_id.name,
                 'date': line.attendance_id.attendance_date,
                 'status': 'Present' if line.present else 'Absent',
-                'remarks': line.remarks or ''
+                'remark': line.remark or ''
             })
         
-        end_time = self.env.now()
+        end_time = datetime.now()
         export_time = (end_time - start_time).total_seconds()
         
         # Performance assertions

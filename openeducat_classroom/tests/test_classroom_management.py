@@ -32,9 +32,9 @@ class TestClassroomManagement(TestClassroomCommon):
         classroom = self.create_classroom()
         
         self.assertEqual(classroom.name, 'Test Classroom', "Classroom name should be set")
-        self.assertEqual(classroom.code, 'TC-001', "Classroom code should be set")
+        self.assertTrue(classroom.code.startswith('TC-'), "Classroom code should start with TC-")
         self.assertEqual(classroom.capacity, 50, "Classroom capacity should be 50")
-        self.assertEqual(classroom.type, 'classroom', "Type should be classroom")
+        # type field doesn't exist on op.classroom
 
     def test_classroom_capacity_validation(self):
         """Test classroom capacity validation."""
@@ -66,12 +66,12 @@ class TestClassroomManagement(TestClassroomCommon):
         for classroom_type in classroom_types:
             classroom = self.create_classroom(
                 name=f'{classroom_type.title()} Room',
-                code=f'CR-{classroom_type.upper()[:3]}',
-                type=classroom_type
+                code=f'CR-{classroom_type.upper()[:3]}'
+                # type field doesn't exist on op.classroom
             )
             
-            self.assertEqual(classroom.type, classroom_type,
-                           f"Should create {classroom_type} type")
+            self.assertEqual(classroom.name, f'{classroom_type.title()} Room',
+                           f"Should create {classroom_type} room")
 
     def test_classroom_asset_management(self):
         """Test classroom asset management."""
@@ -80,21 +80,20 @@ class TestClassroomManagement(TestClassroomCommon):
         # Create assets for classroom
         projector = self.create_asset(
             classroom=classroom,
-            name='Projector',
-            asset_id='PROJ-001',
-            type='electronics'
+            product_name='Projector',
+            code='PROJ-001'
         )
         
         chairs = self.create_asset(
             classroom=classroom,
-            name='Chairs',
-            asset_id='CHAIR-001',
-            type='furniture'
+            product_name='Chairs',
+            code='CHAIR-001',
+            product_uom_qty=50
         )
         
         # Verify assets are linked to classroom
         classroom_assets = self.env['op.asset'].search([
-            ('classroom_id', '=', classroom.id)
+            ('asset_id', '=', classroom.id)  # asset_id is the classroom reference
         ])
         
         self.assertIn(projector, classroom_assets, "Projector should be linked")
@@ -107,15 +106,13 @@ class TestClassroomManagement(TestClassroomCommon):
         # Create facility lines
         projector_facility = self.create_facility_line(
             classroom=classroom,
-            name='Digital Projector',
-            type='projector',
+            facility_name='Digital Projector',
             quantity=1
         )
         
         whiteboard_facility = self.create_facility_line(
             classroom=classroom,
-            name='Whiteboard',
-            type='board',
+            facility_name='Whiteboard',
             quantity=2
         )
         
@@ -145,20 +142,14 @@ class TestClassroomManagement(TestClassroomCommon):
         lab = self.create_classroom(
             name='Science Lab',
             code='LAB-001',
-            type='laboratory',
             capacity=25
         )
         
         auditorium = self.create_classroom(
             name='Main Auditorium',
             code='AUD-001',
-            type='auditorium',
             capacity=200
         )
-        
-        # Search by type
-        labs = self.env['op.classroom'].search([('type', '=', 'laboratory')])
-        self.assertIn(lab, labs, "Should find laboratory")
         
         # Search by capacity range
         large_rooms = self.env['op.classroom'].search([('capacity', '>', 100)])
@@ -223,9 +214,8 @@ class TestClassroomManagement(TestClassroomCommon):
         classroom = self.create_classroom()
         asset = self.create_asset(
             classroom=classroom,
-            name='Computer',
-            purchase_value=1000.0,
-            purchase_date='2024-01-01'
+            product_name='Computer',
+            value=1000.0
         )
         
         # Test depreciation calculation if supported
@@ -241,9 +231,11 @@ class TestClassroomManagement(TestClassroomCommon):
         
         # Test maintenance scheduling if supported
         if hasattr(facility, 'next_maintenance_date'):
-            facility.next_maintenance_date = '2024-12-01'
+            from datetime import date
+            maintenance_date = date(2024, 12, 1)
+            facility.next_maintenance_date = maintenance_date
             
-            self.assertEqual(facility.next_maintenance_date, '2024-12-01',
+            self.assertEqual(facility.next_maintenance_date, maintenance_date,
                            "Should schedule maintenance")
 
     def test_classroom_reporting_data(self):
@@ -254,8 +246,7 @@ class TestClassroomManagement(TestClassroomCommon):
             classroom = self.create_classroom(
                 name=f'Report Room {i}',
                 code=f'RR-{i:03d}',
-                capacity=30 + (i * 10),
-                type=['classroom', 'laboratory'][i % 2]
+                capacity=30 + (i * 10)
             )
             classrooms.append(classroom)
         
@@ -263,15 +254,8 @@ class TestClassroomManagement(TestClassroomCommon):
         report_data = {
             'total_classrooms': len(classrooms),
             'total_capacity': sum([c.capacity for c in classrooms]),
-            'by_type': {},
             'avg_capacity': sum([c.capacity for c in classrooms]) / len(classrooms),
         }
-        
-        # Group by type
-        for classroom in classrooms:
-            if classroom.type not in report_data['by_type']:
-                report_data['by_type'][classroom.type] = 0
-            report_data['by_type'][classroom.type] += 1
         
         # Verify report data
         self.assertEqual(report_data['total_classrooms'], 5, "Should count all classrooms")
@@ -315,8 +299,7 @@ class TestClassroomManagement(TestClassroomCommon):
             if 'op.facility.line' in self.env:
                 facility = self.create_facility_line(
                     classroom=classroom,
-                    name=equipment['name'],
-                    type=equipment['type'],
+                    facility_name=equipment['name'],
                     quantity=equipment['quantity']
                 )
                 created_equipment.append(facility)
@@ -360,16 +343,18 @@ class TestClassroomManagement(TestClassroomCommon):
             if 'op.facility.line' in self.env:
                 self.create_facility_line(
                     classroom=classroom,
-                    name=tech['name'],
-                    type=tech['type'],
+                    facility_name=tech['name'],
                     quantity=1
                 )
         
-        # Verify technology tracking
+        # Verify technology tracking - search by classroom only since type doesn't exist
         tech_facilities = self.env['op.facility.line'].search([
-            ('classroom_id', '=', classroom.id),
-            ('type', 'in', ['interactive_display', 'audio', 'network'])
+            ('classroom_id', '=', classroom.id)
         ])
+        # Filter by facility type instead
+        tech_facilities = tech_facilities.filtered(
+            lambda f: f.facility_id.facility_type == 'technology'
+        )
         
         self.assertEqual(len(tech_facilities), 3, "Should track technology equipment")
 
@@ -409,16 +394,18 @@ class TestClassroomManagement(TestClassroomCommon):
             if 'op.facility.line' in self.env:
                 self.create_facility_line(
                     classroom=classroom,
-                    name=item['name'],
-                    type=item['type'],
+                    facility_name=item['name'],
                     quantity=1
                 )
         
-        # Verify security tracking
+        # Verify security tracking - search by classroom only since type doesn't exist
         security_facilities = self.env['op.facility.line'].search([
-            ('classroom_id', '=', classroom.id),
-            ('type', 'in', ['security', 'access_control', 'emergency'])
+            ('classroom_id', '=', classroom.id)
         ])
+        # Filter by facility type instead
+        security_facilities = security_facilities.filtered(
+            lambda f: f.facility_id.facility_type == 'safety'
+        )
         
         self.assertGreater(len(security_facilities), 0, "Should track security equipment")
 

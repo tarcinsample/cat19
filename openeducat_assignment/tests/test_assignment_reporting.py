@@ -86,7 +86,8 @@ class TestAssignmentReporting(TestAssignmentCommon):
                     'student_id': student.id,
                     'description': f'Analytics submission {i+1}-{j+1}',
                     'marks': base_grade,
-                    'state': 'accept'
+                    'state': 'accept',
+                    'submission_date': datetime.now()
                 })
                 submission_data.append(submission)
         
@@ -259,7 +260,8 @@ class TestAssignmentReporting(TestAssignmentCommon):
                 'student_id': high_performer.id,
                 'description': f'High performer submission {i+1}',
                 'marks': 90 + i * 2,  # Improving grades
-                'state': 'accept'
+                'state': 'accept',
+                'submission_date': datetime.now()
             })
         
         # Average performer
@@ -270,7 +272,8 @@ class TestAssignmentReporting(TestAssignmentCommon):
                 'student_id': average_performer.id,
                 'description': f'Average performer submission {i+1}',
                 'marks': 75 + (i % 2) * 5,  # Fluctuating grades
-                'state': 'accept'
+                'state': 'accept',
+                'submission_date': datetime.now()
             })
         
         # Calculate student progress reports
@@ -439,7 +442,8 @@ class TestAssignmentReporting(TestAssignmentCommon):
                 'student_id': student.id,
                 'description': f'Grade distribution submission - {category}',
                 'marks': grade,
-                'state': 'accept'
+                'state': 'accept',
+                'submission_date': datetime.now()
             })
             students_and_grades.append((student, grade, category))
         
@@ -514,7 +518,8 @@ class TestAssignmentReporting(TestAssignmentCommon):
                 'name': f'Course {i+1} Batch',
                 'code': f'C{i+1}B001',
                 'course_id': course.id,
-                'start_date': fields.Date.today()
+                'start_date': fields.Date.today(),
+                'end_date': fields.Date.today() + timedelta(days=365)
             })
             
             # Create assignments (different numbers per course)

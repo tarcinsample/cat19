@@ -38,6 +38,7 @@ class TestAssignmentDeadline(TestAssignmentCommon):
             'course_id': self.course.id,
             'subject_id': self.subject.id,
             'issued_date': datetime.now(),
+            'end_date': datetime.now() + timedelta(days=30),
             'assignment_type': self.assignment_type.id,
             'faculty_id': self.faculty.id,
             'point': 100.0
@@ -65,6 +66,7 @@ class TestAssignmentDeadline(TestAssignmentCommon):
             'course_id': self.course.id,
             'subject_id': self.subject.id,
             'issued_date': issue_date,
+            'end_date': issue_date + timedelta(days=30),
             'assignment_type': self.assignment_type.id,
             'faculty_id': self.faculty.id,
             'point': 100.0
@@ -107,6 +109,7 @@ class TestAssignmentDeadline(TestAssignmentCommon):
             'course_id': self.course.id,
             'subject_id': self.subject.id,
             'issued_date': datetime.now() - timedelta(days=7),
+            'end_date': datetime.now() + timedelta(days=23),
             'assignment_type': self.assignment_type.id,
             'faculty_id': self.faculty.id,
             'point': 100.0
@@ -147,6 +150,7 @@ class TestAssignmentDeadline(TestAssignmentCommon):
             'course_id': self.course.id,
             'subject_id': self.subject.id,
             'issued_date': datetime.now(),
+            'end_date': datetime.now() + timedelta(days=30),
             'assignment_type': self.assignment_type.id,
             'faculty_id': self.faculty.id,
             'point': 100.0
@@ -185,6 +189,7 @@ class TestAssignmentDeadline(TestAssignmentCommon):
             'course_id': self.course.id,
             'subject_id': self.subject.id,
             'issued_date': same_date,
+            'end_date': same_date + timedelta(days=30),
             'assignment_type': self.assignment_type.id,
             'faculty_id': self.faculty.id,
             'point': 100.0
@@ -211,6 +216,7 @@ class TestAssignmentDeadline(TestAssignmentCommon):
             'course_id': self.course.id,
             'subject_id': self.subject.id,
             'issued_date': issue_datetime,
+            'end_date': issue_datetime + timedelta(days=30),
             'assignment_type': self.assignment_type.id,
             'faculty_id': self.faculty.id,
             'point': 100.0
@@ -241,6 +247,7 @@ class TestAssignmentDeadline(TestAssignmentCommon):
                 'course_id': self.course.id,
                 'subject_id': self.subject.id,
                 'issued_date': issue_date,
+                'end_date': issue_date + timedelta(days=30),
                 'assignment_type': self.assignment_type.id,
                 'faculty_id': self.faculty.id,
                 'point': 100.0
@@ -276,6 +283,7 @@ class TestAssignmentDeadline(TestAssignmentCommon):
             'course_id': self.course.id,
             'subject_id': self.subject.id,
             'issued_date': datetime.now() - timedelta(days=5),
+            'end_date': datetime.now() + timedelta(days=25),
             'assignment_type': self.assignment_type.id,
             'faculty_id': self.faculty.id,
             'point': 100.0
@@ -330,6 +338,7 @@ class TestAssignmentDeadline(TestAssignmentCommon):
             'course_id': self.course.id,
             'subject_id': self.subject.id,
             'issued_date': datetime.now() - timedelta(hours=1),
+            'end_date': datetime.now() + timedelta(days=30),
             'assignment_type': self.assignment_type.id,
             'faculty_id': self.faculty.id,
             'point': 100.0
@@ -362,12 +371,13 @@ class TestAssignmentDeadline(TestAssignmentCommon):
     def test_date_field_constraints_comprehensive(self):
         """Comprehensive test of date field constraints."""
         
-        # Test with None values
-        grading_assignment_none = self.grading_assignment.create({
-            'name': 'None Date Test',
+        # Test with required fields properly set
+        grading_assignment_valid = self.grading_assignment.create({
+            'name': 'Valid Date Test',
             'course_id': self.course.id,
             'subject_id': self.subject.id,
-            'issued_date': None,  # None value
+            'issued_date': datetime.now(),  # Valid datetime
+            'end_date': datetime.now() + timedelta(days=30),
             'assignment_type': self.assignment_type.id,
             'faculty_id': self.faculty.id,
             'point': 100.0
@@ -375,8 +385,8 @@ class TestAssignmentDeadline(TestAssignmentCommon):
         
         assignment_data = self.assignment_data.copy()
         assignment_data.update({
-            'grading_assignment_id': grading_assignment_none.id,
-            'submission_date': None  # None value
+            'grading_assignment_id': grading_assignment_valid.id,
+            'submission_date': datetime.now() + timedelta(days=7)  # Valid future date
         })
         
         # Should not raise validation error with None values

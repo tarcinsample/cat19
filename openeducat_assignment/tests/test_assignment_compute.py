@@ -45,7 +45,8 @@ class TestAssignmentCompute(TestAssignmentCommon):
             'assignment_id': assignment.id,
             'student_id': self.student1.id,
             'description': 'First submission',
-            'state': 'draft'
+            'state': 'draft',
+            'submission_date': datetime.now()
         })
         
         # Recompute and verify count
@@ -57,7 +58,8 @@ class TestAssignmentCompute(TestAssignmentCommon):
             'assignment_id': assignment.id,
             'student_id': self.student2.id,
             'description': 'Second submission',
-            'state': 'draft'
+            'state': 'draft',
+            'submission_date': datetime.now()
         })
         
         # Recompute and verify count
@@ -85,7 +87,8 @@ class TestAssignmentCompute(TestAssignmentCommon):
                 'assignment_id': assignment.id,
                 'student_id': self.student1.id if i % 2 == 0 else self.student2.id,
                 'description': f'Submission {i+1}',
-                'state': 'draft'
+                'state': 'draft',
+                'submission_date': datetime.now()
             })
             submissions.append(submission)
         
@@ -98,7 +101,8 @@ class TestAssignmentCompute(TestAssignmentCommon):
             'assignment_id': assignment.id,
             'student_id': self.student1.id,
             'description': 'New submission',
-            'state': 'draft'
+            'state': 'draft',
+            'submission_date': datetime.now()
         })
         
         # Count should be automatically updated
@@ -129,7 +133,8 @@ class TestAssignmentCompute(TestAssignmentCommon):
                     'assignment_id': assignment.id,
                     'student_id': self.student1.id if i % 2 == 0 else self.student2.id,
                     'description': f'Submission {state} {i+1}',
-                    'state': state
+                    'state': state,
+                    'submission_date': datetime.now()
                 })
                 all_submissions.append(submission)
         

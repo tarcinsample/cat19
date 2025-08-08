@@ -418,7 +418,7 @@ class TestAttendanceSecurity(TestAttendanceCommon):
         # Test student can see basic attendance but may have restrictions on sensitive fields
         try:
             student_line = student_env['op.attendance.line'].browse(line.id)
-            can_read_remarks = bool(student_line.remarks)
+            can_read_remarks = bool(student_line.remark)
             # The assertion here depends on whether remarks should be visible to students
         except AccessError:
             can_read_remarks = False
@@ -434,7 +434,7 @@ class TestAttendanceSecurity(TestAttendanceCommon):
         # Test if faculty can modify old attendance (depends on business rules)
         try:
             faculty_env['op.attendance.line'].browse(old_line.id).write({
-                'remarks': 'Updated old record'
+                'remark': 'Updated old record'
             })
             can_modify_old = True
         except (AccessError, Exception):

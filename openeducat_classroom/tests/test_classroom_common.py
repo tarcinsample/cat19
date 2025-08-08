@@ -61,38 +61,83 @@ class TestClassroomCommon(TransactionCase):
             'start_date': '2024-06-01',
             'end_date': '2024-12-31',
         })
+        
+        # Model references for legacy tests
+        cls.op_classroom = cls.env['op.classroom']
+        cls.op_asset = cls.env['op.asset']
 
     def create_classroom(self, **kwargs):
         """Helper method to create classroom."""
+        # Generate unique code to avoid constraint violations
+        unique_code = kwargs.pop('code', 'TC-' + str(uuid.uuid4())[:8])
+        
         vals = {
-            'name': 'Test Classroom',
-            'code': 'TC-001',
-            'capacity': 50,
-            'type': 'classroom',
+            'name': kwargs.pop('name', 'Test Classroom'),
+            'code': unique_code,
+            'capacity': kwargs.pop('capacity', 50),
         }
+        
+        # Remove invalid fields that don't exist on op.classroom
+        invalid_fields = ['type', 'location', 'building', 'floor', 'accessibility_features',
+                         'security_level', 'technology_integration', 'max_capacity', 
+                         'is_active', 'status', 'room_number']
+        for field in invalid_fields:
+            kwargs.pop(field, None)
+            
         vals.update(kwargs)
         return self.env['op.classroom'].create(vals)
 
     def create_asset(self, classroom=None, **kwargs):
         """Helper method to create asset."""
+        if not classroom:
+            classroom = self.create_classroom()
+            
+        # Create a product for the asset
+        product = kwargs.pop('product_id', None)
+        if not product:
+            product = self.env['product.product'].create({
+                'name': kwargs.pop('product_name', 'Test Product'),
+                'detailed_type': 'consu',  # Use detailed_type instead of type for Odoo 15+
+                'list_price': kwargs.pop('value', 100.0),
+            })
+            
         vals = {
-            'name': 'Test Asset',
-            'asset_id': 'ASSET-001',
-            'type': 'furniture',
+            'asset_id': classroom.id,  # asset_id is actually the classroom reference
+            'product_id': product.id,
+            'code': kwargs.pop('code', 'ASSET-' + str(uuid.uuid4())[:8]),
+            'product_uom_qty': kwargs.pop('quantity', 1.0),
         }
-        if classroom:
-            vals['classroom_id'] = classroom.id
+        
+        # Remove invalid fields
+        invalid_fields = ['name', 'type', 'classroom_id', 'purchase_date', 'depreciation_rate',
+                         'maintenance_schedule', 'status', 'value', 'asset_type']
+        for field in invalid_fields:
+            kwargs.pop(field, None)
+            
         vals.update(kwargs)
         return self.env['op.asset'].create(vals)
 
     def create_facility_line(self, classroom=None, **kwargs):
         """Helper method to create facility line."""
+        # Create facility first if not provided
+        facility = kwargs.pop('facility_id', None)
+        if not facility:
+            facility = self.env['op.facility'].create({
+                'name': kwargs.pop('facility_name', 'Test Facility'),
+                'code': 'FAC-' + str(uuid.uuid4())[:8],
+                'facility_type': 'equipment',
+            })
+            
         vals = {
-            'name': 'Test Facility',
-            'type': 'projector',
-            'quantity': 1,
+            'facility_id': facility.id,
+            'quantity': kwargs.pop('quantity', 1.0),
+            'classroom_id': classroom.id if classroom else False,
         }
-        if classroom:
-            vals['classroom_id'] = classroom.id
+        
+        # Remove invalid fields
+        invalid_fields = ['name', 'type', 'status', 'description']
+        for field in invalid_fields:
+            kwargs.pop(field, None)
+            
         vals.update(kwargs)
         return self.env['op.facility.line'].create(vals)

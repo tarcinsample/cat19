@@ -137,6 +137,12 @@ class TestTimetableCommon(TransactionCase):
             'duration': 1.0,
             'sequence': 3,
         })
+        
+        # Model references for legacy tests
+        cls.op_session = cls.env['op.session']
+        cls.op_faculty = cls.env['op.faculty']
+        cls.op_timing = cls.env['op.timing']
+        cls.generate_timetable = cls.env['generate.timetable']
 
     def create_timetable_session(self, **kwargs):
         """Helper method to create timetable session."""

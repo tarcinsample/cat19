@@ -56,12 +56,17 @@ class TestAttendanceBulk(TestAttendanceCommon):
         
         lines_data = []
         for i, student in enumerate(all_students):
-            lines_data.append({
+            present = i % 2 == 0  # Alternate present/absent
+            vals = {
                 'attendance_id': self.sheet.id,
                 'student_id': student.id,
-                'present': i % 2 == 0,  # Alternate present/absent
-                'remarks': f'Bulk entry {i}' if i % 3 == 0 else False
-            })
+                'present': present,
+                'remark': f'Bulk entry {i}' if i % 3 == 0 else False
+            }
+            # Set absent status when not present
+            if not present:
+                vals['absent'] = True
+            lines_data.append(vals)
         
         # Bulk create all lines
         lines = self.env['op.attendance.line'].create(lines_data)
@@ -86,7 +91,7 @@ class TestAttendanceBulk(TestAttendanceCommon):
         # Bulk update all to present
         line_ids = [line.id for line in lines]
         bulk_lines = self.env['op.attendance.line'].browse(line_ids)
-        bulk_lines.write({'present': True, 'remarks': 'Bulk updated'})
+        bulk_lines.write({'present': True, 'remark': 'Bulk updated'})
         
         # Verify bulk update
         updated_lines = self.env['op.attendance.line'].browse(line_ids)
@@ -95,7 +100,7 @@ class TestAttendanceBulk(TestAttendanceCommon):
         self.assertEqual(present_count, 12, "All students should be marked present")
         
         # Check remarks update
-        remarks_count = len(updated_lines.filtered(lambda l: l.remarks == 'Bulk updated'))
+        remarks_count = len(updated_lines.filtered(lambda l: l.remark == 'Bulk updated'))
         self.assertEqual(remarks_count, 12, "All lines should have updated remarks")
 
     def test_bulk_attendance_sheet_generation(self):
@@ -147,11 +152,11 @@ class TestAttendanceBulk(TestAttendanceCommon):
         
         # Mark first half as present
         first_half = lines[:len(lines)//2]
-        first_half.write({'present': True, 'remarks': 'First half present'})
+        first_half.write({'present': True, 'remark': 'First half present'})
         
         # Mark second half as absent with specific reasons
         second_half = lines[len(lines)//2:]
-        second_half.write({'present': False, 'remarks': 'Second half absent'})
+        second_half.write({'present': False, 'remark': 'Second half absent'})
         
         # Step 3: Verify workflow completion
         self.sheet.attendance_start()
@@ -170,8 +175,8 @@ class TestAttendanceBulk(TestAttendanceCommon):
         """Test bulk import of attendance data."""
         # Simulate import data structure
         import_data = [
-            {'student_name': self.student1.name, 'status': 'Present', 'remarks': 'On time'},
-            {'student_name': self.student2.name, 'status': 'Absent', 'remarks': 'Sick leave'},
+            {'student_name': self.student1.name, 'status': 'Present', 'remark': 'On time'},
+            {'student_name': self.student2.name, 'status': 'Absent', 'remark': 'Sick leave'},
         ]
         
         # Add bulk student data
@@ -179,7 +184,7 @@ class TestAttendanceBulk(TestAttendanceCommon):
             import_data.append({
                 'student_name': student.name,
                 'status': 'Present' if i % 2 == 0 else 'Absent',
-                'remarks': f'Import remark {i}'
+                'remark': f'Import remark {i}'
             })
         
         # Process import data
@@ -192,7 +197,7 @@ class TestAttendanceBulk(TestAttendanceCommon):
                     'attendance_id': self.sheet.id,
                     'student_id': student.id,
                     'present': data['status'] == 'Present',
-                    'remarks': data['remarks']
+                    'remark': data['remark']
                 })
                 imported_lines.append(line)
         
@@ -241,7 +246,8 @@ class TestAttendanceBulk(TestAttendanceCommon):
             large_students.append(student)
         
         # Measure bulk line creation performance
-        start_time = self.env.now()
+        from datetime import datetime
+        start_time = datetime.now()
         
         lines_data = []
         for student in large_students:
@@ -253,7 +259,7 @@ class TestAttendanceBulk(TestAttendanceCommon):
         
         lines = self.env['op.attendance.line'].create(lines_data)
         
-        end_time = self.env.now()
+        end_time = datetime.now()
         creation_time = (end_time - start_time).total_seconds()
         
         # Performance assertions

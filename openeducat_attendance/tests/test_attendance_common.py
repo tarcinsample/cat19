@@ -18,7 +18,7 @@
 #
 ###############################################################################
 
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 import uuid
 from odoo.tests import TransactionCase, tagged
 
@@ -136,10 +136,21 @@ class TestAttendanceCommon(TransactionCase):
             'subject_id': cls.subject.id,
         })
         
-        # Create attendance session
+        # Create attendance session with all required fields
         cls.session = cls.env['op.session'].create({
-            'name': 'Test Session',
+            'course_id': cls.course.id,
+            'faculty_id': cls.faculty.id,
+            'batch_id': cls.batch.id,
+            'subject_id': cls.subject.id,
+            'start_datetime': datetime.now(),
+            'end_datetime': datetime.now() + timedelta(hours=1),
         })
+        
+        # Model references for legacy tests
+        cls.op_attendance_register = cls.env['op.attendance.register']
+        cls.op_attendance_sheet = cls.env['op.attendance.sheet']
+        cls.op_attendance_line = cls.env['op.attendance.line']
+        cls.op_attendance_wizard = cls.env['student.attendance']
         
         # Helper methods
         cls.today = date.today()
@@ -162,6 +173,13 @@ class TestAttendanceCommon(TransactionCase):
             'student_id': student.id,
             'present': present,
         }
+        # If not present, set absent status by default (unless other status is specified)
+        if not present and not any(k in kwargs for k in ['absent', 'excused', 'late']):
+            vals['absent'] = True
+            
+        # Handle remarks -> remark field name mapping
+        if 'remarks' in kwargs:
+            kwargs['remark'] = kwargs.pop('remarks')
         vals.update(kwargs)
         return self.env['op.attendance.line'].create(vals)
 

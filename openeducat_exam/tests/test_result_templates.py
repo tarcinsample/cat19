@@ -45,63 +45,64 @@ class TestResultTemplates(TestExamCommon):
                         "Should have 1 grade line")
 
     def test_result_line_creation(self):
-        """Test creation of result lines in grade configuration."""
+        """Test creation of result lines."""
+        # Create an exam first for result line
+        exam = self.create_exam()
+        
         result_line = self.env['op.result.line'].create({
-            'name': 'Grade A',
-            'marks_range_from': 80,
-            'marks_range_to': 100,
-            'grade': 'A',
-            'grade_configuration_id': self.grade_config.id,
+            'exam_id': exam.id,
+            'student_id': self.student1.id,
+            'marks': 95,
         })
         
-        self.assertEqual(result_line.name, 'Grade A', "Result line name should be set")
-        self.assertEqual(result_line.marks_range_from, 80, "From range should be 80")
-        self.assertEqual(result_line.marks_range_to, 100, "To range should be 100")
-        self.assertEqual(result_line.grade, 'A', "Grade should be A")
+        self.assertEqual(result_line.marks, 95, "Result line marks should be set")
+        self.assertEqual(result_line.student_id, self.student1, "Student should be set")
+        self.assertEqual(result_line.exam_id, exam, "Exam should be set")
 
-    def test_result_line_range_validation(self):
-        """Test validation of marks range in result lines."""
-        # Test invalid range (from > to)
+    def test_grade_configuration_range_validation(self):
+        """Test validation of grade configuration ranges."""
+        # Test invalid range (min > max)
         with self.assertRaises(ValidationError):
-            self.env['op.result.line'].create({
-                'name': 'Invalid Range',
-                'marks_range_from': 90,
-                'marks_range_to': 80,  # Invalid: to < from
-                'grade': 'A',
-                'grade_configuration_id': self.grade_config.id,
+            self.env['op.grade.configuration'].create({
+                'min_per': 90,
+                'max_per': 80,  # Invalid: max < min
+                'result': 'A',
             })
 
     def test_result_line_negative_marks_validation(self):
-        """Test validation for negative marks ranges."""
-        # Test negative from range
+        """Test validation for negative marks."""
+        exam = self.create_exam()
+        
+        # Test negative marks
         with self.assertRaises(ValidationError):
             self.env['op.result.line'].create({
-                'name': 'Negative From',
-                'marks_range_from': -10,  # Invalid: negative
-                'marks_range_to': 50,
-                'grade': 'F',
-                'grade_configuration_id': self.grade_config.id,
+                'exam_id': exam.id,
+                'student_id': self.student1.id,
+                'marks': -10,  # Invalid: negative marks
             })
 
-    def test_result_line_overlapping_ranges_validation(self):
-        """Test validation for overlapping marks ranges."""
-        # Create first result line
-        self.env['op.result.line'].create({
-            'name': 'Grade A',
-            'marks_range_from': 80,
-            'marks_range_to': 100,
-            'grade': 'A',
-            'grade_configuration_id': self.grade_config.id,
+    def test_grade_configuration_overlapping_ranges_validation(self):
+        """Test validation for overlapping grade ranges in result templates."""
+        # This test should be part of result template validation
+        # Create grade configurations
+        grade_a = self.env['op.grade.configuration'].create({
+            'min_per': 80,
+            'max_per': 100,
+            'result': 'A',
         })
         
-        # Try to create overlapping range
+        grade_b = self.env['op.grade.configuration'].create({
+            'min_per': 85,  # Overlaps with Grade A
+            'max_per': 95,  # Overlaps with Grade A
+            'result': 'B',
+        })
+        
+        # Create result template with overlapping grades - should raise validation error
         with self.assertRaises(ValidationError):
-            self.env['op.result.line'].create({
-                'name': 'Grade B',
-                'marks_range_from': 75,
-                'marks_range_to': 85,  # Overlaps with A grade
-                'grade': 'B',
-                'grade_configuration_id': self.grade_config.id,
+            self.env['op.result.template'].create({
+                'name': 'Test Template',
+                'exam_session_id': self.exam_session.id,
+                'grade_ids': [(6, 0, [grade_a.id, grade_b.id])],
             })
 
     def test_grade_calculation_from_marks(self):
@@ -132,24 +133,31 @@ class TestResultTemplates(TestExamCommon):
         """Test result template creation."""
         template = self.env['op.result.template'].create({
             'name': 'Test Result Template',
-            'grade_configuration_id': self.grade_config.id,
+            'exam_session_id': self.exam_session.id,
         })
         
         self.assertEqual(template.name, 'Test Result Template',
                         "Template name should be set")
-        self.assertEqual(template.grade_configuration_id, self.grade_config,
-                        "Grade configuration should be linked")
+        self.assertEqual(template.exam_session_id, self.exam_session,
+                        "Exam session should be linked")
 
     def test_result_template_grade_configuration_relation(self):
         """Test relationship between result template and grade configuration."""
-        template = self.env['op.result.template'].create({
-            'name': 'Relation Test Template',
-            'grade_configuration_id': self.grade_config.id,
+        grade_config = self.env['op.grade.configuration'].create({
+            'min_per': 80,
+            'max_per': 100,
+            'result': 'A',
         })
         
-        # Test that template can access grade lines through configuration
-        grade_lines = template.grade_configuration_id.result_line
-        self.assertGreater(len(grade_lines), 0, "Should have grade lines")
+        template = self.env['op.result.template'].create({
+            'name': 'Relation Test Template',
+            'exam_session_id': self.exam_session.id,
+            'grade_ids': [(6, 0, [grade_config.id])],
+        })
+        
+        # Test that template has linked grade configurations
+        self.assertIn(grade_config, template.grade_ids,
+                     "Grade configuration should be linked")
 
     def test_multiple_grade_configurations(self):
         """Test multiple grade configurations with different scales."""
@@ -262,7 +270,7 @@ class TestResultTemplates(TestExamCommon):
         # Create result template
         template = self.env['op.result.template'].create({
             'name': 'Multi-Subject Template',
-            'grade_configuration_id': self.grade_config.id,
+            'exam_session_id': self.exam_session.id,
         })
         
         # Test template can be used for different subjects

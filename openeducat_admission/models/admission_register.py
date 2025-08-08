@@ -30,22 +30,27 @@ class OpAdmissionRegister(models.Model):
     _order = 'id DESC'
 
     name = fields.Char(
-        'Name', required=True, readonly=True)
+        'Name', required=True, readonly=True, index=True,
+        help="Name of the admission register")
     start_date = fields.Date(
         'Start Date', required=True, readonly=True,
         default=fields.Date.today())
     end_date = fields.Date(
-        'End Date', required=False, readonly=True,
-        default=(fields.Date.today() + relativedelta(days=30)))
+        'End Date', required=True, readonly=True,
+        default=(fields.Date.today() + relativedelta(days=30)),
+        help="Last date for application submission")
     course_id = fields.Many2one(
         'op.course', 'Course', readonly=True, tracking=True)
     min_count = fields.Integer(
-        'Minimum No. of Admission', readonly=True)
+        'Minimum No. of Admission', readonly=True, default=1,
+        help="Minimum number of admissions required")
     max_count = fields.Integer(
-        'Maximum No. of Admission', readonly=True, default=30)
+        'Maximum No. of Admission', readonly=True, default=30,
+        help="Maximum number of admissions allowed")
     product_id = fields.Many2one(
         'product.product', 'Course Fees',
-        domain=[('type', '=', 'service')], tracking=True)
+        domain=[('type', '=', 'service')], tracking=True,
+        help="Product used for fees calculation")
     admission_ids = fields.One2many(
         'op.admission', 'register_id', 'Admissions')
     state = fields.Selection(
@@ -62,7 +67,8 @@ class OpAdmissionRegister(models.Model):
     academic_term_id = fields.Many2one('op.academic.term',
                                        'Terms', readonly=True,
                                        tracking=True)
-    minimum_age_criteria = fields.Integer('Minimum Required Age(Years)', default=3)
+    minimum_age_criteria = fields.Integer('Minimum Required Age(Years)', default=3,
+                                           help="Minimum age requirement for admission")
     application_count = fields.Integer(string="Total Applications",
                                        compute="_compute_calculate_record_application",
                                        help="Total number of applications for this register")
@@ -142,15 +148,18 @@ class OpAdmissionRegister(models.Model):
             ValidationError: If admission counts are invalid
         """
         for record in self:
-            if record.min_count <= 0 or record.max_count <= 0:
+            min_count = record.min_count or 0
+            max_count = record.max_count or 0
+            
+            if min_count <= 0 or max_count <= 0:
                 raise ValidationError(_(
                     "Minimum (%s) and Maximum (%s) admission counts must be positive.") % (
-                    record.min_count, record.max_count))
-            if record.min_count > record.max_count:
+                    min_count, max_count))
+            if min_count > max_count:
                 raise ValidationError(_(
                     "Minimum admission count (%s) cannot be greater than "
                     "Maximum admission count (%s).") % (
-                    record.min_count, record.max_count))
+                    min_count, max_count))
 
     def open_student_application(self):
         return {

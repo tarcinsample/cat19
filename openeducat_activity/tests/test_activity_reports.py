@@ -44,7 +44,7 @@ class TestActivityReports(TestActivityCommon):
             enrollments = []
             for i in range(activity_data['enrollments']):
                 student = self.env['op.student'].create({
-                    'name': f'Student {i} for {activity.name[:10]}',
+                    'name': f'Student {i} for {activity.description[:10]}',
                     'first_name': 'Student',
                     'last_name': f'{i}',
                     'birth_date': '2005-01-01',
@@ -73,7 +73,7 @@ class TestActivityReports(TestActivityCommon):
         participation_report = []
         for data in participation_data:
             report_entry = {
-                'activity_name': data['activity'].name,
+                'activity_name': data['activity'].description,
                 'total_enrollments': data['enrollment_count'],
                 'participation_rate': (data['enrollment_count'] / 10) * 100,  # Assuming 10 is max
             }
@@ -110,15 +110,16 @@ class TestActivityReports(TestActivityCommon):
             'student_id': self.student1.id,
             'student_name': self.student1.name,
             'total_activities': len(enrollments),
-            'completed_activities': len([e for e in enrollments if e.participation_status == 'completed']),
-            'enrolled_activities': len([e for e in enrollments if e.participation_status == 'enrolled']),
-            'absent_activities': len([e for e in enrollments if e.participation_status == 'absent']),
+            # Note: participation_status field doesn't exist, using activity states instead
+            'completed_activities': len([e for e in enrollments if e.state == 'completed']),
+            'approved_activities': len([e for e in enrollments if e.state == 'approved']),
+            'draft_activities': len([e for e in enrollments if e.state == 'draft']),
             'participation_rate': 0,
         }
         
         # Calculate participation rate
         if student_summary['total_activities'] > 0:
-            participated = student_summary['completed_activities'] + student_summary['enrolled_activities']
+            participated = student_summary['completed_activities'] + student_summary['approved_activities']
             student_summary['participation_rate'] = (participated / student_summary['total_activities']) * 100
         
         # Verify student summary
@@ -193,7 +194,7 @@ class TestActivityReports(TestActivityCommon):
         for month_key, activities in monthly_activities.items():
             monthly_report[month_key] = {
                 'activity_count': len(activities),
-                'activities': [a.name for a in activities]
+                'activities': [a.description for a in activities]
             }
         
         # Verify monthly report
@@ -298,7 +299,7 @@ class TestActivityReports(TestActivityCommon):
             completion_rate = (data['completed'] / data['enrolled']) * 100
             
             completion_reports.append({
-                'activity_name': activity.name,
+                'activity_name': activity.description,
                 'enrolled_count': data['enrolled'],
                 'completed_count': data['completed'],
                 'completion_rate': completion_rate
@@ -371,7 +372,7 @@ class TestActivityReports(TestActivityCommon):
             course_report[course.name] = {
                 'course_id': course_id,
                 'total_enrollments': len(enrollments),
-                'unique_activities': len(set([e.activity_id.id for e in enrollments])),
+                'unique_activities': len(set([e.id for e in enrollments])),
             }
         
         # Verify course report
@@ -384,21 +385,22 @@ class TestActivityReports(TestActivityCommon):
         for i in range(3):
             activity = self.create_activity(
                 name=f'Instructor Activity {i}',
-                instructor_id=self.faculty.id
+                faculty_id=self.faculty.id
             )
             instructor_activities.append(activity)
         
         # Generate instructor report
-        if instructor_activities and hasattr(instructor_activities[0], 'instructor_id'):
+        if instructor_activities and hasattr(instructor_activities[0], 'faculty_id'):
             instructor_report = {
                 'instructor_name': self.faculty.name,
                 'total_activities': len(instructor_activities),
-                'activities': [a.name for a in instructor_activities],
+                'activities': [a.description for a in instructor_activities],
                 'average_duration': 0,
             }
             
             # Calculate average duration
-            total_duration = sum([(a.end_time - a.start_time) for a in instructor_activities])
+            # Note: start_time/end_time fields don't exist, using duration_hours if available
+            total_duration = sum([a.duration_hours or 0 for a in instructor_activities])
             if instructor_activities:
                 instructor_report['average_duration'] = total_duration / len(instructor_activities)
             
@@ -557,8 +559,8 @@ class TestActivityReports(TestActivityCommon):
         }
         
         # Count enrollments and active students
-        all_enrollments = self.env['op.student.activity'].search([
-            ('activity_id', 'in', [a.id for a in dashboard_activities])
+        all_enrollments = self.env['op.activity'].search([
+            ('id', 'in', [a.id for a in dashboard_activities])
         ])
         dashboard_metrics['total_enrollments'] = len(all_enrollments)
         dashboard_metrics['active_students'] = len(set([e.student_id.id for e in all_enrollments]))
@@ -593,7 +595,7 @@ class TestActivityReports(TestActivityCommon):
             if week_key not in weekly_trends:
                 weekly_trends[week_key] = {'count': 0, 'activities': []}
             weekly_trends[week_key]['count'] += 1
-            weekly_trends[week_key]['activities'].append(data['activity'].name)
+            weekly_trends[week_key]['activities'].append(data['activity'].description)
         
         # Verify trend analysis
         self.assertEqual(len(weekly_trends), 4, "Should analyze trends for all weeks")
@@ -613,11 +615,12 @@ class TestActivityReports(TestActivityCommon):
         export_data = []
         for activity in export_activities:
             export_record = {
-                'activity_name': activity.name,
+                'activity_name': activity.description,
                 'activity_type': activity.type_id.name,
                 'date': activity.date,
-                'start_time': activity.start_time,
-                'end_time': activity.end_time,
+                # 'start_time': activity.start_time,  # Fields don't exist
+                # 'end_time': activity.end_time,      # Fields don't exist
+                'duration_hours': activity.duration_hours or 0,
                 'description': activity.description or '',
             }
             export_data.append(export_record)

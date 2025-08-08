@@ -126,19 +126,21 @@ class TestAssignmentCommon(TransactionCase):
                 'gender': 'm'
             })
         
-        # Create grading assignment
-        self.grading_assignment_data = {
+        # Create grading assignment with all required fields
+        self.grading_assignment_obj = self.grading_assignment.create({
             'name': 'Test Grading Assignment',
             'course_id': self.course.id,
             'subject_id': self.subject.id,
             'issued_date': datetime.now(),
+            'end_date': datetime.now() + timedelta(days=30),  # Add end_date field
             'assignment_type': self.assignment_type.id,
             'faculty_id': self.faculty.id,
             'point': 100.0
-        }
+        })
         
         # Base assignment data
         self.assignment_data = {
+            'grading_assignment_id': self.grading_assignment_obj.id,
             'batch_id': self.batch.id,
             'marks': 100,
             'description': 'Test assignment description',
@@ -147,9 +149,22 @@ class TestAssignmentCommon(TransactionCase):
             'allocation_ids': [(6, 0, [self.student1.id, self.student2.id])]
         }
         
+        # Grading assignment data template (for other tests to use)
+        self.grading_assignment_data = {
+            'name': 'Test Grading Assignment',
+            'course_id': self.course.id,
+            'subject_id': self.subject.id,
+            'issued_date': datetime.now(),
+            'end_date': datetime.now() + timedelta(days=30),  # Add end_date field
+            'assignment_type': self.assignment_type.id,
+            'faculty_id': self.faculty.id,
+            'point': 100.0
+        }
+        
         # Assignment submission data
         self.submission_data = {
             'student_id': self.student1.id,
             'description': 'Test submission description',
-            'state': 'draft'
+            'state': 'draft',
+            'submission_date': datetime.now()  # Ensure submission_date is provided
         }
