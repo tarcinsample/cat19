@@ -171,7 +171,7 @@
                                     <label for="module_openeducat_student_mentor" />
                                     <span class="fa fa-info-circle " title="Openeducat Enterprise Module"/>
                                     <a
-                                        href="https://doc.openeducat.org/applications/student-skill-assessment/student-skill-assessment.html#student-skill-assessment"
+                                        href="https://doc.openeducat.org/applications/student-mentor/student_mentor.html#configure-mentor-categories"
                                         title="Documentation" class="o_doc_link"
                                         target="_blank" />
                                     <div class="text-muted">Configures Mentor categories.
