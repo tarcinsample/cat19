@@ -41,8 +41,9 @@ class OpStudentFeesDetails(models.Model):
     state = fields.Selection([
         ('draft', 'Draft'),
         ('invoice', 'Invoice Created'),
+        ('paid', 'Paid'),
         ('cancel', 'Cancel')
-    ], string='Status', copy=False, index=True)
+    ], string='Status', default='draft', copy=False, index=True)
     invoice_state = fields.Selection(related="invoice_id.state",
                                      string='Invoice Status',
                                      readonly=True)
@@ -55,8 +56,8 @@ class OpStudentFeesDetails(models.Model):
     discount = fields.Float(string='Discount (%)',
                             digits='Discount', default=0.0)
 
-    course_id = fields.Many2one('op.course', 'Course', required=False)
-    batch_id = fields.Many2one('op.batch', 'Batch', required=False)
+    course_id = fields.Many2one('op.course', 'Course', required=False, ondelete='cascade')
+    batch_id = fields.Many2one('op.batch', 'Batch', required=False, ondelete='cascade')
 
     @api.depends('discount')
     def _compute_discount_amount(self):
@@ -99,14 +100,15 @@ class OpStudentFeesDetails(models.Model):
                 raise ValidationError(
                     _("Discount percentage must be between 0 and 100."))
     
-    @api.constrains('student_id', 'product_id', 'date')
+    @api.constrains('student_id', 'product_id', 'date', 'fees_line_id')
     def _check_student_fee_uniqueness(self):
         """Ensure no duplicate fee records for same student/product/date."""
         for record in self:
-            if record.student_id and record.product_id and record.date:
+            if record.student_id and record.product_id and record.date and record.fees_line_id:
                 existing = self.search([
                     ('student_id', '=', record.student_id.id),
                     ('product_id', '=', record.product_id.id),
+                    ('fees_line_id', '=', record.fees_line_id.id),
                     ('date', '=', record.date),
                     ('state', '!=', 'cancel'),
                     ('id', '!=', record.id)
@@ -114,7 +116,7 @@ class OpStudentFeesDetails(models.Model):
                 if existing:
                     raise ValidationError(
                         _("A fee record already exists for student '%s' "
-                          "with product '%s' on date %s.") % (
+                          "with product '%s' on date %s for the same fee line.") % (
                             record.student_id.name,
                             record.product_id.name,
                             record.date))
@@ -125,8 +127,13 @@ class OpStudentFeesDetails(models.Model):
         if self.student_id:
             if self.student_id.course_detail_ids:
                 latest_course = self.student_id.course_detail_ids[0]
-                self.course_id = latest_course.course_id
-                self.batch_id = latest_course.batch_id
+                self.course_id = latest_course.course_id.id
+                self.batch_id = latest_course.batch_id.id
+                if not self.date:
+                    self.date = fields.Date.today()
+            else:
+                self.course_id = False
+                self.batch_id = False
     
     @api.onchange('discount')
     def _onchange_discount(self):
@@ -242,13 +249,20 @@ class OpStudentFeesDetails(models.Model):
             if product.categ_id.property_account_income_categ_id:
                 account_id = product.categ_id.property_account_income_categ_id.id
         
-        # Try default income account from fiscal position
+        # Try company's default receivable account
         if not account_id:
-            fiscal_position = self.student_id.partner_id.property_account_position_id
-            if fiscal_position:
-                account_id = fiscal_position.map_account(
-                    self.env.company.account_default_pos_receivable_account_id
-                ).id
+            receivable_account = self.company_id.account_default_pos_receivable_account_id
+            if receivable_account:
+                account_id = receivable_account.id
+            else:
+                # Fallback to searching for receivable account type
+                account_obj = self.env['account.account']
+                receivable_accounts = account_obj.search([
+                    ('account_type', '=', 'asset_receivable'),
+                    ('company_id', '=', self.company_id.id)
+                ], limit=1)
+                if receivable_accounts:
+                    account_id = receivable_accounts[0].id
         
         if not account_id:
             raise UserError(
@@ -396,9 +410,10 @@ class OpStudent(models.Model):
                     fee_amount = fee_detail.after_discount_amount or fee_detail.amount
                     total_amount += fee_amount
                     
-                    if fee_detail.state in ('paid', 'invoice') and fee_detail.invoice_id:
-                        if fee_detail.invoice_id.payment_state == 'paid':
-                            paid_amount += fee_amount
+                    if fee_detail.state == 'paid' or (
+                        fee_detail.state == 'invoice' and fee_detail.invoice_id and 
+                        fee_detail.invoice_id.payment_state in ('paid', 'in_payment')):
+                        paid_amount += fee_amount
             
             student.total_fees_amount = total_amount
             student.paid_fees_amount = paid_amount
@@ -615,11 +630,12 @@ class OpStudent(models.Model):
                 'discount': fee_detail.discount
             }
             
-            if fee_detail.state in ('paid', 'invoice') and fee_detail.invoice_id:
-                if fee_detail.invoice_id.payment_state == 'paid':
-                    analysis['payment_history'].append(fee_data)
-                else:
-                    analysis['pending_payments'].append(fee_data)
+            if fee_detail.state == 'paid' or (
+                fee_detail.state == 'invoice' and fee_detail.invoice_id and 
+                fee_detail.invoice_id.payment_state in ('paid', 'in_payment')):
+                analysis['payment_history'].append(fee_data)
+            elif fee_detail.state == 'invoice' and fee_detail.invoice_id:
+                analysis['pending_payments'].append(fee_data)
             elif fee_detail.state not in ('cancel',):
                 # Check if overdue
                 due_date = getattr(fee_detail, 'due_date', None) or \
@@ -641,9 +657,10 @@ class OpStudent(models.Model):
             fee_amount = fee_detail.after_discount_amount or fee_detail.amount
             analysis['fee_breakdown'][category]['total'] += fee_amount
             
-            if (fee_detail.state in ('paid', 'invoice') and 
+            if fee_detail.state == 'paid' or (
+                fee_detail.state == 'invoice' and 
                 fee_detail.invoice_id and 
-                fee_detail.invoice_id.payment_state == 'paid'):
+                fee_detail.invoice_id.payment_state in ('paid', 'in_payment')):
                 analysis['fee_breakdown'][category]['paid'] += fee_amount
             else:
                 analysis['fee_breakdown'][category]['pending'] += fee_amount

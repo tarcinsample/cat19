@@ -18,12 +18,28 @@
 #
 ##############################################################################
 
+from typing import Dict, List, Any
+
 from dateutil.relativedelta import relativedelta
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
 class OpAdmissionRegister(models.Model):
+    """Admission register for managing admission cycles.
+    
+    This model manages admission registration periods, defines course offerings,
+    sets admission criteria, and tracks application progress. It serves as the
+    master configuration for each admission cycle.
+    
+    Workflow states:
+    - draft: Register being configured
+    - confirm: Register confirmed and ready
+    - application: Application gathering phase
+    - admission: Admission processing phase  
+    - done: Register closed
+    - cancel: Register cancelled
+    """
     _name = "op.admission.register"
     _inherit = "mail.thread"
     _description = "Admission Register"
@@ -129,16 +145,33 @@ class OpAdmissionRegister(models.Model):
         """Validate admission register date constraints.
         
         Raises:
-            ValidationError: If end date is before start date
+            ValidationError: If end date is before start date or dates are invalid
         """
         for record in self:
             if not record.start_date:
-                continue
+                raise ValidationError(_("Start date is required for admission register."))
+            if not record.end_date:
+                raise ValidationError(_("End date is required for admission register."))
                 
-            if record.end_date and record.start_date > record.end_date:
+            if record.start_date > record.end_date:
                 raise ValidationError(_(
                     "End Date (%s) cannot be set before Start Date (%s).") % (
                     record.end_date, record.start_date))
+                    
+            # Check if start date is too far in the past (more than 1 year)
+            today = fields.Date.today()
+            max_past_date = today - relativedelta(years=1)
+            if record.start_date < max_past_date:
+                raise ValidationError(_(
+                    "Start date (%s) cannot be more than 1 year in the past.") % 
+                    record.start_date)
+                    
+            # Check if end date is too far in the future (more than 2 years)
+            max_future_date = today + relativedelta(years=2)
+            if record.end_date > max_future_date:
+                raise ValidationError(_(
+                    "End date (%s) cannot be more than 2 years in the future.") % 
+                    record.end_date)
 
     @api.constrains('min_count', 'max_count')
     def check_no_of_admission(self):
@@ -151,15 +184,23 @@ class OpAdmissionRegister(models.Model):
             min_count = record.min_count or 0
             max_count = record.max_count or 0
             
-            if min_count <= 0 or max_count <= 0:
+            if min_count < 0 or max_count <= 0:
                 raise ValidationError(_(
-                    "Minimum (%s) and Maximum (%s) admission counts must be positive.") % (
+                    "Minimum admission count (%s) cannot be negative and "
+                    "Maximum admission count (%s) must be positive.") % (
                     min_count, max_count))
+                    
             if min_count > max_count:
                 raise ValidationError(_(
                     "Minimum admission count (%s) cannot be greater than "
                     "Maximum admission count (%s).") % (
                     min_count, max_count))
+                    
+            # Check reasonable limits
+            if max_count > 10000:
+                raise ValidationError(_(
+                    "Maximum admission count (%s) seems unreasonably high. "
+                    "Please check the value.") % max_count)
 
     def open_student_application(self):
         return {
@@ -185,10 +226,36 @@ class OpAdmissionRegister(models.Model):
         Validates required fields before confirmation.
         """
         self.ensure_one()
-        if not self.course_id and self.admission_base == 'course':
-            raise ValidationError(_("Course must be selected for course-based admission."))
-        if not self.program_id and self.admission_base == 'program':
-            raise ValidationError(_("Program must be selected for program-based admission."))
+        
+        # Validate state
+        if self.state != 'draft':
+            raise ValidationError(_(
+                "Cannot confirm register from '%s' state. Must be in 'draft' state.") % 
+                self.state)
+        
+        # Validate required fields based on admission base
+        if self.admission_base == 'course':
+            if not self.course_id:
+                raise ValidationError(_("Course must be selected for course-based admission."))
+            if not self.product_id:
+                raise ValidationError(_("Course fees product must be selected."))
+        elif self.admission_base == 'program':
+            if not self.program_id:
+                raise ValidationError(_("Program must be selected for program-based admission."))
+            if not self.admission_fees_line_ids:
+                raise ValidationError(_(
+                    "At least one course fee configuration is required for program-based admission."))
+        
+        # Validate academic year and dates
+        if not self.academic_years_id:
+            raise ValidationError(_("Academic year must be selected."))
+            
+        # Check if dates fall within academic year
+        if (self.academic_years_id.start_date and self.start_date < self.academic_years_id.start_date) or \
+           (self.academic_years_id.end_date and self.end_date > self.academic_years_id.end_date):
+            raise ValidationError(_(
+                "Admission register dates must fall within the selected academic year period."))
+        
         self.state = 'confirm'
 
     def set_to_draft(self):
@@ -202,28 +269,96 @@ class OpAdmissionRegister(models.Model):
         Validates that no confirmed applications exist.
         """
         self.ensure_one()
-        if self.admission_ids.filtered(lambda a: a.state in ['confirm', 'admission', 'done']):
+        
+        # Check for applications that prevent cancellation
+        blocking_states = ['confirm', 'admission', 'done']
+        blocking_admissions = self.admission_ids.filtered(lambda a: a.state in blocking_states)
+        
+        if blocking_admissions:
             raise ValidationError(_(
-                "Cannot cancel register with confirmed or enrolled applications."))
+                "Cannot cancel register with %s applications in confirmed, admission, or enrolled states. "
+                "Please handle these applications first.") % len(blocking_admissions))
+        
+        # Check if register is already closed
+        if self.state == 'done':
+            raise ValidationError(_(
+                "Cannot cancel a completed admission register."))
+        
         self.state = 'cancel'
 
     def start_application(self):
-        """Start application gathering phase."""
+        """Start application gathering phase.
+        
+        Validates register is confirmed and dates are appropriate.
+        """
         self.ensure_one()
+        
         if self.state != 'confirm':
-            raise ValidationError(_("Register must be confirmed before starting applications."))
+            raise ValidationError(_(
+                "Register must be confirmed before starting applications. Current state: %s") % 
+                self.state)
+        
+        # Check if current date is within application period
+        today = fields.Date.today()
+        if today < self.start_date:
+            raise ValidationError(_(
+                "Cannot start applications before the start date (%s).") % self.start_date)
+        if today > self.end_date:
+            raise ValidationError(_(
+                "Cannot start applications after the end date (%s).") % self.end_date)
+        
         self.state = 'application'
 
     def start_admission(self):
-        """Start admission process phase."""
+        """Start admission process phase.
+        
+        Validates minimum application requirements are met.
+        """
         self.ensure_one()
+        
         if self.state != 'application':
-            raise ValidationError(_("Must be in application phase before starting admissions."))
+            raise ValidationError(_(
+                "Must be in application phase before starting admissions. Current state: %s") % 
+                self.state)
+        
+        # Check if minimum applications received
+        submitted_count = len(self.admission_ids.filtered(lambda a: a.state in ['submit', 'confirm', 'admission', 'done']))
+        if submitted_count < self.min_count:
+            raise ValidationError(_(
+                "Cannot start admission process. Minimum %s applications required, only %s received.") % 
+                (self.min_count, submitted_count))
+        
         self.state = 'admission'
 
     def close_register(self):
-        """Close admission register and mark as completed."""
+        """Close admission register and mark as completed.
+        
+        Validates that admission process can be completed.
+        """
         self.ensure_one()
+        
+        if self.state not in ['admission', 'application']:
+            raise ValidationError(_(
+                "Can only close register from admission or application phase. Current state: %s") % 
+                self.state)
+        
+        # Generate summary statistics
+        total_applications = len(self.admission_ids)
+        enrolled_count = len(self.admission_ids.filtered(lambda a: a.state == 'done'))
+        
+        # Log completion summary
+        self.message_post(
+            body=_(
+                "Admission register closed successfully.<br/>"
+                "Total Applications: %s<br/>"
+                "Successfully Enrolled: %s<br/>"
+                "Enrollment Rate: %.1f%%") % (
+                total_applications, 
+                enrolled_count,
+                (enrolled_count / total_applications * 100) if total_applications > 0 else 0
+            )
+        )
+        
         self.state = 'done'
 
     def action_open_draft_courses(self):

@@ -73,7 +73,10 @@ class OpFeesElementLine(models.Model):
          'Element percentage must be between 0 and 100'),
         ('sequence_positive', 
          'CHECK (sequence > 0)', 
-         'Sequence must be positive')
+         'Sequence must be positive'),
+        ('unique_product_line',
+         'UNIQUE (product_id, fees_terms_line_id)',
+         'Product must be unique per fee terms line')
     ]
 
     @api.depends('product_id', 'value')
@@ -123,20 +126,21 @@ class OpFeesElementLine(models.Model):
                         % element.product_id.name
                     )
 
-    @api.constrains('fees_terms_line_id', 'product_id')
+    @api.constrains('fees_terms_line_id', 'product_id', 'active')
     def _check_element_uniqueness(self):
         """Ensure no duplicate elements in same fee term line."""
         for element in self:
-            if element.fees_terms_line_id and element.product_id:
+            if element.fees_terms_line_id and element.product_id and element.active:
                 existing = self.search([
                     ('fees_terms_line_id', '=', element.fees_terms_line_id.id),
                     ('product_id', '=', element.product_id.id),
+                    ('active', '=', True),
                     ('id', '!=', element.id)
                 ])
                 if existing:
                     raise ValidationError(
-                        _("Product '%s' already exists in this fee term line. "
-                          "Please choose a different product.") 
+                        _("Active product '%s' already exists in this fee term line. "
+                          "Please choose a different product or deactivate existing element.") 
                         % element.product_id.name
                     )
 
@@ -145,8 +149,10 @@ class OpFeesElementLine(models.Model):
         """Update value based on product configuration."""
         if self.product_id:
             # Set default value if product has a specific fee percentage
-            if hasattr(self.product_id, 'default_fee_percentage'):
+            if hasattr(self.product_id, 'default_fee_percentage') and self.product_id.default_fee_percentage:
                 self.value = self.product_id.default_fee_percentage
+            elif not self.value:  # Set default if no value is set
+                self.value = 100.0  # Default to 100% if no specific percentage
             
             # Warning for non-service products
             if self.product_id.type != 'service':
@@ -157,6 +163,9 @@ class OpFeesElementLine(models.Model):
                                    'products for fee elements.')
                     }
                 }
+        else:
+            # Reset value when product is removed
+            self.value = 0.0
 
     def calculate_element_amount(self, base_amount):
         """Calculate element amount for given base amount.
@@ -221,6 +230,11 @@ class OpFeesElementLine(models.Model):
         errors = []
         warnings = []
         
+        # Basic field validation
+        if not self.product_id:
+            errors.append(_("Product is required for fee element."))
+            return {'valid': False, 'errors': errors, 'warnings': warnings}
+        
         # Check product configuration
         if not self.product_id.list_price:
             warnings.append(_("Product '%s' has no list price set.") 
@@ -229,11 +243,17 @@ class OpFeesElementLine(models.Model):
         # Check percentage validity
         if self.value <= 0:
             errors.append(_("Element percentage must be greater than 0."))
+        elif self.value > 100:
+            errors.append(_("Element percentage cannot exceed 100."))
         
         # Check product category
         if not self.product_id.categ_id:
             warnings.append(_("Product '%s' has no category assigned.") 
                           % self.product_id.name)
+        
+        # Check if parent fee term line exists
+        if not self.fees_terms_line_id:
+            errors.append(_("Fee terms line is required."))
         
         return {
             'valid': len(errors) == 0,

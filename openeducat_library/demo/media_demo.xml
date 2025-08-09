@@ -4,7 +4,7 @@
         <record id="op_media_1" model="op.media">
             <field name="name">Python Programming</field>
             <field name="edition">3rd Edition</field>
-            <field name="isbn">234332232323</field>
+            <field name="isbn">9783343223234</field>
             <field name="internal_code">123322223</field>
             <field name="author_ids" eval="[(4, ref('op_author_1'))]"/>
             <field name="course_ids"
@@ -19,7 +19,7 @@
         <record id="op_media_2" model="op.media">
             <field name="name">Web Development</field>
             <field name="edition">3rd Edition</field>
-            <field name="isbn">334432323323</field>
+            <field name="isbn">9783344323233</field>
             <field name="internal_code">843833433</field>
             <field name="author_ids"
                    eval="[(4, ref('op_author_6'))]"/>
@@ -36,7 +36,7 @@
         <record id="op_media_3" model="op.media">
             <field name="name">Basic Accounting</field>
             <field name="edition">4th Edition</field>
-            <field name="isbn">634483832909</field>
+            <field name="isbn">9786344838329</field>
             <field name="internal_code">343323235</field>
             <field name="author_ids" eval="[(6,0, [ref('op_author_2')])]"/>
             <field name="course_ids"
@@ -51,7 +51,7 @@
         <record id="op_media_4" model="op.media">
             <field name="name">Advanced Accounting</field>
             <field name="edition">1st Edition</field>
-            <field name="isbn">634483832562</field>
+            <field name="isbn">9786344838356</field>
             <field name="internal_code">8765643564</field>
             <field name="author_ids" eval="[(6,0, [ref('op_author_5')])]"/>
             <field name="course_ids"

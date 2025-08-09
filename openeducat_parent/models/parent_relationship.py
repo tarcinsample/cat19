@@ -81,16 +81,38 @@ class OpParentRelation(models.Model):
         Returns:
             Created relationship records
         """
+        created_records = self.env['op.parent.relationship']
+        
         for vals in vals_list:
             if 'name' in vals and vals['name']:
                 vals['name'] = vals['name'].strip().title()
                 
-        relationships = super(OpParentRelation, self).create(vals_list)
-        
-        for relationship in relationships:
-            _logger.info(f"Created parent relationship type: {relationship.name}")
-            
-        return relationships
+                # Check if relationship already exists (for demo data)
+                existing = self.search([('name', '=', vals['name'])], limit=1)
+                if existing:
+                    _logger.info(f"Parent relationship type '{vals['name']}' already exists, skipping creation")
+                    created_records |= existing
+                else:
+                    try:
+                        new_record = super(OpParentRelation, self).create([vals])
+                        created_records |= new_record
+                        _logger.info(f"Created parent relationship type: {new_record.name}")
+                    except Exception as e:
+                        if 'duplicate key value' in str(e):
+                            # Handle race condition where record was created between check and create
+                            existing = self.search([('name', '=', vals['name'])], limit=1)
+                            if existing:
+                                created_records |= existing
+                                _logger.info(f"Parent relationship type '{vals['name']}' was created by another process")
+                            else:
+                                raise
+                        else:
+                            raise
+            else:
+                new_record = super(OpParentRelation, self).create([vals])
+                created_records |= new_record
+                
+        return created_records if created_records else super(OpParentRelation, self).create(vals_list)
         
     def write(self, vals):
         """Update relationship records with validation.

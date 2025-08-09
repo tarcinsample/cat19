@@ -20,6 +20,7 @@
 
 from datetime import date, timedelta
 import uuid
+from odoo import fields
 from odoo.tests import TransactionCase, tagged
 
 
@@ -140,11 +141,8 @@ class TestFeesCommon(TransactionCase):
         """Helper method to create fees terms."""
         vals = {
             'name': 'Test Fee Term',
-            'course_id': self.course.id,
-            'batch_id': self.batch.id,
-            'academic_year_id': self.academic_year.id,
-            'term_start_date': '2024-06-01',
-            'term_end_date': '2024-08-31',
+            'code': 'TFT001',
+            'fees_terms': 'fixed_days',
         }
         vals.update(kwargs)
         return self.env['op.fees.terms'].create(vals)
@@ -156,9 +154,12 @@ class TestFeesCommon(TransactionCase):
         
         vals = {
             'student_id': student.id,
-            'fees_line_id': self.create_fees_element().id,
+            'product_id': self.tuition_product.id,
             'amount': 500.0,
+            'date': fields.Date.today(),
             'state': 'draft',
+            'course_id': self.course.id,
+            'batch_id': self.batch.id,
         }
         vals.update(kwargs)
         return self.env['op.student.fees.details'].create(vals)

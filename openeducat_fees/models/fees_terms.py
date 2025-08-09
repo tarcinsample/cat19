@@ -230,6 +230,7 @@ class OpFeesTerms(models.Model):
     display_name = fields.Char(
         'Display Name',
         compute='_compute_display_name',
+        store=True,
         help="Display name with code and type info")
 
     _sql_constraints = [
@@ -286,22 +287,29 @@ class OpFeesTerms(models.Model):
     def _check_code_format(self):
         """Validate code format."""
         for term in self:
-            if term.code and not term.code.replace('_', '').replace('-', '').isalnum():
+            if not term.code:
+                raise ValidationError(
+                    _("Fee term code is required."))
+            if not term.code.replace('_', '').replace('-', '').isalnum():
                 raise ValidationError(
                     _("Fee term code '%s' must contain only letters, numbers, "
                       "hyphens, and underscores.") % term.code
                 )
 
+    @api.depends('name', 'code', 'fees_terms', 'is_valid')
     def _compute_display_name(self):
         """Compute display name for fee term with code and type info."""
         for term in self:
-            name = f"{term.name} [{term.code}]"
-            if term.fees_terms:
-                term_type = dict(term._fields['fees_terms'].selection)[term.fees_terms]
-                name += f" - {term_type}"
-            if not term.is_valid:
-                name += " (Invalid)"
-            term.display_name = name
+            if term.name and term.code:
+                name = f"{term.name} [{term.code}]"
+                if term.fees_terms:
+                    term_type = dict(term._fields['fees_terms'].selection)[term.fees_terms]
+                    name += f" - {term_type}"
+                if not term.is_valid:
+                    name += " (Invalid)"
+                term.display_name = name
+            else:
+                term.display_name = term.name or 'Fee Term'
 
     def get_payment_schedule(self, start_date, total_amount):
         """Generate payment schedule for given start date and amount.
@@ -500,4 +508,8 @@ class OpStudentCourseInherit(models.Model):
             if record.fees_term_id and not record.fees_start_date:
                 raise ValidationError(
                     _("Fees start date is required when fee term is set.")
+                )
+            if record.fees_start_date and not record.fees_term_id:
+                raise ValidationError(
+                    _("Fee term is required when fees start date is set.")
                 )

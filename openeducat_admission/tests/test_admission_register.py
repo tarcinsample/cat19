@@ -21,7 +21,7 @@
 import logging
 from datetime import date
 from dateutil.relativedelta import relativedelta
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, UserError
 from .test_admission_common import TestAdmissionCommon
 
 _logger = logging.getLogger(__name__)
@@ -362,6 +362,9 @@ class TestAdmissionRegister(TestAdmissionCommon):
                 'end_date': date.today() + relativedelta(days=i+30),
                 'course_id': self.course.id,
                 'academic_years_id': self.academic_year.id,
+                'academic_term_id': self.academic_term.id,
+                'product_id': self.fees_product.id,
+                'admission_base': 'course',
                 'min_count': 5,
                 'max_count': 50,
             })

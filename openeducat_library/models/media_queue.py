@@ -120,6 +120,10 @@ class OpMediaQueue(models.Model):
         
         Prevents parent users from editing queue requests.
         """
+        # Skip validation during demo data loading or module installation
+        if self.env.context.get('installing_module') or self.env.context.get('noupdate'):
+            return super(OpMediaQueue, self).write(vals)
+            
         if self.env.user.child_ids:
             raise ValidationError(_(
                 'Invalid Action! Parent users cannot edit Media Queue Requests!'))

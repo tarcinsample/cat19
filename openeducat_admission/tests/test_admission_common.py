@@ -106,6 +106,7 @@ class TestAdmissionCommon(TransactionCase):
             'minimum_age_criteria': 18,
             'product_id': self.fees_product.id,
             'admission_base': 'course',
+            'company_id': self.env.company.id,
         })
         
         # Test admission data
@@ -137,7 +138,15 @@ class TestAdmissionCommon(TransactionCase):
         return self.op_admission.create(admission_vals)
         
     def create_multiple_admissions(self, count=5, state_distribution=None):
-        """Create multiple test admissions with different states."""
+        """Create multiple test admissions with different states.
+        
+        Args:
+            count: Number of admissions to create
+            state_distribution: List of states to cycle through
+            
+        Returns:
+            recordset: Created admission records
+        """
         admissions = self.env['op.admission']
         states = state_distribution or ['draft', 'submit', 'confirm', 'admission', 'done']
         
@@ -146,9 +155,16 @@ class TestAdmissionCommon(TransactionCase):
             vals = {
                 'email': f'student{i}@example.com',
                 'first_name': f'Student{i}',
+                'last_name': f'Test{i}',  # Ensure last_name is provided
                 'state': state,
+                'birth_date': date.today() - relativedelta(years=20, days=i),  # Vary birth dates
             }
             admission = self.create_test_admission(vals)
+            
+            # Set state after creation to avoid validation issues during create
+            if state != 'draft':
+                admission.write({'state': state})
+                
             admissions += admission
             
         return admissions
