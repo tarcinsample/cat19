@@ -90,6 +90,7 @@ class OpFaculty(models.Model):
 
     @api.onchange('first_name', 'middle_name', 'last_name')
     def _onchange_name(self):
+
         """Compute full name from first, middle, and last names."""
         if self.first_name and self.last_name:
             if self.middle_name:
