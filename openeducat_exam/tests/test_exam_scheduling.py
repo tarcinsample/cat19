@@ -233,7 +233,7 @@ class TestExamScheduling(TestExamCommon):
             'batch_id': self.batch.id,
             'start_date': '2024-12-01',
             'end_date': '2024-12-31',
-            'exam_type_id': self.exam_type.id,
+            'exam_type': self.exam_type.id,
             'state': 'schedule',
         })
         

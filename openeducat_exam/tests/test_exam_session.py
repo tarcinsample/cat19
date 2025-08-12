@@ -36,13 +36,13 @@ class TestExamSession(TestExamCommon):
             'batch_id': self.batch.id,
             'start_date': '2024-12-01',
             'end_date': '2024-12-31',
-            'exam_type_id': self.exam_type.id,
+            'exam_type': self.exam_type.id,
         })
         
         self.assertEqual(session.name, 'New Test Session', "Session name should be set")
         self.assertEqual(session.course_id, self.course, "Course should be linked")
         self.assertEqual(session.batch_id, self.batch, "Batch should be linked")
-        self.assertEqual(session.exam_type_id, self.exam_type, "Exam type should be linked")
+        self.assertEqual(session.exam_type, self.exam_type, "Exam type should be linked")
 
     def test_exam_session_date_validation(self):
         """Test exam session date validation."""
@@ -54,7 +54,7 @@ class TestExamSession(TestExamCommon):
                 'batch_id': self.batch.id,
                 'start_date': '2024-12-31',
                 'end_date': '2024-12-01',  # End before start
-                'exam_type_id': self.exam_type.id,
+                'exam_type': self.exam_type.id,
             })
 
     def test_exam_session_state_transitions(self):
@@ -65,7 +65,7 @@ class TestExamSession(TestExamCommon):
             'batch_id': self.batch.id,
             'start_date': '2024-12-01',
             'end_date': '2024-12-31',
-            'exam_type_id': self.exam_type.id,
+            'exam_type': self.exam_type.id,
             'state': 'draft',
         })
         
@@ -100,7 +100,7 @@ class TestExamSession(TestExamCommon):
                 'batch_id': other_batch.id,   # Batch belongs to Course 2
                 'start_date': '2024-12-01',
                 'end_date': '2024-12-31',
-                'exam_type_id': self.exam_type.id,
+                'exam_type': self.exam_type.id,
             })
 
     def test_exam_session_overlapping_validation(self):
@@ -112,7 +112,7 @@ class TestExamSession(TestExamCommon):
             'batch_id': self.batch.id,
             'start_date': '2024-12-01',
             'end_date': '2024-12-15',
-            'exam_type_id': self.exam_type.id,
+            'exam_type': self.exam_type.id,
         })
         
         # Try to create overlapping session
@@ -123,7 +123,7 @@ class TestExamSession(TestExamCommon):
                 'batch_id': self.batch.id,
                 'start_date': '2024-12-10',  # Overlaps with session1
                 'end_date': '2024-12-25',
-                'exam_type_id': self.exam_type.id,
+                'exam_type': self.exam_type.id,
             })
 
     def test_exam_session_exam_relationships(self):
@@ -188,7 +188,7 @@ class TestExamSession(TestExamCommon):
             'batch_id': self.batch.id,
             'start_date': str(self.today + timedelta(days=15)),
             'end_date': str(self.today + timedelta(days=45)),
-            'exam_type_id': self.exam_type.id,
+            'exam_type': self.exam_type.id,
         })
         
         # This should be allowed as sessions are in different time periods
@@ -229,7 +229,7 @@ class TestExamSession(TestExamCommon):
             'batch_id': self.batch.id,
             'start_date': '2024-10-01',
             'end_date': '2024-10-15',
-            'exam_type_id': midterm_type.id,
+            'exam_type': midterm_type.id,
         })
         
         final_session = self.env['op.exam.session'].create({
@@ -238,12 +238,12 @@ class TestExamSession(TestExamCommon):
             'batch_id': self.batch.id,
             'start_date': '2024-12-01',
             'end_date': '2024-12-15',
-            'exam_type_id': final_type.id,
+            'exam_type': final_type.id,
         })
         
-        self.assertEqual(midterm_session.exam_type_id, midterm_type,
+        self.assertEqual(midterm_session.exam_type, midterm_type,
                         "Midterm session should have correct type")
-        self.assertEqual(final_session.exam_type_id, final_type,
+        self.assertEqual(final_session.exam_type, final_type,
                         "Final session should have correct type")
 
     def test_exam_session_student_eligibility(self):
@@ -301,7 +301,7 @@ class TestExamSession(TestExamCommon):
             'session_name': session.name,
             'course': session.course_id.name,
             'batch': session.batch_id.name,
-            'exam_type': session.exam_type_id.name,
+            'exam_type': session.exam_type.name,
             'start_date': session.start_date,
             'end_date': session.end_date,
             'duration_days': (date.fromisoformat(session.end_date) - 
@@ -347,7 +347,7 @@ class TestExamSession(TestExamCommon):
                 'batch_id': self.batch.id,
                 'start_date': f'2024-{10+i:02d}-01',
                 'end_date': f'2024-{10+i:02d}-15',
-                'exam_type_id': self.exam_type.id,
+                'exam_type': self.exam_type.id,
             })
             sessions.append(session)
         
@@ -375,7 +375,7 @@ class TestExamSession(TestExamCommon):
                 'batch_id': self.batch.id,
                 'start_date': f'2025-{(i % 12) + 1:02d}-01',
                 'end_date': f'2025-{(i % 12) + 1:02d}-15',
-                'exam_type_id': self.exam_type.id,
+                'exam_type': self.exam_type.id,
             })
             sessions.append(session)
         

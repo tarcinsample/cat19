@@ -64,81 +64,76 @@ class TestActivityManagement(TestActivityCommon):
         self.assertEqual(len(created_types), 5, "Should create all activity types")
 
     def test_activity_scheduling(self):
-        """Test activity scheduling and time management."""
-        # Create activities with different time slots
+        """Test activity scheduling and date management."""
+        # Create activities on different dates
         activities = []
         
-        # Morning activity
-        morning_activity = self.create_activity(
-            name='Morning Activity',
-            start_time=8.0,   # 8:00 AM
-            end_time=10.0,    # 10:00 AM
+        # Today's activity
+        today_activity = self.create_activity(
+            description='Today Activity',
             date=date.today()
         )
-        activities.append(morning_activity)
+        activities.append(today_activity)
         
-        # Afternoon activity
-        afternoon_activity = self.create_activity(
-            name='Afternoon Activity',
-            start_time=14.0,  # 2:00 PM
-            end_time=16.0,    # 4:00 PM
-            date=date.today()
+        # Tomorrow's activity
+        tomorrow_activity = self.create_activity(
+            description='Tomorrow Activity',
+            date=date.today() + timedelta(days=1)
         )
-        activities.append(afternoon_activity)
+        activities.append(tomorrow_activity)
         
-        # Evening activity
-        evening_activity = self.create_activity(
-            name='Evening Activity',
-            start_time=18.0,  # 6:00 PM
-            end_time=20.0,    # 8:00 PM
-            date=date.today()
+        # Past activity (yesterday)
+        yesterday_activity = self.create_activity(
+            description='Yesterday Activity',
+            date=date.today() - timedelta(days=1)
         )
-        activities.append(evening_activity)
+        activities.append(yesterday_activity)
         
         # Verify scheduling
         for activity in activities:
-            # Note: start_time/end_time fields don't exist on op.activity model
             # self.assertLess(activity.start_time, activity.end_time, 
             #                "Start time should be before end time")
             self.assertTrue(activity.date, "Activity should have a date")
 
     def test_student_activity_enrollment(self):
-        """Test student enrollment in activities."""
-        activity = self.create_activity()
-        
-        # Enroll student 1
-        student_activity1 = self.create_student_activity(
-            activity=activity,
-            student=self.student1,
-            participation_status='enrolled'
+        """Test student enrollment in activities."""        
+        # Create activity for student 1
+        student_activity1 = self.create_activity(
+            student_id=self.student1.id,
+            description='Student 1 Activity'
         )
         
-        # Enroll student 2
-        student_activity2 = self.create_student_activity(
-            activity=activity,
-            student=self.student2,
-            participation_status='enrolled'
+        # Create activity for student 2  
+        student_activity2 = self.create_activity(
+            student_id=self.student2.id,
+            description='Student 2 Activity'
         )
         
-        # Verify enrollment (note: since create_student_activity returns op.activity, these are the activities themselves)
+        # Verify activities were created
         self.assertTrue(student_activity1, "Student 1 activity should be created")
         self.assertTrue(student_activity2, "Student 2 activity should be created")
-        # Note: participation_status field doesn't exist on op.activity model
-        self.assertTrue(student_activity1, "Student activity should be created")
+        self.assertEqual(student_activity1.student_id, self.student1, "Activity should be linked to student 1")
+        self.assertEqual(student_activity2.student_id, self.student2, "Activity should be linked to student 2")
 
     def test_activity_participation_statuses(self):
-        """Test different participation statuses."""
-        activity = self.create_activity()
+        """Test different activity workflow states."""
+        # Test available workflow states
+        activity_states = ['draft', 'submitted', 'approved', 'rejected', 'completed']
         
-        participation_statuses = ['enrolled', 'attended', 'absent', 'completed', 'cancelled']
-        
-        for i, status in enumerate(participation_statuses):
-            # Create additional students for each status
-            student = self.env['op.student'].create({
+        for i, state in enumerate(activity_states):
+            # Create partner for student
+            partner = self.env['res.partner'].create({
                 'name': f'Status Student {i}',
+                'is_company': False,
+            })
+            
+            # Create student for each state
+            student = self.env['op.student'].create({
+                'partner_id': partner.id,
                 'first_name': 'Status',
                 'last_name': f'Student{i}',
                 'birth_date': '2005-01-01',
+                'gender': 'm',
                 'course_detail_ids': [(0, 0, {
                     'course_id': self.course.id,
                     'batch_id': self.batch.id,
@@ -147,47 +142,58 @@ class TestActivityManagement(TestActivityCommon):
                 })],
             })
             
-            student_activity = self.create_student_activity(
-                activity=activity,
-                student=student,
-                participation_status=status
+            # Create activity in the specified state
+            activity = self.create_activity(
+                student_id=student.id,
+                description=f'Activity in {state} state'
             )
+            activity.write({'state': state})
             
-            # Note: participation_status field doesn't exist on op.activity model
-            # self.assertEqual(student_activity.participation_status, status,
-            #                f"Should set {status} participation status")
-            self.assertTrue(student_activity, f"Should create student activity for {status}")
+            self.assertEqual(activity.state, state, f"Should set {state} activity state")
+            self.assertTrue(activity, f"Should create activity in {state} state")
 
     def test_activity_capacity_management(self):
-        """Test activity capacity and enrollment limits."""
-        activity = self.create_activity(max_capacity=2)
+        """Test multiple students in same activity type."""
+        # Create activity type with expected information
+        activity_type = self.create_activity_type(
+            name='Group Activity',
+            description='Activity supporting multiple students'
+        )
         
-        if hasattr(activity, 'max_capacity'):
-            self.assertEqual(activity.max_capacity, 2, "Should set activity capacity")
+        # Create multiple activities of the same type for different students
+        enrolled_activities = []
+        for i in range(2):
+            # Create partner for student
+            partner = self.env['res.partner'].create({
+                'name': f'Capacity Student {i}',
+                'is_company': False,
+            })
             
-            # Enroll students up to capacity
-            enrolled_students = []
-            for i in range(2):
-                student = self.env['op.student'].create({
-                    'name': f'Capacity Student {i}',
-                    'first_name': 'Capacity',
-                    'last_name': f'Student{i}',
-                    'birth_date': '2005-01-01',
-                    'course_detail_ids': [(0, 0, {
-                        'course_id': self.course.id,
-                        'batch_id': self.batch.id,
-                        'academic_years_id': self.academic_year.id,
-                        'academic_term_id': self.academic_term.id,
-                    })],
-                })
-                
-                student_activity = self.create_student_activity(
-                    activity=activity,
-                    student=student
-                )
-                enrolled_students.append(student_activity)
+            student = self.env['op.student'].create({
+                'partner_id': partner.id,
+                'first_name': 'Capacity',
+                'last_name': f'Student{i}',
+                'birth_date': '2005-01-01',
+                'gender': 'm',
+                'course_detail_ids': [(0, 0, {
+                    'course_id': self.course.id,
+                    'batch_id': self.batch.id,
+                    'academic_years_id': self.academic_year.id,
+                    'academic_term_id': self.academic_term.id,
+                })],
+            })
             
-            self.assertEqual(len(enrolled_students), 2, "Should enroll students up to capacity")
+            student_activity = self.create_activity(
+                student_id=student.id,
+                type_id=activity_type.id,
+                description=f'Group activity for student {i}'
+            )
+            enrolled_activities.append(student_activity)
+        
+        # Verify activities were created
+        self.assertEqual(len(enrolled_activities), 2, "Should create activities for multiple students")
+        for activity in enrolled_activities:
+            self.assertEqual(activity.type_id, activity_type, "Activities should use same type")
 
     def test_activity_date_validation(self):
         """Test activity date validation."""
