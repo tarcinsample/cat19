@@ -110,14 +110,15 @@ class OpStudent(models.Model):
     )]
 
     @api.onchange('first_name', 'middle_name', 'last_name')
-    def _onchange_name(self):
-        if not self.middle_name:
-            self.name = str(self.first_name) + " " + str(
-                self.last_name
-            )
+    def _onchange_name_1(self):
+        fname = self.first_name or ""
+        mname = self.middle_name or ""
+        lname = self.last_name or ""
+
+        if fname or mname or lname:
+            self.name = " ".join(filter(None, [fname, mname, lname]))
         else:
-            self.name = str(self.first_name) + " " + str(
-                self.middle_name) + " " + str(self.last_name)
+            self.name = "New"
 
     @api.constrains('birth_date')
     def _check_birthdate(self):
