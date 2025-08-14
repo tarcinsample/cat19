@@ -494,7 +494,7 @@
                                                         <span class="fa fa-info-circle " title="Openeducat Enterprise Module"/>
                                                     <div class="text-muted">Streamline and improve
                                                         the assignment grading workflow with
-                                                        Assignment Grading Bridge.
+                                                        assignment gradebook bridge.
                                                     </div>
                                                 </div>
                                             </div>
@@ -507,9 +507,10 @@
                                                     <label
                                                         for="module_openeducat_assignment_grading_enterprise" />
                                                         <span class="fa fa-info-circle " title="Openeducat Enterprise Module"/>
-                                                    <div class="text-muted">Efficiently manage and
-                                                        expedite the assignment grading process with
-                                                        our platform.
+                                                    <div class="text-muted">Efficiently manage and extends the
+                                                        assignment evaluation process by allowing faculty to assign
+                                                        letter grades to student submissions, in addition to or
+                                                        instead of numeric marks.
                                                     </div>
                                                 </div>
                                             </div>
@@ -1114,19 +1115,11 @@
                                                         string="Grading Admission Bridge" />
                                                         <span class="fa fa-info-circle "
                                                               title="Openeducat Enterprise Module"/>
-<!--                                                    <a-->
-<!--                                                        href="https://doc.openeducat.org/openeducat/fees-openeducat.html?highlight=fees#fees-on-duration"-->
-<!--                                                        title="Documentation"-->
-<!--                                                        class="o_doc_link"-->
-<!--                                                        target="_blank" />-->
                                                     <div class="text-muted">Allows to create Gradebook upon
                                                         student admission enrollment.
                                                     </div>
                                                 </div>
                                             </div>
-
-
-
                                         </div>
                                     </div>
                                 </div>
