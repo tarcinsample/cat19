@@ -26,10 +26,11 @@ class OpParent(models.Model):
     _name = "op.parent"
     _description = "Parent"
 
-    name = fields.Many2one('res.partner', 'Name', required=True)
+    name = fields.Many2one('res.partner', 'Name', required=True, domain="[('is_parent', '=', True)]")
     user_id = fields.Many2one('res.users', string='User', store=True)
-    student_ids = fields.Many2many('op.student', string='Student(s)')
-    mobile = fields.Char(string='Mobile', related='name.mobile')
+    student_ids = fields.Many2many('op.student', string='Student(s)', required=True,)
+    mobile = fields.Char(string='Mobile')
+    email = fields.Char(string='Email')
     active = fields.Boolean(default=True)
     relationship_id = fields.Many2one('op.parent.relationship',
                                       'Relation with Student', required=True)
@@ -42,17 +43,67 @@ class OpParent(models.Model):
 
     @api.onchange('name')
     def _onchange_name(self):
-        self.user_id = self.name.user_id and self.name.user_id.id or False
+        if self.name:
+            self.user_id = self.name.user_id.id if self.name.user_id else False
+            self.mobile = self.name.mobile
+            self.email = self.name.email
 
     @api.model_create_multi
     def create(self, vals_list):
-        res = super(OpParent, self).create(vals_list)
         for vals in vals_list:
-            if vals.get('student_ids', False) and res.name.user_id:
-                student_ids = self.student_ids.browse(res.student_ids.ids)
-                user_ids = [student_id.user_id.id for student_id in student_ids
-                            if student_id.user_id]
-                res.user_id.child_ids = [(6, 0, user_ids)]
+            partner_id = vals.get('name')
+            parent_email = vals.get('email')
+            parent_mobile = vals.get('mobile')
+
+            if isinstance(partner_id, int):
+                partner = self.env['res.partner'].browse(partner_id)
+                if partner.exists():
+                    update_vals = {'is_parent': True}
+                    if parent_email and not partner.email:
+                        update_vals['email'] = parent_email
+                    if parent_mobile and not partner.mobile:
+                        update_vals['mobile'] = parent_mobile
+                    partner.write(update_vals)
+                    continue
+
+            parent_name = vals.get('name')
+            partner = self.env['res.partner'].search([
+                '|', '|',
+                ('name', '=', parent_name),
+                ('email', '=', parent_email),
+                ('mobile', '=', parent_mobile),
+            ], limit=1)
+
+            if partner:
+                update_vals = {'is_parent': True}
+                if parent_email and not partner.email:
+                    update_vals['email'] = parent_email
+                if parent_mobile and not partner.mobile:
+                    update_vals['mobile'] = parent_mobile
+                partner.write(update_vals)
+
+                vals['name'] = partner.id
+            else:
+                new_partner = self.env['res.partner'].create({
+                    'name': parent_name,
+                    'email': parent_email,
+                    'mobile': parent_mobile,
+                    'is_parent': True,
+                })
+                vals['name'] = new_partner.id
+                vals['email'] = parent_email
+                vals['mobile'] = parent_mobile
+
+        res = super(OpParent, self).create(vals_list)
+
+        for record in res:
+            if record.student_ids and record.name.user_id:
+                user_ids = [s.user_id.id for s in record.student_ids if s.user_id]
+                record.user_id.child_ids = [(6, 0, user_ids)]
+
+            if record.name and not record.name.is_parent:
+                record.name.is_parent = True
+
         return res
 
     def write(self, vals):
@@ -155,9 +206,10 @@ class OpStudent(models.Model):
         return super(OpStudent, self).unlink()
 
     def get_parent(self):
-        action = self.env.ref('openeducat_parent.'
-                              'act_open_op_parent_view').sudo().read()[0]
+        self.ensure_one()
+        action = self.env.ref('openeducat_parent.act_open_op_parent_view').sudo().read()[0]
         action['domain'] = [('student_ids', 'in', self.ids)]
+        action['context'] = {'default_student_ids': [(6, 0, self.ids)]}
         return action
 
 
