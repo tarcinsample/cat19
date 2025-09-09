@@ -85,6 +85,13 @@ class OpAssignmentSubLine(models.Model):
         result = self.state = 'reject'
         return result and result or False
 
+    @api.onchange('marks')
+    def _onchange_marks(self):
+        if self.assignment_id.marks < self.marks:
+            raise ValidationError(
+                _("Obtain Marks should not be greater than Actual Marks!"))
+        return {}
+
     def unlink(self):
         for record in self:
             if not record.state == 'draft' and not self.env.user.has_group(
