@@ -64,7 +64,7 @@
                             <group>
                                 <field name="student_id"/>
                                 <field name="assignment_id" domain="[('allocation_ids','=',student_id),('state','=','publish')]" />
-                                <field name="marks" readonly="state == 'accept'" invisible="state != 'accept' or user_boolean == False" />
+                                <field name="marks" readonly="state == 'accept'" />
                             </group>
                             <group>
                                 <field name="submission_date" />
