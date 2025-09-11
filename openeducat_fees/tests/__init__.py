@@ -18,8 +18,4 @@
 #
 ###############################################################################
 
-from . import test_fees_common
 from . import test_fees
-from . import test_fees_calculation
-from . import test_fees_payment
-from . import test_fees_reports

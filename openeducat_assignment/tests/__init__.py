@@ -19,13 +19,3 @@
 ###############################################################################
 
 from . import test_assignment
-from . import test_assignment_workflow
-from . import test_assignment_type
-from . import test_assignment_compute
-from . import test_assignment_deadline
-from . import test_assignment_integration
-from . import test_assignment_performance
-from . import test_assignment_evaluation
-from . import test_assignment_notification
-from . import test_assignment_files
-from . import test_assignment_reporting

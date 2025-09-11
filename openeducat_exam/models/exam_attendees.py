@@ -49,32 +49,14 @@ class OpExamAttendees(models.Model):
          'Attendee must be unique per exam.'),
     ]
 
-    @api.constrains('marks', 'exam_id')
-    def _check_marks_range(self):
-        """Validate marks are within exam total marks range.
-        
-        Raises:
-            ValidationError: If marks are outside valid range
-        """
-        for record in self:
-            if record.status == 'present' and record.marks is not None:
-                if record.exam_id and record.marks < 0:
-                    raise ValidationError(_(
-                        "Marks cannot be negative for student '%s'.") % 
-                        record.student_id.name)
-                if record.exam_id and record.marks > record.exam_id.total_marks:
-                    raise ValidationError(_(
-                        "Marks (%d) cannot exceed total marks (%d) for student '%s'.") % (
-                        record.marks, record.exam_id.total_marks, record.student_id.name))
-
     @api.onchange('marks')
     def _onchange_marks(self):
-        """Update exam results_entered status when marks change."""
         if self.exam_id:
-            # Check if any marks are entered for present students
-            present_attendees = self.exam_id.attendees_line.filtered(lambda a: a.status == 'present')
-            has_marks = any(attendee.marks not in (None, False) for attendee in present_attendees)
-            self.exam_id.results_entered = has_marks
+            for attendee in self.exam_id.attendees_line:
+                if attendee.marks not in (None, False):
+                    self.exam_id.results_entered = True
+                    return
+            self.exam_id.results_entered = False
 
     @api.depends('exam_id')
     def _compute_exam_details(self):
@@ -88,70 +70,23 @@ class OpExamAttendees(models.Model):
 
     @api.onchange('exam_id')
     def onchange_exam(self):
-        """Update course and batch when exam changes."""
         if self.exam_id:
-            self.course_id = self.exam_id.course_id.id
-            self.batch_id = self.exam_id.batch_id.id
-            
-            # Return domain to filter students by course and batch
-            return {
-                'domain': {
-                    'student_id': [
-                        ('course_detail_ids.course_id', '=', self.course_id.id),
-                        ('course_detail_ids.batch_id', '=', self.batch_id.id),
-                        ('active', '=', True)
-                    ]
-                }
-            }
+            self.course_id = self.exam_id.session_id.course_id.id
+            self.batch_id = self.exam_id.session_id.batch_id.id
         else:
             self.course_id = False
             self.batch_id = False
-            self.student_id = False
-            
-            return {
-                'domain': {
-                    'student_id': []
-                }
-            }
+        self.student_id = False
 
-    @api.onchange('status')
-    def _onchange_status(self):
-        """Update marks when attendance status changes."""
-        if self.status == 'absent':
-            self.marks = 0
-        elif self.status == 'present' and self.marks == 0:
-            self.marks = None  # Clear marks for present students
-            
-    def compute_grade(self):
-        """Compute grade based on marks and exam configuration.
-        
-        Returns grade based on percentage of total marks.
-        """
-        self.ensure_one()
-        if not self.exam_id or self.status != 'present' or self.marks is None:
-            return False
-            
-        if self.exam_id.total_marks == 0:
-            return False
-            
-        percentage = (self.marks / self.exam_id.total_marks) * 100
-        
-        # Determine pass/fail based on minimum marks
-        if self.marks >= self.exam_id.min_marks:
-            return 'pass'
-        else:
-            return 'fail'
-            
-    def get_percentage(self):
-        """Get percentage score for this attendee.
-        
-        Returns percentage of marks obtained out of total marks.
-        """
-        self.ensure_one()
-        if not self.exam_id or self.status != 'present' or self.marks is None:
-            return 0.0
-            
-        if self.exam_id.total_marks == 0:
-            return 0.0
-            
-        return (self.marks / self.exam_id.total_marks) * 100
+    @api.constrains('marks', 'status')
+    def _check_marks(self):
+        for record in self:
+            if record.status == 'present':
+                if record.exam_id and (
+                        record.marks < 0 or record.marks > record.exam_id.total_marks):
+                    raise ValidationError(
+                        _("Please Enter Marks between 0 and %d for a present student.")
+                        % record.exam_id.total_marks)
+            elif record.status == 'absent':
+                if record.marks and record.marks != 0:
+                    record.marks = 0

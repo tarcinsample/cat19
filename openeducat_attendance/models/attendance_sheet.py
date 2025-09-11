@@ -18,8 +18,7 @@
 #
 ###############################################################################
 
-from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo import api, fields, models
 
 
 class OpAttendanceSheet(models.Model):
@@ -53,34 +52,15 @@ class OpAttendanceSheet(models.Model):
         'Status', default='draft', tracking=True)
 
     def attendance_draft(self):
-        """Set attendance sheet to draft state for editing."""
-        self.ensure_one()
-        if self.attendance_line:
-            raise ValidationError(_(
-                "Cannot set to draft when attendance lines exist. "
-                "Please remove attendance lines first."))
         self.state = 'draft'
 
     def attendance_start(self):
-        """Start attendance process and validate register."""
-        self.ensure_one()
-        if not self.register_id:
-            raise ValidationError(_("Attendance register must be selected."))
-        if not self.attendance_date:
-            raise ValidationError(_("Attendance date is required."))
         self.state = 'start'
 
     def attendance_done(self):
-        """Complete attendance taking and validate data."""
-        self.ensure_one()
-        if not self.attendance_line:
-            raise ValidationError(_(
-                "Cannot complete attendance without any attendance lines."))
         self.state = 'done'
 
     def attendance_cancel(self):
-        """Cancel attendance sheet."""
-        self.ensure_one()
         self.state = 'cancel'
 
     _sql_constraints = [
@@ -89,83 +69,11 @@ class OpAttendanceSheet(models.Model):
          'Sheet must be unique per Register/Session.'),
     ]
 
-    @api.constrains('attendance_date', 'register_id')
-    def _check_attendance_date(self):
-        """Validate attendance date constraints.
-        
-        Raises:
-            ValidationError: If attendance date is invalid
-        """
-        for record in self:
-            if not record.attendance_date:
-                continue
-                
-            today = fields.Date.today()
-            if record.attendance_date > today:
-                raise ValidationError(_(
-                    "Attendance date (%s) cannot be in the future.") % 
-                    record.attendance_date)
-
     @api.model_create_multi
     def create(self, vals_list):
-        """Override create to generate attendance sheet sequence.
-        
-        Ensures proper sequence generation with error handling.
-        """
         for vals in vals_list:
-            sequence = self.env['ir.sequence'].next_by_code('op.attendance.sheet')
-            if not sequence:
-                raise ValidationError(_(
-                    "Unable to generate attendance sheet number. "
-                    "Please check sequence configuration."))
-                    
-            register_id = vals.get('register_id')
-            if not register_id:
-                raise ValidationError(_("Attendance register is required."))
-                
-            register = self.env['op.attendance.register'].browse(register_id)
-            if not register.exists():
-                raise ValidationError(_("Invalid attendance register."))
-                
-            vals['name'] = f"{register.code}{sequence}"
+            sheet = self.env['ir.sequence'].next_by_code('op.attendance.sheet')
+            register = self.env['op.attendance.register']. \
+                browse(vals['register_id']).code
+            vals['name'] = register + sheet
         return super(OpAttendanceSheet, self).create(vals_list)
-
-    def generate_attendance_lines(self):
-        """Generate attendance lines for all students in the batch.
-        
-        Creates attendance lines for students not already present.
-        """
-        self.ensure_one()
-        if not self.register_id:
-            raise ValidationError(_("Attendance register must be selected."))
-            
-        # Find all students in the batch
-        students = self.env['op.student'].search([
-            ('course_detail_ids.course_id', '=', self.register_id.course_id.id),
-            ('course_detail_ids.batch_id', '=', self.register_id.batch_id.id),
-            ('active', '=', True)
-        ])
-        
-        if not students:
-            raise ValidationError(_(
-                "No students found for the selected course and batch."))
-        
-        # Get existing attendance lines
-        existing_student_ids = self.attendance_line.mapped('student_id.id')
-        
-        # Create attendance lines for new students
-        attendance_lines = []
-        for student in students:
-            if student.id not in existing_student_ids:
-                attendance_lines.append({
-                    'attendance_id': self.id,
-                    'student_id': student.id,
-                    'present': False,  # Default to absent for manual marking
-                    'absent': True,   # Set absent status to pass validation
-                })
-        
-        if attendance_lines:
-            self.env['op.attendance.line'].create(attendance_lines)
-            return len(attendance_lines)
-        
-        return 0

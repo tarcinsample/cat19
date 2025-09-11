@@ -45,7 +45,8 @@ class ResUsers(models.Model):
     department_ids = fields.Many2many('op.department',
                                       string='Allowed Department')
     department_count = fields.Integer(compute='_compute_department_count',
-                                      string="Number of Departments")
+                                      string="Number of Departments",
+                                      default=_department_count)
 
     def create_user(self, records, user_group=None):
         for rec in records:

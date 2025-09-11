@@ -29,14 +29,11 @@ class OpSubjectRegistration(models.Model):
 
     name = fields.Char('Name', readonly=True, default='New')
     student_id = fields.Many2one('op.student', 'Student',
-                                 tracking=True,
-                                 help="Student registering for subjects")
+                                 tracking=True)
     course_id = fields.Many2one('op.course', 'Course', required=True,
-                                tracking=True,
-                                help="Course for which subjects are being registered")
+                                tracking=True)
     batch_id = fields.Many2one('op.batch', 'Batch',
-                               tracking=True,
-                               help="Batch of the student for subject registration")
+                               tracking=True)
     compulsory_subject_ids = fields.Many2many(
         'op.subject', 'subject_compulsory_rel',
         'register_id', 'subject_id', string="Compulsory Subjects",
@@ -47,33 +44,23 @@ class OpSubjectRegistration(models.Model):
         ('draft', 'Draft'), ('submitted', 'Submitted'),
         ('approved', 'Approved'), ('rejected', 'Rejected')],
         default='draft', string='State', copy=False,
-        tracking=True,
-        help="Current status of the subject registration request")
+        tracking=True)
     max_unit_load = fields.Float('Maximum Unit Load',
-                                 tracking=True,
-                                 help="Maximum credit units allowed for registration")
+                                 tracking=True)
     min_unit_load = fields.Float('Minimum Unit Load',
-                                 tracking=True,
-                                 help="Minimum credit units required for registration")
+                                 tracking=True)
     is_read = fields.Boolean(string="Read?", default=False)
     company_id = fields.Many2one(
         "res.company", string="Company", default=lambda self: self.env.company
     )
 
     def action_reset_draft(self):
-        """Reset subject registration to draft state."""
         self.state = 'draft'
 
     def action_reject(self):
-        """Reject the subject registration request."""
         self.state = 'rejected'
 
     def action_approve(self):
-        """Approve subject registration and assign subjects to student.
-        
-        Updates the student's course record with selected compulsory and elective subjects.
-        Raises ValidationError if the course is not found in student's admission.
-        """
         for record in self:
             subject_ids = []
             for sub in record.compulsory_subject_ids:
@@ -94,7 +81,6 @@ class OpSubjectRegistration(models.Model):
                     _("Course not found on student's admission!"))
 
     def action_submitted(self):
-        """Submit the subject registration for approval."""
         self.state = 'submitted'
 
     @api.model_create_multi
@@ -106,11 +92,6 @@ class OpSubjectRegistration(models.Model):
         return super(OpSubjectRegistration, self).create(vals_list)
 
     def get_subjects(self):
-        """Populate compulsory subjects based on the selected course.
-        
-        Automatically fills compulsory_subject_ids with all subjects marked as
-        'compulsory' in the selected course.
-        """
         for record in self:
             subject_ids = []
             if record.course_id and record.course_id.subject_ids:

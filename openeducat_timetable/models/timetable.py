@@ -19,14 +19,10 @@
 ###############################################################################
 
 import calendar
-import logging
-from datetime import datetime, time
 
 import pytz
 from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError, UserError
-
-_logger = logging.getLogger(__name__)
+from odoo.exceptions import ValidationError
 
 week_days = [(calendar.day_name[0], (calendar.day_name[0])),
              (calendar.day_name[1], (calendar.day_name[1])),
@@ -38,113 +34,41 @@ week_days = [(calendar.day_name[0], (calendar.day_name[0])),
 
 
 class OpSession(models.Model):
-    """Model for managing academic sessions and timetable scheduling.
-    
-    This model handles the creation, validation, and management of
-    academic sessions including conflict detection and scheduling optimization.
-    """
     _name = "op.session"
     _inherit = ["mail.thread"]
-    _description = "Academic Sessions"
-    _order = "start_datetime desc"
-    _rec_name = "name"
+    _description = "Sessions"
 
-    name = fields.Char(
-        compute='_compute_name', 
-        string='Session Name', 
-        store=True,
-        help="Auto-generated session name based on faculty, subject and timing"
-    )
+    name = fields.Char(compute='_compute_name', string='Name', store=True)
     timing_id = fields.Many2one(
-        'op.timing', 
-        'Period Timing', 
-        tracking=True,
-        help="Predefined time period for this session"
-    )
+        'op.timing', 'Timing', tracking=True)
     start_datetime = fields.Datetime(
-        'Start Time', 
-        required=True,
-        default=lambda self: fields.Datetime.now(),
-        tracking=True,
-        help="Session start date and time"
-    )
+        'Start Time', required=True,
+        default=lambda self: fields.Datetime.now())
     end_datetime = fields.Datetime(
-        'End Time', 
-        required=True,
-        tracking=True,
-        help="Session end date and time"
-    )
+        'End Time', required=True)
     course_id = fields.Many2one(
-        'op.course', 
-        'Course', 
-        required=True,
-        tracking=True,
-        help="Course for which the session is scheduled"
-    )
+        'op.course', 'Course', required=True)
     faculty_id = fields.Many2one(
-        'op.faculty', 
-        'Faculty', 
-        required=True,
-        tracking=True,
-        help="Faculty member conducting the session"
-    )
+        'op.faculty', 'Faculty', required=True)
     batch_id = fields.Many2one(
-        'op.batch', 
-        'Batch', 
-        required=True,
-        tracking=True,
-        help="Student batch attending the session"
-    )
+        'op.batch', 'Batch', required=True)
     subject_id = fields.Many2one(
-        'op.subject', 
-        'Subject', 
-        required=True,
-        tracking=True,
-        help="Subject being taught in the session"
-    )
+        'op.subject', 'Subject', required=True)
     classroom_id = fields.Many2one(
-        'op.classroom', 
-        'Classroom',
-        tracking=True,
-        help="Classroom where the session will be conducted"
-    )
-    color = fields.Integer(
-        'Color Index',
-        help="Color code for calendar display"
-    )
-    type = fields.Char(
-        compute='_compute_day', 
-        string='Day', 
-        store=True,
-        help="Day of the week when session is scheduled"
-    )
+        'op.classroom', 'Classroom')
+    color = fields.Integer('Color Index')
+    type = fields.Char(compute='_compute_day', string='Day', store=True)
     state = fields.Selection(
-        [('draft', 'Draft'), 
-         ('confirm', 'Confirmed'),
-         ('done', 'Done'), 
-         ('cancel', 'Canceled')],
-        string='Status', 
-        default='draft',
-        tracking=True,
-        help="Current status of the session"
-    )
+        [('draft', 'Draft'), ('confirm', 'Confirmed'),
+         ('done', 'Done'), ('cancel', 'Canceled')],
+        string='Status', default='draft')
     user_ids = fields.Many2many(
-        'res.users', 
-        compute='_compute_batch_users',
-        store=True, 
-        string='Authorized Users',
-        help="Users who have access to this session"
-    )
-    active = fields.Boolean(
-        default=True,
-        help="If unchecked, session will be archived"
-    )
+        'res.users', compute='_compute_batch_users',
+        store=True, string='Users')
+    active = fields.Boolean(default=True)
     company_id = fields.Many2one(
-        'res.company', 
-        string='Company',
-        default=lambda self: self.env.user.company_id,
-        required=True
-    )
+        'res.company', string='Company',
+        default=lambda self: self.env.user.company_id)
     days = fields.Selection([
         ('monday', 'Monday'),
         ('tuesday', 'Tuesday'),
@@ -153,82 +77,19 @@ class OpSession(models.Model):
         ('friday', 'Friday'),
         ('saturday', 'Saturday'),
         ('sunday', 'Sunday')],
-        'Day of Week',
-        group_expand='_expand_groups', 
-        store=True,
-        help="Day of the week for the session"
+        'Days',
+        group_expand='_expand_groups', store=True
     )
-    timing = fields.Char(
-        compute='_compute_timing', 
-        string='Session Timing',
-        help="Formatted display of session start and end times"
-    )
-    duration = fields.Float(
-        string='Duration (Hours)',
-        compute='_compute_duration',
-        store=True,
-        help="Duration of the session in hours"
-    )
-    conflict_check = fields.Boolean(
-        string='Has Conflicts',
-        compute='_compute_conflicts',
-        help="Indicates if this session has scheduling conflicts"
-    )
-    student_count = fields.Integer(
-        string='Student Count',
-        compute='_compute_student_count',
-        help="Number of students in the batch"
-    )
+    timing = fields.Char(compute='_compute_timing', string='Session timing')
 
     @api.depends('start_datetime', 'end_datetime')
     def _compute_timing(self):
-        """Compute formatted timing display for sessions.
-        
-        Creates a user-friendly time range string based on user timezone.
-        """
-        user_tz = self.env.user.tz or 'UTC'
-        try:
-            tz = pytz.timezone(user_tz)
-        except pytz.exceptions.UnknownTimeZoneError:
-            tz = pytz.UTC
-            _logger.warning(f"Unknown timezone '{user_tz}', using UTC")
-            
+        tz = pytz.timezone(self.env.user.tz)
         for session in self:
-            if session.start_datetime and session.end_datetime:
-                try:
-                    start_local = session.start_datetime.astimezone(tz)
-                    end_local = session.end_datetime.astimezone(tz)
-                    session.timing = f"{start_local.strftime('%I:%M %p')} - {end_local.strftime('%I:%M %p')}"
-                except Exception as e:
-                    _logger.error(f"Error computing timing for session {session.id}: {e}")
-                    session.timing = "Invalid Time"
-            else:
-                session.timing = ""
-                
-    @api.depends('start_datetime', 'end_datetime')
-    def _compute_duration(self):
-        """Compute session duration in hours."""
-        for session in self:
-            if session.start_datetime and session.end_datetime:
-                delta = session.end_datetime - session.start_datetime
-                session.duration = delta.total_seconds() / 3600.0
-            else:
-                session.duration = 0.0
-                
-    @api.depends('batch_id')
-    def _compute_student_count(self):
-        """Compute number of students in the batch."""
-        for session in self:
-            if session.batch_id:
-                session.student_count = len(session.batch_id.student_ids)
-            else:
-                session.student_count = 0
-                
-    def _compute_conflicts(self):
-        """Check for scheduling conflicts with other sessions."""
-        for session in self:
-            conflicts = self._check_session_conflicts(session)
-            session.conflict_check = bool(conflicts)
+            session.timing = str(
+                session.start_datetime.astimezone(tz).strftime('%I:%M%p')
+                ) + ' - ' + str(session.end_datetime.astimezone(
+                    tz).strftime('%I:%M%p'))
 
     @api.model
     def _expand_groups(self, days, domain, order=None):
@@ -238,26 +99,15 @@ class OpSession(models.Model):
 
     @api.depends('start_datetime')
     def _compute_day(self):
-        """Compute day of week from session start datetime."""
-        days_mapping = {
-            0: 'monday', 1: 'tuesday', 2: 'wednesday', 3: 'thursday', 
-            4: 'friday', 5: 'saturday', 6: 'sunday'
-        }
-        
-        for session in self:
-            if session.start_datetime:
-                weekday = session.start_datetime.weekday()
-                day_name = days_mapping.get(weekday, 'monday')
-                session.type = day_name.capitalize()
-                session.days = day_name
-            else:
-                session.type = ''
-                session.days = False
+        days = {0: 'monday', 1: 'tuesday', 2: 'wednesday', 3: 'thursday', 4: 'friday',
+                5: 'saturday', 6: 'sunday'}
+        for record in self:
+            record.type = days.get(record.start_datetime.weekday()).capitalize()
+            record.days = days.get(record.start_datetime.weekday())
 
     @api.depends('faculty_id', 'subject_id', 'start_datetime', 'end_datetime')
     def _compute_name(self):
-        user_tz = self.env.user.tz or 'UTC'
-        tz = pytz.timezone(user_tz)
+        tz = pytz.timezone(self.env.user.tz)
         for session in self:
             if session.faculty_id and session.subject_id \
                     and session.start_datetime and session.end_datetime:

@@ -41,11 +41,6 @@ class OpBatch(models.Model):
 
     @api.constrains('start_date', 'end_date')
     def check_dates(self):
-        """Validate that end date is after start date.
-        
-        Raises:
-            ValidationError: If end date is before start date
-        """
         for record in self:
             start_date = fields.Date.from_string(record.start_date)
             end_date = fields.Date.from_string(record.end_date)
@@ -55,20 +50,6 @@ class OpBatch(models.Model):
 
     @api.model
     def name_search(self, name, args=None, operator='ilike', limit=100):
-        """Search batches by name with support for parent course hierarchy.
-        
-        When context contains 'get_parent_batch', returns batches from
-        the course and all its parent courses in the hierarchy.
-        
-        Args:
-            name: Search term
-            args: Domain filter
-            operator: Comparison operator
-            limit: Maximum results
-            
-        Returns:
-            list: Tuples of (id, display_name) for matching batches
-        """
         if self.env.context.get('get_parent_batch', False):
             lst = []
             lst.append(self.env.context.get('course_id'))
@@ -83,11 +64,6 @@ class OpBatch(models.Model):
 
     @api.model
     def get_import_templates(self):
-        """Get import template for bulk batch data import.
-        
-        Returns:
-            list: Dictionary containing template label and file path
-        """
         return [{
             'label': _('Import Template for Batch'),
             'template': '/openeducat_core/static/xls/op_batch.xls'

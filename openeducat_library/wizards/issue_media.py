@@ -62,20 +62,15 @@ class IssueMedia(models.TransientModel):
             days=self.library_card_id.library_card_type_id.duration)
 
     def check_max_issue(self, student_id, library_card_id):
-        # Use search_count for better performance
-        current_issues = self.env["op.media.movement"].search_count(
+        media_movement_search = self.env["op.media.movement"].search(
             [('library_card_id', '=', library_card_id),
              ('student_id', '=', student_id),
              ('state', '=', 'issue')])
-        
-        # Optimized query to get allow_media directly
-        library_card = self.env["op.library.card"].search(
-            [('id', '=', library_card_id)],
-            limit=1)
-        
-        if library_card:
-            return current_issues < library_card.library_card_type_id.allow_media
-        return False
+        if len(media_movement_search) < self.env["op.library.card"].browse(
+                library_card_id).library_card_type_id.allow_media:
+            return True
+        else:
+            return False
 
     def do_issue(self):
         for media in self:
@@ -108,13 +103,12 @@ class IssueMedia(models.TransientModel):
                     media.media_unit_id.state = 'issue'
                     value = {'type': 'ir.actions.act_window_close'}
                 else:
-                    raise UserError(
-                        _("Media unit cannot be issued because it is already: %s") % (
-                            dict(media.media_unit_id._fields['state'].selection).get(
-                                media.media_unit_id.state)))
+                    raise UserError(_("Media unit can not be issued because it's already: %s") % (dict(  # noqa
+                        media.media_unit_id._fields[
+                            'state'].selection).get(media.media_unit_id.state)))
             else:
                 raise UserError(
-                    _("Maximum number of media allowed for %s is: %s") % (
-                        media.student_id.name,
-                        media.library_card_id.library_card_type_id.allow_media))
+                    _('Maximum Number of media allowed for %s is : %s') %
+                    (media.student_id.name,
+                     media.library_card_id.library_card_type_id.allow_media))
             return value
