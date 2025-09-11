@@ -141,15 +141,20 @@ class OpExamSession(models.Model):
         self.state = 'schedule'
 
     def act_held(self):
-        """Mark exam session as held."""
-        self.ensure_one()
-        if self.state != 'schedule':
-            raise ValidationError(_(
-                "Exam session can only be marked as held from scheduled state."))
-        if not self.exam_ids:
-            raise ValidationError(_(
-                "Cannot mark session as held without any exams."))
-        self.state = 'held'
+        for rec in self:
+            if rec.exam_ids:
+                not_done_exams = rec.exam_ids.filtered(lambda e: e.state != 'done')
+                if not_done_exams:
+                    raise ValidationError(_(
+                        "You cannot mark the session '%s' as Held because not all exams are Done. "
+                        "Pending exams: %s"
+                    ) % (rec.name, ", ".join(not_done_exams.mapped("name"))))
+            else:
+                raise ValidationError(_(
+                    "You cannot mark the session '%s' as Held because no exams are linked."
+                ) % rec.name)
+
+            rec.state = 'held'
 
     def act_done(self):
         """Complete exam session and validate all exams are done."""
