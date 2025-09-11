@@ -97,19 +97,19 @@ class OpAssignmentSubLine(models.Model):
             if not record.state == 'draft' and not self.env.user.has_group(
                     'openeducat_assignment.group_op_assignment_user'):
                 raise ValidationError(
-                    _("You can't delete none draft submissions!"))
+                    _("You cannot delete non-draft submissions."))
         res = super(OpAssignmentSubLine, self).unlink()
         return res
 
     @api.model_create_multi
     def create(self, vals):
         if self.env.user.child_ids:
-            raise Warning(_('Invalid Action!\n Parent can not \
-            create Assignment Submissions!'))
+            raise ValidationError(
+                _("Invalid action! Parents cannot create assignment submissions."))
         return super(OpAssignmentSubLine, self).create(vals)
 
     def write(self, vals):
         if self.env.user.child_ids:
-            raise Warning(_('Invalid Action!\n Parent can not edit \
-            Assignment Submissions!'))
+            raise ValidationError(
+                _("Invalid action! Parents cannot edit assignment submissions."))
         return super(OpAssignmentSubLine, self).write(vals)

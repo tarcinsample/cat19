@@ -5,8 +5,6 @@
             <field name="code">C1FT</field>
             <field name="note">Course 1 Fees Terms and Condition</field>
             <field name="active" eval="True"/>
-            <field name="line_ids"
-                   eval="[(4, ref('op_fees_term_line_1')),(4, ref('op_fees_term_line_2')),(4, ref('op_fees_term_line_3'))]"/>
         </record>
 
         <record id="op_fees_term_2" model="op.fees.terms">
@@ -14,7 +12,6 @@
             <field name="code">C2FT</field>
             <field name="note">C-2 Fees Terms and Condition</field>
             <field name="active" eval="True"/>
-            <field name="line_ids" eval="[(4, ref('op_fees_term_line_4')),(4, ref('op_fees_term_line_5'))]"/>
         </record>
 
         <record id="op_fees_term_3" model="op.fees.terms">
@@ -22,7 +19,6 @@
             <field name="code">C3FT</field>
             <field name="note">C-3 Fees Terms and Condition</field>
             <field name="active" eval="True"/>
-            <field name="line_ids" eval="[(4, ref('op_fees_term_line_6'))]"/>
         </record>
 
         <record id="op_fees_term_4" model="op.fees.terms">
@@ -30,7 +26,6 @@
             <field name="code">C4FT</field>
             <field name="note">C-4 Fees Terms and Condition</field>
             <field name="active" eval="True"/>
-            <field name="line_ids" eval="[(4, ref('op_fees_term_line_7'))]"/>
         </record>
 
         <record id="op_fees_term_5" model="op.fees.terms">
@@ -38,8 +33,6 @@
             <field name="code">FDFT</field>
             <field name="note">Fixed Days Fees Terms and Condition</field>
             <field name="active" eval="True"/>
-            <field name="line_ids"
-                   eval="[(4, ref('op_fees_term_line_1')),(4, ref('op_fees_term_line_2')),(4, ref('op_fees_term_line_3'))]"/>
         </record>
 
         <record id="op_fees_term_6" model="op.fees.terms">
@@ -48,8 +41,6 @@
             <field name="note">Fixed Fees Terms and Condition</field>
             <field name="active" eval="True"/>
             <field name="fees_terms">fixed_date</field>
-            <field name="line_ids"
-                   eval="[(4, ref('op_fees_term_date_line_8')),(4, ref('op_fees_term_date_line_9')),(4, ref('op_fees_term_date_line_10'))]"/>
         </record>
 
 </odoo>

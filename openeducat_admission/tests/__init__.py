@@ -21,3 +21,8 @@
 
 from . import test_admission_common
 from . import test_admission
+from . import test_admission_crud
+from . import test_admission_register
+from . import test_admission_compute
+from . import test_admission_integration
+from . import test_admission_performance

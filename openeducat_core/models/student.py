@@ -18,8 +18,12 @@
 #
 ###############################################################################
 
+import logging
+
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+
+_logger = logging.getLogger(__name__)
 
 
 class OpStudentCourse(models.Model):
@@ -29,10 +33,14 @@ class OpStudentCourse(models.Model):
     _rec_name = 'student_id'
 
     student_id = fields.Many2one('op.student', 'Student',
-                                 ondelete="cascade", tracking=True)
-    course_id = fields.Many2one('op.course', 'Course', required=True, tracking=True)
-    batch_id = fields.Many2one('op.batch', 'Batch', tracking=True)
-    roll_number = fields.Char('Roll Number', tracking=True)
+                                 ondelete="cascade", tracking=True,
+                                 help="Student enrolled in this course")
+    course_id = fields.Many2one('op.course', 'Course', required=True, tracking=True,
+                                help="Course in which the student is enrolled")
+    batch_id = fields.Many2one('op.batch', 'Batch', tracking=True,
+                               help="Batch assigned to the student for this course")
+    roll_number = fields.Char('Roll Number', tracking=True,
+                              help="Unique roll number assigned to student in the batch")
     subject_ids = fields.Many2many('op.subject', string='Subjects')
     academic_years_id = fields.Many2one('op.academic.year', 'Academic Year')
     academic_term_id = fields.Many2one('op.academic.term', 'Terms')
@@ -41,15 +49,12 @@ class OpStudentCourse(models.Model):
                              string="Status", default="running")
 
     _sql_constraints = [
-        ('unique_name_roll_number_id',
-         'unique(roll_number,course_id,batch_id,student_id)',
-         'Roll Number & Student must be unique per Batch!'),
-        ('unique_name_roll_number_course_id',
+        ('unique_roll_number_per_batch',
          'unique(roll_number,course_id,batch_id)',
          'Roll Number must be unique per Batch!'),
-        ('unique_name_roll_number_student_id',
+        ('unique_student_per_course_batch',
          'unique(student_id,course_id,batch_id)',
-         'Student must be unique per Batch!'),
+         'Student must be unique per Course and Batch!'),
     ]
 
     @api.model
@@ -91,12 +96,13 @@ class OpStudent(models.Model):
     id_number = fields.Char('ID Card Number', size=64)
     partner_id = fields.Many2one('res.partner', 'Partner',
                                  required=True, ondelete="cascade")
-    user_id = fields.Many2one('res.users', 'User', ondelete="cascade")
-    gr_no = fields.Char("Registration Number", size=20)
-    category_id = fields.Many2one('op.category', 'Category')
+    user_id = fields.Many2one('res.users', 'User', ondelete="cascade", index=True)
+    gr_no = fields.Char("Registration Number", size=20, index=True)
+    category_id = fields.Many2one('op.category', 'Category', index=True)
     course_detail_ids = fields.One2many('op.student.course', 'student_id',
                                         'Course Details',
-                                        tracking=True)
+                                        tracking=True,
+                                        help="List of courses in which the student is enrolled")
     active = fields.Boolean(default=True)
     certificate_number = fields.Char(
         string='Certificate No.',
@@ -110,41 +116,65 @@ class OpStudent(models.Model):
     )]
 
     @api.onchange('first_name', 'middle_name', 'last_name')
-    def _onchange_name_1(self):
-        fname = self.first_name or ""
-        mname = self.middle_name or ""
-        lname = self.last_name or ""
-
-        if fname or mname or lname:
-            self.name = " ".join(filter(None, [fname, mname, lname]))
+    def _onchange_name(self):
+        """Compute full name from first, middle, and last names."""
+        if self.first_name and self.last_name:
+            if self.middle_name:
+                self.name = f"{self.first_name} {self.middle_name} {self.last_name}"
+            else:
+                self.name = f"{self.first_name} {self.last_name}"
+        elif self.first_name:
+            self.name = self.first_name
+        elif self.last_name:
+            self.name = self.last_name
         else:
-            self.name = "New"
+            self.name = False
 
     @api.constrains('birth_date')
     def _check_birthdate(self):
+        """Validate student birth date is not in the future.
+        
+        Raises:
+            ValidationError: If birth date is greater than current date
+        """
         for record in self:
             if record.birth_date and record.birth_date > fields.Date.today():
                 raise ValidationError(_(
-                    "Birth Date can't be greater than current date!"))
+                    "Birth date cannot be greater than current date."))
 
     @api.model
     def get_import_templates(self):
+        """Get import template for bulk student data import.
+        
+        Returns:
+            list: Dictionary containing template label and file path
+        """
         return [{
             'label': _('Import Template for Students'),
             'template': '/openeducat_core/static/xls/op_student.xls'
         }]
 
     def create_student_user(self):
+        """Create portal user account for selected students.
+        
+        Creates a new res.users record linked to the student with portal access rights.
+        Skips students who already have a user account.
+        """
         user_group = self.env.ref("base.group_portal") or False
         users_res = self.env['res.users']
         for record in self:
             if not record.user_id:
-                user_id = users_res.create({
-                    'name': record.name,
-                    'partner_id': record.partner_id.id,
-                    'login': record.email,
-                    'groups_id': user_group,
-                    'is_student': True,
-                    'tz': self._context.get('tz'),
-                })
-                record.user_id = user_id
+                try:
+                    user_id = users_res.create({
+                        'name': record.name,
+                        'partner_id': record.partner_id.id,
+                        'login': record.email,
+                        'groups_id': user_group,
+                        'is_student': True,
+                        'tz': self._context.get('tz'),
+                    })
+                    record.user_id = user_id
+                    _logger.info(f"Created user account for student: {record.name} (ID: {record.id})")
+                except Exception as e:
+                    _logger.error(f"Failed to create user for student {record.name} (ID: {record.id}): {e}")
+                    raise

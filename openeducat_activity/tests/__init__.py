@@ -18,4 +18,7 @@
 #
 ###############################################################################
 
+from . import test_activity_common
 from . import test_activity
+from . import test_activity_management
+from . import test_activity_reports

@@ -73,13 +73,43 @@ class OpMediaMovement(models.Model):
         'res.company', string='Company',
         default=lambda self: self.env.user.company_id)
 
+    @api.depends('return_date')
+    def _compute_overdue_days(self):
+        """Compute number of overdue days.
+        
+        Calculates how many days past due date the media is.
+        """
+        today = fields.Date.today()
+        for record in self:
+            if record.return_date and record.state == 'issue':
+                if record.return_date < today:
+                    record.overdue_days = (today - record.return_date).days
+                else:
+                    record.overdue_days = 0
+            else:
+                record.overdue_days = 0
+                
+    overdue_days = fields.Integer('Overdue Days', compute='_compute_overdue_days',
+                                  help="Number of days past due date")
+    is_overdue = fields.Boolean('Is Overdue', compute='_compute_overdue_status',
+                                help="True if media is overdue for return")
+                                
+    @api.depends('overdue_days')
+    def _compute_overdue_status(self):
+        """Compute overdue status.
+        
+        Determines if media is overdue for return.
+        """
+        for record in self:
+            record.is_overdue = record.overdue_days > 0
+            
     def get_diff_day(self):
-        for media_mov_id in self:
-            today_date = datetime.strptime(str(fields.Date.today()), '%Y-%m-%d')
-            return_date = datetime.strptime(
-                str(media_mov_id.return_date), '%Y-%m-%d')
-            diff = today_date - return_date
-            return abs(diff.days)
+        """Get difference in days between today and return date.
+        
+        Legacy method for backward compatibility.
+        """
+        self.ensure_one()
+        return self.overdue_days
 
     @api.constrains('issued_date', 'return_date')
     def _check_date(self):
@@ -98,94 +128,206 @@ class OpMediaMovement(models.Model):
 
     @api.onchange('media_unit_id')
     def onchange_media_unit_id(self):
-        self.state = self.media_unit_id.state
-        self.media_id = self.media_unit_id.media_id
+        """Update fields when media unit changes."""
+        if self.media_unit_id:
+            self.state = self.media_unit_id.state
+            self.media_id = self.media_unit_id.media_id
+            # Check if unit is available for issue
+            if self.media_unit_id.state != 'available':
+                return {
+                    'warning': {
+                        'title': _('Warning'),
+                        'message': _('Selected media unit is not available for issue.')
+                    }
+                }
 
     @api.onchange('library_card_id')
     def onchange_library_card_id(self):
-        self.type = self.library_card_id.type
-        self.return_date = self.issued_date + timedelta(
-            days=self.library_card_id.library_card_type_id.duration)
-        if self.type == 'student':
-            self.student_id = self.library_card_id.student_id.id or False
-            self.partner_id = self.student_id.partner_id.id or False
-            self.user_id = self.student_id.user_id.id or False
-        else:
-            self.faculty_id = self.library_card_id.faculty_id.id or False
-            self.partner_id = self.faculty_id.partner_id.id or False
-            self.user_id = self.faculty_id.user_id.id or False
+        """Update fields when library card changes."""
+        if self.library_card_id:
+            self.type = self.library_card_id.type
+            
+            # Calculate return date
+            if self.issued_date:
+                duration = self.library_card_id.library_card_type_id.duration or 1
+                self.return_date = self.issued_date + timedelta(days=duration)
+            
+            # Set person details based on card type
+            if self.type == 'student' and self.library_card_id.student_id:
+                self.student_id = self.library_card_id.student_id
+                self.partner_id = self.student_id.partner_id
+                self.user_id = self.student_id.user_id
+                self.faculty_id = False
+            elif self.type == 'faculty' and self.library_card_id.faculty_id:
+                self.faculty_id = self.library_card_id.faculty_id
+                self.partner_id = self.faculty_id.partner_id
+                self.user_id = self.faculty_id.user_id
+                self.student_id = False
+                
+            # Check media limit
+            if not self.library_card_id.check_media_limit():
+                return {
+                    'warning': {
+                        'title': _('Media Limit Exceeded'),
+                        'message': _('This library card has reached its media limit.')
+                    }
+                }
 
     @api.onchange('issued_date')
     def onchange_issued_date(self):
-        self.return_date = self.issued_date + timedelta(
-            days=self.library_card_id.library_card_type_id.duration or 1)
+        """Update return date when issued date changes."""
+        if self.issued_date and self.library_card_id:
+            duration = self.library_card_id.library_card_type_id.duration or 1
+            self.return_date = self.issued_date + timedelta(days=duration)
 
     def issue_media(self):
-        ''' function to issue media '''
+        """Issue media to library card holder.
+        
+        Validates availability and updates states.
+        """
         for record in self:
-            if record.media_unit_id.state and \
-                    record.media_unit_id.state == 'available':
-                record.media_unit_id.state = 'issue'
-                record.state = 'issue'
+            # Validate media unit availability
+            if not record.media_unit_id:
+                raise ValidationError(_(
+                    "Media unit must be selected to issue media."))
+            if record.media_unit_id.state != 'available':
+                raise ValidationError(_(
+                    "Selected media unit is not available for issue."))
+                    
+            # Validate library card
+            if not record.library_card_id:
+                raise ValidationError(_(
+                    "Library card must be selected to issue media."))
+            if not record.library_card_id.check_media_limit():
+                raise ValidationError(_(
+                    "Library card has reached its media limit."))
+                    
+            # Check for overdue media
+            overdue_media = record.library_card_id.get_overdue_media()
+            if overdue_media:
+                raise ValidationError(_(
+                    "Cannot issue new media. Library card has overdue items."))
+                    
+            # Issue the media
+            record.media_unit_id.state = 'issue'
+            record.state = 'issue'
 
-    def return_media(self, return_date):
+    def return_media(self, return_date=None):
+        """Return media and calculate penalties.
+        
+        Args:
+            return_date: Date of return, defaults to today
+        """
         for record in self:
+            if record.state != 'issue':
+                raise ValidationError(_(
+                    "Only issued media can be returned."))
+                    
             if not return_date:
                 return_date = fields.Date.today()
+                
             record.actual_return_date = return_date
             record.calculate_penalty()
+            
+            # Set appropriate state based on penalty
             if record.penalty > 0.0:
-                record.state = 'return'
+                record.state = 'return'  # Pending penalty payment
             else:
-                record.state = 'return_done'
+                record.state = 'return_done'  # Fully returned
+                
+            # Make media unit available
             record.media_unit_id.state = 'available'
 
     def calculate_penalty(self):
+        """Calculate penalty amount for overdue return.
+        
+        Calculates penalty based on overdue days and card type rates.
+        """
         for record in self:
-            penalty_amt = 0
-            penalty_days = 0
-            standard_diff = days_between(
-                record.return_date, record.issued_date)
-            actual_diff = days_between(
-                record.actual_return_date, record.issued_date)
-            x = record.library_card_id.library_card_type_id
-            if record.library_card_id and x:
-                penalty_days = \
-                    actual_diff > standard_diff and actual_diff - \
-                    standard_diff or penalty_days
-                penalty_amt = penalty_days * x.penalty_amt_per_day
-            record.write({'penalty': penalty_amt})
+            penalty_amt = 0.0
+            
+            if not record.actual_return_date or not record.return_date:
+                record.penalty = penalty_amt
+                continue
+                
+            # Calculate overdue days
+            if record.actual_return_date > record.return_date:
+                overdue_days = (record.actual_return_date - record.return_date).days
+                
+                # Calculate penalty amount
+                card_type = record.library_card_id.library_card_type_id
+                if card_type and overdue_days > 0:
+                    penalty_amt = overdue_days * card_type.penalty_amt_per_day
+                    
+            record.penalty = penalty_amt
 
     def create_penalty_invoice(self):
+        """Create invoice for penalty amount.
+        
+        Creates accounting invoice for library penalty fees.
+        """
         for rec in self:
-            account_id = False
-            product = self.env.ref('openeducat_library.op_product_7')
-            if product.id:
-                account_id = product.property_account_income_id.id
+            if rec.penalty <= 0:
+                raise ValidationError(_(
+                    "Cannot create invoice for zero penalty amount."))
+                    
+            if rec.invoice_id:
+                raise ValidationError(_(
+                    "Invoice already exists for this penalty."))
+                    
+            # Get penalty product
+            try:
+                product = self.env.ref('openeducat_library.op_product_7')
+            except ValueError:
+                raise ValidationError(_(
+                    "Library penalty product not found. Please contact administrator."))
+                    
+            # Determine partner
+            partner = rec.partner_id
+            if not partner:
+                if rec.student_id:
+                    partner = rec.student_id.partner_id
+                elif rec.faculty_id:
+                    partner = rec.faculty_id.partner_id
+                else:
+                    raise ValidationError(_(
+                        "No partner found for penalty invoice."))
+                        
+            # Get account for penalty product
+            account_id = product.property_account_income_id.id
             if not account_id:
-                account_id = \
-                    product.categ_id.property_account_income_categ_id.id
+                account_id = product.categ_id.property_account_income_categ_id.id
             if not account_id:
-                raise UserError(
-                    _('There is no income account defined for this \
-                    product: "%s". You may have to install a chart of \
-                    account from Accounting app, settings \
-                    menu.') % (product.name,))
+                raise UserError(_(
+                    'There is no income account defined for penalty product: "%s". '
+                    'Please configure the product accounts.') % product.name)
 
-            invoice = self.env['account.move'].create({
-                'partner_id': rec.student_id.partner_id.id,
+            # Create invoice
+            invoice_vals = {
+                'partner_id': partner.id,
                 'move_type': 'out_invoice',
                 'invoice_date': fields.Date.today(),
-            })
-            line_values = {'name': product.name,
-                           'account_id': account_id,
-                           'price_unit': rec.penalty,
-                           'quantity': 1.0,
-                           'discount': 0.0,
-                           'product_uom_id': product.uom_id.id,
-                           'product_id': product.id, }
-            invoice.write({'invoice_line_ids': [(0, 0, line_values)]})
-
+                'invoice_line_ids': [(0, 0, {
+                    'name': f"Library Penalty - {rec.media_id.name}",
+                    'account_id': account_id,
+                    'price_unit': rec.penalty,
+                    'quantity': 1.0,
+                    'discount': 0.0,
+                    'product_uom_id': product.uom_id.id,
+                    'product_id': product.id,
+                })]
+            }
+            
+            invoice = self.env['account.move'].create(invoice_vals)
             invoice._compute_tax_totals()
-            #           invoice.action_invoice_open()
-            self.invoice_id = invoice.id
+            
+            rec.invoice_id = invoice.id
+            
+            return {
+                'type': 'ir.actions.act_window',
+                'name': _('Penalty Invoice'),
+                'res_model': 'account.move',
+                'res_id': invoice.id,
+                'view_mode': 'form',
+                'target': 'current'
+            }

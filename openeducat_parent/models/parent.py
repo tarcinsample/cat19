@@ -19,21 +19,69 @@
 ###############################################################################
 
 from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, UserError
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class OpParent(models.Model):
+    """Model for managing parent information and relationships with students.
+    
+    This model handles parent-student relationships, user management,
+    and access control for the parent portal system.
+    """
     _name = "op.parent"
     _description = "Parent"
+    _rec_name = "name"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    name = fields.Many2one('res.partner', 'Name', required=True, domain="[('is_parent', '=', True)]")
-    user_id = fields.Many2one('res.users', string='User', store=True)
-    student_ids = fields.Many2many('op.student', string='Student(s)', required=True,)
-    mobile = fields.Char(string='Mobile')
-    email = fields.Char(string='Email')
-    active = fields.Boolean(default=True)
-    relationship_id = fields.Many2one('op.parent.relationship',
-                                      'Relation with Student', required=True)
+    name = fields.Many2one(
+        'res.partner', 
+        'Name', 
+        required=True,
+        help="Partner record for the parent",
+        tracking=True
+    )
+    user_id = fields.Many2one(
+        'res.users', 
+        string='User', 
+        store=True,
+        help="User account for parent portal access",
+        tracking=True
+    )
+    student_ids = fields.Many2many(
+        'op.student', 
+        string='Student(s)',
+        help="Students associated with this parent"
+    )
+    mobile = fields.Char(
+        string='Mobile', 
+        related='name.mobile',
+        help="Mobile number from partner record"
+    )
+    active = fields.Boolean(
+        default=True,
+        help="If unchecked, parent will be archived",
+        tracking=True
+    )
+    relationship_id = fields.Many2one(
+        'op.parent.relationship',
+        'Relation with Student', 
+        required=True,
+        help="Type of relationship with the student (e.g., Father, Mother, Guardian)",
+        tracking=True
+    )
+    email = fields.Char(
+        string='Email', 
+        related='name.email',
+        help="Email address from partner record"
+    )
+    student_count = fields.Integer(
+        string='Student Count',
+        compute='_compute_student_count',
+        help="Number of students associated with this parent"
+    )
 
     _sql_constraints = [(
         'unique_parent',
@@ -41,123 +89,300 @@ class OpParent(models.Model):
         'Can not create parent multiple times.!'
     )]
 
+    @api.depends('student_ids')
+    def _compute_student_count(self):
+        """Compute the number of students associated with this parent."""
+        for parent in self:
+            parent.student_count = len(parent.student_ids)
+
     @api.onchange('name')
     def _onchange_name(self):
+        """Update user_id when partner name changes.
+        
+        Automatically links the partner's existing user account
+        to the parent record if available.
+        """
         if self.name:
             self.user_id = self.name.user_id.id if self.name.user_id else False
-            self.mobile = self.name.mobile
-            self.email = self.name.email
+        else:
+            self.user_id = False
 
     @api.model_create_multi
     def create(self, vals_list):
+        """Create parent records with proper validation and user management.
+        
+        Args:
+            vals_list: List of dictionaries containing parent data
+            
+        Returns:
+            Created parent records
+            
+        Raises:
+            ValidationError: If validation fails
+        """
+        # Validate data before creation
         for vals in vals_list:
-            partner_id = vals.get('name')
-            parent_email = vals.get('email')
-            parent_mobile = vals.get('mobile')
-
-            if isinstance(partner_id, int):
-                partner = self.env['res.partner'].browse(partner_id)
-                if partner.exists():
-                    update_vals = {'is_parent': True}
-                    if parent_email and not partner.email:
-                        update_vals['email'] = parent_email
-                    if parent_mobile and not partner.mobile:
-                        update_vals['mobile'] = parent_mobile
-                    partner.write(update_vals)
-                    continue
-
-            parent_name = vals.get('name')
-            partner = self.env['res.partner'].search([
-                '|', '|',
-                ('name', '=', parent_name),
-                ('email', '=', parent_email),
-                ('mobile', '=', parent_mobile),
-            ], limit=1)
-
-            if partner:
-                update_vals = {'is_parent': True}
-                if parent_email and not partner.email:
-                    update_vals['email'] = parent_email
-                if parent_mobile and not partner.mobile:
-                    update_vals['mobile'] = parent_mobile
-                partner.write(update_vals)
-
-                vals['name'] = partner.id
-            else:
-                new_partner = self.env['res.partner'].create({
-                    'name': parent_name,
-                    'email': parent_email,
-                    'mobile': parent_mobile,
-                    'is_parent': True,
-                })
-                vals['name'] = new_partner.id
-                vals['email'] = parent_email
-                vals['mobile'] = parent_mobile
-
-        res = super(OpParent, self).create(vals_list)
-
-        for record in res:
-            if record.student_ids and record.name.user_id:
-                user_ids = [s.user_id.id for s in record.student_ids if s.user_id]
-                record.user_id.child_ids = [(6, 0, user_ids)]
-
-            if record.name and not record.name.is_parent:
-                record.name.is_parent = True
-
-        return res
+            self._validate_parent_data(vals)
+            
+        parents = super(OpParent, self).create(vals_list)
+        
+        # Handle user relationships after creation
+        for parent in parents:
+            try:
+                parent._update_user_relationships()
+                _logger.info(f"Created parent record for {parent.name.name}")
+            except Exception as e:
+                _logger.error(f"Error updating user relationships for parent {parent.id}: {e}")
+                raise UserError(_("Failed to establish user relationships. Please check parent configuration."))
+                
+        return parents
 
     def write(self, vals):
-        for rec in self:
-            res = super(OpParent, self).write(vals)
-            if vals.get('student_ids', False) and rec.name.user_id:
-                student_ids = rec.student_ids.browse(rec.student_ids.ids)
-                usr_ids = [student_id.user_id.id for student_id in student_ids
-                           if student_id.user_id]
-                rec.user_id.child_ids = [(6, 0, usr_ids)]
-            rec.env.registry.clear_cache()
-            return res
+        """Update parent records with proper validation and user management.
+        
+        Args:
+            vals: Dictionary containing updated values
+            
+        Returns:
+            True if successful
+            
+        Raises:
+            ValidationError: If validation fails
+        """
+        # Validate data before update
+        if any(key in vals for key in ['name', 'relationship_id', 'student_ids']):
+            self._validate_parent_data(vals)
+            
+        res = super(OpParent, self).write(vals)
+        
+        # Update user relationships if student associations changed
+        if 'student_ids' in vals or 'user_id' in vals:
+            for parent in self:
+                try:
+                    parent._update_user_relationships()
+                    _logger.info(f"Updated parent record for {parent.name.name}")
+                except Exception as e:
+                    _logger.error(f"Error updating user relationships for parent {parent.id}: {e}")
+                    raise UserError(_("Failed to update user relationships. Please check parent configuration."))
+                    
+        return res
 
     def unlink(self):
-        for record in self:
-            if record.name.user_id:
-                record.user_id.child_ids = [(6, 0, [])]
-            return super(OpParent, self).unlink()
+        """Delete parent records with proper cleanup.
+        
+        Returns:
+            True if successful
+            
+        Raises:
+            UserError: If deletion constraints are violated
+        """
+        for parent in self:
+            # Clean up user relationships before deletion
+            try:
+                if parent.user_id:
+                    parent.user_id.child_ids = [(6, 0, [])]
+                    _logger.info(f"Cleaned up user relationships for parent {parent.name.name}")
+            except Exception as e:
+                _logger.error(f"Error cleaning up parent {parent.id}: {e}")
+                raise UserError(_("Failed to clean up parent relationships. Contact administrator."))
+                
+        return super(OpParent, self).unlink()
 
     def create_parent_user(self):
-        template = self.env.ref('openeducat_parent.parent_template_user')
+        """Create user account for parent portal access.
+        
+        Creates a user account with appropriate permissions and
+        establishes parent-student relationships in the user hierarchy.
+        
+        Raises:
+            ValidationError: If required data is missing or invalid
+        """
+        try:
+            template = self.env.ref('openeducat_parent.parent_template_user', raise_if_not_found=False)
+        except Exception:
+            template = False
+            
+        if not template:
+            raise ValidationError(_('Parent user template not found. Please contact administrator.'))
+            
         users_res = self.env['res.users']
-        for record in self:
-            if not record.name.email:
-                raise ValidationError(_('Update parent email id first.'))
-            if not record.name.user_id:
-                groups_id = template and template.groups_id or False
-                user_ids = [
-                    parent.user_id.id for
-                    parent in record.student_ids if parent.user_id]
-                user_id = users_res.create({
-                    'name': record.name.name,
-                    'partner_id': record.name.id,
-                    'login': record.name.email,
-                    'is_parent': True,
-                    'tz': self._context.get('tz'),
-                    'groups_id': groups_id,
-                    'child_ids': [(6, 0, user_ids)]
-                })
-                record.user_id = user_id
-                record.name.user_id = user_id
+        
+        for parent in self:
+            # Validate required data
+            if not parent.name:
+                raise ValidationError(_('Partner name is required to create user account.'))
+                
+            if not parent.name.email:
+                raise ValidationError(_('Email address is required. Please update parent email first.'))
+                
+            # Check if email is already in use
+            existing_user = users_res.search([('login', '=', parent.name.email)], limit=1)
+            if existing_user and existing_user != parent.name.user_id:
+                raise ValidationError(_('Email address %s is already in use by another user.') % parent.name.email)
+                
+            if not parent.name.user_id:
+                try:
+                    # Get student user IDs for child relationship
+                    student_user_ids = [
+                        student.user_id.id for student in parent.student_ids 
+                        if student.user_id and student.user_id.active
+                    ]
+                    
+                    # Create user account
+                    user_vals = {
+                        'name': parent.name.name,
+                        'partner_id': parent.name.id,
+                        'login': parent.name.email,
+                        'is_parent': True,
+                        'tz': self._context.get('tz') or 'UTC',
+                        'groups_id': [(6, 0, template.groups_id.ids)] if template.groups_id else [],
+                        'child_ids': [(6, 0, student_user_ids)],
+                        'active': True
+                    }
+                    
+                    user_id = users_res.create(user_vals)
+                    
+                    # Update parent and partner records
+                    parent.user_id = user_id
+                    parent.name.user_id = user_id
+                    
+                    _logger.info(f"Created user account for parent {parent.name.name}")
+                    
+                except Exception as e:
+                    _logger.error(f"Error creating user for parent {parent.id}: {e}")
+                    raise ValidationError(_("Failed to create user account. Please contact administrator."))
+            else:
+                _logger.info(f"User account already exists for parent {parent.name.name}")
+
+    def _validate_parent_data(self, vals):
+        """Validate parent data before creation or update.
+        
+        Args:
+            vals: Dictionary containing parent data to validate
+            
+        Raises:
+            ValidationError: If validation fails
+        """
+        if 'name' in vals:
+            partner_id = vals['name']
+            if partner_id:
+                partner = self.env['res.partner'].browse(partner_id)
+                if not partner.exists():
+                    raise ValidationError(_('Selected partner does not exist.'))
+                    
+                # Check if partner is already a parent
+                existing_parent = self.search([('name', '=', partner_id), ('id', '!=', self.id)], limit=1)
+                if existing_parent:
+                    raise ValidationError(_('Partner %s is already registered as a parent.') % partner.name)
+                    
+        if 'relationship_id' in vals and vals['relationship_id']:
+            relationship = self.env['op.parent.relationship'].browse(vals['relationship_id'])
+            if not relationship.exists():
+                raise ValidationError(_('Selected relationship type does not exist.'))
+                
+        if 'student_ids' in vals:
+            # Validate student relationships
+            student_ids = vals['student_ids']
+            if isinstance(student_ids, list) and student_ids:
+                # Extract actual student IDs from various formats
+                actual_student_ids = []
+                for item in student_ids:
+                    if isinstance(item, (list, tuple)) and len(item) == 3:
+                        actual_student_ids.extend(item[2] if item[2] else [])
+                    elif isinstance(item, int):
+                        actual_student_ids.append(item)
+                        
+                if actual_student_ids:
+                    students = self.env['op.student'].browse(actual_student_ids)
+                    invalid_students = students.filtered(lambda s: not s.exists())
+                    if invalid_students:
+                        raise ValidationError(_('Some selected students do not exist.'))
+
+    def _update_user_relationships(self):
+        """Update user parent-child relationships.
+        
+        Establishes proper user hierarchy for parent portal access.
+        """
+        if self.user_id and self.student_ids:
+            # Get valid student user IDs
+            student_user_ids = [
+                student.user_id.id for student in self.student_ids 
+                if student.user_id and student.user_id.active
+            ]
+            
+            # Update child relationships
+            self.user_id.child_ids = [(6, 0, student_user_ids)]
+            
+    @api.constrains('name', 'relationship_id')
+    def _check_parent_relationship_consistency(self):
+        """Ensure parent-relationship consistency.
+        
+        Validates that the parent-student-relationship combination makes sense.
+        """
+        for parent in self:
+            if parent.name and parent.relationship_id:
+                # Check for duplicate relationships with same student
+                for student in parent.student_ids:
+                    other_parents = student.parent_ids.filtered(
+                        lambda p: p.id != parent.id and 
+                                p.relationship_id.id == parent.relationship_id.id
+                    )
+                    if other_parents:
+                        raise ValidationError(
+                            _('Student %s already has a parent with relationship %s.') % 
+                            (student.name, parent.relationship_id.name)
+                        )
 
     @api.model
     def get_import_templates(self):
+        """Return import templates for parent data.
+        
+        Returns:
+            List of template dictionaries with labels and paths
+        """
         return [{
             'label': _('Import Template for Parent'),
             'template': '/openeducat_parent/static/xls/op_parent.xls'
         }]
+        
+    def action_view_students(self):
+        """Open view showing students associated with this parent.
+        
+        Returns:
+            Action dictionary for opening student list view
+        """
+        action = self.env.ref('openeducat_core.act_open_op_student_view').read()[0]
+        action['domain'] = [('parent_ids', 'in', self.ids)]
+        action['context'] = {'default_parent_ids': [(6, 0, self.ids)]}
+        return action
 
 
 class OpStudent(models.Model):
     _inherit = "op.student"
 
     parent_ids = fields.Many2many('op.parent', string='Parent')
+    parent_count = fields.Integer(
+        string='Parent Count',
+        compute='_compute_parent_count',
+        help="Number of parents associated with this student"
+    )
+
+    @api.depends('parent_ids')
+    def _compute_parent_count(self):
+        """Compute the number of parents associated with this student."""
+        for student in self:
+            student.parent_count = len(student.parent_ids)
+
+    def action_view_parents(self):
+        """Open view showing parents associated with this student.
+        
+        Returns:
+            Action dictionary for opening parent list view
+        """
+        action = self.env.ref('openeducat_parent.act_open_op_parent_view').read()[0]
+        action['domain'] = [('student_ids', 'in', self.ids)]
+        action['context'] = {'default_student_ids': [(6, 0, self.ids)]}
+        return action
 
     @api.model_create_multi
     def create(self, vals):
@@ -200,9 +425,11 @@ class OpStudent(models.Model):
         for record in self:
             if record.parent_ids:
                 for parent_id in record.parent_ids:
-                    child_ids = parent_id.user_id.child_ids.ids
-                    child_ids.remove(record.user_id.id)
-                    parent_id.name.user_id.child_ids = [(6, 0, child_ids)]
+                    if parent_id.user_id and record.user_id:
+                        child_ids = parent_id.user_id.child_ids.ids
+                        if record.user_id.id in child_ids:
+                            child_ids.remove(record.user_id.id)
+                            parent_id.user_id.child_ids = [(6, 0, child_ids)]
         return super(OpStudent, self).unlink()
 
     def get_parent(self):
@@ -219,12 +446,12 @@ class OpSubjectRegistration(models.Model):
     @api.model_create_multi
     def create(self, vals):
         if self.env.user.child_ids:
-            raise ValidationError(_('Invalid Action!\n Parent can not \
-            create Subject Registration!'))
+            raise ValidationError(
+                _("Invalid action! Parents cannot create subject registrations."))
         return super(OpSubjectRegistration, self).create(vals)
 
     def write(self, vals):
         if self.env.user.child_ids:
-            raise ValidationError(_('Invalid Action!\n Parent can not edit \
-            Subject Registration!'))
+            raise ValidationError(
+                _("Invalid action! Parents cannot edit subject registrations."))
         return super(OpSubjectRegistration, self).write(vals)

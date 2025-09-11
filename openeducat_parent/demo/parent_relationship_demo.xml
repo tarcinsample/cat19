@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo noupdate="1">
+    <!-- Parent Relationship Demo Data - Model handles duplicates gracefully -->
+    <record id="op_parent_relationship_1" model="op.parent.relationship">
+        <field name="name">Father</field>
+    </record>
 
-        <record id="op_parent_relationship_1" model="op.parent.relationship">
-            <field name="name">Father</field>
-        </record>
+    <record id="op_parent_relationship_2" model="op.parent.relationship">
+        <field name="name">Mother</field>
+    </record>
 
-        <record id="op_parent_relationship_2" model="op.parent.relationship">
-            <field name="name">Mother</field>
-        </record>
+    <record id="op_parent_relationship_3" model="op.parent.relationship">
+        <field name="name">Guardian</field>
+    </record>
 
-        <record id="op_parent_relationship_3" model="op.parent.relationship">
-            <field name="name">Gaurdian</field>
-        </record>
+    <record id="op_parent_relationship_4" model="op.parent.relationship">
+        <field name="name">Step Father</field>
+    </record>
 
+    <record id="op_parent_relationship_5" model="op.parent.relationship">
+        <field name="name">Step Mother</field>
+    </record>
+
+    <record id="op_parent_relationship_6" model="op.parent.relationship">
+        <field name="name">Grandparent</field>
+    </record>
 </odoo>

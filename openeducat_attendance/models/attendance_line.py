@@ -18,7 +18,8 @@
 #
 ###############################################################################
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class OpAttendanceLine(models.Model):
@@ -65,8 +66,28 @@ class OpAttendanceLine(models.Model):
          'Student must be unique per Attendance.'),
     ]
 
+    @api.constrains('present', 'excused', 'absent', 'late')
+    def _check_attendance_status(self):
+        """Validate attendance status constraints.
+        
+        Ensures only one attendance status is selected.
+        """
+        for record in self:
+            statuses = [record.present, record.excused, record.absent, record.late]
+            true_count = sum(statuses)
+            
+            if true_count == 0:
+                raise ValidationError(_(
+                    "At least one attendance status must be selected for student '%s'.") % 
+                    record.student_id.name)
+            elif true_count > 1:
+                raise ValidationError(_(
+                    "Only one attendance status can be selected for student '%s'.") % 
+                    record.student_id.name)
+
     @api.onchange('attendance_type_id')
     def onchange_attendance_type(self):
+        """Update attendance status based on attendance type."""
         if self.attendance_type_id:
             self.present = self.attendance_type_id.present
             self.excused = self.attendance_type_id.excused
@@ -75,28 +96,44 @@ class OpAttendanceLine(models.Model):
 
     @api.onchange('present')
     def onchange_present(self):
+        """Clear other attendance statuses when present is marked."""
         if self.present:
             self.late = False
             self.excused = False
             self.absent = False
+            self.attendance_type_id = self.env['op.attendance.type'].search([
+                ('present', '=', True)
+            ], limit=1)
 
     @api.onchange('absent')
     def onchange_absent(self):
+        """Clear other attendance statuses when absent is marked."""
         if self.absent:
             self.present = False
             self.late = False
             self.excused = False
+            self.attendance_type_id = self.env['op.attendance.type'].search([
+                ('absent', '=', True)
+            ], limit=1)
 
     @api.onchange('excused')
     def onchange_excused(self):
+        """Clear other attendance statuses when excused is marked."""
         if self.excused:
             self.present = False
             self.late = False
             self.absent = False
+            self.attendance_type_id = self.env['op.attendance.type'].search([
+                ('excused', '=', True)
+            ], limit=1)
 
     @api.onchange('late')
     def onchange_late(self):
+        """Clear other attendance statuses when late is marked."""
         if self.late:
             self.present = False
             self.excused = False
             self.absent = False
+            self.attendance_type_id = self.env['op.attendance.type'].search([
+                ('late', '=', True)
+            ], limit=1)

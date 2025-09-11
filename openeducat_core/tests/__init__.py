@@ -21,3 +21,16 @@
 
 from . import test_core_common
 from . import test_core
+from . import test_student
+from . import test_student_course
+from . import test_faculty
+from . import test_batch
+from . import test_course
+from . import test_compute_methods
+from . import test_constraints
+from . import test_permissions
+from . import test_integration
+from . import test_performance
+from . import test_academic_management
+from . import test_sequences_and_imports
+from . import test_mail_and_security

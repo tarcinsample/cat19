@@ -82,7 +82,12 @@ class PublisherWarrantyContract(AbstractModel):
         }
         if user.partner_id.company_id:
             company_id = user.partner_id.company_id
-            msg.update(company_id.read(["name", "email", "phone"])[0])
+            # Optimized: direct field access instead of read()
+            msg.update({
+                "name": company_id.name,
+                "email": company_id.email,
+                "phone": company_id.phone
+            })
         return msg
 
     @api.model
