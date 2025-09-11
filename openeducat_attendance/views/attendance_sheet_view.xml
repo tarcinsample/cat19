@@ -27,12 +27,9 @@
                         <button type="object" name="attendance_done"
                                 invisible="state != 'start'" string="Attendance Taken"
                                 class="oe_highlight"/>
-                        <button type="object" name="attendance_draft"
-                                invisible="state != 'cancel'" string="Draft"
-                                class="oe_highlight"/>
                         <button type="object" name="attendance_cancel"
                                 invisible="state not in ('draft','start')" string="Cancel"/>
-                        <button type="object" name="attendance_draft" string="Draft" invisible="state not in 'done'" class="oe_highlight"/>
+                        <button type="object" name="attendance_draft" string="Draft" invisible="state not in ['done','cancel']" class="oe_highlight"/>
                         <field name="state" widget="statusbar"
                                statusbar_visible="draft,start,done"/>
                     </header>
@@ -46,7 +43,7 @@
                         <group>
                             <group>
                                 <field name="register_id" readonly="state in ('done','cancel')"/>
-                                <field name="session_id"
+                                <field name="session_id" readonly="state in ('done','cancel')"
                                        domain="[('course_id','=',course_id),('batch_id','=',batch_id)]" />
                                 <field name="course_id" invisible="1"/>
                                 <field name="batch_id" invisible="1"/>
