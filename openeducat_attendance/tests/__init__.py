@@ -19,15 +19,3 @@
 ###############################################################################
 
 from . import test_attendance
-from . import test_attendance_common
-from . import test_attendance_sheet
-from . import test_attendance_line
-from . import test_attendance_register
-from . import test_attendance_session
-from . import test_attendance_compute
-from . import test_attendance_reports
-from . import test_attendance_bulk
-from . import test_attendance_notifications
-from . import test_attendance_security
-from . import test_attendance_wizards
-from . import test_attendance_performance

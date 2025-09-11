@@ -21,9 +21,3 @@
 
 from . import test_exam_common
 from . import test_exam
-from . import test_exam_scheduling
-from . import test_marksheet_generation
-from . import test_exam_attendees
-from . import test_result_templates
-from . import test_exam_workflow
-from . import test_exam_session

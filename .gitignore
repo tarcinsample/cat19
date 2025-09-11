@@ -34,7 +34,3 @@ nosetests.xml
 .project
 .pydevproject
 .idea
-
-# Claude directory
-/claude/
-CLAUDE.md

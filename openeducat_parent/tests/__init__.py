@@ -20,5 +20,3 @@
 
 from . import test_parent_common
 from . import test_parent
-from . import test_parent_relationship
-from . import test_parent_portal

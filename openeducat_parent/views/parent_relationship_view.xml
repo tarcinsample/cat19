@@ -6,11 +6,8 @@
             <field name="model">op.parent.relationship</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <list string="Parent Relationship Types" default_order="name">
-                    <field name="name" string="Relationship Name"/>
-                    <field name="description" string="Description" optional="show"/>
-                    <field name="parent_count" string="Parents" widget="badge" decoration-info="parent_count &gt; 0"/>
-                    <field name="active" invisible="1"/>
+                <list string="Relationships">
+                    <field name="name"/>
                 </list>
             </field>
         </record>
@@ -20,81 +17,26 @@
             <field name="model">op.parent.relationship</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <form string="Parent Relationship Type">
-                    <header>
-                        <button type="object" name="action_view_parents"
-                                string="View Parents"
-                                class="btn-secondary"
-                                invisible="parent_count == 0"/>
-                    </header>
+                <form string="Relationships">
+                    <header/>
                     <sheet>
-                        <field name="active" invisible="1"/>
-                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                                invisible="active == True"/>
-                        <div class="oe_button_box" name="button_box">
-                            <button name="action_view_parents"
-                                    class="oe_stat_button"
-                                    icon="fa-users"
-                                    type="object"
-                                    invisible="parent_count == 0">
-                                <field name="parent_count" widget="statinfo" string="Parents"/>
-                            </button>
-                        </div>
-                        <div class="oe_title">
-                            <h1>
-                                <field name="name" placeholder="e.g., Father, Mother, Guardian..."/>
-                            </h1>
-                        </div>
                         <group>
-                            <group string="Details">
-                                <field name="description" placeholder="Additional information about this relationship type..."/>
-                            </group>
-                            <group string="Status">
-                                <field name="active" widget="boolean_toggle"/>
+                            <group>
+                                <field name="name"/>
                             </group>
                         </group>
                     </sheet>
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids"/>
-                        <field name="activity_ids"/>
-                        <field name="message_ids"/>
-                    </div>
                 </form>
             </field>
         </record>
 
-        <!-- Search view for parent relationships -->
-        <record id="view_parent_relationship_search" model="ir.ui.view">
-            <field name="name">op.parent.relationship.search</field>
-            <field name="model">op.parent.relationship</field>
-            <field name="arch" type="xml">
-                <search string="Search Relationship Types">
-                    <field name="name" string="Relationship Name"/>
-                    <field name="description" string="Description"/>
-                    <separator/>
-                    <filter string="Active" name="active" domain="[('active', '=', True)]"/>
-                    <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
-                </search>
-            </field>
-        </record>
-
         <record model="ir.actions.act_window" id="act_open_op_parent_relationship_view">
-            <field name="name">Parent Relationship Types</field>
+            <field name="name">Relationships</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.parent.relationship</field>
             <field name="binding_view_types">form</field>
             <field name="view_mode">list,form</field>
             <field name="path">parent-relationship</field>
-            <field name="search_view_id" ref="view_parent_relationship_search"/>
-            <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">
-                    Create a new parent relationship type!
-                </p>
-                <p>
-                    Define the types of relationships that can exist between parents and students,
-                    such as Father, Mother, Guardian, etc.
-                </p>
-            </field>
         </record>
 
         <record model="ir.actions.act_window.view" id="act_open_op_parent_relationship_view_form">

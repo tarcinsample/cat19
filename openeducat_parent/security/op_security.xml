@@ -15,32 +15,15 @@
         </record>
 
         <record id="group_op_parent_manager" model="res.groups">
-            <field name="name">Parent Manager</field>
+            <field name="name">Manager</field>
             <field name="category_id" ref="module_category_openeducat_parent"/>
             <field name="users" eval="[(4, ref('base.user_admin'))]"/>
-            <field name="comment">Full access to parent management functionality</field>
-        </record>
-        
-        <!-- Enhanced admin rule for parent managers -->
-        <record model="ir.rule" id="parent_manager_access_rule">
-            <field name="name">Parent Manager Full Access</field>
-            <field name="model_id" ref="model_op_parent"/>
-            <field name="groups" eval="[(4, ref('group_op_parent_manager'))]"/>
-            <field name="domain_force">[(1, '=', 1)]</field>
-            <field name="perm_read" eval="True"/>
-            <field name="perm_write" eval="True"/>
-            <field name="perm_create" eval="True"/>
-            <field name="perm_unlink" eval="True"/>
         </record>
         <record model="ir.rule" id="parent_login_rule">
-            <field name="name">Parent Access Rule</field>
+            <field name="name">Parent Login rule</field>
             <field name="model_id" ref="model_op_parent"/>
             <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
-            <field name="domain_force">[('active', '=', True), ('user_id', '=', user.id)]</field>
-            <field name="perm_read" eval="True"/>
-            <field name="perm_write" eval="True"/>
-            <field name="perm_create" eval="False"/>
-            <field name="perm_unlink" eval="False"/>
+            <field name="domain_force">['|', ('user_id','=',user.id), ('user_id','in',user.child_ids.ids)]</field>
         </record>
 
         <record model="ir.rule" id="backoffice_login_rule">
@@ -51,46 +34,10 @@
         </record>
 
         <record model="ir.rule" id="student_parent_login_rule">
-            <field name="name">Student Parent Access Rule</field>
+            <field name="name">Student Parent Login rule</field>
             <field name="model_id" ref="model_op_student"/>
             <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
-            <field name="domain_force">[('active', '=', True), ('user_id', '=', user.id)]</field>
-            <field name="perm_read" eval="True"/>
-            <field name="perm_write" eval="False"/>
-            <field name="perm_create" eval="False"/>
-            <field name="perm_unlink" eval="False"/>
-        </record>
-        
-        <!-- Additional security rules for parent portal -->
-        <record model="ir.rule" id="parent_relationship_access_rule">
-            <field name="name">Parent Relationship Access Rule</field>
-            <field name="model_id" ref="model_op_parent_relationship"/>
-            <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
-            <field name="domain_force">[(1, '=', 1)]</field>
-            <field name="perm_read" eval="True"/>
-            <field name="perm_write" eval="False"/>
-            <field name="perm_create" eval="False"/>
-            <field name="perm_unlink" eval="False"/>
-        </record>
-        
-        <!-- Enhanced security for subject registration -->
-        <record model="ir.rule" id="subject_registration_parent_rule">
-            <field name="name">Subject Registration Parent Rule</field>
-            <field name="model_id" ref="openeducat_core.model_op_subject_registration"/>
-            <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
-            <field name="domain_force">[('student_id.active', '=', True), ('student_id.user_id', '=', user.id)]</field>
-            <field name="perm_read" eval="True"/>
-            <field name="perm_write" eval="False"/>
-            <field name="perm_create" eval="False"/>
-            <field name="perm_unlink" eval="False"/>
-        </record>
-        
-        <!-- Portal group for parents with enhanced permissions -->
-        <record id="group_op_parent_portal" model="res.groups">
-            <field name="name">Parent Portal User</field>
-            <field name="category_id" ref="module_category_openeducat_parent"/>
-            <field name="implied_ids" eval="[(4, ref('base.group_portal'))]"/>
-            <field name="comment">Enhanced portal access for parents to view student information</field>
+            <field name="domain_force">['|', ('user_id','=',user.id), ('user_id','in',user.child_ids.ids)]</field>
         </record>
 
 </odoo>

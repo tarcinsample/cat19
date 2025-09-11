@@ -29,16 +29,13 @@ class TestStudentFees(TestFeesCommon):
         super(TestStudentFees, self).setUp()
 
     def test_case_fees(self):
-        """Test student fees creation and invoice generation."""
-        # Create test fee record
-        fees_detail = self.create_student_fees_details()
-        
-        # Test invoice action
-        self.assertTrue(fees_detail.action_get_invoice())
-        self.assertEqual(fees_detail.state, 'invoice')
-        self.assertTrue(fees_detail.invoice_id)
-        
-        info('  Student Fees test completed successfully')
+        fees = self.op_student_fees.search([])
+        if not fees:
+            raise AssertionError(
+                'Error in data, please check for student fees details')
+        info('  Details Of Student Fees:.....')
+        for record in fees:
+            record.action_get_invoice()
 
 
 class TestStudent(TestFeesCommon):
@@ -47,19 +44,13 @@ class TestStudent(TestFeesCommon):
         super(TestStudent, self).setUp()
 
     def test_case_student_fees(self):
-        """Test student fees invoice view."""
-        # Create fee record with invoice
-        fees_detail = self.create_student_fees_details()
-        fees_detail.get_invoice()
-        
-        # Test student invoice view
-        try:
-            action = self.student1.action_view_invoice()
-            self.assertIn('account.move', action.get('res_model', ''))
-            info('  Student Fees Invoice test completed successfully')
-        except Exception:
-            # If no invoices exist, that's also valid
-            info('  No invoices found for student - test passed')
+        student = self.op_student.search([])
+        if not student:
+            raise AssertionError(
+                'Error in data, please check for student fees invoice details')
+        info('  Details Of Student Fees Invoice:.....')
+        for record in student:
+            record.action_view_invoice()
 
 
 class TestWizardFees(TestFeesCommon):
@@ -68,25 +59,12 @@ class TestWizardFees(TestFeesCommon):
         super(TestWizardFees, self).setUp()
 
     def test_case_wizard_fees(self):
-        """Test fees report wizard."""
-        wizard_vals = {
+        wizard = self.op_fees_wizard.create({
             'fees_filter': 'student',
-            'student_id': self.student1.id
-        }
-        wizard = self.op_fees_wizard.create(wizard_vals)
-        
-        # Test wizard creation
-        self.assertTrue(wizard)
-        self.assertEqual(wizard.student_id.id, self.student1.id)
-        
-        # Test report generation
-        try:
-            result = wizard.print_report()
-            self.assertTrue(result)
-            info('  Fees Wizard test completed successfully')
-        except Exception as e:
-            # Report generation may fail due to missing templates
-            info(f'  Wizard created successfully, report error: {e}')
+            'student_id': self.env.ref('openeducat_core.op_student_1').id
+        })
+        info('  Details Of Student Fees :.....')
+        wizard.print_report()
 
 
 class TestFeesTerms(TestFeesCommon):
@@ -95,20 +73,9 @@ class TestFeesTerms(TestFeesCommon):
         super(TestFeesTerms, self).setUp()
 
     def test_case_fees_terms(self):
-        """Test fees terms creation and validation."""
-        # Create fee term with lines
-        terms = self.create_fees_terms(name='Test Library Fees')
-        
-        # Create fee term line
-        fee_line = self.env['op.fees.terms.line'].create({
-            'fees_id': terms.id,
-            'due_days': 30,
-            'value': 100.0,
+        terms = self.op_fees_terms.create({
+            'name': 'Library Fees',
+            'line_ids': self.env.ref('openeducat_fees.op_fees_term_line_6'),
         })
-        
-        # Test validation
-        self.assertTrue(terms.is_valid)
-        self.assertEqual(terms.total_percentage, 100.0)
-        
-        info('  Fees Terms test completed successfully')
+        info('  Details Of Fees Terms :.....')
         return terms
