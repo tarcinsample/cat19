@@ -20,7 +20,7 @@
 
 {
     'name': 'OpenEduCat Core',
-    'version': '18.0.1.0',
+    'version': '19.0.1.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 1,
@@ -28,7 +28,7 @@
     'complexity': "easy",
     'author': 'OpenEduCat Inc',
     'website': 'https://www.openeducat.org',
-    'depends': ['board', 'hr', 'web', 'website'],
+    'depends': ['board', 'hr', 'web', 'website','contacts'],
     'data': [
         'security/op_security.xml',
         'security/ir.model.access.csv',
@@ -40,6 +40,7 @@
         'wizard/students_create_user_wizard_view.xml',
         'wizard/bonafide_certificate_wizard_view.xml',
         'views/department_view.xml',
+        'views/res_partner_title.xml',
         'views/res_company_view.xml',
         'views/student_view.xml',
         'views/hr_view.xml',
@@ -65,6 +66,7 @@
     ],
     'demo': [
         'demo/department_demo.xml',
+        'demo/res_partner_title_demo.xml',
         'demo/op.program.level.csv',
         'demo/op.program.csv',
         'demo/op.subject.csv',

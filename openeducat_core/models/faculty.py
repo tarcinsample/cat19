@@ -107,10 +107,21 @@ class OpFaculty(models.Model):
             'template': '/openeducat_core/static/xls/op_faculty.xls'
         }]
 
-    class PartnerTitle(models.Model):
-        _inherit = 'res.partner.title'
 
-        @api.depends('shortcut')
-        def _compute_display_name(self):
-            for record in self:
-                record.display_name = f"{record.shortcut}"
+class PartnerTitle(models.Model):
+    _name = 'res.partner.title'
+    _order = 'name'
+    _description = 'Partner Title'
+
+    name = fields.Char(string='Title', required=True, translate=True)
+    shortcut = fields.Char(string='Abbreviation', translate=True)
+
+    @api.depends('shortcut')
+    def _compute_display_name(self):
+        for record in self:
+            record.display_name = f"{record.shortcut}"
+            
+class ResPartner(models.Model):
+    _inherit = "res.partner"
+    
+    title: PartnerTitle = fields.Many2one('res.partner.title')

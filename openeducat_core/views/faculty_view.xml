@@ -50,7 +50,6 @@
                     <field name="name"/>
                     <field name="gender" optional="hide"/>
                     <field name="phone" optional="hide"/>
-                    <field name="mobile" optional="hide"/>
                     <field name="email" optional="hide"/>
                     <field name="blood_group"/>
                     <field name="emergency_contact"/>
@@ -126,7 +125,6 @@
                                     <group>
                                         <field name="email"/>
                                         <field name="phone"/>
-                                        <field name="mobile"/>
                                         <field name="nationality"/>
                                         <field name="lang"/>
                                         <field name="emp_id"/>
@@ -160,7 +158,7 @@
                     <field name="main_department_id"/>
                     <field name="allowed_department_ids"/>
                     <newline/>
-                    <group expand="0" string="Group By...">
+                    <group>
                         <filter name="blood_group" string="Blood Group" domain="[]"
                                 context="{'group_by':'blood_group'}"/>
                         <filter name="nationality" string="Nationality" domain="[]"

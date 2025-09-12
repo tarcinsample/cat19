@@ -85,7 +85,7 @@
                     <field name="course_id"/>
                     <field name="batch_id"/>
                     <newline/>
-                    <group expand="0" string="Group By...">
+                    <group>
                         <filter name="group_by_course"
                                 string="Course" domain="[]"
                                 context="{'group_by':'course_id'}"/>

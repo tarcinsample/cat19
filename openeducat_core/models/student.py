@@ -40,17 +40,15 @@ class OpStudentCourse(models.Model):
                               ('finished', 'Finished')],
                              string="Status", default="running")
 
-    _sql_constraints = [
-        ('unique_name_roll_number_id',
-         'unique(roll_number,course_id,batch_id,student_id)',
-         'Roll Number & Student must be unique per Batch!'),
-        ('unique_name_roll_number_course_id',
-         'unique(roll_number,course_id,batch_id)',
-         'Roll Number must be unique per Batch!'),
-        ('unique_name_roll_number_student_id',
-         'unique(student_id,course_id,batch_id)',
-         'Student must be unique per Batch!'),
-    ]
+    _unique_name_roll_number_id = models.Constraint(
+        'unique(roll_number,course_id,batch_id,student_id)',
+        'Roll Number & Student must be unique per Batch!')
+    _unique_name_roll_number_course_id = models.Constraint(
+        'unique(roll_number,course_id,batch_id)',
+        'Roll Number must be unique per Batch!')
+    _unique_name_roll_number_student_id = models.Constraint(
+        'unique(student_id,course_id,batch_id)',
+        'Student must be unique per Batch!')
 
     @api.model
     def get_import_templates(self):
@@ -102,12 +100,9 @@ class OpStudent(models.Model):
         string='Certificate No.',
         readonly=True,
         copy=False,)
-
-    _sql_constraints = [(
-        'unique_gr_no',
-        'unique(gr_no)',
-        'Registration Number must be unique per student!'
-    )]
+    
+    _unique_gr_no = models.Constraint('unique(gr_no)', 
+                                     'Registration Number must be unique per student!')
 
     @api.onchange('first_name', 'middle_name', 'last_name')
     def _onchange_name_1(self):

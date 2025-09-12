@@ -69,7 +69,7 @@
                     <field name="department_id"/>
                     <field name="active"/>
                     <newline/>
-                    <group expand="0" string="Group By...">
+                    <group>
                         <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
                         <filter string="Department" name="group_by_department" domain="[]"
                                 context="{'group_by':'department_id'}"/>

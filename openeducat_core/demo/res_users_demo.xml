@@ -9,7 +9,7 @@
             <field name="tz">Asia/Calcutta</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_1"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('base.group_portal'))]"/>
             <field name="dept_id" ref="openeducat_core.op_department_3"/>
             <field name="department_ids"
@@ -23,7 +23,7 @@
             <field name="tz">Asia/Calcutta</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_2"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('base.group_portal'))]"/>
         </record>
         <record id="op_user_student_3" model="res.users" context="{'no_reset_password': True}">
@@ -34,7 +34,7 @@
             <field name="tz">Asia/Calcutta</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_3"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('base.group_portal'))]"/>
         </record>
         <record id="op_user_student_4" model="res.users" context="{'no_reset_password': True}">
@@ -45,7 +45,7 @@
             <field name="tz">Asia/Calcutta</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_4"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('base.group_portal'))]"/>
         </record>
         <record id="op_user_student_5" model="res.users" context="{'no_reset_password': True}">
@@ -56,7 +56,7 @@
             <field name="tz">Asia/Calcutta</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_5"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('base.group_portal'))]"/>
         </record>
         <record id="op_user_student_6" model="res.users" context="{'no_reset_password': True}">
@@ -67,7 +67,7 @@
             <field name="tz">Asia/Calcutta</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_6"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('base.group_portal'))]"/>
         </record>
         <record id="op_user_student_7" model="res.users" context="{'no_reset_password': True}">
@@ -78,7 +78,7 @@
             <field name="tz">Asia/Calcutta</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_7"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('base.group_portal'))]"/>
         </record>
         <record id="op_user_student_8" model="res.users" context="{'no_reset_password': True}">
@@ -89,7 +89,7 @@
             <field name="tz">Asia/Calcutta</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_8"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('base.group_portal'))]"/>
         </record>
         <record id="op_user_student_9" model="res.users" context="{'no_reset_password': True}">
@@ -100,7 +100,7 @@
             <field name="tz">Asia/Calcutta</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_9"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('base.group_portal'))]"/>
         </record>
         <record id="op_user_student_10" model="res.users" context="{'no_reset_password': True}">
@@ -111,7 +111,7 @@
             <field name="tz">Asia/Calcutta</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_10"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('base.group_portal'))]"/>
         </record>
         <record id="op_user_student_11" model="res.users" context="{'no_reset_password': True}">
@@ -122,7 +122,7 @@
             <field name="tz">Asia/Calcutta</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_11"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('base.group_portal'))]"/>
         </record>
         <record id="op_user_student_12" model="res.users" context="{'no_reset_password': True}">
@@ -133,7 +133,7 @@
             <field name="tz">Asia/Calcutta</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_12"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('base.group_portal'))]"/>
         </record>
         <record id="op_user_student_13" model="res.users" context="{'no_reset_password': True}">
@@ -144,7 +144,7 @@
             <field name="tz">Asia/Calcutta</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_13"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('base.group_portal'))]"/>
         </record>
         <record id="op_user_student_14" model="res.users" context="{'no_reset_password': True}">
@@ -155,7 +155,7 @@
             <field name="tz">Asia/Calcutta</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_14"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('base.group_portal'))]"/>
         </record>
         <record id="op_user_student_15" model="res.users" context="{'no_reset_password': True}">
@@ -166,7 +166,7 @@
             <field name="tz">Asia/Calcutta</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_15"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('base.group_portal'))]"/>
         </record>
         <record id="op_user_student_16" model="res.users" context="{'no_reset_password': True}">
@@ -177,7 +177,7 @@
             <field name="tz">Asia/Calcutta</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_16"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('base.group_portal'))]"/>
         </record>
         <record id="op_user_student_17" model="res.users" context="{'no_reset_password': True}">
@@ -188,7 +188,7 @@
             <field name="tz">Asia/Calcutta</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_17"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('base.group_portal'))]"/>
         </record>
         <record id="op_user_student_18" model="res.users" context="{'no_reset_password': True}">
@@ -199,7 +199,7 @@
             <field name="tz">Asia/Calcutta</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_18"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('base.group_portal'))]"/>
         </record>
         <record id="op_user_student_19" model="res.users" context="{'no_reset_password': True}">
@@ -210,7 +210,7 @@
             <field name="tz">Asia/Calcutta</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_19"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('base.group_portal'))]"/>
         </record>
         <record id="op_user_student_20" model="res.users" context="{'no_reset_password': True}">
@@ -221,7 +221,7 @@
             <field name="tz">Asia/Calcutta</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_20"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('base.group_portal'))]"/>
         </record>
         <record id="op_user_student_21" model="res.users" context="{'no_reset_password': True}">
@@ -232,7 +232,7 @@
             <field name="tz">Asia/Calcutta</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_21"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('base.group_portal'))]"/>
         </record>
         <record id="op_user_student_22" model="res.users" context="{'no_reset_password': True}">
@@ -243,7 +243,7 @@
             <field name="tz">Asia/Calcutta</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_22"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('base.group_portal'))]"/>
         </record>
         <record id="op_user_student_23" model="res.users" context="{'no_reset_password': True}">
@@ -254,7 +254,7 @@
             <field name="tz">Asia/Calcutta</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_23"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('base.group_portal'))]"/>
         </record>
         <record id="op_user_student_24" model="res.users" context="{'no_reset_password': True}">
@@ -265,7 +265,7 @@
             <field name="tz">Asia/Calcutta</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_24"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('base.group_portal'))]"/>
         </record>
         <record id="op_user_student_25" model="res.users" context="{'no_reset_password': True}">
@@ -276,7 +276,7 @@
             <field name="tz">Asia/Calcutta</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_25"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('base.group_portal'))]"/>
         </record>
 
@@ -286,7 +286,7 @@
             <field name="password">faculty</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_21"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('openeducat_core.group_op_faculty'))]"/>
             <field name="dept_id" ref="openeducat_core.op_department_1"/>
             <field name="department_ids"
@@ -303,7 +303,7 @@
             <field name="password">backoffice</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_31"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('openeducat_core.group_op_back_office_admin'))]"/>
             <field name="dept_id" ref="openeducat_core.op_department_3"/>
             <field name="department_ids"
@@ -315,7 +315,7 @@
             <field name="password">backofficeadmin</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_32"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="groups_id"
+            <field name="group_ids"
                    eval="[(4,ref('openeducat_core.group_op_back_office_admin'))]"/>
             <field name="dept_id" ref="openeducat_core.op_department_3"/>
             <field name="department_ids"
