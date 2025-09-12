@@ -35,17 +35,17 @@ class OpParent(models.Model):
     relationship_id = fields.Many2one('op.parent.relationship',
                                       'Relation with Student', required=True)
 
-    _sql_constraints = [(
-        'unique_parent',
-        'unique(name)',
-        'Can not create parent multiple times.!'
-    )]
+    _unique_parent = models.Constraint(
+    'unique(name)',
+    'Can not create parent multiple times.!')
+
 
     @api.onchange('name')
     def _onchange_name(self):
         if self.name:
             self.user_id = self.name.user_id.id if self.name.user_id else False
-            self.mobile = self.name.mobile
+            print(self.name.phone)
+            self.mobile = self.name.phone
             self.email = self.name.email
 
     @api.model_create_multi
@@ -61,8 +61,8 @@ class OpParent(models.Model):
                     update_vals = {'is_parent': True}
                     if parent_email and not partner.email:
                         update_vals['email'] = parent_email
-                    if parent_mobile and not partner.mobile:
-                        update_vals['mobile'] = parent_mobile
+                    if parent_mobile and not partner.phone:
+                        update_vals['phone'] = parent_mobile
                     partner.write(update_vals)
                     continue
 
@@ -71,15 +71,15 @@ class OpParent(models.Model):
                 '|', '|',
                 ('name', '=', parent_name),
                 ('email', '=', parent_email),
-                ('mobile', '=', parent_mobile),
+                ('phone', '=', parent_mobile),
             ], limit=1)
 
             if partner:
                 update_vals = {'is_parent': True}
                 if parent_email and not partner.email:
                     update_vals['email'] = parent_email
-                if parent_mobile and not partner.mobile:
-                    update_vals['mobile'] = parent_mobile
+                if parent_mobile and not partner.phone:
+                    update_vals['phone'] = parent_mobile
                 partner.write(update_vals)
 
                 vals['name'] = partner.id
@@ -87,12 +87,12 @@ class OpParent(models.Model):
                 new_partner = self.env['res.partner'].create({
                     'name': parent_name,
                     'email': parent_email,
-                    'mobile': parent_mobile,
+                    'phone': parent_mobile,
                     'is_parent': True,
                 })
                 vals['name'] = new_partner.id
                 vals['email'] = parent_email
-                vals['mobile'] = parent_mobile
+                vals['phone'] = parent_mobile
 
         res = super(OpParent, self).create(vals_list)
 
@@ -130,7 +130,7 @@ class OpParent(models.Model):
             if not record.name.email:
                 raise ValidationError(_('Update parent email id first.'))
             if not record.name.user_id:
-                groups_id = template and template.groups_id or False
+                groups_id = template and template.group_ids or False
                 user_ids = [
                     parent.user_id.id for
                     parent in record.student_ids if parent.user_id]
@@ -139,8 +139,8 @@ class OpParent(models.Model):
                     'partner_id': record.name.id,
                     'login': record.name.email,
                     'is_parent': True,
-                    'tz': self._context.get('tz'),
-                    'groups_id': groups_id,
+                    'tz': self.env.context.get('tz'),
+                    'group_ids': groups_id,
                     'child_ids': [(6, 0, user_ids)]
                 })
                 record.user_id = user_id
