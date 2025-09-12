@@ -54,7 +54,7 @@ class SessionReport(models.TransientModel):
                 raise ValidationError(_('End Date cannot be set before \
                 Start Date.'))
             elif end_date > (start_date + timedelta(days=6)):
-                raise ValidationError(_("Please select a date range for one week."))
+                raise ValidationError(_("Select date range for a week!"))
 
     @api.onchange('course_id')
     def onchange_course(self):

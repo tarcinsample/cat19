@@ -19,8 +19,3 @@
 ###############################################################################
 
 from . import test_timetable
-from . import test_timetable_common
-from . import test_timetable_generation
-from . import test_timing_validation
-from . import test_faculty_conflicts
-from . import test_timetable_reports

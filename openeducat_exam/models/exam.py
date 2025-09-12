@@ -70,7 +70,7 @@ class OpExam(models.Model):
                 raise ValidationError(_('Enter proper marks!'))
             if record.min_marks > record.total_marks:
                 raise ValidationError(_(
-                    "Passing marks cannot be greater than total marks."))
+                    "Passing Marks can't be greater than Total Marks"))
 
     @api.constrains('start_time', 'end_time', 'session_id')
     def _check_date_time(self):
@@ -96,7 +96,7 @@ class OpExam(models.Model):
                         _('End Time cannot be set before Start Time.'))
                 elif start_time_dt == end_time_dt:
                     raise ValidationError(
-                        _("End time and start time cannot be set at the same time."))
+                        _('End Time and start time can not set at same time.'))
                 elif start_time_dt < session_start_dt or \
                         start_time_dt > session_end_dt or \
                         end_time_dt < session_start_dt or \
@@ -105,70 +105,21 @@ class OpExam(models.Model):
                         _('Exam Time should be within the Exam Session Dates.'))
 
     def open_exam_attendees(self):
-        """Open exam attendees view.
-        
-        Returns action to view and manage exam attendees.
-        """
         self.ensure_one()
         return {
             "type": "ir.actions.act_window",
             "res_model": "op.exam.attendees",
             "domain": [("exam_id", "=", self.id)],
-            "name": _("Exam Attendees - %s") % self.name,
+            "name": "Students",
             "view_mode": "list,form",
-            "context": {
-                'default_exam_id': self.id,
-                'default_course_id': self.course_id.id,
-                'default_batch_id': self.batch_id.id
-            },
+            "context": {'default_exam_id': self.id},
             "target": "current",
         }
-        
-    def _generate_attendees(self):
-        """Generate attendee records for all students in the batch.
-        
-        Creates attendee records for students enrolled in the course/batch.
-        """
-        self.ensure_one()
-        if not self.session_id or not self.session_id.batch_id:
-            raise ValidationError(_(
-                "Exam session and batch are required to generate attendees."))
-            
-        # Find all students in the batch
-        students = self.env['op.student'].search([
-            ('course_detail_ids.course_id', '=', self.course_id.id),
-            ('course_detail_ids.batch_id', '=', self.batch_id.id),
-            ('active', '=', True)
-        ])
-        
-        if not students:
-            raise ValidationError(_(
-                "No students found for course '%s' and batch '%s'.") % (
-                self.course_id.name, self.batch_id.name))
-        
-        # Create attendee records
-        attendee_vals = []
-        for student in students:
-            attendee_vals.append({
-                'exam_id': self.id,
-                'student_id': student.id,
-                'status': 'present'  # Default to present
-            })
-        
-        if attendee_vals:
-            self.env['op.exam.attendees'].create(attendee_vals)
-            return len(attendee_vals)
-        
-        return 0
 
-    @api.depends('attendees_line')
     def _compute_attendees_count(self):
-        """Compute attendees count efficiently.
-        
-        Uses relation field length instead of database search.
-        """
         for record in self:
-            record.attendees_count = len(record.attendees_line)
+            record.attendees_count = self.env["op.exam.attendees"].search_count(
+                [("exam_id", "=", record.id)])
 
     @api.depends('attendees_line', 'attendees_line.marks')
     def _compute_results_entered(self):
@@ -198,108 +149,56 @@ class OpExam(models.Model):
                 ))
 
     def act_result_updated(self):
-        """Update exam state to result updated.
-        
-        Validates that all attendees have marks entered.
-        """
         self.ensure_one()
-        if self.state != 'held':
-            raise ValidationError(_(
-                "Results can only be updated for exams in 'Held' state."))
-                
-        # Validate that results have been entered
-        if not self.attendees_line:
-            raise ValidationError(_(
-                "Cannot update results without any attendees."))
-                
-        missing_results = self.attendees_line.filtered(
-            lambda a: a.status == 'present' and (a.marks is False or a.marks is None))
-        if missing_results:
-            student_names = ', '.join(missing_results.mapped('student_id.name'))
-            raise ValidationError(_(
-                "Results are missing for the following present students: %s") % 
-                student_names)
-                
-        self.state = 'result_updated'
+        if self.state == 'held':
+            self.write({'state': 'result_updated'})
+        else:
+            raise ValidationError(
+                _("Results can only be updated for exams in 'Held' state."))
 
     def act_done(self):
-        """Mark exam as completed.
-        
-        Validates that exam is in proper state for completion.
-        """
         for record in self:
-            if record.state not in ['result_updated', 'held']:
-                raise ValidationError(_(
-                    "Exam can only be marked as 'Done' from 'Held' "
-                    "or 'Result Updated' state."))
-            record.state = 'done'
+            if record.state in ['result_updated', 'held']:
+                record.state = 'done'
+            else:
+                raise ValidationError(
+                    _("Exam can only be marked as 'Done' from 'Held' \
+                    or 'Result Updated' state."))
 
     def act_draft(self):
-        """Reset exam to draft state for editing."""
         for record in self:
-            if record.state == 'done':
-                raise ValidationError(_(
-                    "Cannot reset completed exam to draft state."))
             record.state = 'draft'
 
     def act_cancel(self):
-        """Cancel exam and remove associated attendees.
-        
-        Validates exam state and removes attendee records.
+        """
+        Action to cancel an exam. This will DELETE its associated
+        op.exam.attendees records.
         """
         for exam in self:
             if exam.state == 'done':
-                raise ValidationError(_(
-                    "Cannot cancel an exam that is already 'Done'."))
-            
-            # Check if results have been generated
-            if exam.state == 'result_updated' and exam.attendees_line.filtered('marks'):
-                raise ValidationError(_(
-                    "Cannot cancel exam with entered results. "
-                    "Please remove results first."))
+                raise ValidationError(
+                    _("Cannot cancel an exam that is already 'Done'."))
 
-            # Remove attendees using the relation field for better performance
-            if exam.attendees_line:
-                exam.attendees_line.unlink()
+            attendees_for_exam = self.env['op.exam.attendees'].\
+                search([('exam_id', '=', exam.id)])
+
+            if attendees_for_exam:
+                attendees_for_exam.unlink()
             exam.state = 'cancel'
         return True
 
     def act_schedule(self):
-        """Schedule exam and generate attendees.
-        
-        Validates exam configuration and creates attendee records.
-        """
         for record in self:
-            if record.state != 'draft':
-                raise ValidationError(_(
-                    "Exam can only be scheduled from 'Draft' state."))
-                    
-            # Validate required fields
-            if not record.session_id:
-                raise ValidationError(_("Exam session is required to schedule exam."))
-            if not record.subject_id:
-                raise ValidationError(_("Subject is required to schedule exam."))
-            if not record.start_time or not record.end_time:
-                raise ValidationError(_("Start time and end time are required."))
-                
-            record.state = 'schedule'
-            
-            # Auto-generate attendees if none exist
-            if not record.attendees_line:
-                record._generate_attendees()
+            if record.state == 'draft':
+                record.state = 'schedule'
+            else:
+                raise ValidationError(
+                    _("Exam can only be scheduled from 'Draft' state."))
 
     def act_held(self):
-        """Mark exam as held.
-        
-        Validates that exam is scheduled and has attendees.
-        """
         for record in self:
-            if record.state != 'schedule':
-                raise ValidationError(_(
-                    "Exam can only be marked as 'Held' from 'Scheduled' state."))
-                    
-            if not record.attendees_line:
-                raise ValidationError(_(
-                    "Cannot mark exam as held without any attendees."))
-                    
-            record.state = 'held'
+            if record.state == 'schedule':
+                record.state = 'held'
+            else:
+                raise ValidationError(
+                    _("Exam can only be marked as 'Held' from 'Scheduled' state."))

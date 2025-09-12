@@ -70,79 +70,31 @@ class OpResultTemplate(models.Model):
                     _('Percentage range conflict with other record.'))
 
     def generate_result(self):
-        """Generate result marksheets for exam session.
-        
-        Creates marksheet register and lines for all students with optimized batch operations.
-        """
         for record in self:
-            # Validate exam session has completed exams
-            if not record.exam_session_id.exam_ids:
-                raise ValidationError(_(
-                    "Cannot generate results for session without exams."))
-                    
-            incomplete_exams = record.exam_session_id.exam_ids.filtered(
-                lambda e: e.state not in ['held', 'result_updated', 'done'])
-            if incomplete_exams:
-                exam_names = ', '.join(incomplete_exams.mapped('name'))
-                raise ValidationError(_(
-                    "Cannot generate results. The following exams are not completed: %s") % 
-                    exam_names)
-            
-            # Create marksheet register
             marksheet_reg_id = self.env['op.marksheet.register'].create({
-                'name': f"Mark Sheet for {record.exam_session_id.name}",
+                'name': 'Mark Sheet for %s' % record.exam_session_id.name,
                 'exam_session_id': record.exam_session_id.id,
                 'generated_date': fields.Date.today(),
                 'generated_by': self.env.uid,
                 'state': 'draft',
                 'result_template_id': record.id
             })
-            
-            # Collect student data efficiently
             student_dict = {}
-            result_lines_data = []
-            
             for exam in record.exam_session_id.exam_ids:
                 for attendee in exam.attendees_line:
-                    # Prepare result line data for batch creation
-                    result_lines_data.append({
+                    result_line_id = self.env['op.result.line'].create({
                         'student_id': attendee.student_id.id,
                         'exam_id': exam.id,
-                        'marks': str(attendee.marks if attendee.marks is not None else 0),
+                        'marks': str(attendee.marks and attendee.marks or 0),
                     })
-                    
-                    # Track students for marksheet line creation
                     if attendee.student_id.id not in student_dict:
                         student_dict[attendee.student_id.id] = []
-                    student_dict[attendee.student_id.id].append(len(result_lines_data) - 1)
-            
-            # Batch create result lines
-            result_lines = self.env['op.result.line'].create(result_lines_data)
-            
-            # Create marksheet lines and link result lines
-            marksheet_lines_data = []
-            for student_id in student_dict:
-                marksheet_lines_data.append({
-                    'student_id': student_id,
+                    student_dict[attendee.student_id.id].append(result_line_id)
+            for student in student_dict:
+                marksheet_line_id = self.env['op.marksheet.line'].create({
+                    'student_id': student,
                     'marksheet_reg_id': marksheet_reg_id.id,
                 })
-            
-            # Batch create marksheet lines
-            marksheet_lines = self.env['op.marksheet.line'].create(marksheet_lines_data)
-            
-            # Link result lines to marksheet lines
-            for i, (student_id, result_indices) in enumerate(student_dict.items()):
-                marksheet_line = marksheet_lines[i]
-                for result_index in result_indices:
-                    result_lines[result_index].marksheet_line_id = marksheet_line.id
-            
+                for result_line in student_dict[student]:
+                    result_line.marksheet_line_id = marksheet_line_id
             record.state = 'result_generated'
-            
-            return {
-                'type': 'ir.actions.act_window',
-                'name': _('Generated Marksheet Register'),
-                'res_model': 'op.marksheet.register',
-                'res_id': marksheet_reg_id.id,
-                'view_mode': 'form',
-                'target': 'current'
-            }

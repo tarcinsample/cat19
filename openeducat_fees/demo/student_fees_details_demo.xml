@@ -6,14 +6,14 @@
             <field name="student_id" ref="openeducat_core.op_student_1"/>
             <field name="product_id" ref="op_product_1"/>
             <field name="fees_line_id" ref="openeducat_fees.op_fees_term_line_1"/>
-            <field name="date" eval="(DateTime.today() - relativedelta(days=10))"/>
+            <field name="date" eval="(DateTime.today() - relativedelta(days=5))"/>
         </record>
 
         <record id="op_student_fees_details_2" model="op.student.fees.details">
             <field name="state">draft</field>
             <field name="amount">30000</field>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
-            <field name="product_id" ref="op_product_2"/>
+            <field name="product_id" ref="op_product_1"/>
             <field name="fees_line_id" ref="openeducat_fees.op_fees_term_line_2"/>
             <field name="date" eval="(DateTime.today() - relativedelta(days=5))"/>
         </record>
@@ -22,7 +22,7 @@
             <field name="state">draft</field>
             <field name="amount">40000</field>
             <field name="student_id" ref="openeducat_core.op_student_1"/>
-            <field name="product_id" ref="op_product_3"/>
+            <field name="product_id" ref="op_product_1"/>
             <field name="fees_line_id" ref="openeducat_fees.op_fees_term_line_3"/>
             <field name="date" eval="(DateTime.today() + relativedelta(days=5))"/>
         </record>
@@ -33,25 +33,25 @@
             <field name="student_id" ref="openeducat_core.op_student_2"/>
             <field name="product_id" ref="op_product_1"/>
             <field name="fees_line_id" ref="openeducat_fees.op_fees_term_line_1"/>
-            <field name="date" eval="(DateTime.today() - relativedelta(days=8))"/>
+            <field name="date" eval="(DateTime.today() - relativedelta(days=5))"/>
         </record>
 
         <record id="op_student_fees_details_5" model="op.student.fees.details">
             <field name="state">draft</field>
             <field name="amount">30000</field>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
-            <field name="product_id" ref="op_product_2"/>
+            <field name="product_id" ref="op_product_1"/>
             <field name="fees_line_id" ref="openeducat_fees.op_fees_term_line_2"/>
-            <field name="date" eval="(DateTime.today() - relativedelta(days=3))"/>
+            <field name="date" eval="(DateTime.today() + relativedelta(days=5))"/>
         </record>
 
         <record id="op_student_fees_details_6" model="op.student.fees.details">
             <field name="state">draft</field>
             <field name="amount">40000</field>
             <field name="student_id" ref="openeducat_core.op_student_2"/>
-            <field name="product_id" ref="op_product_3"/>
+            <field name="product_id" ref="op_product_1"/>
             <field name="fees_line_id" ref="openeducat_fees.op_fees_term_line_3"/>
-            <field name="date" eval="(DateTime.today() + relativedelta(days=7))"/>
+            <field name="date" eval="(DateTime.today() + relativedelta(days=5))"/>
         </record>
 
         <record id="op_student_fees_details_7" model="op.student.fees.details">
@@ -60,25 +60,25 @@
             <field name="student_id" ref="openeducat_core.op_student_3"/>
             <field name="product_id" ref="op_product_1"/>
             <field name="fees_line_id" ref="openeducat_fees.op_fees_term_line_1"/>
-            <field name="date" eval="(DateTime.today() - relativedelta(days=6))"/>
+            <field name="date" eval="(DateTime.today() + relativedelta(days=5))"/>
         </record>
 
         <record id="op_student_fees_details_8" model="op.student.fees.details">
             <field name="state">draft</field>
             <field name="amount">30000</field>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
-            <field name="product_id" ref="op_product_2"/>
+            <field name="product_id" ref="op_product_1"/>
             <field name="fees_line_id" ref="openeducat_fees.op_fees_term_line_2"/>
-            <field name="date" eval="(DateTime.today() - relativedelta(days=1))"/>
+            <field name="date" eval="(DateTime.today() + relativedelta(days=5))"/>
         </record>
 
         <record id="op_student_fees_details_9" model="op.student.fees.details">
             <field name="state">draft</field>
             <field name="amount">40000</field>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
-            <field name="product_id" ref="op_product_3"/>
+            <field name="product_id" ref="op_product_1"/>
             <field name="fees_line_id" ref="openeducat_fees.op_fees_term_line_3"/>
-            <field name="date" eval="(DateTime.today() + relativedelta(days=9))"/>
+            <field name="date" eval="(DateTime.today() + relativedelta(days=5))"/>
         </record>
 
         <record id="op_student_fees_details_10" model="op.student.fees.details">
@@ -87,61 +87,61 @@
             <field name="student_id" ref="openeducat_core.op_student_4"/>
             <field name="product_id" ref="op_product_1"/>
             <field name="fees_line_id" ref="openeducat_fees.op_fees_term_line_1"/>
-            <field name="date" eval="(DateTime.today() - relativedelta(days=4))"/>
+            <field name="date" eval="(DateTime.today() + relativedelta(days=5))"/>
         </record>
 
         <record id="op_student_fees_details_11" model="op.student.fees.details">
             <field name="state">draft</field>
             <field name="amount">30000</field>
             <field name="student_id" ref="openeducat_core.op_student_4"/>
-            <field name="product_id" ref="op_product_2"/>
+            <field name="product_id" ref="op_product_1"/>
             <field name="fees_line_id" ref="openeducat_fees.op_fees_term_line_2"/>
-            <field name="date" eval="(DateTime.today() + relativedelta(days=1))"/>
+            <field name="date" eval="(DateTime.today() + relativedelta(days=5))"/>
         </record>
 
         <record id="op_student_fees_details_12" model="op.student.fees.details">
             <field name="state">draft</field>
             <field name="amount">40000</field>
             <field name="student_id" ref="openeducat_core.op_student_4"/>
-            <field name="product_id" ref="op_product_3"/>
+            <field name="product_id" ref="op_product_1"/>
             <field name="fees_line_id" ref="openeducat_fees.op_fees_term_line_3"/>
-            <field name="date" eval="(DateTime.today() + relativedelta(days=11))"/>
+            <field name="date" eval="(DateTime.today() + relativedelta(days=5))"/>
         </record>
 
         <record id="op_student_fees_details_13" model="op.student.fees.details">
             <field name="state">draft</field>
             <field name="amount">40000</field>
             <field name="student_id" ref="openeducat_core.op_student_9"/>
-            <field name="product_id" ref="op_product_1"/>
+            <field name="product_id" ref="op_product_3"/>
             <field name="fees_line_id" ref="openeducat_fees.op_fees_term_line_4"/>
-            <field name="date" eval="(DateTime.today() - relativedelta(days=2))"/>
+            <field name="date" eval="(DateTime.today() + relativedelta(days=5))"/>
         </record>
 
         <record id="op_student_fees_details_14" model="op.student.fees.details">
             <field name="state">draft</field>
             <field name="amount">40000</field>
             <field name="student_id" ref="openeducat_core.op_student_9"/>
-            <field name="product_id" ref="op_product_2"/>
+            <field name="product_id" ref="op_product_3"/>
             <field name="fees_line_id" ref="openeducat_fees.op_fees_term_line_5"/>
-            <field name="date" eval="(DateTime.today() + relativedelta(days=3))"/>
+            <field name="date" eval="(DateTime.today() + relativedelta(days=5))"/>
         </record>
 
         <record id="op_student_fees_details_15" model="op.student.fees.details">
             <field name="state">draft</field>
             <field name="amount">40000</field>
             <field name="student_id" ref="openeducat_core.op_student_10"/>
-            <field name="product_id" ref="op_product_1"/>
+            <field name="product_id" ref="op_product_3"/>
             <field name="fees_line_id" ref="openeducat_fees.op_fees_term_line_4"/>
-            <field name="date" eval="(DateTime.today() + relativedelta(days=2))"/>
+            <field name="date" eval="(DateTime.today() + relativedelta(days=5))"/>
         </record>
 
         <record id="op_student_fees_details_16" model="op.student.fees.details">
             <field name="state">draft</field>
             <field name="amount">40000</field>
             <field name="student_id" ref="openeducat_core.op_student_10"/>
-            <field name="product_id" ref="op_product_2"/>
+            <field name="product_id" ref="op_product_3"/>
             <field name="fees_line_id" ref="openeducat_fees.op_fees_term_line_5"/>
-            <field name="date" eval="(DateTime.today() + relativedelta(days=13))"/>
+            <field name="date" eval="(DateTime.today() + relativedelta(days=5))"/>
         </record>
 
         <record id="openeducat_core.op_user_faculty" model="res.users">

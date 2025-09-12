@@ -64,80 +64,27 @@ class OpMarksheetRegister(models.Model):
 
     @api.depends('marksheet_line.status')
     def _compute_total_pass(self):
-        """Compute total passed students efficiently.
-        
-        Uses filtered operation for better performance.
-        """
         for record in self:
-            record.total_pass = len(record.marksheet_line.filtered(lambda m: m.status == 'pass'))
+            count = 0
+            for marksheet in record.marksheet_line:
+                if marksheet.status == 'pass':
+                    count += 1
+            record.total_pass = count
 
     @api.depends('marksheet_line.status')
     def _compute_total_failed(self):
-        """Compute total failed students efficiently.
-        
-        Uses filtered operation for better performance.
-        """
         for record in self:
-            record.total_failed = len(record.marksheet_line.filtered(lambda m: m.status == 'fail'))
+            count = 0
+            for marksheet in record.marksheet_line:
+                if marksheet.status == 'fail':
+                    count += 1
+            record.total_failed = count
 
     def action_validate(self):
-        """Validate marksheet register.
-        
-        Validates all marksheet lines have proper status before validation.
-        """
-        self.ensure_one()
-        if not self.marksheet_line:
-            raise ValidationError(_(
-                "Cannot validate marksheet register without any marksheet lines."))
-                
-        # Check all marksheet lines have status
-        lines_without_status = self.marksheet_line.filtered(lambda l: not l.status)
-        if lines_without_status:
-            student_names = ', '.join(lines_without_status.mapped('student_id.name'))
-            raise ValidationError(_(
-                "Cannot validate marksheet. Status missing for students: %s") % 
-                student_names)
-                
         self.state = 'validated'
 
     def act_cancel(self):
-        """Cancel marksheet register."""
-        self.ensure_one()
-        if self.state == 'validated':
-            raise ValidationError(_(
-                "Cannot cancel validated marksheet register."))
         self.state = 'cancelled'
 
     def act_draft(self):
-        """Reset marksheet register to draft state."""
-        self.ensure_one()
-        if self.state == 'validated':
-            raise ValidationError(_(
-                "Cannot reset validated marksheet register to draft."))
         self.state = 'draft'
-        
-    def get_pass_percentage(self):
-        """Calculate pass percentage for this register.
-        
-        Returns percentage of students who passed.
-        """
-        self.ensure_one()
-        total_students = len(self.marksheet_line)
-        if total_students == 0:
-            return 0.0
-            
-        return (self.total_pass / total_students) * 100
-        
-    def generate_marksheet_report(self):
-        """Generate marksheet report action.
-        
-        Returns action to generate and view marksheet report.
-        """
-        self.ensure_one()
-        return {
-            'type': 'ir.actions.report',
-            'report_name': 'openeducat_exam.marksheet_register_report',
-            'report_type': 'qweb-pdf',
-            'data': {'ids': [self.id]},
-            'context': self.env.context,
-        }

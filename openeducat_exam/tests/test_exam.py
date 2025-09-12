@@ -143,11 +143,10 @@ class TestMarksheetRegister(TestExamCommon):
             logging.info('Exam Session : %s' % (data.exam_session_id.name))
             for res in data.marksheet_line:
                 logging.info('Marksheets : %s' % (res.id))
-            
-            # Call methods on each register record
-            data._check_marks()
-            data._compute_total_pass()
-            data._compute_total_failed()
+
+        data._check_marks()
+        data._compute_total_pass()
+        data._compute_total_failed()
 
 
 class TestResultLine(TestExamCommon):
@@ -177,16 +176,9 @@ class TestResultTemplate(TestExamCommon):
         for data in result_Template:
             logging.info('    %s' % data.name)
             logging.info('State : %s' % data.state)
-            
-            # Call validation methods on each template
-            data._check_exam_session()
-            data._check_min_max_per()
-            
-            # Only generate result if exam session has exams
-            if data.exam_session_id.exam_ids:
-                data.generate_result()
-            else:
-                logging.info('Skipping result generation - no exams in session')
+        data._check_exam_session()
+        data._check_min_max_per()
+        data.generate_result()
 
 
 class TestExamSession(TestExamCommon):
@@ -223,15 +215,8 @@ class TestRoomDistribution(TestExamCommon):
 
     def test_room_distribution(self):
         room = self.op_room_distribution.search([])
-        if room:
-            room._compute_get_total_student()
-            room._compute_get_room_capacity()
-            
-            # Only schedule exam if room has required data
-            if room.room_id and room.student_line:
-                room.schedule_exam()
-                logging.info('computed total students')
-            else:
-                logging.info('Skipping schedule_exam - missing room or students')
-        else:
-            logging.info('No room distribution records found')
+        room._compute_get_total_student()
+        room._compute_get_room_capacity()
+        room.schedule_exam()
+
+        logging.info('computed total students')

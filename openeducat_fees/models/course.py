@@ -18,32 +18,10 @@
 #
 ##############################################################################
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class OpCourse(models.Model):
-    """Extended course model with fees term configuration.
-    
-    This model adds fee payment term configuration to courses,
-    allowing different fee structures for different courses.
-    """
     _inherit = "op.course"
 
-    fees_term_id = fields.Many2one(
-        'op.fees.terms', 'Fees Term',
-        domain="[('active', '=', True)]",
-        help="Default fee payment term for this course")
-    fees_amount = fields.Monetary(
-        'Course Fees',
-        currency_field='currency_id',
-        help="Base fee amount for this course")
-    currency_id = fields.Many2one(
-        'res.currency', 'Currency',
-        default=lambda self: self.env.user.company_id.currency_id,
-        help="Currency for fee calculations")
-    
-    @api.onchange('fees_term_id')
-    def _onchange_fees_term_id(self):
-        """Update currency when fee term changes."""
-        if self.fees_term_id and self.fees_term_id.company_id:
-            self.currency_id = self.fees_term_id.company_id.currency_id.id
+    fees_term_id = fields.Many2one('op.fees.terms', 'Fees Term')
