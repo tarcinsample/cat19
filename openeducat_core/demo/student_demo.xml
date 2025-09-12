@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo noupdate="1">
         <record id="op_student_1" model="op.student">
-            <field name="title" ref="base.res_partner_title_miss"/>
+            <field name="title" ref="openeducat_core.res_partner_title_miss"/>
             <field name="name">Emma J Parker</field>
             <field name="first_name">Emma</field>
             <field name="middle_name">J</field>
@@ -27,7 +27,7 @@
         </record>
 
         <record id="op_student_2" model="op.student">
-            <field name="title" ref="base.res_partner_title_mister"/>
+            <field name="title" ref="openeducat_core.res_partner_title_mister"/>
             <field name="name">James M Garcia</field>
             <field name="first_name">James</field>
             <field name="middle_name">M</field>
@@ -52,7 +52,7 @@
         </record>
 
         <record id="op_student_3" model="op.student">
-            <field name="title" ref="base.res_partner_title_miss"/>
+            <field name="title" ref="openeducat_core.res_partner_title_miss"/>
             <field name="name">Priya R Reddy</field>
             <field name="first_name">Priya</field>
             <field name="middle_name">R</field>
@@ -77,7 +77,7 @@
         </record>
 
         <record id="op_student_4" model="op.student">
-            <field name="title" ref="base.res_partner_title_mister"/>
+            <field name="title" ref="openeducat_core.res_partner_title_mister"/>
             <field name="name">Alex J Parker</field>
             <field name="first_name">Alex</field>
             <field name="middle_name">J</field>
@@ -102,7 +102,7 @@
         </record>
 
         <record id="op_student_5" model="op.student">
-            <field name="title" ref="base.res_partner_title_mister"/>
+            <field name="title" ref="openeducat_core.res_partner_title_mister"/>
             <field name="name">Taye K Kamau</field>
             <field name="first_name">Taye</field>
             <field name="middle_name">K</field>
@@ -127,7 +127,7 @@
         </record>
 
         <record id="op_student_6" model="op.student">
-            <field name="title" ref="base.res_partner_title_mister"/>
+            <field name="title" ref="openeducat_core.res_partner_title_mister"/>
             <field name="name">Tony J Mitchell</field>
             <field name="first_name">Tony</field>
             <field name="middle_name">J</field>
@@ -152,7 +152,7 @@
         </record>
 
         <record id="op_student_7" model="op.student">
-            <field name="title" ref="base.res_partner_title_miss"/>
+            <field name="title" ref="openeducat_core.res_partner_title_miss"/>
             <field name="name">Sofia M Rossi</field>
             <field name="first_name">Sofia</field>
             <field name="middle_name">M</field>
@@ -177,7 +177,7 @@
         </record>
 
         <record id="op_student_8" model="op.student">
-            <field name="title" ref="base.res_partner_title_mister"/>
+            <field name="title" ref="openeducat_core.res_partner_title_mister"/>
             <field name="name">Lucas D Lewis</field>
             <field name="first_name">Lucas</field>
             <field name="middle_name">D</field>
@@ -202,7 +202,7 @@
         </record>
 
         <record id="op_student_9" model="op.student">
-            <field name="title" ref="base.res_partner_title_mister"/>
+            <field name="title" ref="openeducat_core.res_partner_title_mister"/>
             <field name="name">Michael H Young</field>
             <field name="first_name">Michael</field>
             <field name="middle_name">H</field>
@@ -227,7 +227,7 @@
         </record>
 
         <record id="op_student_10" model="op.student">
-            <field name="title" ref="base.res_partner_title_mister"/>
+            <field name="title" ref="openeducat_core.res_partner_title_mister"/>
             <field name="name">Joon H Kim</field>
             <field name="first_name">Joon</field>
             <field name="middle_name">H</field>
@@ -252,7 +252,7 @@
         </record>
 
         <record id="op_student_11" model="op.student">
-            <field name="title" ref="base.res_partner_title_mister"/>
+            <field name="title" ref="openeducat_core.res_partner_title_mister"/>
             <field name="name">Aarav M Sharma</field>
             <field name="first_name">Aarav</field>
             <field name="middle_name">M</field>
@@ -277,7 +277,7 @@
         </record>
 
         <record id="op_student_12" model="op.student">
-            <field name="title" ref="base.res_partner_title_mister"/>
+            <field name="title" ref="openeducat_core.res_partner_title_mister"/>
             <field name="name">David L Adams</field>
             <field name="first_name">David</field>
             <field name="middle_name">L</field>
@@ -302,7 +302,7 @@
         </record>
 
         <record id="op_student_13" model="op.student">
-            <field name="title" ref="base.res_partner_title_miss"/>
+            <field name="title" ref="openeducat_core.res_partner_title_miss"/>
             <field name="name">Imani J Jengo</field>
             <field name="first_name">Imani</field>
             <field name="middle_name">J</field>
@@ -327,7 +327,7 @@
         </record>
 
         <record id="op_student_14" model="op.student">
-            <field name="title" ref="base.res_partner_title_mister"/>
+            <field name="title" ref="openeducat_core.res_partner_title_mister"/>
             <field name="name">Daniel V King</field>
             <field name="first_name">Daniel</field>
             <field name="middle_name">V</field>
@@ -352,7 +352,7 @@
         </record>
 
         <record id="op_student_15" model="op.student">
-            <field name="title" ref="base.res_partner_title_mister"/>
+            <field name="title" ref="openeducat_core.res_partner_title_mister"/>
             <field name="name">Henry S Lee</field>
             <field name="first_name">Henry</field>
             <field name="middle_name">S</field>
@@ -377,7 +377,7 @@
         </record>
 
         <record id="op_student_16" model="op.student">
-            <field name="title" ref="base.res_partner_title_miss"/>
+            <field name="title" ref="openeducat_core.res_partner_title_miss"/>
             <field name="name">Camila M Brooks</field>
             <field name="first_name">Camila</field>
             <field name="middle_name">M</field>
@@ -402,7 +402,7 @@
         </record>
 
         <record id="op_student_17" model="op.student">
-            <field name="title" ref="base.res_partner_title_miss"/>
+            <field name="title" ref="openeducat_core.res_partner_title_miss"/>
             <field name="name">Ruby N Johnson</field>
             <field name="first_name">Ruby</field>
             <field name="middle_name">N</field>
@@ -427,7 +427,7 @@
         </record>
 
         <record id="op_student_18" model="op.student">
-            <field name="title" ref="base.res_partner_title_miss"/>
+            <field name="title" ref="openeducat_core.res_partner_title_miss"/>
             <field name="name">Bella L Carter</field>
             <field name="first_name">Bella</field>
             <field name="middle_name">L</field>
@@ -452,7 +452,7 @@
         </record>
 
         <record id="op_student_19" model="op.student">
-            <field name="title" ref="base.res_partner_title_mister"/>
+            <field name="title" ref="openeducat_core.res_partner_title_mister"/>
             <field name="name">Sekou O Omari</field>
             <field name="first_name">Sekou</field>
             <field name="middle_name">O</field>
@@ -477,7 +477,7 @@
         </record>
 
         <record id="op_student_20" model="op.student">
-            <field name="title" ref="base.res_partner_title_mister"/>
+            <field name="title" ref="openeducat_core.res_partner_title_mister"/>
             <field name="name">Sam A Phillips</field>
             <field name="first_name">Sam</field>
             <field name="middle_name">A</field>
@@ -501,7 +501,7 @@
                    file="openeducat_core/static/img/student_20.jpg"/>
         </record>
         <record id="op_student_21" model="op.student">
-            <field name="title" ref="base.res_partner_title_mister"/>
+            <field name="title" ref="openeducat_core.res_partner_title_mister"/>
             <field name="name">Ben T Wood</field>
             <field name="first_name">Ben</field>
             <field name="middle_name">T</field>
@@ -526,7 +526,7 @@
         </record>
 
         <record id="op_student_22" model="op.student">
-            <field name="title" ref="base.res_partner_title_mister"/>
+            <field name="title" ref="openeducat_core.res_partner_title_mister"/>
             <field name="name">Oren H Shimon</field>
             <field name="first_name">Oren</field>
             <field name="middle_name">H</field>
@@ -551,7 +551,7 @@
         </record>
 
         <record id="op_student_23" model="op.student">
-            <field name="title" ref="base.res_partner_title_miss"/>
+            <field name="title" ref="openeducat_core.res_partner_title_miss"/>
             <field name="name">Lily G Hill</field>
             <field name="first_name">Lily</field>
             <field name="middle_name">G</field>
@@ -575,7 +575,7 @@
         </record>
 
         <record id="op_student_24" model="op.student">
-            <field name="title" ref="base.res_partner_title_mister"/>
+            <field name="title" ref="openeducat_core.res_partner_title_mister"/>
             <field name="name">Jun W Wu</field>
             <field name="first_name">Jun</field>
             <field name="middle_name">W</field>
@@ -600,7 +600,7 @@
         </record>
 
         <record id="op_student_25" model="op.student">
-            <field name="title" ref="base.res_partner_title_miss"/>
+            <field name="title" ref="openeducat_core.res_partner_title_miss"/>
             <field name="name">Samira B Bassam</field>
             <field name="first_name">Samira</field>
             <field name="middle_name">B</field>

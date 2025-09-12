@@ -71,7 +71,7 @@
                     <field name="parent_id"/>
                     <field name="department_id"/>
                     <newline/>
-                    <group expand="0" string="Group By...">
+                    <group>
                         <filter name="group_by_evaluation_type"
                                 string="Evaluation Type" domain="[]"
                                 context="{'group_by':'evaluation_type'}"/>

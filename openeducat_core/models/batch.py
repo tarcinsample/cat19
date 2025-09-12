@@ -34,10 +34,9 @@ class OpBatch(models.Model):
     end_date = fields.Date('End Date', required=True)
     course_id = fields.Many2one('op.course', 'Course', required=True)
     active = fields.Boolean(default=True)
-
-    _sql_constraints = [
-        ('unique_batch_code',
-         'unique(code)', 'Code should be unique per batch!')]
+    
+    _unique_batch_code = models.Constraint('unique(code)', 
+                                           'Code should be unique per batch!')
 
     @api.constrains('start_date', 'end_date')
     def check_dates(self):

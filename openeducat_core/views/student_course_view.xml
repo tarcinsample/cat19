@@ -62,7 +62,7 @@
                     <field name="batch_id"/>
                     <field name="roll_number"/>
                     <newline/>
-                    <group expand="0" string="Group By...">
+                    <group>
                         <filter string="Course" name="group_by_adm_course_id"
                                 domain="[]" context="{'group_by':'course_id'}"/>
                         <filter string="Batch" name="group_by_adm_batch_id"

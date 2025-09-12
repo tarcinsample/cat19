@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo noupdate="1">
         <record id="op_faculty_1" model="op.faculty">
-            <field name="title" ref="base.res_partner_title_mister"/>
+            <field name="title" ref="openeducat_core.res_partner_title_mister"/>
             <field name="name">William D Mitchell</field>
             <field name="first_name">William</field>
             <field name="middle_name">D</field>
@@ -28,7 +28,7 @@
         </record>
 
         <record id="op_faculty_2" model="op.faculty">
-            <field name="title" ref="base.res_partner_title_mister"/>
+            <field name="title" ref="openeducat_core.res_partner_title_mister"/>
             <field name="name">John C White</field>
             <field name="first_name">John</field>
             <field name="middle_name">C</field>
@@ -54,7 +54,7 @@
         </record>
 
         <record id="op_faculty_3" model="op.faculty">
-            <field name="title" ref="base.res_partner_title_miss"/>
+            <field name="title" ref="openeducat_core.res_partner_title_miss"/>
             <field name="name">Robert F Moore</field>
             <field name="first_name">Robert</field>
             <field name="middle_name">F</field>
@@ -80,7 +80,7 @@
         </record>
 
         <record id="op_faculty_4" model="op.faculty">
-            <field name="title" ref="base.res_partner_title_miss"/>
+            <field name="title" ref="openeducat_core.res_partner_title_miss"/>
             <field name="name">Mary L Johnson</field>
             <field name="first_name">Mary</field>
             <field name="middle_name">L</field>
@@ -106,7 +106,7 @@
         </record>
 
         <record id="op_faculty_5" model="op.faculty">
-            <field name="title" ref="base.res_partner_title_mister"/>
+            <field name="title" ref="openeducat_core.res_partner_title_mister"/>
             <field name="name">Thomas L Turner</field>
             <field name="first_name">Thomas</field>
             <field name="middle_name">L</field>
@@ -132,7 +132,7 @@
         </record>
 
         <record id="op_faculty_6" model="op.faculty">
-            <field name="title" ref="base.res_partner_title_miss"/>
+            <field name="title" ref="openeducat_core.res_partner_title_miss"/>
             <field name="name">Alice T Foster</field>
             <field name="first_name">Alice</field>
             <field name="middle_name">T</field>
@@ -158,7 +158,7 @@
         </record>
 
         <record id="op_faculty_7" model="op.faculty">
-            <field name="title" ref="base.res_partner_title_mister"/>
+            <field name="title" ref="openeducat_core.res_partner_title_mister"/>
             <field name="name">Cheng F Feng</field>
             <field name="first_name">Cheng</field>
             <field name="middle_name">F</field>
@@ -184,7 +184,7 @@
         </record>
 
         <record id="op_faculty_8" model="op.faculty">
-            <field name="title" ref="base.res_partner_title_mister"/>
+            <field name="title" ref="openeducat_core.res_partner_title_mister"/>
             <field name="name">Raj K Khanna</field>
             <field name="first_name">Raj</field>
             <field name="middle_name">K</field>
@@ -210,7 +210,7 @@
         </record>
 
         <record id="op_faculty_9" model="op.faculty">
-            <field name="title" ref="base.res_partner_title_miss"/>
+            <field name="title" ref="openeducat_core.res_partner_title_miss"/>
             <field name="name">Xiulan Z Zhang</field>
             <field name="first_name">Xiulan</field>
             <field name="middle_name">Z</field>
@@ -236,7 +236,7 @@
         </record>
 
         <record id="op_faculty_10" model="op.faculty">
-            <field name="title" ref="base.res_partner_title_miss"/>
+            <field name="title" ref="openeducat_core.res_partner_title_miss"/>
             <field name="name">Sarah P Clark</field>
             <field name="first_name">Sarah</field>
             <field name="middle_name">P</field>
@@ -263,7 +263,7 @@
         </record>
 
         <record id="op_faculty_11" model="op.faculty">
-            <field name="title" ref="base.res_partner_title_miss"/>
+            <field name="title" ref="openeducat_core.res_partner_title_miss"/>
             <field name="name">Grace L Cooper</field>
             <field name="first_name">Grace</field>
             <field name="middle_name">L</field>
@@ -289,7 +289,7 @@
         </record>
 
         <record id="op_faculty_12" model="op.faculty">
-            <field name="title" ref="base.res_partner_title_miss"/>
+            <field name="title" ref="openeducat_core.res_partner_title_miss"/>
             <field name="name">Ruby D Wilson</field>
             <field name="first_name">Ruby</field>
             <field name="middle_name">D</field>
@@ -315,7 +315,7 @@
         </record>
 
         <record id="op_faculty_13" model="op.faculty">
-            <field name="title" ref="base.res_partner_title_mister"/>
+            <field name="title" ref="openeducat_core.res_partner_title_mister"/>
             <field name="name">Yusuf I Ibrahim	</field>
             <field name="first_name">Yusuf</field>
             <field name="middle_name">I</field>
@@ -341,7 +341,7 @@
         </record>
 
         <record id="op_faculty_14" model="op.faculty">
-            <field name="title" ref="base.res_partner_title_miss"/>
+            <field name="title" ref="openeducat_core.res_partner_title_miss"/>
             <field name="name">Amina K Kone</field>
             <field name="first_name">Amina</field>
             <field name="middle_name">K</field>
@@ -367,7 +367,7 @@
         </record>
 
         <record id="op_faculty_15" model="op.faculty">
-            <field name="title" ref="base.res_partner_title_miss"/>
+            <field name="title" ref="openeducat_core.res_partner_title_miss"/>
             <field name="name">Grace S Davis</field>
             <field name="first_name">Grace</field>
             <field name="middle_name">S</field>

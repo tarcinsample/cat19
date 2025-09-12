@@ -57,7 +57,7 @@
                     <field name="type"/>
                     <field name="department_id"/>
                     <newline/>
-                    <group expand="0" string="Group By...">
+                    <group>
                         <filter name="group_by_subject_type"
                                 string="Type" domain="[]"
                                 context="{'group_by':'type'}"/>

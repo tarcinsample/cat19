@@ -7,7 +7,6 @@
         <field name="res_model">res.config.settings</field>
         <field name="path">res-config-settings</field>
         <field name="view_mode">form</field>
-        <field name="target">inline</field>
         <field name="context">{'module' : 'openeducat_core'}</field>
     </record>
     <!-- Openeducat Menu -->
