@@ -21,7 +21,7 @@
         </record>
 
         <record id="openeducat_core.op_user_faculty" model="res.users">
-            <field name="groups_id"
+            <field name="group_ids"
             eval="[(4,ref('openeducat_facility.group_op_facility_user'))]"/>
         </record>
 
