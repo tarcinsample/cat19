@@ -29,6 +29,5 @@ class OpFacility(models.Model):
     code = fields.Char('Code', size=16, required=True)
     active = fields.Boolean(default=True)
 
-    _sql_constraints = [
-        ('unique_facility_code',
-         'unique(code)', 'Code should be unique per facility!')]
+    _unique_facility_code = models.Constraint('unique(code)',
+                                              'Code should be unique per facility!')
