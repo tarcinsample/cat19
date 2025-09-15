@@ -1300,7 +1300,7 @@
         </record>
 
         <record id="openeducat_core.op_user_faculty" model="res.users">
-            <field name="groups_id"
+            <field name="group_ids"
             eval="[(4,ref('openeducat_attendance.group_op_attendance_user'))]"/>
         </record>
 </odoo>
