@@ -53,7 +53,7 @@
                     <field name="exam_id"/>
                     <field name="marks"/>
                     <newline/>
-                    <group expand="0" string="Group By...">
+                    <group>
                         <filter string="Marksheet Line" name="group_by_result_line_marksheet_line"
                                 domain="[]" context="{'group_by':'marksheet_line_id'}"/>
                         <filter string="Exam" name="group_by_result_line_exam"

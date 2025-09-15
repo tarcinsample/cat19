@@ -50,19 +50,23 @@
                                 <field name="fees_element_line" required="1"/>
                             </list>
                             <form string="Fees Term Line">
-                                <group colspan="4">
-                                    <field name="due_days"
-                                           invisible="parent.fees_terms != 'fixed_days'" required="parent.fees_terms == 'fixed_days'"/>
-                                    <field name="due_date" invisible="parent.fees_terms != 'fixed_date'" required="parent.fees_terms == 'fixed_date'"
-                                           />
-                                    <field name="value" required="1"/>
+                                <group>
+                                    <group colspan="4">
+                                        <field name="due_days"
+                                               invisible="parent.fees_terms != 'fixed_days'" required="parent.fees_terms == 'fixed_days'"/>
+                                        <field name="due_date" invisible="parent.fees_terms != 'fixed_date'" required="parent.fees_terms == 'fixed_date'"
+                                               />
+                                        <field name="value" required="1"/>
+                                    </group>
                                    <separator string="Fees Elements" colspan="4"/>
-                                    <field name="fees_element_line" nolabel="1">
-                                        <list string="Information" editable="top">
-                                            <field name="product_id"/>
-                                            <field name="value"/>
-                                        </list>
-                                    </field>
+                                   <group colspan="4">
+                                       <field name="fees_element_line" nolabel="1">
+                                           <list string="Information" editable="top">
+                                               <field name="product_id"/>
+                                               <field name="value"/>
+                                           </list>
+                                       </field>
+                                   </group>
                                 </group>
                             </form>
                         </field>
