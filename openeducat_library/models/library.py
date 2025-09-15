@@ -63,10 +63,8 @@ class OpLibraryCard(models.Model):
                                  domain=[('library_card_id', '=', False)])
     active = fields.Boolean(default=True)
 
-    _sql_constraints = [(
-        'unique_library_card_number',
-        'unique(number)',
-        'Library card Number should be unique per card!')]
+    _unique_library_card_number = models.Constraint('unique(number)',
+                                           'Library card Number should be unique per card!')
 
     @api.model_create_multi
     def create(self, vals_list):
