@@ -39,9 +39,8 @@ class OpAttendanceRegister(models.Model):
         'op.subject', 'Subject', tracking=True)
     active = fields.Boolean(default=True)
 
-    _sql_constraints = [
-        ('unique_attendance_register_code',
-         'unique(code)', 'Code should be unique per attendance register!')]
+    _unique_attendance_register_code = models.Constraint(
+        'unique(code)', 'Code should be unique per attendance register!')
 
     @api.depends('course_id')
     def onchange_course(self):

@@ -91,7 +91,7 @@
                                     ('attendance_date', '&gt;=', (context_today()-relativedelta(day=1)).strftime('%Y-%m-%d'))]"/>
                     <filter string="Archived" name="inactive"
                             domain="[('active', '=', False)]"/>
-                    <group expand="0" string="Group By...">
+                    <group>
                         <filter string="Register" name="group_by_attendance_sheet_register_id"
                                 domain="[]" context="{'group_by':'register_id'}"/>
                         <filter string="Date" name="group_by_attendance_sheet_attendance_date"
