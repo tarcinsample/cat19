@@ -78,9 +78,11 @@
                         <div style="width:100%;" class="row align-items-center">
                             <div class="mb16 col-8 col-lg-10 px-4">
                                 <div class="d-flex student-name">
-                                    <h1 class="">
-                                        <field name="title" widget="inline_many2one" placeholder="Title"/>
-                                    </h1>
+                                    <div style="max-width:150px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                                        <h1 class="mb-0">
+                                            <field name="title" options="{'no_create': True}" placeholder="Title"/>
+                                        </h1>
+                                    </div>
                                     <div class="">
                                         <h1 class="d-lg-flex flex-wrap align-items-center gap-1">
                                             <field name="name" placeholder="Name" required="1" invisible="1"/>

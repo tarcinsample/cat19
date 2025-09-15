@@ -44,9 +44,9 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <field name="function" position="before">
+            <xpath expr="//field[@name='function']" position="before">
                 <field name="title" options="{'no_open': True}" placeholder="e.g. Mr." invisible="is_company"/>
-            </field>
+            </xpath>
         </field>
     </record>
 

@@ -70,7 +70,7 @@
                     <filter string="Archived" name="inactive"
                             domain="[('active', '=', False)]"/>
                     <newline/>
-                    <group expand="0" string="Group By...">
+                    <group>
                         <filter string="Name" name="group_by_classroom_name"
                                 domain="[]" context="{'group_by':'name'}"/>
                         <filter string="Code" name="group_by_classroom_code"
