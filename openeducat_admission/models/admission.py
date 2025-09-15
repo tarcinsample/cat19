@@ -27,8 +27,7 @@ from odoo.exceptions import UserError, ValidationError
 
 class OpAdmission(models.Model):
     _name = "op.admission"
-    _inherit = ['mail.thread', 'mail.activity.mixin',
-                'mail.tracking.duration.mixin']
+    _inherit = ['mail.activity.mixin','mail.tracking.duration.mixin']
     _rec_name = "application_number"
     _description = "Admission"
     _order = 'id DESC'
@@ -113,12 +112,10 @@ class OpAdmission(models.Model):
     program_id = fields.Many2one('op.program', string="Program", tracking=True)
     course_ids = fields.Many2many('op.course', string='Courses',
                                   compute='_compute_course_ids')
-
-    _sql_constraints = [
-        ('unique_application_number',
-         'unique(application_number)',
-         'Application Number must be unique per Application!'),
-    ]
+    _unique_application_number = models.Constraint(
+        'unique(application_number)',
+        'Application Number must be unique per Application!'
+    )
 
     @api.depends('register_id')
     def _compute_course_ids(self):
@@ -258,14 +255,13 @@ class OpAdmission(models.Model):
                     'image_1920': self.image or False,
                     'is_student': True,
                     'company_id': self.company_id.id,
-                    'groups_id': [
+                    'group_ids': [
                         (6, 0,
                          [self.env.ref('base.group_portal').id])]
                 })
             details = {
                 'name': student.name,
                 'phone': student.phone,
-                'mobile': student.mobile,
                 'email': student.email,
                 'street': student.street,
                 'street2': student.street2,

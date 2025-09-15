@@ -8,8 +8,6 @@
                   sequence="10"
                   parent="menu_op_admission_root"/>
 
-
-
         <menuitem id="menu_admission" name="Applications"
                   groups="openeducat_admission.group_op_admission_admin,openeducat_admission.group_op_admission_user"
                   sequence="20"
