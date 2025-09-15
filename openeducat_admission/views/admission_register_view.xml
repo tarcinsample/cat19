@@ -115,8 +115,8 @@
                     <field name="name"/>
                     <field name="course_id"/>
                     <field name="product_id"/>
-                    <newline/>
-                    <group expand="0" string="Group By...">
+                    <separator/>
+                    <group>
                         <filter string="Course" name="group_by_adm_reg_course_id"
                                 domain="[]" context="{'group_by':'course_id'}"/>
                         <filter string="Fees" name="group_by_adm_reg_product_id"

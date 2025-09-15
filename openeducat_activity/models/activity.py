@@ -29,7 +29,7 @@ class OpActivity(models.Model):
 
     def _default_faculty(self):
         return self.env['op.faculty'].search([
-            ('user_id', '=', self._uid)
+            ('user_id', '=', self.env.uid)
         ], limit=1) or False
 
     student_id = fields.Many2one('op.student', 'Student', required=True)

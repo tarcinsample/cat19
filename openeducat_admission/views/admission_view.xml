@@ -235,10 +235,10 @@
                     <field name="birth_date"/>
                     <field name="course_id"/>
                     <field name="batch_id"/>
-                    <newline/>
+                    <separator/>
                     <filter name="enrolled_student" string="Enrolled"
                             domain="[('state','=','done')]"/>
-                    <group expand="0" string="Group By...">
+                    <group>
                         <filter string="Admission Date"
                                 name="group_by_adm_admission_date"
                                 domain="[]" context="{'group_by':'admission_date'}"/>
