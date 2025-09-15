@@ -6,7 +6,6 @@
             <field name="default_code">Admission Fees for CS-1</field>
             <field name="categ_id" ref="op_prod_cat1"/>
             <field name="uom_id" ref="uom.product_uom_unit"/>
-            <field name="uom_po_id" ref="uom.product_uom_unit"/>
             <field name="lst_price">100000</field>
         </record>
 
@@ -16,7 +15,6 @@
             <field name="default_code">Admission Fees for G8-AR</field>
             <field name="categ_id" ref="op_prod_cat1"/>
             <field name="uom_id" ref="uom.product_uom_unit"/>
-            <field name="uom_po_id" ref="uom.product_uom_unit"/>
             <field name="lst_price">20000</field>
         </record>
 
@@ -26,7 +24,6 @@
             <field name="default_code">Admission Fees for C-2</field>
             <field name="categ_id" ref="op_prod_cat1"/>
             <field name="uom_id" ref="uom.product_uom_unit"/>
-            <field name="uom_po_id" ref="uom.product_uom_unit"/>
             <field name="lst_price">80000</field>
         </record>
 
@@ -36,7 +33,6 @@
             <field name="default_code">Admission Fees for PPHD</field>
             <field name="categ_id" ref="op_prod_cat1"/>
             <field name="uom_id" ref="uom.product_uom_unit"/>
-            <field name="uom_po_id" ref="uom.product_uom_unit"/>
             <field name="lst_price">100000</field>
         </record>
 
@@ -46,7 +42,6 @@
             <field name="default_code">Fees for C-3</field>
             <field name="categ_id" ref="op_prod_cat1"/>
             <field name="uom_id" ref="uom.product_uom_unit"/>
-            <field name="uom_po_id" ref="uom.product_uom_unit"/>
             <field name="lst_price">30000</field>
         </record>
 
@@ -56,7 +51,6 @@
             <field name="default_code">Admission Fees for C-4</field>
             <field name="categ_id" ref="op_prod_cat1"/>
             <field name="uom_id" ref="uom.product_uom_unit"/>
-            <field name="uom_po_id" ref="uom.product_uom_unit"/>
             <field name="lst_price">20000</field>
         </record>
 
