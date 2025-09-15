@@ -49,7 +49,7 @@
                     <field name="address_id"/>
                     <field name="media_ids"/>
                     <newline/>
-                    <group expand="0" string="Group By...">
+                    <group >
                         <filter string="Publisher" name="group_by_lbr_publisher_name"
                                 domain="[]" context="{'group_by':'name'}"/>
                     </group>

@@ -35,7 +35,7 @@
                 <search string="Tag">
                     <field name="name" />
                     <newline />
-                    <group expand="0" string="Group By...">
+                    <group >
                         <filter string="Name" name="group_by_lbr_tag_name"
                                 domain="[]" context="{'group_by':'name'}" />
                     </group>

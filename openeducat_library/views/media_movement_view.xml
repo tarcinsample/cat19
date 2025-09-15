@@ -119,7 +119,7 @@
                             domain="[('return_date', '=', context_today().strftime('%Y-%m-%d'))]"/>
                     <filter string="Archived" name="inactive"
                             domain="[('active', '=', False)]"/>
-                    <group expand="0" string="Group By...">
+                    <group >
                         <filter string="media" name="group_by_lbr_media_mvmn_media"
                                 domain="[]" context="{'group_by':'media_id'}"/>
                         <filter string="Student" name="group_by_lbr_media_mvmn_student"
