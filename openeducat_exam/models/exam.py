@@ -59,9 +59,8 @@ class OpExam(models.Model):
     results_entered = fields.Boolean(string='Results Entered',
                                      compute='_compute_results_entered', store=True)
 
-    _sql_constraints = [
-        ('unique_exam_code',
-         'unique(exam_code)', 'Code should be unique per exam!')]
+    _unique_exam_code= models.Constraint('unique(exam_code)',
+                                           'Code should be unique per exam!')
 
     @api.constrains('total_marks', 'min_marks')
     def _check_marks(self):

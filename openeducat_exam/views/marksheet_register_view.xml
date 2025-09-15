@@ -74,7 +74,7 @@
                     <filter string="Archived" name="inactive"
                             domain="[('active', '=', False)]"/>
                     <newline/>
-                    <group expand="0" string="Group By...">
+                    <group>
                         <filter string="Exam Session"
                                 name="group_by_marksheet_register_exam_session"
                                 domain="[]" context="{'group_by':'exam_session_id'}"/>

@@ -41,7 +41,7 @@
                     <field name="name"/>
                     <field name="code"/>
                     <newline/>
-                    <group expand="0" string="Group By...">
+                    <group>
                         <filter string="Name" name="group_by_exam_type_code"
                                 domain="[]" context="{'group_by':'name'}"/>
                         <filter string="Code" name="group_by_exam_code"
