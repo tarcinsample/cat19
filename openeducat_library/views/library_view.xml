@@ -49,7 +49,7 @@
                     <field name="duration"/>
                     <field name="penalty_amt_per_day"/>
                     <newline/>
-                    <group expand="0" string="Group By...">
+                    <group >
                     </group>
                 </search>
             </field>
@@ -137,7 +137,7 @@
                     <field name="partner_id"/>
                     <field name="library_card_type_id"/>
                     <newline/>
-                    <group expand="0" string="Group By...">
+                    <group >
                         <filter string="Type" name="group_by_type"
                                 domain="[]" context="{'group_by': 'type'}"/>
                         <filter string="Archived" name="inactive"

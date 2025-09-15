@@ -82,7 +82,7 @@
                     <field name="barcode"/>
                     <field name="media_id"/>
                     <newline/>
-                    <group expand="0" string="Group By...">
+                    <group >
                         <filter string="Media" name="group_by_lbr_media_unit_media"
                                 domain="[]" context="{'group_by':'media_id'}"/>
                         <filter string="State" name="group_by_lbr_media_unit_state"
