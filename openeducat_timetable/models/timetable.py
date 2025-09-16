@@ -260,9 +260,12 @@ class OpSession(models.Model):
                 'openeducat_timetable.session_details_changes',
                 raise_if_not_found=False)
             for user in session.message_follower_ids:
-                if user.sudo().partner_id and user.sudo().partner_id.email:
+                if user.sudo().partner_id:
                     template.partner_to = user.sudo().partner_id.id
-                    template.send_mail(session.id)
+                    context = dict(self.env.context)
+                    user = self.env['res.users'].search([('partner_id', '=', user.sudo().partner_id.id)])
+                    context['timezone'] = user.tz or 'UTC'
+                    template.with_context(context).send_mail(session.id)
 
     def get_subject(self):
         return 'Lecture of ' + self.faculty_id.name + \
