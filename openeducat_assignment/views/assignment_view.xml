@@ -166,7 +166,7 @@
                                     ('submission_date', '&gt;=', (datetime.date.today()-relativedelta(day=1)).strftime('%Y-%m-%d'))]"/>
                     <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
 
-                    <group expand="0" string="Group By...">
+                    <group>
                         <filter string="Name" domain="[]" name="group_by_assignment_name"
                                 context="{'group_by':'name'}"/>
                         <filter string="Course" domain="[]" name="group_by_assignment_course"

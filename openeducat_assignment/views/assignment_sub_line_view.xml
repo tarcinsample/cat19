@@ -129,7 +129,7 @@
                                     ('submission_date', '&gt;=', (datetime.date.today()-relativedelta(day=1)).strftime('%Y-%m-%d'))]" />
                     <filter string="Archived" name="inactive" domain="[('active', '=', False)]" />
 
-                    <group expand="0" string="Group By...">
+                    <group>
                         <filter string="Assignment" domain="[]" name="group_by_assignment_id" context="{'group_by':'assignment_id'}" />
                         <filter string="Student" domain="[]" name="group_by_assignment_student_id" context="{'group_by':'student_id'}" />
                         <filter string="State" domain="[]" name="group_by_assignment_state" context="{'group_by':'state'}" />
