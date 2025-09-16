@@ -131,8 +131,9 @@
             <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line" />
             <field name="filter_domain">[('state', '!=', 'accept')]</field>
             <field name="trg_date_id" search="[('model','=','op.assignment.sub.line'),('name','=','submission_date')]" />
-            <field name="trg_date_range">-1</field>
+            <field name="trg_date_range">1</field>
             <field name="trg_date_range_type">day</field>
+            <field name="trg_date_range_mode">before</field>
         </record>
 
         <record id="email_template_assignment_submission_after" model="mail.template">
