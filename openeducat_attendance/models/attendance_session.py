@@ -38,10 +38,9 @@ class OpSession(models.Model):
         if self.id == sheet.session_id.id:
             if len(sheet) <= 1:
                 view_id = self.env.ref('openeducat_attendance.'
-                                       'view_op_attendance_sheet_form').id,
+                                       'view_op_attendance_sheet_form').id
                 return {
                     'name': 'Attendance Sheet',
-                    'view_type': 'form',
                     'view_mode': 'form',
                     'views': [(view_id, 'form')],
                     'res_model': 'op.attendance.sheet',
@@ -64,11 +63,10 @@ class OpSession(models.Model):
 
         else:
             view_id = self.env.ref('openeducat_attendance.'
-                                   'view_op_attendance_sheet_form').id,
+                                   'view_op_attendance_sheet_form').id
             return {
                 'name': 'Attendance Sheet',
-                'view_type': 'form',
-                'view_mode': 'list',
+                'view_mode': 'form',
                 'views': [(view_id, 'form')],
                 'res_model': 'op.attendance.sheet',
                 'view_id': False,
