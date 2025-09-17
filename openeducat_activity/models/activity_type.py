@@ -27,3 +27,7 @@ class OpActivityType(models.Model):
 
     name = fields.Char('Name', size=128, required=True)
     active = fields.Boolean(default=True)
+
+    _sql_constraints = [
+        ('unique_name',
+         'unique(name)', 'Activity type must be unique!')]
