@@ -265,7 +265,13 @@ class OpSession(models.Model):
             template = self.env.ref(
                 'openeducat_timetable.session_details_changes',
                 raise_if_not_found=False)
-            template.send_mail(session.id)
+            for user in session.message_follower_ids:
+                if user.sudo().partner_id:
+                    template.partner_to = user.sudo().partner_id.id
+                    context = dict(self.env.context)
+                    user = self.env['res.users'].search([('partner_id', '=', user.sudo().partner_id.id)])
+                    context['timezone'] = user.tz or 'UTC'
+                    template.with_context(context).send_mail(session.id)
 
     def get_emails(self, follower_ids):
         email_ids = ''

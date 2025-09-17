@@ -81,13 +81,14 @@
                                                             <li>
                                                                 Start Time:
                                                                 <span>
-                                                                    <t t-out="format_datetime(object.start_datetime, tz=user.tz)"/>
+                                                                    <t t-set="zone" t-value="ctx.get('timezone')"/>
+                                                                    <t t-out="format_datetime(object.start_datetime, tz=zone)"/>
                                                                 </span>
                                                             </li>
                                                             <li>
                                                                 End Time:
                                                                 <span>
-                                                                    <t t-out="format_datetime(object.end_datetime, tz=user.tz)"/>
+                                                                    <t t-out="format_datetime(object.end_datetime, tz=zone)"/>
                                                                 </span>
                                                             </li>
 
