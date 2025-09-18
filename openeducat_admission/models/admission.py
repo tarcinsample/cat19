@@ -156,7 +156,6 @@ class OpAdmission(models.Model):
             self.street = sd.street or False
             self.street2 = sd.street2 or False
             self.phone = sd.phone or False
-            self.mobile = sd.mobile or False
             self.email = sd.email or False
             self.zip = sd.zip or False
             self.city = sd.city or False
