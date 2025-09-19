@@ -127,8 +127,14 @@ class OpParent(models.Model):
         template = self.env.ref('openeducat_parent.parent_template_user')
         users_res = self.env['res.users']
         for record in self:
-            if not record.name.email:
+            partner = record.name
+            if not (partner.email or record.email):
                 raise ValidationError(_('Update parent email id first.'))
+            if not partner.email:
+                partner.email = record.email
+            if not partner.phone and record.mobile:
+                partner.phone = record.mobile
+
             if not record.name.user_id:
                 groups_id = template and template.group_ids or False
                 user_ids = [
@@ -137,7 +143,7 @@ class OpParent(models.Model):
                 user_id = users_res.create({
                     'name': record.name.name,
                     'partner_id': record.name.id,
-                    'login': record.name.email,
+                    'login': record.name.email or record.email,
                     'is_parent': True,
                     'tz': self.env.context.get('tz'),
                     'group_ids': groups_id,
