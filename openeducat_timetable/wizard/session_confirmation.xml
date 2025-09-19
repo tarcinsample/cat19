@@ -9,8 +9,7 @@
                     <h2>Are you sure you want to confirm selected sessions ?</h2>
                     <footer>
                         <span groups="base.group_user">
-                            <button string="Yes" type="object" name="state_confirmation" class="oe_highlight"/>
-                            or
+                            <button string="Yes" type="object" name="state_confirmation" class="oe_highlight m-2"/>
                             <button special="cancel" string="No" type="object"/>
                         </span>
                     </footer>

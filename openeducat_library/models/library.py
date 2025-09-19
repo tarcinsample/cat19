@@ -27,12 +27,12 @@ class OpLibraryCardType(models.Model):
     _description = "Library Card Type"
 
     name = fields.Char('Name', size=256, required=True)
-    allow_media = fields.Integer('No Of Medias Allowed', default=10,
+    allow_media = fields.Integer('No of Media Allowed', default=10,
                                  required=True)
     duration = fields.Integer(
         'Duration', help='Duration in terms of Number of Lead Days',
         required=True)
-    penalty_amt_per_day = fields.Float('Penalty Amount Per Day',
+    penalty_amt_per_day = fields.Float('Penalty Amount/Day',
                                        required=True)
 
     @api.constrains('allow_media', 'duration', 'penalty_amt_per_day')

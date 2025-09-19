@@ -167,10 +167,9 @@ class OpMediaMovement(models.Model):
                     product.categ_id.property_account_income_categ_id.id
             if not account_id:
                 raise UserError(
-                    _('There is no income account defined for this \
-                    product: "%s". You may have to install a chart of \
-                    account from Accounting app, settings \
-                    menu.') % (product.name,))
+                    _('There is no income account defined for this product: "%s". '
+                      'You may have to install a chart of account from Accounting'
+                      ' app, settings menu.') % (product.name,))
 
             invoice = self.env['account.move'].create({
                 'partner_id': rec.student_id.partner_id.id,

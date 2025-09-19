@@ -58,12 +58,10 @@
                                 <field name="description" colspan="4"/>
                             </page>
                             <page name="education_details" string="Education Details">
-                                <group string='Courses'>
+                                <separator string="Course"/>
                                     <field name="course_ids" nolabel="1" widget="many2many_tags" />
-                                </group>
-                                <group string="Subjects">
+                                <separator string="Subjects"/>
                                     <field name="subject_ids" nolabel="1" widget="many2many_tags" />
-                                </group>
                             </page>
                             <page name="movements" string="Movements"
                                   groups="openeducat_library.group_op_library">

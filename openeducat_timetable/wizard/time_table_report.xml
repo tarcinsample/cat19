@@ -29,7 +29,7 @@
                     <footer>
                         <span groups="base.group_user">
                             <button string="Print" type="object"
-                                    name="gen_time_table_report" class="oe_highlight"/>
+                                    name="gen_time_table_report" class="oe_highlight m-2"/>
                             <button special="cancel" string="Close" type="object"/>
                         </span>
                     </footer>
