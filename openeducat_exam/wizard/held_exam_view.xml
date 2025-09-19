@@ -7,7 +7,7 @@
             <field name="type">form</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <form string="Held Exam Wizard">
+                <form string="Held Exam">
                     <group col="2">
                         <group>
                             <field name="exam_id" invisible="1"/>
