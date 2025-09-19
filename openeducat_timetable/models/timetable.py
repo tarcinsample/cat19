@@ -102,8 +102,9 @@ class OpSession(models.Model):
         days = {0: 'monday', 1: 'tuesday', 2: 'wednesday', 3: 'thursday', 4: 'friday',
                 5: 'saturday', 6: 'sunday'}
         for record in self:
-            record.type = days.get(record.start_datetime.weekday()).capitalize()
-            record.days = days.get(record.start_datetime.weekday())
+            if record.start_datetime:
+                record.type = days.get(record.start_datetime.weekday()).capitalize()
+                record.days = days.get(record.start_datetime.weekday())
 
     @api.depends('faculty_id', 'subject_id', 'start_datetime', 'end_datetime')
     def _compute_name(self):

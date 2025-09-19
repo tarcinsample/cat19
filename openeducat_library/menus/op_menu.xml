@@ -88,7 +88,7 @@
                   action="act_open_op_tag_view"
                   groups="group_op_library"/>
 
-        <menuitem id="menu_op_tag_sub"
+        <menuitem id="menu_media_type"
                   name="Media Type"
                   parent="menu_op_school_library_config"
                   sequence="50"

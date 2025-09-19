@@ -230,7 +230,7 @@
             <field name="login">Ben@openeducat.com</field>
             <field name="is_student">True</field>
             <field name="tz">Asia/Calcutta</field>
-            <field name="partner_id" ref="openeducat_core.op_res_partner_21"/>
+            <field name="partner_id" ref="openeducat_core.op_res_partner_33"/>
             <field name="company_id" ref="base.main_company"/>
             <field name="group_ids"
                    eval="[(4,ref('base.group_portal'))]"/>
