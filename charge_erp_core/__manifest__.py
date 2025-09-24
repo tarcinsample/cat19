@@ -8,7 +8,7 @@
     'author': 'Jules',
     'website': 'https://www.charge-erp.com',
     'category': 'Education',
-    'depends': ['base', 'discuss'],
+    'depends': ['base', 'mail'],
     'data': [
         'security/security.xml',
         'views/student_views.xml',
