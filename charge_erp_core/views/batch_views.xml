@@ -2,18 +2,18 @@
 <odoo>
     <data>
 
-        <!-- Tree View for Batch -->
-        <record id="view_op_batch_tree" model="ir.ui.view">
-            <field name="name">op.batch.tree</field>
+        <!-- List View for Batch -->
+        <record id="view_op_batch_list" model="ir.ui.view">
+            <field name="name">op.batch.list</field>
             <field name="model">op.batch</field>
             <field name="arch" type="xml">
-                <tree string="Batches">
+                <list string="Batches">
                     <field name="name"/>
                     <field name="code"/>
                     <field name="course_id"/>
                     <field name="start_date"/>
                     <field name="end_date"/>
-                </tree>
+                </list>
             </field>
         </record>
 

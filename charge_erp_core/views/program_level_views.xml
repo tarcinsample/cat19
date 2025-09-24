@@ -2,14 +2,14 @@
 <odoo>
     <data>
 
-        <!-- Tree View for Program Level -->
-        <record id="view_op_program_level_tree" model="ir.ui.view">
-            <field name="name">op.program.level.tree</field>
+        <!-- List View for Program Level -->
+        <record id="view_op_program_level_list" model="ir.ui.view">
+            <field name="name">op.program.level.list</field>
             <field name="model">op.program.level</field>
             <field name="arch" type="xml">
-                <tree string="Program Levels">
+                <list string="Program Levels">
                     <field name="name"/>
-                </tree>
+                </list>
             </field>
         </record>
 

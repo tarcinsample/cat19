@@ -2,17 +2,17 @@
 <odoo>
     <data>
 
-        <!-- Tree View for Subject -->
-        <record id="view_op_subject_tree" model="ir.ui.view">
-            <field name="name">op.subject.tree</field>
+        <!-- List View for Subject -->
+        <record id="view_op_subject_list" model="ir.ui.view">
+            <field name="name">op.subject.list</field>
             <field name="model">op.subject</field>
             <field name="arch" type="xml">
-                <tree string="Subjects">
+                <list string="Subjects">
                     <field name="name"/>
                     <field name="code"/>
                     <field name="type"/>
                     <field name="subject_type"/>
-                </tree>
+                </list>
             </field>
         </record>
 

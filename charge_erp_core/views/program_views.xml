@@ -2,16 +2,16 @@
 <odoo>
     <data>
 
-        <!-- Tree View for Program -->
-        <record id="view_op_program_tree" model="ir.ui.view">
-            <field name="name">op.program.tree</field>
+        <!-- List View for Program -->
+        <record id="view_op_program_list" model="ir.ui.view">
+            <field name="name">op.program.list</field>
             <field name="model">op.program</field>
             <field name="arch" type="xml">
-                <tree string="Programs">
+                <list string="Programs">
                     <field name="name"/>
                     <field name="code"/>
                     <field name="program_level_id"/>
-                </tree>
+                </list>
             </field>
         </record>
 

@@ -2,14 +2,14 @@
 <odoo>
     <data>
 
-        <!-- Tree View -->
-        <record id="view_op_student_tree" model="ir.ui.view">
-            <field name="name">op.student.tree</field>
+        <!-- List View -->
+        <record id="view_op_student_list" model="ir.ui.view">
+            <field name="name">op.student.list</field>
             <field name="model">op.student</field>
             <field name="arch" type="xml">
-                <tree string="Students">
+                <list string="Students">
                     <field name="name"/>
-                </tree>
+                </list>
             </field>
         </record>
 
