@@ -46,7 +46,7 @@
         <record id="action_op_faculty" model="ir.actions.act_window">
             <field name="name">Faculties</field>
             <field name="res_model">op.faculty</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
         <!-- Menu for Faculty -->
