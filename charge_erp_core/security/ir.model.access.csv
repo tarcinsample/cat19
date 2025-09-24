@@ -1,8 +1,8 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_op_student,access.op.student,model_op_student,base.group_user,1,1,1,1
-access_op_course,access.op.course,model_op_course,base.group_user,1,1,1,1
-access_op_faculty,access.op.faculty,model_op_faculty,base.group_user,1,1,1,1
-access_op_subject,access.op.subject,model_op_subject,base.group_user,1,1,1,1
-access_op_batch,access.op.batch,model_op_batch,base.group_user,1,1,1,1
-access_op_program_level,access.op.program.level,model_op_program_level,base.group_user,1,1,1,1
-access_op_program,access.op.program,model_op_program,base.group_user,1,1,1,1
+id,name,model_id:!model,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_op_student,access.op.student,op.student,base.group_user,1,1,1,1
+access_op_course,access.op.course,op.course,base.group_user,1,1,1,1
+access_op_faculty,access.op.faculty,op.faculty,base.group_user,1,1,1,1
+access_op_subject,access.op.subject,op.subject,base.group_user,1,1,1,1
+access_op_batch,access.op.batch,op.batch,base.group_user,1,1,1,1
+access_op_program_level,access.op.program.level,op.program.level,base.group_user,1,1,1,1
+access_op_program,access.op.program,op.program,base.group_user,1,1,1,1
