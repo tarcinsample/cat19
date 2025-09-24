@@ -72,5 +72,35 @@
             <field name="perm_unlink" eval="1"/>
         </record>
 
+        <record id="access_op_department" model="ir.model.access">
+            <field name="name">access.op.department</field>
+            <field name="model_id" ref="model_op_department"/>
+            <field name="group_id" ref="base.group_user"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="access_op_academic_term" model="ir.model.access">
+            <field name="name">access.op.academic.term</field>
+            <field name="model_id" ref="model_op_academic_term"/>
+            <field name="group_id" ref="base.group_user"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="access_op_academic_year" model="ir.model.access">
+            <field name="name">access.op.academic.year</field>
+            <field name="model_id" ref="model_op_academic_year"/>
+            <field name="group_id" ref="base.group_user"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
     </data>
 </odoo>

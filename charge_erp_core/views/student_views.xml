@@ -9,6 +9,8 @@
             <field name="arch" type="xml">
                 <list string="Students">
                     <field name="name"/>
+                    <field name="birth_date"/>
+                    <field name="gender"/>
                 </list>
             </field>
         </record>
@@ -21,7 +23,18 @@
                 <form string="Student">
                     <sheet>
                         <group>
-                            <field name="name"/>
+                            <group>
+                                <field name="name"/>
+                                <field name="birth_date"/>
+                                <field name="gender"/>
+                            </group>
+                            <group>
+                                <field name="blood_group"/>
+                                <field name="visa_info"/>
+                                <field name="is_an_alumni"/>
+                                <field name="nationality"/>
+                                <field name="lang"/>
+                            </group>
                         </group>
                     </sheet>
                 </form>
@@ -40,7 +53,7 @@
 
         <!-- Menu -->
         <menuitem id="menu_op_student" name="Students"
-                  parent="menu_op_school_root"
+                  parent="charge_erp_core.menu_op_school_root"
                   action="action_op_student"
                   sequence="10"/>
 

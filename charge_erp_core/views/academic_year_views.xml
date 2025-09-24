@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- List View for Academic Year -->
+        <record id="view_op_academic_year_list" model="ir.ui.view">
+            <field name="name">op.academic.year.list</field>
+            <field name="model">op.academic.year</field>
+            <field name="arch" type="xml">
+                <list string="Academic Years">
+                    <field name="name"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="term_structure"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Form View for Academic Year -->
+        <record id="view_op_academic_year_form" model="ir.ui.view">
+            <field name="name">op.academic.year.form</field>
+            <field name="model">op.academic.year</field>
+            <field name="arch" type="xml">
+                <form string="Academic Year">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="term_structure"/>
+                            <field name="active"/>
+                        </group>
+                        <notebook>
+                            <page string="Academic Terms">
+                                <field name="academic_term_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action for Academic Year -->
+        <record id="action_op_academic_year" model="ir.actions.act_window">
+            <field name="name">Academic Years</field>
+            <field name="res_model">op.academic.year</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!-- Menu for Academic Year -->
+        <menuitem id="menu_op_academic_year" name="Academic Years"
+                  parent="charge_erp_core.menu_op_school_root"
+                  action="action_op_academic_year"
+                  sequence="100"/>
+
+    </data>
+</odoo>

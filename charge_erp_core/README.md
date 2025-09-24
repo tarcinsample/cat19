@@ -14,6 +14,9 @@ As of the current version, this module includes the following features:
     - Batches (`op.batch`)
     - Program Levels (`op.program.level`)
     - Programs (`op.program`)
+    - Departments (`op.department`)
+    - Academic Terms (`op.academic.term`)
+    - Academic Years (`op.academic.year`)
 - Basic views (list and form) and menu items for each of the above models.
 - Basic access rights for all new models.
 
