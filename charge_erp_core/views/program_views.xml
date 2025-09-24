@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Tree View for Program -->
+        <record id="view_op_program_tree" model="ir.ui.view">
+            <field name="name">op.program.tree</field>
+            <field name="model">op.program</field>
+            <field name="arch" type="xml">
+                <tree string="Programs">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="program_level_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View for Program -->
+        <record id="view_op_program_form" model="ir.ui.view">
+            <field name="name">op.program.form</field>
+            <field name="model">op.program</field>
+            <field name="arch" type="xml">
+                <form string="Program">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="code"/>
+                                <field name="program_level_id"/>
+                            </group>
+                            <group>
+                                <field name="max_unit_load"/>
+                                <field name="min_unit_load"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Image">
+                                <field name="image_1920" widget="image"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action for Program -->
+        <record id="action_op_program" model="ir.actions.act_window">
+            <field name="name">Programs</field>
+            <field name="res_model">op.program</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menu for Program -->
+        <menuitem id="menu_op_program" name="Programs"
+                  parent="charge_erp_core.menu_op_school_root"
+                  action="action_op_program"
+                  sequence="70"/>
+
+    </data>
+</odoo>

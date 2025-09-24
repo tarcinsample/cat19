@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Tree View for Faculty -->
+        <record id="view_op_faculty_tree" model="ir.ui.view">
+            <field name="name">op.faculty.tree</field>
+            <field name="model">op.faculty</field>
+            <field name="arch" type="xml">
+                <tree string="Faculties">
+                    <field name="name"/>
+                    <field name="gender"/>
+                    <field name="birth_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View for Faculty -->
+        <record id="view_op_faculty_form" model="ir.ui.view">
+            <field name="name">op.faculty.form</field>
+            <field name="model">op.faculty</field>
+            <field name="arch" type="xml">
+                <form string="Faculty">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="first_name"/>
+                                <field name="middle_name"/>
+                                <field name="last_name"/>
+                                <field name="name" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="gender"/>
+                                <field name="birth_date"/>
+                                <field name="blood_group"/>
+                                <field name="nationality"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action for Faculty -->
+        <record id="action_op_faculty" model="ir.actions.act_window">
+            <field name="name">Faculties</field>
+            <field name="res_model">op.faculty</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menu for Faculty -->
+        <menuitem id="menu_op_faculty" name="Faculties"
+                  parent="charge_erp_core.menu_op_school_root"
+                  action="action_op_faculty"
+                  sequence="30"/>
+
+    </data>
+</odoo>

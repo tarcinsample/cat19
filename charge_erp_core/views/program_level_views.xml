@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Tree View for Program Level -->
+        <record id="view_op_program_level_tree" model="ir.ui.view">
+            <field name="name">op.program.level.tree</field>
+            <field name="model">op.program.level</field>
+            <field name="arch" type="xml">
+                <tree string="Program Levels">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View for Program Level -->
+        <record id="view_op_program_level_form" model="ir.ui.view">
+            <field name="name">op.program.level.form</field>
+            <field name="model">op.program.level</field>
+            <field name="arch" type="xml">
+                <form string="Program Level">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action for Program Level -->
+        <record id="action_op_program_level" model="ir.actions.act_window">
+            <field name="name">Program Levels</field>
+            <field name="res_model">op.program.level</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menu for Program Level -->
+        <menuitem id="menu_op_program_level" name="Program Levels"
+                  parent="charge_erp_core.menu_op_school_root"
+                  action="action_op_program_level"
+                  sequence="60"/>
+
+    </data>
+</odoo>
