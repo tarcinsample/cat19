@@ -20,5 +20,5 @@
         'views/program_views.xml',
     ],
     'installable': True,
-    'application': True,
+    'application': False,
 }
