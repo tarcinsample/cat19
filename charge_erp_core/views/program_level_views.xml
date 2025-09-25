@@ -37,7 +37,7 @@
 
         <!-- Menu for Program Level -->
         <menuitem id="menu_op_program_level" name="Program Levels"
-                  parent="charge_erp_core.menu_op_school_root"
+                  parent="menu_op_school_root"
                   action="action_op_program_level"
                   sequence="60"/>
 

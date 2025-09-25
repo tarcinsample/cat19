@@ -9,7 +9,6 @@
             <field name="arch" type="xml">
                 <list string="Faculties">
                     <field name="name"/>
-                    <field name="gender"/>
                     <field name="birth_date"/>
                 </list>
             </field>
@@ -30,7 +29,6 @@
                                 <field name="name" readonly="1"/>
                             </group>
                             <group>
-                                <field name="gender"/>
                                 <field name="birth_date"/>
                                 <field name="blood_group"/>
                                 <field name="nationality"/>
@@ -51,7 +49,7 @@
 
         <!-- Menu for Faculty -->
         <menuitem id="menu_op_faculty" name="Faculties"
-                  parent="charge_erp_core.menu_op_school_root"
+                  parent="menu_op_school_root"
                   action="action_op_faculty"
                   sequence="30"/>
 

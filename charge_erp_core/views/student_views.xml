@@ -9,8 +9,8 @@
             <field name="arch" type="xml">
                 <list string="Students">
                     <field name="name"/>
-                    <field name="birth_date"/>
-                    <field name="gender"/>
+                    <field name="email"/>
+                    <field name="phone"/>
                 </list>
             </field>
         </record>
@@ -22,20 +22,44 @@
             <field name="arch" type="xml">
                 <form string="Student">
                     <sheet>
-                        <group>
-                            <group>
-                                <field name="name"/>
-                                <field name="birth_date"/>
-                                <field name="gender"/>
-                            </group>
-                            <group>
-                                <field name="blood_group"/>
-                                <field name="visa_info"/>
-                                <field name="is_an_alumni"/>
-                                <field name="nationality"/>
-                                <field name="lang"/>
-                            </group>
-                        </group>
+                        <field name="image_1920" widget="image" class="oe_avatar"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Student's Name"/>
+                            </h1>
+                        </div>
+                        <notebook>
+                            <page string="Personal Information">
+                                <group>
+                                    <group>
+                                        <field name="birth_date"/>
+                                        <field name="blood_group"/>
+                                    </group>
+                                    <group>
+                                        <field name="country_id"/>
+                                        <field name="lang"/>
+                                        <field name="visa_info"/>
+                                        <field name="is_an_alumni"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Contact Information">
+                                <group>
+                                    <field name="phone"/>
+                                    <field name="mobile"/>
+                                    <field name="email"/>
+                                </group>
+                                <label for="street"/>
+                                <div class="o_address_format">
+                                    <field name="street" placeholder="Street..."/>
+                                    <field name="street2" placeholder="Street 2..."/>
+                                    <field name="city" placeholder="City"/>
+                                    <field name="state_id" class="o_address_state" placeholder="State"/>
+                                    <field name="zip" placeholder="ZIP"/>
+                                    <field name="country_id" placeholder="Country"/>
+                                </div>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>
@@ -53,7 +77,7 @@
 
         <!-- Menu -->
         <menuitem id="menu_op_student" name="Students"
-                  parent="charge_erp_core.menu_op_school_root"
+                  parent="menu_op_school_root"
                   action="action_op_student"
                   sequence="10"/>
 

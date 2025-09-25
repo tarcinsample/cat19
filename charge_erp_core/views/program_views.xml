@@ -53,7 +53,7 @@
 
         <!-- Menu for Program -->
         <menuitem id="menu_op_program" name="Programs"
-                  parent="charge_erp_core.menu_op_school_root"
+                  parent="menu_op_school_root"
                   action="action_op_program"
                   sequence="70"/>
 

@@ -47,7 +47,7 @@
 
         <!-- Menu for Course -->
         <menuitem id="menu_op_course" name="Courses"
-                  parent="charge_erp_core.menu_op_school_root"
+                  parent="menu_op_school_root"
                   action="action_op_course"
                   sequence="20"/>
 

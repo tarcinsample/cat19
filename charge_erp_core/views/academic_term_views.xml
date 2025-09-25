@@ -44,7 +44,7 @@
 
         <!-- Menu for Academic Term -->
         <menuitem id="menu_op_academic_term" name="Academic Terms"
-                  parent="charge_erp_core.menu_op_school_root"
+                  parent="menu_op_school_root"
                   action="action_op_academic_term"
                   sequence="90"/>
 
