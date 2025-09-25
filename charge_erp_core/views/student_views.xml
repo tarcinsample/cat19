@@ -33,6 +33,7 @@
                                 <group>
                                     <group>
                                         <field name="birth_date"/>
+                                        <field name="gender"/>
                                         <field name="blood_group"/>
                                     </group>
                                     <group>
@@ -46,7 +47,6 @@
                             <page string="Contact Information">
                                 <group>
                                     <field name="phone"/>
-                                    <field name="mobile"/>
                                     <field name="email"/>
                                 </group>
                                 <label for="street"/>

@@ -19,3 +19,10 @@ class OpStudent(models.Model):
         string='Blood Group')
     visa_info = fields.Char(string='Visa Info')
     is_an_alumni = fields.Boolean(string='Is an Alumni?')
+    gender = fields.Selection(
+        [('male', 'Male'), ('female', 'Female'), ('other', 'Other')],
+        string='Gender', related='partner_id.gender', readonly=False)
+    country_id = fields.Many2one(
+        'res.country', string='Nationality', related='partner_id.country_id', readonly=False)
+    lang = fields.Many2one(
+        'res.lang', string='Language', related='partner_id.lang', readonly=False)
