@@ -1,34 +1,39 @@
-# Charge ERP Core Module
+# Charge ERP Core
 
-This module contains the core models and functionality for the Charge ERP system.
+This is the core module for the Charge ERP School Management System.
 
 ## Features
 
-As of the current version, this module includes the following features:
-- A `School` menu in the Odoo interface.
-- Basic models for managing:
-    - Students (`op.student`)
-    - Courses (`op.course`)
-    - Faculties (`op.faculty`)
-    - Subjects (`op.subject`)
-    - Batches (`op.batch`)
-    - Program Levels (`op.program.level`)
-    - Programs (`op.program`)
-    - Departments (`op.department`)
-    - Academic Terms (`op.academic.term`)
-    - Academic Years (`op.academic.year`)
-- Basic views (list and form) and menu items for each of the above models.
-- Basic access rights for all new models.
+*   **Student Management:** Manage student records, including personal and contact information.
+*   **Faculty Management:** Manage faculty records, including personal and contact information.
+*   **Course Management:** Define courses and their evaluation methods.
+*   **Subject Management:** Define subjects, their types, and grade weightings.
+*   **Batch Management:** Create and manage batches for courses.
+*   **Program Management:** Define academic programs and their levels.
+*   **Department Management:** Manage academic departments.
+*   **Academic Year Management:** Define academic years and their corresponding terms.
 
-## How to Deploy
+## Models
 
-To deploy this module, please follow these steps:
+This module includes the following models:
 
-1.  **Ensure you have a running Odoo 19 instance.**
-2.  **Add this module to your addons path.** Place the `charge_erp_core` directory into the `addons` directory of your Odoo installation.
-3.  **Restart your Odoo server.** This is necessary for Odoo to recognize the new module.
-4.  **Activate Developer Mode.** In your Odoo instance, go to `Settings` -> `General Settings` and click on `Activate the developer mode`.
-5.  **Update the Apps List.** Go to `Apps` in the main menu and click on `Update Apps List` in the secondary menu. You will be prompted to confirm the update.
-6.  **Install the Module.** Search for `Charge ERP Core` in the Apps list (you may need to remove the default "Apps" filter to see it). Click the "Install" button on the module.
+*   `op.student`
+*   `op.course`
+*   `op.faculty`
+*   `op.subject`
+*   `op.batch`
+*   `op.program`
+*   `op.program.level`
+*   `op.department`
+*   `op.academic.year`
+*   `op.academic.term`
 
-Once the installation is complete, you will see a new "School" menu in your Odoo instance where you can manage the new models.
+## Deployment
+
+To deploy this module, follow these steps:
+
+1.  Add the `charge_erp_core` directory to your Odoo addons path.
+2.  Restart the Odoo server.
+3.  Go to **Apps** in the Odoo backend.
+4.  Click **Update Apps List**.
+5.  Search for "Charge ERP Core" and click **Install**.

@@ -2,20 +2,17 @@
 <odoo>
     <data>
 
-        <!-- List View for Faculty -->
         <record id="view_op_faculty_list" model="ir.ui.view">
             <field name="name">op.faculty.list</field>
             <field name="model">op.faculty</field>
             <field name="arch" type="xml">
                 <list string="Faculties">
                     <field name="name"/>
-                    <field name="gender"/>
-                    <field name="birth_date"/>
+                    <field name="faculty_id"/>
                 </list>
             </field>
         </record>
 
-        <!-- Form View for Faculty -->
         <record id="view_op_faculty_form" model="ir.ui.view">
             <field name="name">op.faculty.form</field>
             <field name="model">op.faculty</field>
@@ -24,17 +21,12 @@
                     <sheet>
                         <group>
                             <group>
-                                <field name="first_name"/>
-                                <field name="middle_name"/>
-                                <field name="last_name"/>
-                                <field name="name" readonly="1"/>
+                                <field name="name"/>
+                                <field name="faculty_id"/>
                             </group>
                             <group>
-                                <field name="gender"/>
-                                <field name="birth_date"/>
-                                <field name="blood_group"/>
-                                <field name="nationality"/>
-                                <field name="active"/>
+                                <field name="email"/>
+                                <field name="phone"/>
                             </group>
                         </group>
                     </sheet>
@@ -42,18 +34,16 @@
             </field>
         </record>
 
-        <!-- Action for Faculty -->
         <record id="action_op_faculty" model="ir.actions.act_window">
             <field name="name">Faculties</field>
             <field name="res_model">op.faculty</field>
             <field name="view_mode">list,form</field>
         </record>
 
-        <!-- Menu for Faculty -->
         <menuitem id="menu_op_faculty" name="Faculties"
-                  parent="menu_op_school_root"
-                  action="action_op_faculty"
-                  sequence="30"/>
+            parent="menu_school_root"
+            action="action_op_faculty"
+            sequence="30"/>
 
     </data>
 </odoo>

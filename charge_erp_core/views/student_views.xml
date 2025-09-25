@@ -2,84 +2,50 @@
 <odoo>
     <data>
 
-        <!-- List View -->
         <record id="view_op_student_list" model="ir.ui.view">
             <field name="name">op.student.list</field>
             <field name="model">op.student</field>
             <field name="arch" type="xml">
                 <list string="Students">
                     <field name="name"/>
-                    <field name="email"/>
-                    <field name="phone"/>
+                    <field name="student_id"/>
                 </list>
             </field>
         </record>
 
-        <!-- Form View -->
         <record id="view_op_student_form" model="ir.ui.view">
             <field name="name">op.student.form</field>
             <field name="model">op.student</field>
             <field name="arch" type="xml">
                 <form string="Student">
                     <sheet>
-                        <field name="image_1920" widget="image" class="oe_avatar"/>
-                        <div class="oe_title">
-                            <h1>
-                                <field name="name" placeholder="Student's Name"/>
-                            </h1>
-                        </div>
-                        <notebook>
-                            <page string="Personal Information">
-                                <group>
-                                    <group>
-                                        <field name="birth_date"/>
-                                        <field name="gender"/>
-                                        <field name="blood_group"/>
-                                    </group>
-                                    <group>
-                                        <field name="country_id"/>
-                                        <field name="lang"/>
-                                        <field name="visa_info"/>
-                                        <field name="is_an_alumni"/>
-                                    </group>
-                                </group>
-                            </page>
-                            <page string="Contact Information">
-                                <group>
-                                    <field name="phone"/>
-                                    <field name="email"/>
-                                </group>
-                                <label for="street"/>
-                                <div class="o_address_format">
-                                    <field name="street" placeholder="Street..."/>
-                                    <field name="street2" placeholder="Street 2..."/>
-                                    <field name="city" placeholder="City"/>
-                                    <field name="state_id" class="o_address_state" placeholder="State"/>
-                                    <field name="zip" placeholder="ZIP"/>
-                                    <field name="country_id" placeholder="Country"/>
-                                </div>
-                            </page>
-                        </notebook>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="student_id"/>
+                            </group>
+                            <group>
+                                <field name="email"/>
+                                <field name="phone"/>
+                            </group>
+                        </group>
                     </sheet>
                 </form>
             </field>
         </record>
 
-        <!-- Action -->
         <record id="action_op_student" model="ir.actions.act_window">
             <field name="name">Students</field>
             <field name="res_model">op.student</field>
             <field name="view_mode">list,form</field>
         </record>
 
-        <!-- Root Menu -->
-        <menuitem id="menu_op_school_root" name="School" sequence="10"/>
+        <menuitem id="menu_school_root" name="School" sequence="10"/>
 
-        <!-- Menu -->
         <menuitem id="menu_op_student" name="Students"
-                  parent="menu_op_school_root"
-                  action="action_op_student"
-                  sequence="10"/>
+            parent="menu_school_root"
+            action="action_op_student"
+            sequence="10"/>
 
     </data>
 </odoo>

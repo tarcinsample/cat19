@@ -1,21 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="1">
-
-        <record id="access_op_student" model="ir.model.access">
-            <field name="name">access.op.student</field>
-            <field name="model_id" ref="model_op_student"/>
-            <field name="group_id" ref="base.group_user"/>
-            <field name="perm_read" eval="1"/>
-            <field name="perm_write" eval="1"/>
-            <field name="perm_create" eval="1"/>
-            <field name="perm_unlink" eval="1"/>
+    <data>
+        <record id="module_category_charge_erp" model="ir.module.category">
+            <field name="name">Charge ERP</field>
+            <field name="description">User groups for Charge ERP</field>
+            <field name="sequence">20</field>
         </record>
 
-        <record id="access_op_course" model="ir.model.access">
-            <field name="name">access.op.course</field>
-            <field name="model_id" ref="model_op_course"/>
-            <field name="group_id" ref="base.group_user"/>
+        <record id="group_charge_erp_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="module_category_charge_erp"/>
+        </record>
+
+        <record id="group_charge_erp_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="module_category_charge_erp"/>
+            <field name="implied_ids" eval="[(4, ref('group_charge_erp_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="access_op_student" model="ir.model.access">
+            <field name="name">op.student access</field>
+            <field name="model_id" ref="model_op_student"/>
+            <field name="group_id" ref="group_charge_erp_user"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+        <record id="access_op_student_manager" model="ir.model.access">
+            <field name="name">op.student manager access</field>
+            <field name="model_id" ref="model_op_student"/>
+            <field name="group_id" ref="group_charge_erp_manager"/>
             <field name="perm_read" eval="1"/>
             <field name="perm_write" eval="1"/>
             <field name="perm_create" eval="1"/>
@@ -23,84 +40,102 @@
         </record>
 
         <record id="access_op_faculty" model="ir.model.access">
-            <field name="name">access.op.faculty</field>
+            <field name="name">op.faculty access</field>
             <field name="model_id" ref="model_op_faculty"/>
-            <field name="group_id" ref="base.group_user"/>
+            <field name="group_id" ref="group_charge_erp_user"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+        <record id="access_op_faculty_manager" model="ir.model.access">
+            <field name="name">op.faculty manager access</field>
+            <field name="model_id" ref="model_op_faculty"/>
+            <field name="group_id" ref="group_charge_erp_manager"/>
             <field name="perm_read" eval="1"/>
             <field name="perm_write" eval="1"/>
             <field name="perm_create" eval="1"/>
             <field name="perm_unlink" eval="1"/>
         </record>
 
-        <record id="access_op_subject" model="ir.model.access">
-            <field name="name">access.op.subject</field>
+        <record id="access_op_course_manager" model="ir.model.access">
+            <field name="name">op.course manager access</field>
+            <field name="model_id" ref="model_op_course"/>
+            <field name="group_id" ref="group_charge_erp_manager"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="access_op_subject_manager" model="ir.model.access">
+            <field name="name">op.subject manager access</field>
             <field name="model_id" ref="model_op_subject"/>
-            <field name="group_id" ref="base.group_user"/>
+            <field name="group_id" ref="group_charge_erp_manager"/>
             <field name="perm_read" eval="1"/>
             <field name="perm_write" eval="1"/>
             <field name="perm_create" eval="1"/>
             <field name="perm_unlink" eval="1"/>
         </record>
 
-        <record id="access_op_batch" model="ir.model.access">
-            <field name="name">access.op.batch</field>
+        <record id="access_op_batch_manager" model="ir.model.access">
+            <field name="name">op.batch manager access</field>
             <field name="model_id" ref="model_op_batch"/>
-            <field name="group_id" ref="base.group_user"/>
+            <field name="group_id" ref="group_charge_erp_manager"/>
             <field name="perm_read" eval="1"/>
             <field name="perm_write" eval="1"/>
             <field name="perm_create" eval="1"/>
             <field name="perm_unlink" eval="1"/>
         </record>
 
-        <record id="access_op_program_level" model="ir.model.access">
-            <field name="name">access.op.program.level</field>
-            <field name="model_id" ref="model_op_program_level"/>
-            <field name="group_id" ref="base.group_user"/>
-            <field name="perm_read" eval="1"/>
-            <field name="perm_write" eval="1"/>
-            <field name="perm_create" eval="1"/>
-            <field name="perm_unlink" eval="1"/>
-        </record>
-
-        <record id="access_op_program" model="ir.model.access">
-            <field name="name">access.op.program</field>
+        <record id="access_op_program_manager" model="ir.model.access">
+            <field name="name">op.program manager access</field>
             <field name="model_id" ref="model_op_program"/>
-            <field name="group_id" ref="base.group_user"/>
+            <field name="group_id" ref="group_charge_erp_manager"/>
             <field name="perm_read" eval="1"/>
             <field name="perm_write" eval="1"/>
             <field name="perm_create" eval="1"/>
             <field name="perm_unlink" eval="1"/>
         </record>
 
-        <record id="access_op_department" model="ir.model.access">
-            <field name="name">access.op.department</field>
+        <record id="access_op_program_level_manager" model="ir.model.access">
+            <field name="name">op.program.level manager access</field>
+            <field name="model_id" ref="model_op_program_level"/>
+            <field name="group_id" ref="group_charge_erp_manager"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="access_op_department_manager" model="ir.model.access">
+            <field name="name">op.department manager access</field>
             <field name="model_id" ref="model_op_department"/>
-            <field name="group_id" ref="base.group_user"/>
+            <field name="group_id" ref="group_charge_erp_manager"/>
             <field name="perm_read" eval="1"/>
             <field name="perm_write" eval="1"/>
             <field name="perm_create" eval="1"/>
             <field name="perm_unlink" eval="1"/>
         </record>
 
-        <record id="access_op_academic_term" model="ir.model.access">
-            <field name="name">access.op.academic.term</field>
-            <field name="model_id" ref="model_op_academic_term"/>
-            <field name="group_id" ref="base.group_user"/>
-            <field name="perm_read" eval="1"/>
-            <field name="perm_write" eval="1"/>
-            <field name="perm_create" eval="1"/>
-            <field name="perm_unlink" eval="1"/>
-        </record>
-
-        <record id="access_op_academic_year" model="ir.model.access">
-            <field name="name">access.op.academic.year</field>
+        <record id="access_op_academic_year_manager" model="ir.model.access">
+            <field name="name">op.academic.year manager access</field>
             <field name="model_id" ref="model_op_academic_year"/>
-            <field name="group_id" ref="base.group_user"/>
+            <field name="group_id" ref="group_charge_erp_manager"/>
             <field name="perm_read" eval="1"/>
             <field name="perm_write" eval="1"/>
             <field name="perm_create" eval="1"/>
             <field name="perm_unlink" eval="1"/>
         </record>
 
+        <record id="access_op_academic_term_manager" model="ir.model.access">
+            <field name="name">op.academic.term manager access</field>
+            <field name="model_id" ref="model_op_academic_term"/>
+            <field name="group_id" ref="group_charge_erp_manager"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
     </data>
 </odoo>

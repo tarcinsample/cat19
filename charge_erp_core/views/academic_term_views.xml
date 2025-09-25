@@ -2,21 +2,18 @@
 <odoo>
     <data>
 
-        <!-- List View for Academic Term -->
         <record id="view_op_academic_term_list" model="ir.ui.view">
             <field name="name">op.academic.term.list</field>
             <field name="model">op.academic.term</field>
             <field name="arch" type="xml">
                 <list string="Academic Terms">
                     <field name="name"/>
-                    <field name="term_start_date"/>
-                    <field name="term_end_date"/>
+                    <field name="code"/>
                     <field name="academic_year_id"/>
                 </list>
             </field>
         </record>
 
-        <!-- Form View for Academic Term -->
         <record id="view_op_academic_term_form" model="ir.ui.view">
             <field name="name">op.academic.term.form</field>
             <field name="model">op.academic.term</field>
@@ -25,28 +22,24 @@
                     <sheet>
                         <group>
                             <field name="name"/>
-                            <field name="term_start_date"/>
-                            <field name="term_end_date"/>
+                            <field name="code"/>
                             <field name="academic_year_id"/>
-                            <field name="parent_term"/>
                         </group>
                     </sheet>
                 </form>
             </field>
         </record>
 
-        <!-- Action for Academic Term -->
         <record id="action_op_academic_term" model="ir.actions.act_window">
             <field name="name">Academic Terms</field>
             <field name="res_model">op.academic.term</field>
             <field name="view_mode">list,form</field>
         </record>
 
-        <!-- Menu for Academic Term -->
         <menuitem id="menu_op_academic_term" name="Academic Terms"
-                  parent="menu_op_school_root"
-                  action="action_op_academic_term"
-                  sequence="90"/>
+            parent="menu_school_root"
+            action="action_op_academic_term"
+            sequence="100"/>
 
     </data>
 </odoo>

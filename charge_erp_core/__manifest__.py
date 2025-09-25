@@ -1,13 +1,8 @@
 {
     'name': 'Charge ERP Core',
     'version': '1.0',
-    'summary': 'Core module for Charge ERP',
-    'description': """
-        This is the core module for the Charge ERP system.
-    """,
+    'summary': 'The base module for the Charge ERP School Management System',
     'author': 'Jules',
-    'website': 'https://www.charge-erp.com',
-    'category': 'Education',
     'depends': ['base', 'mail'],
     'data': [
         'security/security.xml',
@@ -16,12 +11,12 @@
         'views/faculty_views.xml',
         'views/subject_views.xml',
         'views/batch_views.xml',
-        'views/program_level_views.xml',
         'views/program_views.xml',
+        'views/program_level_views.xml',
         'views/department_views.xml',
-        'views/academic_term_views.xml',
         'views/academic_year_views.xml',
+        'views/academic_term_views.xml',
     ],
-    'installable': True,
     'application': False,
+    'installable': True,
 }
